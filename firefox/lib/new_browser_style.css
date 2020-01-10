@@ -1,0 +1,476 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+
+/* Version 1.0 */
+
+/* Variables */
+:root {
+  /* Colors */
+  --grey-10: rgb(249, 249, 250);
+  --grey-20: rgb(237, 237, 240);
+  --grey-30: rgb(215, 215, 219);
+  --grey-40: rgb(177, 177, 179);
+  --grey-50: rgb(115, 115, 115);
+  --grey-60: rgb(74, 74, 79);
+  --grey-70: rgb(56, 56, 61);
+  --grey-80: rgb(42, 42, 46);
+  --grey-90: rgb(12, 12, 13);
+  --grey-90-a10: rgba(12, 12, 13, .1);
+  --grey-90-a20: rgba(12, 12, 13, .2);
+  --grey-90-a30: rgba(12, 12, 13, .3);
+  --grey-90-a40: rgba(12, 12, 13, .4);
+  --grey-90-a50: rgba(12, 12, 13, .5);
+  --grey-90-a60: rgba(12, 12, 13, .6);
+  --grey-90-a70: rgba(12, 12, 13, .7);
+  --grey-90-a80: rgba(12, 12, 13, .8);
+  --grey-90-a90: rgba(12, 12, 13, .9);
+  --blue-40: rgb(69, 161, 255);
+  --blue-50: rgb(10, 132, 255);
+  --blue-50-a10: rgba(10, 132, 255, .1);
+  --blue-50-a20: rgba(10, 132, 255, .2);
+  --blue-50-a30: rgba(10, 132, 255, .3);
+  --blue-60: rgb(0, 96, 223);
+  --blue-70: rgb(0, 62, 170);
+  --blue-80: rgb(0, 34, 117);
+  --blue-90: rgb(0, 15, 64);
+  --green-50: rgb(48, 230, 11);
+  --green-60: rgb(18, 188, 0);
+  --green-70: rgb(5, 139, 0);
+  --green-80: rgb(0, 101, 4);
+  --green-90: rgb(0, 55, 6);
+  --yellow-50: rgb(255, 233, 0);
+  --yellow-60: rgb(215, 182, 0);
+  --yellow-60-a30: rgba(215, 182, 0, .3);
+  --yellow-70: rgb(164, 127, 0);
+  --yellow-80: rgb(113, 81, 0);
+  --yellow-90: rgb(62, 40, 0);
+  --red-50: rgb(255, 0, 57);
+  --red-60: rgb(215, 0, 34);
+  --red-60-a30: rgba(215, 0, 34, .3);
+  --red-70: rgb(164, 0, 15);
+  --red-80: rgb(90, 0, 2);
+  --red-90: rgb(62, 2, 0);
+
+  /* Icons */
+  --warning-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="rgba(12, 12, 13, .8)" d="M14.742 12.106L9.789 2.2a2 2 0 0 0-3.578 0l-4.953 9.91A2 2 0 0 0 3.047 15h9.905a2 2 0 0 0 1.79-2.894zM7 5a1 1 0 0 1 2 0v4a1 1 0 0 1-2 0zm1 8.25A1.25 1.25 0 1 1 9.25 12 1.25 1.25 0 0 1 8 13.25z"></path></svg>');
+  --error-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="rgba(249, 249, 250, .8)" d="M6.586 8l-2.293 2.293a1 1 0 0 0 1.414 1.414L8 9.414l2.293 2.293a1 1 0 0 0 1.414-1.414L9.414 8l2.293-2.293a1 1 0 1 0-1.414-1.414L8 6.586 5.707 4.293a1 1 0 0 0-1.414 1.414L6.586 8zM8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0z"></path></svg>');
+  --info-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="rgba(12, 12, 13, .8)" d="M8 1a7 7 0 1 0 7 7 7.008 7.008 0 0 0-7-7zm0 13a6 6 0 1 1 6-6 6.007 6.007 0 0 1-6 6zm0-7a1 1 0 0 0-1 1v3a1 1 0 1 0 2 0V8a1 1 0 0 0-1-1zm0-3.188A1.188 1.188 0 1 0 9.188 5 1.188 1.188 0 0 0 8 3.812z"></path></svg>');
+  --check-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="rgba(12, 12, 13, .8)" d="M6 14a1 1 0 0 1-.707-.293l-3-3a1 1 0 0 1 1.414-1.414l2.157 2.157 6.316-9.023a1 1 0 0 1 1.639 1.146l-7 10a1 1 0 0 1-.732.427A.863.863 0 0 1 6 14z"></path></svg>');
+  --down-icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><path fill="context-fill" d="M6 9a1 1 0 0 1-.707-.293l-3-3a1 1 0 0 1 1.414-1.414L6 6.586l2.293-2.293a1 1 0 0 1 1.414 1.414l-3 3A1 1 0 0 1 6 9z"></path></svg>');
+ }
+ 
+/* Page reset */
+* {
+  color: var(--grey-90);
+  font-size: 15px;
+}
+
+body {
+  background: none;
+  box-sizing: border-box;
+  cursor: default;
+  font: caption;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+button::-moz-focus-inner {
+  border: 0 !important;
+  outline: 0 !important;
+}
+
+select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #000;
+}
+
+select:-moz-focusring * {
+  color: #000;
+  text-shadow: none;
+}
+
+/* Section */
+.browser-style .panel-section-separator {
+  background: var(--grey-90-a30);
+  height: 1px;
+}
+
+.browser-style .panel-section {
+  align-items: center;
+  box-sizing: border-box;
+  color: var(--grey-90);
+  display: flex;
+  margin: auto;
+  padding: 16px;
+  width: 100%;
+}
+ 
+.browser-style .panel-section:not(.panel-section-header):not(.panel-section-list) *:first-child {
+  flex: 1;
+}
+
+.browser-style .panel-section.has-help {
+  padding-bottom: 0;
+}
+
+.browser-style .help-row {
+  color: var(--grey-60);
+  padding: 4px 16px 16px 16px;
+}
+
+/* Special section */
+.browser-style .panel-section.note {
+  border: 1px solid var(--grey-90-a30);
+  color: var(--grey-60);
+  font-style: italic;
+}
+
+/* Header */
+.browser-style .panel-section-header .icon-section-header {
+  height: 32px;
+  margin-right: 1em;
+  width: 32px;
+}
+
+.browser-style .panel-section-header .text-section-header {
+  flex: 1;
+  font-size: 140%;
+}
+
+/* Footer */
+.browser-style .panel-section-footer {
+  background: none;
+  border: none;
+  height: auto;
+}
+
+.browser-style .panel-section-footer * {
+  flex: 1;
+}
+
+/* Tabs */
+.browser-style .panel-section-tabs {
+  display: flex;
+  height: auto;
+}
+
+.browser-style .panel-section-tabs-button {
+  background: none;
+  border: 2px solid transparent;
+  cursor: pointer;
+  flex: 1;
+  height: 32px;
+}
+
+.browser-style .tall .panel-section-tabs-button {
+  height: 48px;
+}
+
+.browser-style .panel-section-tabs-button:hover,
+.browser-style .panel-section-tabs-button.hover {
+  background: var(--grey-90-a10);
+  border-bottom: 2px solid var(--grey-90-a20);
+}
+
+.browser-style .panel-section-tabs-button:active,
+.browser-style .panel-section-tabs-button.active,
+.browser-style .panel-section-tabs-button.pressed {
+  background: var(--grey-90-a20);
+  border-bottom: 2px solid var(--grey-90-a20);
+}
+
+.browser-style .panel-section-tabs-button.selected:hover,
+.browser-style .panel-section-tabs-button.selected.hover {
+  background: var(--grey-90-a10);
+}
+
+.browser-style .panel-section-tabs-button.selected:active,
+.browser-style .panel-section-tabs-button.selected.active,
+.browser-style .panel-section-tabs-button.selected.pressed {
+  background: var(--grey-90-a20);
+}
+
+.browser-style .panel-section-tabs-button.selected {
+  border-bottom: 2px solid var(--blue-50);
+  color: var(--blue-50);
+}
+
+.browser-style .panel-section-tabs-separator {
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 1px;
+  z-index: 99;
+}
+
+/* Links */
+.browser-style a {
+  color: var(--blue-60);
+  text-decoration: none;
+}
+
+.browser-style a:hover,
+.browser-style a.hover {
+  text-decoration: underline;
+}
+
+.browser-style a:active,
+.browser-style a.active,
+.browser-style a.pressed {
+  color: var(--blue-70);
+}
+
+.browser-style a:focus,
+.browser-style a.focus,
+.browser-style a.focused {
+  box-shadow: 0 0 0 2px var(--blue-50), 0 0 0 6px var(--blue-50-a30);
+}
+
+/* Buttons */
+.browser-style button {
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 13px;
+  height: 32px;
+  min-width: 132px;
+  padding: 0 8px;
+  text-align: center;
+  width: auto;
+}
+
+.browser-style button:disabled {
+  cursor: not-allowed;
+  opacity: .4;
+}
+
+.browser-style button.micro {
+  font-size: 11px;
+  height: 24px;
+  min-width: 0px;
+}
+
+.browser-style button.puffy {
+  border-radius: 4px;
+  font-size: 15px;
+  height: 48px;
+  padding: 0 16px;
+}
+
+.browser-style button.default {
+  background: var(--blue-60);
+  color: white;
+}
+
+.browser-style button.default:enabled:hover,
+.browser-style button.default:enabled.hover {
+  background: var(--blue-70);
+}
+
+.browser-style button.default:enabled:active,
+.browser-style button.default:enabled.active,
+.browser-style button.default:enabled.pressed {
+  background: var(--blue-80);
+}
+
+.browser-style button:enabled:focus,
+.browser-style button:enabled.focus,
+.browser-style button:enabled.focused,
+.browser-style .panel-section-tabs-button:focus,
+.browser-style .panel-section-tabs-button.focus,
+.browser-style .panel-section-tabs-button.focused,
+.browser-style .panel-list-item:focus,
+.browser-style .panel-list-item.focus,
+.browser-style .panel-list-item.focused {
+  box-shadow: 0 0 0 1px var(--blue-50) inset, 0 0 0 1px var(--blue-50), 0 0 0 4px var(--blue-50-a30);
+}
+
+.browser-style button.secondary {
+  background: var(--grey-90-a10);
+  color: var(--grey-90);
+}
+
+.browser-style button.secondary:enabled:hover,
+.browser-style button.secondary:enabled.hover {
+  background: var(--grey-90-a20);
+}
+
+.browser-style button.secondary:enabled:active,
+.browser-style button.secondary:enabled.active,
+.browser-style button.secondary:enabled.pressed {
+  background: var(--grey-90-a30);
+}
+
+.browser-style button.ghost {
+  background: none;
+  color: var(--grey-90-a80);
+  min-width: 0px;
+}
+
+.browser-style button.ghost:enabled:hover,
+.browser-style button.ghost:enabled.hover {
+  background: var(--grey-90-a10);
+}
+
+.browser-style button.ghost:enabled:active,
+.browser-style button.ghost:enabled.active,
+.browser-style button.ghost:enabled.pressed {
+  background: var(--grey-90-a20);
+}
+
+.browser-style button.expander {
+  background-image: var(--down-icon);
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 24px;
+  padding: 0;
+  width: 24px;
+  min-width: 0px !important;
+}
+
+/* Text input & Selects */
+.browser-style input:not([type=radio]):not([type=checkbox]):not([type=range]),
+.browser-style select,
+.browser-style textarea {
+  border: 1px solid var(--grey-90-a20);
+  border-radius: 2px;
+  height: 32px;
+  padding: 0 8px;
+  width: auto;
+}
+
+.browser-style input:hover,
+.browser-style input.hover,
+.browser-style select:hover,
+.browser-style select.hover,
+.browser-style textarea:hover,
+.browser-style textarea.hover {
+  border: 1px solid var(--grey-90-a30);
+}
+
+.browser-style input:focus,
+.browser-style input.focus,
+.browser-style input.focused,
+.browser-style select:focus,
+.browser-style select.focus,
+.browser-style select.focused,
+.browser-style textarea:focus,
+.browser-style textarea.focus,
+.browser-style textarea.focused {
+  border: 1px solid var(--blue-50);
+  box-shadow: 0 0 0 1px var(--blue-50), 0 0 0 4px var(--blue-50-a30);
+}
+
+.browser-style input.warning,
+.browser-style select.warning,
+.browser-style textarea.warning {
+  border: 1px solid var(--yellow-60);
+  box-shadow: 0 0 0 1px var(--yellow-60), 0 0 0 4px var(--yellow-60-a30);
+}
+
+.browser-style input.error,
+.browser-style select.error,
+.browser-style textarea.error {
+  border: 1px solid var(--red-60);
+  box-shadow: 0 0 0 1px var(--red-60), 0 0 0 4px var(--red-60-a30);
+}
+
+.browser-style select {
+  -moz-appearance: none;
+  background-image: var(--down-icon);
+  background-position: left calc(100% - 8px) bottom 50%;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  padding-right: 24px;
+}
+
+.browser-style input[type=radio],
+.browser-style input[type=checkbox] {
+  cursor: pointer;
+}
+
+/* Message bars */
+.browser-style .message-bar {
+  align-items: center;
+  background-position: left 8px bottom 50%;
+  background-repeat: no-repeat;
+  border-radius: 4px;
+  display: flex;
+  font-size: 16px;
+  margin: 5px 0;
+  min-height: 32px;
+  padding: 0 4px 0 32px;
+  text-align: left;
+  width: auto;
+}
+
+.browser-style .message-bar.general {
+  background-color: var(--grey-20);
+  background-image: var(--info-icon);
+  color: var(--grey-90);
+}
+
+.browser-style .message-bar.success {
+  background-color: var(--green-50);
+  background-image: var(--check-icon);
+  color: var(--green-90);
+}
+
+.browser-style .message-bar.warning {
+  background-color: var(--yellow-50);
+  background-image: var(--warning-icon);
+  color: var(--yellow-90);
+}
+
+.browser-style .message-bar.error {
+  background-color: var(--red-60);
+  background-image: var(--error-icon);
+  color: white;
+}
+
+/* List/Menu */
+.browser-style .panel-section-list {
+  flex-direction: column;
+  padding: 4px 0;
+}
+
+.browser-style .panel-list-item {
+  align-items: center;
+  border-radius: 2px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  font-size: 13px;
+  height: 24px;
+  padding: 0 16px;
+  width: 100%;
+}
+
+.browser-style .panel-list-item:not(.disabled):hover,
+.browser-style .panel-list-item:not(.disabled).hover {
+  background: var(--grey-90-a10);
+}
+
+.browser-style .panel-list-item:not(.disabled):active,
+.browser-style .panel-list-item:not(.disabled).active,
+.browser-style .panel-list-item:not(.disabled).pressed {
+  background: var(--grey-90-a20);
+}
+
+.browser-style .panel-list-item.disabled {
+  opacity: .4;
+}
+
+.browser-style .panel-list-item .text {
+  flex: 1;
+}
+
+.browser-style .panel-list-item .text-shortcut {
+  color: var(--grey-50);
+  font-size: 90%;
+}
+
+.browser-style .panel-section-list .panel-section-separator {
+  margin: 4px 0;
+  width:100%;
+}

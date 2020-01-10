@@ -1,0 +1,60 @@
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../lib/new_browser_style.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="browser-style">
+    <form name="settings">
+        <section class="panel-section">
+            <label for="width">Scrollbar width</label>
+            <div>
+                <label><input type="radio" name="width" value="unset"> Default</label><br>
+                <label><input type="radio" name="width" value="thin"> Thin</label><br>
+                <label><input type="radio" name="width" value="none" checked> Hidden</label>
+            </div>
+        </section>
+        <div class="panel-section-separator"></div>
+        <section class="panel-section">
+            <label for="customColors">Use custom colors</label>
+            <div>
+                <label><input type="radio" name="customColors" value="yes"> Yes</label><br>
+                <label><input type="radio" name="customColors" value="no"> No</label>
+            </div>
+        </section>
+        <div class="panel-section-separator has-help only-colors"></div>
+        <section class="panel-section only-colors">
+            <label for="colorThumb">Scrollbar thumb color</label>
+            <div id="picker1">
+                <input name="colorThumb" style="display: none">
+            </div>
+        </section>
+        <section class="panel-section help-row only-colors">
+            Click the "Ok" button to save color
+        </section>
+        <div class="panel-section-separator has-help only-colors"></div>
+        <section class="panel-section only-colors">
+            <label for="colorTrack">Scrollbar track color</label>
+            <div id="picker2">
+                <input name="colorTrack" style="display: none">
+            </div>
+        </section>
+        <section class="panel-section help-row only-colors">
+            Click the "Ok" button to save color
+        </section>
+        <section class="panel-section">
+            <div class="message-bar general">You will need to refresh all tabs to see the changes</div>
+        </section>
+    </form>
+    <script src="../lib/vanilla-picker.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

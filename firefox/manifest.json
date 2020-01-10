@@ -1,0 +1,41 @@
+{
+    "manifest_version": 2,
+    "name": "Custom Scrollbars",
+    "version": "1.0",
+    "description": "DESC",
+    "author": "Wesley Branton",
+
+    "developer": {
+        "name": "Wesley Branton",
+        "url": "http://addons.wesleybranton.com"
+    },
+
+    "icons": {
+        "32": "icons/icon-32.png",
+        "48": "icons/icon-48.png",
+        "64": "icons/icon-64.png",
+        "96": "icons/icon-96.png",
+        "128": "icons/icon-128.png"
+    },
+
+    "options_ui": {
+        "page": "options/options.html",
+        "browser_style": false
+    },
+
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "customscrollbars@computerwhiz",
+            "strict_min_version": "57.0"
+        }
+    },
+
+    "background": {
+        "scripts": ["background.js"]
+    },
+
+    "permissions": [
+        "storage",
+        "<all_urls>"
+    ]
+}
