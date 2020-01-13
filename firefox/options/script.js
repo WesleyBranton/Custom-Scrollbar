@@ -88,7 +88,6 @@ function toggleColors() {
  * @param {boolean} show
  */
 function toggleChangesWarning(show) {
-    console.log("Trigger");
     if (show) {
         document.getElementById('saveWarning').className = 'unsaved';
     } else {
