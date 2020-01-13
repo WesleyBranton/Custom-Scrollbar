@@ -29,31 +29,37 @@
                 <label><input type="radio" name="customColors" value="no"> No</label>
             </div>
         </section>
-        <div class="panel-section-separator has-help only-colors"></div>
+        <div class="panel-section-separator only-colors"></div>
         <section class="panel-section only-colors">
             <label for="colorThumb">Scrollbar thumb color</label>
             <div id="picker1">
                 <input name="colorThumb" style="display: none">
             </div>
         </section>
-        <section class="panel-section help-row only-colors">
-            Click the "Ok" button to save color
-        </section>
-        <div class="panel-section-separator has-help only-colors"></div>
+        <div class="panel-section-separator only-colors"></div>
         <section class="panel-section only-colors">
             <label for="colorTrack">Scrollbar track color</label>
             <div id="picker2">
                 <input name="colorTrack" style="display: none">
             </div>
         </section>
-        <section class="panel-section help-row only-colors">
-            Click the "Ok" button to save color
+        <div class="panel-section-separator"></div>
+        <section class="panel-section has-help">
+            <label id="changesSavedUI"></label>
+            <button id="saveChanges" class="default" type="button">Save</button>
         </section>
-        <section class="panel-section">
+        <section class="panel-section help-row has-help">
+            <div id="saveWarning" class="saved">
+                <div class="message-bar success">All changes have been saved!</div>
+                <div class="message-bar warning">You have unsaved changes!</div>
+            </div>
+        </section>
+        <section class="panel-section help-row">
             <div class="message-bar general">You will need to refresh all tabs to see the changes</div>
         </section>
     </form>
     <script src="../lib/vanilla-picker.min.js"></script>
+    <script src="https://unpkg.com/vanilla-picker@2"></script>
     <script src="script.js"></script>
 </body>
 

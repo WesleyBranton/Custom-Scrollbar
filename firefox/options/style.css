@@ -1,3 +1,29 @@
 .no-custom-colors .only-colors {
     display: none !important;
 }
+
+.picker_wrapper {
+    background: none !important;
+    box-shadow: none !important;
+}
+
+.picker_wrapper * {
+    font-size: 10px !important;
+}
+
+.picker_wrapper .picker_selector {
+    background: none !important;
+}
+
+.picker_wrapper .picker_done {
+    display: none !important;
+}
+
+.picker_wrapper .picker_editor input {
+    font-size: 15px !important;
+}
+
+#saveWarning.saved .warning,
+#saveWarning.unsaved .success {
+    display: none !important;
+}

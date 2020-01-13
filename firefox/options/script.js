@@ -20,6 +20,11 @@ function restore(setting) {
     }
 
     toggleColors();
+
+    colPicker1.setColor(setting.colorThumb);
+    colPicker2.setColor(setting.colorTrack);
+
+    toggleChangesWarning(false);
 }
 
 /**
@@ -31,6 +36,7 @@ function save() {
         colorTrack: document.settings.colorTrack.value,
         colorThumb: document.settings.colorThumb.value
     });
+    toggleChangesWarning(false);
 }
 
 /**
@@ -48,13 +54,13 @@ function createColorPickers() {
         color: '#FFFFFF00'
     });
 
-    colPicker1.onDone = function (color) {
+    colPicker1.onChange = function (color) {
         document.settings.colorThumb.value = color.hex;
-        save();
+        toggleChangesWarning(true);
     };
-    colPicker2.onDone = function (color) {
+    colPicker2.onChange = function (color) {
         document.settings.colorTrack.value = color.hex;
-        save();
+        toggleChangesWarning(true);
     };
 }
 
@@ -62,6 +68,8 @@ function createColorPickers() {
  * Show/hide custom colors
  */
 function toggleColors() {
+    toggleChangesWarning(true);
+
     if (document.settings.customColors.value == 'yes') {
         document.settings.colorThumb.value = '#CDCDCDFF';
         document.settings.colorTrack.value = '#FFFFFF00';
@@ -73,7 +81,19 @@ function toggleColors() {
         document.settings.colorThumb.value = '';
         document.settings.colorTrack.value = '';
     }
-    save();
+}
+
+/**
+ * Change the unsaved changes warning banner
+ * @param {boolean} show
+ */
+function toggleChangesWarning(show) {
+    console.log("Trigger");
+    if (show) {
+        document.getElementById('saveWarning').className = 'unsaved';
+    } else {
+        document.getElementById('saveWarning').className = 'saved';
+    }
 }
 
 let colPicker1, colPicker2;
@@ -81,5 +101,5 @@ createColorPickers();
 let data = browser.storage.local.get();
 data.then(restore);
 
-document.settings.addEventListener('change', save);
+document.getElementById('saveChanges').addEventListener('click', save);
 document.settings.addEventListener('change', toggleColors);
