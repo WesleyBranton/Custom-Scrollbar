@@ -1,5 +1,7 @@
-# Custom Scrollbars [<img align="right" src=".github/fxaddon.png">](LINK)
-DESC
+# Custom Scrollbars [<img align="right" src=".github/fxaddon.png">](https://addons.mozilla.org/firefox/addon/custom-scrollbars/)
+Give your Firefox browser a personalized touch with custom scrollbar colours! You can select from any range of colours and toggle between the default width and thin scrollbar... or hide it altogether if that's what floats your boat.
+
+NOTE: Due to technical limitations, this add-on can not adjust the scrollbars for Mozilla-owned pages, internal Firefox pages or pages associated with other browser extensions. Sorry.
 
 ## Development
 This repository contains all of the required source code files to make changes to this extension. The "master" branch contains the source code for the latest stable release. If you want to test that version, you can view the release section to download the XPI file or visit the add-on listing on Mozilla.
