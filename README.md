@@ -14,4 +14,4 @@ Further documentation about developing Firefox extensions can be found [here](ht
 
 ## Release Notes
 ### Version 1.0.1
-* **[FIXED]** Fixed issue with colors not saving (issue #1)
+* **[FIXED]** Fixed issue with colors not saving
