@@ -19,6 +19,7 @@ function restore(setting) {
         document.settings.customColors.value = 'yes';
     }
 
+    previousToggleValue = document.settings.customColors.value;
     toggleColors();
 
     colPicker1.setColor(setting.colorThumb);
@@ -71,16 +72,19 @@ function toggleColors() {
     toggleChangesWarning(true);
 
     if (document.settings.customColors.value == 'yes') {
-        document.settings.colorThumb.value = '#CDCDCDFF';
-        document.settings.colorTrack.value = '#FFFFFF00';
-        colPicker1.setColor('#CDCDCDFF');
-        colPicker2.setColor('#FFFFFF00');
+        if (previousToggleValue != 'yes') {
+            document.settings.colorThumb.value = '#CDCDCDFF';
+            document.settings.colorTrack.value = '#FFFFFF00';
+            colPicker1.setColor('#CDCDCDFF');
+            colPicker2.setColor('#FFFFFF00');
+        }
         document.settings.className = '';
     } else {
         document.settings.className = 'no-custom-colors';
         document.settings.colorThumb.value = '';
         document.settings.colorTrack.value = '';
     }
+    previousToggleValue = document.settings.customColors.value;
 }
 
 /**
@@ -95,7 +99,7 @@ function toggleChangesWarning(show) {
     }
 }
 
-let colPicker1, colPicker2;
+let colPicker1, colPicker2, previousToggleValue;
 createColorPickers();
 let data = browser.storage.local.get();
 data.then(restore);
