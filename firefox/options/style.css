@@ -3,89 +3,89 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 body {
-    background: #f9f9fa;
+  background: #f9f9fa;
 }
 
 form {
-    width: 95%;
-    max-width: 1000px;
-    margin: 16px auto;
-    background: white;
-    padding: 16px;
-    box-sizing: border-box;
-    box-shadow: 0 1px 4px var(--grey-90-a10);
-    border-radius: 4px;
+  width: 95%;
+  max-width: 1000px;
+  margin: 16px auto;
+  background: white;
+  padding: 16px;
+  box-sizing: border-box;
+  box-shadow: 0 1px 4px var(--grey-90-a10);
+  border-radius: 4px;
 }
 
 .no-custom-colors .only-colors {
-    display: none !important;
+  display: none !important;
 }
 
 .picker_wrapper {
-    background: none !important;
-    box-shadow: none !important;
+  background: none !important;
+  box-shadow: none !important;
 }
 
 .picker_wrapper * {
-    font-size: 10px !important;
+  font-size: 10px !important;
 }
 
 .picker_wrapper .picker_selector {
-    background: none !important;
+  background: none !important;
 }
 
 .picker_wrapper .picker_done {
-    display: none !important;
+  display: none !important;
 }
 
 .picker_wrapper .picker_editor input {
-    font-size: 15px !important;
+  font-size: 15px !important;
 }
 
 #saveWarning.saved .warning,
 #saveWarning.unsaved .success {
-    display: none !important;
+  display: none !important;
 }
 
 .message-bar.private {
-    background-color: #8D20AE;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="rgba(249, 249, 250, .8)" d="M12.408 11.992c-1.663 0-2.813-2-4.408-2s-2.844 2-4.408 2C1.54 11.992.025 10.048 0 6.719c-.015-2.068.6-2.727 3.265-2.727S6.709 5.082 8 5.082s2.071-1.091 4.735-1.091 3.28.66 3.265 2.727c-.025 3.33-1.54 5.274-3.592 5.274zM4.572 6.537c-1.619.07-2.286 1.035-2.286 1.273s1.073.909 2.122.909 2.286-.384 2.286-.727a1.9 1.9 0 0 0-2.122-1.455zm6.857 0a1.9 1.9 0 0 0-2.123 1.455c0 .343 1.236.727 2.286.727s2.122-.671 2.122-.909-.667-1.203-2.286-1.273z"></path></svg>');
-    padding-top: 6px;
-    padding-bottom: 6px;
+  background-color: #8D20AE;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="rgba(249, 249, 250, .8)" d="M12.408 11.992c-1.663 0-2.813-2-4.408-2s-2.844 2-4.408 2C1.54 11.992.025 10.048 0 6.719c-.015-2.068.6-2.727 3.265-2.727S6.709 5.082 8 5.082s2.071-1.091 4.735-1.091 3.28.66 3.265 2.727c-.025 3.33-1.54 5.274-3.592 5.274zM4.572 6.537c-1.619.07-2.286 1.035-2.286 1.273s1.073.909 2.122.909 2.286-.384 2.286-.727a1.9 1.9 0 0 0-2.122-1.455zm6.857 0a1.9 1.9 0 0 0-2.123 1.455c0 .343 1.236.727 2.286.727s2.122-.671 2.122-.909-.667-1.203-2.286-1.273z"></path></svg>');
+  padding-top: 6px;
+  padding-bottom: 6px;
 }
 
 .message-bar.private * {
-    color: white;
+  color: white;
 }
 
 .message-bar.private a {
-    font-weight: bold;
-    text-decoration: underline;
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 .hide {
-    display: none !important;
+  display: none !important;
 }
 
 #preview {
-    height: 100px;
-    width: 50%;
-    resize: none;
-    background: white;
-    color: black;
+  height: 100px;
+  width: 50%;
+  resize: none;
+  background: white;
+  color: black;
 }
 
 .image-helper {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .image-helper label {
-    flex: 1;
+  flex: 1;
 }
 
 .image-helper img {
-    width: 20px;
-    flex: unset !important;
-    margin-right: 1em;
+  width: 20px;
+  flex: unset !important;
+  margin-right: 1em;
 }

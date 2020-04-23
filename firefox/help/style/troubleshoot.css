@@ -1,39 +1,43 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+
 body {
-    background: #f9f9fa;
+  background: #f9f9fa;
 }
 
 .container {
-    width: 95%;
-    max-width: 1000px;
-    margin: 16px auto;
-    background: white;
-    padding: 16px;
-    box-sizing: border-box;
-    box-shadow: 0 1px 4px var(--grey-90-a10);
-    border-radius: 4px;
+  width: 95%;
+  max-width: 1000px;
+  margin: 16px auto;
+  background: white;
+  padding: 16px;
+  box-sizing: border-box;
+  box-shadow: 0 1px 4px var(--grey-90-a10);
+  border-radius: 4px;
 }
 
 #preview {
-    height: 100px;
-    width: 50%;
-    resize: none;
-    background: white;
-    color: black;
+  height: 100px;
+  width: 50%;
+  resize: none;
+  background: white;
+  color: black;
 }
 
 .test:not(.show) {
-    display: none !important;
+  display: none !important;
 }
 
 .heading img {
-    flex: unset !important;
-    margin-right: 1em;
+  flex: unset !important;
+  margin-right: 1em;
 }
 
 .heading:not(.success) img {
-    display: none;
+  display: none;
 }
 
 .heading h3 {
-    flex: 1;
+  flex: 1;
 }

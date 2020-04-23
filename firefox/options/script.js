@@ -67,10 +67,10 @@ function createColorPickers() {
         color: '#FFFFFF00'
     });
 
-    colorPickerThumb.onChange = function (color) {
+    colorPickerThumb.onChange = function(color) {
         toggleChangesWarning(true);
     };
-    colorPickerTrack.onChange = function (color) {
+    colorPickerTrack.onChange = function(color) {
         toggleChangesWarning(true);
     };
 }
@@ -130,7 +130,7 @@ async function togglePrivateNotice() {
 function updatePreview() {
     const preview = document.getElementById('preview');
     const css = getNewCSS();
-    
+
     preview.setAttribute('style', css);
 }
 

@@ -1,3 +1,7 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+
 const UI = {
     preview: document.getElementById('preview'),
     button: {
@@ -19,6 +23,10 @@ const UI = {
 }
 let currentStage = 1;
 
+/**
+ * Handle all button presses and test progression
+ * @param {number} action 
+ */
 function testController(action) {
     const id = action.target.id.split('-');
 
@@ -43,6 +51,10 @@ function testController(action) {
     }
 }
 
+/**
+ * Successfully end a stage of the test
+ * @param {number} stage 
+ */
 async function endStage(stage) {
     let isAllowPrivateBrowsing;
 
@@ -53,7 +65,7 @@ async function endStage(stage) {
 
             UI.preview.setAttribute('style', 'scrollbar-width: default !important; scrollbar-color: blue red !important;');
             break;
-        
+
         case 1:
             document.getElementById('color-test').classList.remove('show');
             document.getElementById('color-heading').classList.add('success');
@@ -101,6 +113,10 @@ async function endStage(stage) {
     }
 }
 
+/**
+ * Fail a stage with an error
+ * @param {number} stage 
+ */
 function failStage(stage) {
     switch (stage) {
         case 1:
@@ -113,7 +129,7 @@ function failStage(stage) {
                 window.open('https://github.com/WesleyBranton/Custom-Scrollbar/wiki/No-color-customizations', '_blank');
             });
             break;
-        
+
         case 2:
             document.getElementById('width-test').classList.remove('show');
             document.getElementById('width-fail').classList.add('show');
