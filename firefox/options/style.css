@@ -59,3 +59,18 @@
     background: white;
     color: black;
 }
+
+.image-helper {
+    display: flex;
+    align-items: center;
+}
+
+.image-helper label {
+    flex: 1;
+}
+
+.image-helper img {
+    width: 5%;
+    flex: unset !important;
+    margin-right: 1em;
+}
