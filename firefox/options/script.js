@@ -25,6 +25,7 @@ function restore(setting) {
     colorPickerThumb.setColor(setting.colorThumb);
     colorPickerTrack.setColor(setting.colorTrack);
 
+    togglePrivateNotice();
     toggleChangesWarning(false);
 }
 
@@ -99,6 +100,18 @@ function toggleChangesWarning(show) {
         document.getElementById('saveWarning').className = 'unsaved';
     } else {
         document.getElementById('saveWarning').className = 'saved';
+    }
+}
+
+/**
+ * Display Private Browsing access warning message, if required
+ * @async
+ */
+async function togglePrivateNotice() {
+    let isAllowPrivateBrowsing = await browser.extension.isAllowedIncognitoAccess();
+
+    if (!isAllowPrivateBrowsing) {
+        document.getElementById('private-notice').classList.remove('hide');
     }
 }
 
