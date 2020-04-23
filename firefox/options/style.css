@@ -51,3 +51,11 @@
 .hide {
     display: none !important;
 }
+
+#preview {
+    height: 100px;
+    width: 50%;
+    resize: none;
+    background: white;
+    color: black;
+}

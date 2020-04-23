@@ -101,6 +101,8 @@ function toggleChangesWarning(show) {
     } else {
         document.getElementById('saveWarning').className = 'saved';
     }
+
+    updatePreview();
 }
 
 /**
@@ -113,6 +115,19 @@ async function togglePrivateNotice() {
     if (!isAllowPrivateBrowsing) {
         document.getElementById('private-notice').classList.remove('hide');
     }
+}
+
+/**
+ * Updates the live preview textarea style
+ */
+function updatePreview() {
+    const preview = document.getElementById('preview');
+    const width = document.settings.width.value;
+    let colThumb = (document.settings.customColors.value == 'yes') ? colorPickerThumb.color.hex : 'unset';
+    let colTrack = (document.settings.customColors.value == 'yes') ? colorPickerTrack.color.hex : 'unset';
+
+    const css = `scrollbar-width: ${width} !important; scrollbar-color: ${colThumb} ${colTrack} !important;`;
+    preview.setAttribute('style', css);
 }
 
 let colorPickerThumb, colorPickerTrack, previousToggleValue;
