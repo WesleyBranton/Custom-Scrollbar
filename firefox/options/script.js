@@ -98,8 +98,10 @@ function toggleColors() {
 function toggleChangesWarning(show) {
     if (show) {
         document.getElementById('saveWarning').className = 'unsaved';
+        document.getElementById('saveChanges').disabled = false;
     } else {
         document.getElementById('saveWarning').className = 'saved';
+        document.getElementById('saveChanges').disabled = true;
     }
 
     updatePreview();
