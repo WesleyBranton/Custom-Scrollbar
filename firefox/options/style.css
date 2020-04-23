@@ -85,7 +85,7 @@ form {
 }
 
 .image-helper img {
-    width: 5%;
+    width: 20px;
     flex: unset !important;
     margin-right: 1em;
 }
