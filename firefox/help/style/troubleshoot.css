@@ -1,0 +1,39 @@
+body {
+    background: #f9f9fa;
+}
+
+.container {
+    width: 95%;
+    max-width: 1000px;
+    margin: 16px auto;
+    background: white;
+    padding: 16px;
+    box-sizing: border-box;
+    box-shadow: 0 1px 4px var(--grey-90-a10);
+    border-radius: 4px;
+}
+
+#preview {
+    height: 100px;
+    width: 50%;
+    resize: none;
+    background: white;
+    color: black;
+}
+
+.test:not(.show) {
+    display: none !important;
+}
+
+.heading img {
+    flex: unset !important;
+    margin-right: 1em;
+}
+
+.heading:not(.success) img {
+    display: none;
+}
+
+.heading h3 {
+    flex: 1;
+}
