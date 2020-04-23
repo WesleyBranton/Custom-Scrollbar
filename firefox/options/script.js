@@ -27,6 +27,7 @@ function restore(setting) {
 
     togglePrivateNotice();
     toggleChangesWarning(false);
+    updateWindowScrollbar();
 }
 
 /**
@@ -46,7 +47,9 @@ function save() {
         colorTrack: colTrack,
         colorThumb: colThumb
     });
+
     toggleChangesWarning(false);
+    updateWindowScrollbar();
 }
 
 /**
@@ -126,12 +129,31 @@ async function togglePrivateNotice() {
  */
 function updatePreview() {
     const preview = document.getElementById('preview');
+    const css = getNewCSS();
+    
+    preview.setAttribute('style', css);
+}
+
+/**
+ * Changes scrollbars on options page to match the new settings
+ */
+function updateWindowScrollbar() {
+    const css = getNewCSS();
+    document.documentElement.setAttribute('style', css);
+}
+
+/**
+ * Generates new CSS code for scrollbars
+ * @returns {string} css
+ */
+function getNewCSS() {
     const width = document.settings.width.value;
     let colThumb = (document.settings.customColors.value == 'yes') ? colorPickerThumb.color.hex : 'unset';
     let colTrack = (document.settings.customColors.value == 'yes') ? colorPickerTrack.color.hex : 'unset';
 
     const css = `scrollbar-width: ${width} !important; scrollbar-color: ${colThumb} ${colTrack} !important;`;
-    preview.setAttribute('style', css);
+
+    return css;
 }
 
 let colorPickerThumb, colorPickerTrack, previousToggleValue;
