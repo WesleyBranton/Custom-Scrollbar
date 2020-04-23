@@ -94,6 +94,19 @@ async function removeStyle() {
     return;
 }
 
+/**
+ * Open options page on first install
+ * @param {Object} details 
+ */
+function handleInstalled(details) {
+    if (details.reason == 'install') {
+        browser.tabs.create({
+            url: 'options/options.html'
+        });
+    }
+}
+
 let contentScript = null;
 browser.storage.onChanged.addListener(loadSettings);
 loadSettings();
+browser.runtime.onInstalled.addListener(handleInstalled);
