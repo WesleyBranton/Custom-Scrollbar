@@ -99,9 +99,11 @@ function toggleChangesWarning(show) {
     if (show) {
         document.getElementById('saveWarning').className = 'unsaved';
         document.getElementById('saveChanges').disabled = false;
+        pendingChanges = true;
     } else {
         document.getElementById('saveWarning').className = 'saved';
         document.getElementById('saveChanges').disabled = true;
+        pendingChanges = false;
     }
 
     updatePreview();
@@ -133,9 +135,17 @@ function updatePreview() {
 }
 
 let colorPickerThumb, colorPickerTrack, previousToggleValue;
+let pendingChanges = false;
 createColorPickers();
 let data = browser.storage.local.get();
 data.then(restore);
 
 document.getElementById('saveChanges').addEventListener('click', save);
 document.settings.addEventListener('change', toggleColors);
+window.addEventListener('beforeunload', (event) => {
+    // Prevent user from leaving if they have unsaved changes
+    if (pendingChanges) {
+        event.preventDefault();
+        event.returnValue = '';
+    }
+});
