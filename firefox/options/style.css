@@ -2,6 +2,21 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
+body {
+    background: #f9f9fa;
+}
+
+form {
+    width: 95%;
+    max-width: 1000px;
+    margin: 16px auto;
+    background: white;
+    padding: 16px;
+    box-sizing: border-box;
+    box-shadow: 0 1px 4px var(--grey-90-a10);
+    border-radius: 4px;
+}
+
 .no-custom-colors .only-colors {
     display: none !important;
 }

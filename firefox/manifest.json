@@ -19,7 +19,7 @@
     },
 
     "options_ui": {
-        "page": "options/options.html",
+        "page": "options/preview.html",
         "browser_style": false
     },
 
