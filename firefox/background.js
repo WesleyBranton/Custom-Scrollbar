@@ -100,9 +100,10 @@ async function removeStyle() {
  */
 function handleInstalled(details) {
     if (details.reason == 'install') {
-        browser.tabs.create({
-            url: 'options/options.html'
-        });
+        browser.tabs.create({ url: 'options/options.html' });
+    } else if (details.reason == 'update') {
+        const { version } = browser.runtime.getManifest();
+        if (version == details.previousVersion) browser.tabs.create({ url: 'options/options.html' });
     }
 }
 
