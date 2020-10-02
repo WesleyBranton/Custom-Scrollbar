@@ -64,7 +64,7 @@ function createColorPickers() {
     colorPickerTrack = new Picker({
         parent: document.getElementById('colorTrack'),
         popup: false,
-        color: '#FFFFFF00'
+        color: '#F0F0F0FF'
     });
 
     colorPickerThumb.onChange = function(color) {
@@ -84,7 +84,7 @@ function toggleColors() {
     if (document.settings.customColors.value == 'yes') {
         if (previousToggleValue != 'yes') {
             colorPickerThumb.setColor('#CDCDCDFF');
-            colorPickerTrack.setColor('#FFFFFF00');
+            colorPickerTrack.setColor('#F0F0F0FF');
         }
         document.settings.className = '';
     } else {
