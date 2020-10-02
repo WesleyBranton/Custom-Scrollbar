@@ -65,29 +65,12 @@ async function loadSettings() {
     await removeStyle();
     let setting = await browser.storage.local.get();
 
-    if (!setting.width) {
-        await firstRun();
-        return;
-    }
-
     applyStyle(
         setting.width,
         setting.colorTrack,
         setting.colorThumb,
         setting.allowOverride
     );
-}
-
-/**
- * Initialize Storage API
- */
-async function firstRun() {
-    await browser.storage.local.set({
-        width: 'unset',
-        colorTrack: '',
-        colorThumb: ''
-    });
-    return;
 }
 
 /**
