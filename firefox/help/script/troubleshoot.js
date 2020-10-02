@@ -147,4 +147,19 @@ function failStage(stage) {
     }
 }
 
+/**
+ * Automatically bypasses the color and width tests for Firefox 79+
+ * @async
+ */
+async function handleVersion79() {
+    const browserInfo = await browser.runtime.getBrowserInfo();
+    const browserVersion = parseInt(browserInfo.version.split('.', 1)[0]);
+
+    if (browserVersion >= 79) {
+        endStage(1);
+        endStage(2);
+    }
+}
+
 endStage(0);
+handleVersion79();
