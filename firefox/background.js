@@ -8,8 +8,8 @@
  * @param {string} colorTrack
  * @param {string} colorThumb
  */
-async function applyStyle(width, colorTrack, colorThumb) {
-    let css = generateCSS(width, colorTrack, colorThumb);
+async function applyStyle(width, colorTrack, colorThumb, override) {
+    let css = generateCSS(width, colorTrack, colorThumb, override);
     let options = {
         allFrames: true,
         css: [{
@@ -30,7 +30,7 @@ async function applyStyle(width, colorTrack, colorThumb) {
  * @param {string} colorThumb
  * @return {string} css
  */
-function generateCSS(width, colorTrack, colorThumb) {
+function generateCSS(width, colorTrack, colorThumb, override) {
     let css, color;
 
     if (!width) {
@@ -43,9 +43,15 @@ function generateCSS(width, colorTrack, colorThumb) {
         color = 'unset';
     }
 
+    if (typeof override == 'undefined') override = 0;
+
     css = '* { ';
-    css += 'scrollbar-width: ' + width + ' !important; ';
-    css += 'scrollbar-color: ' + color + ' !important; ';
+    css += 'scrollbar-width: ' + width + ' ';
+    if (parseInt(override / 10) == 0) css += '!important';
+    css += '; ';
+    css += 'scrollbar-color: ' + color + ' ';
+    if (override % 10 == 0) css += '!important';
+    css += '; ';
     css += '}';
 
     return css;
@@ -67,7 +73,8 @@ async function loadSettings() {
     applyStyle(
         setting.width,
         setting.colorTrack,
-        setting.colorThumb
+        setting.colorThumb,
+        setting.allowOverride
     );
 }
 

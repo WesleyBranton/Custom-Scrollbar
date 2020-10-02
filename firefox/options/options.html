@@ -67,6 +67,19 @@
       </div>
     </section>
     <div class="panel-section-separator"></div>
+    <section class="panel-section">
+      <label for="override">Allow websites to override</label>
+      <div>
+        <!-- Set using bit-style setting 
+             1 is true and 0 is false
+             digits are: width, color -->
+        <label><input type="radio" name="override" value="1"> Only color</label><br>
+        <label><input type="radio" name="override" value="10"> Only width</label><br>
+        <label><input type="radio" name="override" value="11"> Color & width</label><br>
+        <label><input type="radio" name="override" value="0"> None</label>
+      </div>
+    </section>
+    <div class="panel-section-separator"></div>
     <section class="panel-section has-help">
       <label id="changesSavedUI"></label>
       <button id="saveChanges" class="default" type="button">Save</button>

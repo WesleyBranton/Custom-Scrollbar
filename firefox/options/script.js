@@ -19,6 +19,12 @@ function restore(setting) {
         document.settings.customColors.value = 'yes';
     }
 
+    if (setting.allowOverride) {
+        document.settings.override.value = setting.allowOverride;
+    } else {
+        document.settings.override.value = 0;
+    }
+
     previousToggleValue = document.settings.customColors.value;
     toggleColors();
 
@@ -45,7 +51,8 @@ function save() {
     browser.storage.local.set({
         width: document.settings.width.value,
         colorTrack: colTrack,
-        colorThumb: colThumb
+        colorThumb: colThumb,
+        allowOverride: parseInt(document.settings.override.value)
     });
 
     toggleChangesWarning(false);
