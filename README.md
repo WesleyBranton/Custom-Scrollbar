@@ -13,6 +13,11 @@ To develop and test the extension, you need to open the "about:debugging" page i
 Further documentation about developing Firefox extensions can be found [here](https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension).
 
 ## Release Notes
+### Version 1.2
+* **[NEW]** Added option that allows websites to override user-defined settings
+* **[FIXED]** Removed tests for color and width in troubleshooting page for users running Firefox 79 or higher
+* **[CHANGE]** Default color for scrollbar track is no longer fully transparent
+
 ### Version 1.1
 * **[NEW]** Preview window added to options page
 * **[NEW]** Troubleshooting utility added to help users detect browser settings issues
