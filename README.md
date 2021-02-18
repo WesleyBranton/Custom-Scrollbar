@@ -13,20 +13,4 @@ To develop and test the extension, you need to open the "about:debugging" page i
 Further documentation about developing Firefox extensions can be found [here](https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension).
 
 ## Release Notes
-### Version 1.2
-* **[NEW]** Added option that allows websites to override user-defined settings
-* **[FIXED]** Removed tests for color and width in troubleshooting page for users running Firefox 79 or higher
-* **[CHANGE]** Default color for scrollbar track is no longer fully transparent
-
-### Version 1.1
-* **[NEW]** Preview window added to options page
-* **[NEW]** Troubleshooting utility added to help users detect browser settings issues
-* **[NEW]** Warning displays on options page if add-on doesn't have permission for Private Browsing
-* **[NEW]** Images added to the options page help identify the difference between thumb and track
-* **[NEW]** Add-on options page is automatically opened when the add-on is installed
-* **[NEW]** User is prompted when attempting to close options page with unsaved changes
-* **[CHANGE]** Options now open new tab
-* **[CHANGE]** Save button is disabled when there are no changes to save
-
-### Version 1.0.1
-* **[FIXED]** Fixed issue with colors not saving
+Release notes can be found on [this GitHub repository](https://github.com/WesleyBranton/Custom-Scrollbar/releases) or [the Firefox add-ons listing](https://addons.mozilla.org/firefox/addon/custom-scrollbars/versions/).
