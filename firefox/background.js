@@ -89,7 +89,7 @@ async function removeStyle() {
  * @param {Object} details 
  */
 function handleInstalled(details) {
-    if (details.reason == 'install') browser.tabs.create({ url: 'options/options.html' });
+    if (details.reason == 'install') browser.runtime.openOptionsPage();
 }
 
 let contentScript = null;
