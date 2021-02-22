@@ -3,58 +3,29 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 /**
- * Register content script
+ * Apply options changes to CSS
  * @param {string} width
  * @param {string} colorTrack
  * @param {string} colorThumb
  */
-async function applyStyle(width, colorTrack, colorThumb, override) {
-    let css = generateCSS(width, colorTrack, colorThumb, override);
-    let options = {
-        allFrames: true,
-        css: [{
-            code: css
-        }],
-        matchAboutBlank: true,
-        matches: ['<all_urls>'],
-        runAt: 'document_start'
-    };
+async function applyStyle(settings) {
+    settings = loadWithDefaults(settings);
+    css = generateCSS(settings.width, settings.colorTrack, settings.colorThumb, settings.allowOverride);
 
-    contentScript = await browser.contentScripts.register(options);
-}
+    // Register content script (Firefox only)
+    if (!isChrome) {
+        const options = {
+            allFrames: true,
+            css: [{
+                code: css
+            }],
+            matchAboutBlank: true,
+            matches: ['<all_urls>'],
+            runAt: 'document_start'
+        };
 
-/**
- * Generate CSS code
- * @param {string} width
- * @param {string} colorTrack
- * @param {string} colorThumb
- * @return {string} css
- */
-function generateCSS(width, colorTrack, colorThumb, override) {
-    let css, color;
-
-    if (!width) {
-        width = 'unset';
+        contentScript = await browser.contentScripts.register(options);
     }
-
-    if (colorTrack && colorThumb) {
-        color = colorThumb + ' ' + colorTrack;
-    } else {
-        color = 'unset';
-    }
-
-    if (typeof override == 'undefined') override = 0;
-
-    css = '* { ';
-    css += 'scrollbar-width: ' + width + ' ';
-    if (parseInt(override / 10) == 0) css += '!important';
-    css += '; ';
-    css += 'scrollbar-color: ' + color + ' ';
-    if (override % 10 == 0) css += '!important';
-    css += '; ';
-    css += '}';
-
-    return css;
 }
 
 /**
@@ -63,18 +34,12 @@ function generateCSS(width, colorTrack, colorThumb, override) {
  */
 async function loadSettings() {
     await removeStyle();
-    let setting = await browser.storage.local.get();
-
-    applyStyle(
-        setting.width,
-        setting.colorTrack,
-        setting.colorThumb,
-        setting.allowOverride
-    );
+    browser.storage.local.get(applyStyle);
 }
 
 /**
- * Remove the active content script
+ * Remove the active content script (if required)
+ * @async
  */
 async function removeStyle() {
     if (contentScript) {
@@ -89,10 +54,25 @@ async function removeStyle() {
  * @param {Object} details 
  */
 function handleInstalled(details) {
-    if (details.reason == 'install') browser.runtime.openOptionsPage();
+    if (details.reason == 'install') {
+        browser.runtime.openOptionsPage();
+    }
 }
 
+let isChrome = false;
+let css = null;
 let contentScript = null;
-browser.storage.onChanged.addListener(loadSettings);
+
+// Chromium specific code
+if (typeof browser != "function") {
+    isChrome = true;
+    browser = chrome;
+
+    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+        sendResponse({ css: css });
+    });
+}
+
 loadSettings();
+browser.storage.onChanged.addListener(loadSettings);
 browser.runtime.onInstalled.addListener(handleInstalled);

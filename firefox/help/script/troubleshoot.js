@@ -2,27 +2,6 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-const UI = {
-    preview: document.getElementById('preview'),
-    button: {
-        color: {
-            yes: document.getElementById('color-yes'),
-            no: document.getElementById('color-no'),
-            fix: document.getElementById('color-fix')
-        },
-        width: {
-            yes: document.getElementById('width-yes'),
-            no: document.getElementById('width-no'),
-            fix: document.getElementById('width-fix')
-        },
-        private: {
-            yes: document.getElementById('private-yes'),
-            no: document.getElementById('private-no')
-        }
-    }
-}
-let currentStage = 1;
-
 /**
  * Handle all button presses and test progression
  * @param {number} action 
@@ -56,17 +35,14 @@ function testController(action) {
  * @param {number} stage 
  */
 async function endStage(stage) {
-    let isAllowPrivateBrowsing;
-
     switch (stage) {
-        case 0:
+        case 0: // Test scrollbar colors
             UI.button.color.yes.addEventListener('click', testController);
             UI.button.color.no.addEventListener('click', testController);
-
-            UI.preview.setAttribute('style', 'scrollbar-width: default !important; scrollbar-color: blue red !important;');
+            document.getElementById('preview-css').textContent = generateCSS('default', 'blue', 'red', 0);
             break;
 
-        case 1:
+        case 1: // Test scrollbar width
             document.getElementById('color-test').classList.remove('show');
             document.getElementById('color-heading').classList.add('success');
             document.getElementById('width-test').classList.add('show');
@@ -76,10 +52,10 @@ async function endStage(stage) {
             UI.button.width.yes.addEventListener('click', testController);
             UI.button.width.no.addEventListener('click', testController);
 
-            UI.preview.setAttribute('style', 'scrollbar-width: none !important; scrollbar-color: unset !important;');
+            document.getElementById('preview-css').textContent = generateCSS('none', '', '', 0);
             break;
 
-        case 2:
+        case 2: // Test Private Browsing access
             document.getElementById('width-test').classList.remove('show');
             document.getElementById('width-heading').classList.add('success');
             document.getElementById('private-test').classList.add('show');
@@ -88,27 +64,27 @@ async function endStage(stage) {
             UI.button.width.yes.removeEventListener('click', testController);
             UI.button.width.no.removeEventListener('click', testController);
 
-            isAllowPrivateBrowsing = await browser.extension.isAllowedIncognitoAccess();
-
-            if (isAllowPrivateBrowsing) {
-                endStage(3);
-            } else {
-                UI.button.private.yes.addEventListener('click', testController);
-                UI.button.private.no.addEventListener('click', testController);
-            }
+            isAllowPrivateBrowsing = await browser.extension.isAllowedIncognitoAccess((isAllowPrivateBrowsing) => {
+                if (isAllowPrivateBrowsing) {
+                    endStage(3);
+                } else {
+                    UI.button.private.yes.addEventListener('click', testController);
+                    UI.button.private.no.addEventListener('click', testController);
+                }
+            });
             break;
 
-        case 3:
+        case 3: // Test completed
             document.getElementById('private-test').classList.remove('show');
             document.getElementById('private-note').classList.remove('show');
             document.getElementById('private-heading').classList.add('success');
             document.getElementById('finish-test').classList.add('show');
 
-            isAllowPrivateBrowsing = await browser.extension.isAllowedIncognitoAccess();
-
-            if (isAllowPrivateBrowsing) {
-                document.getElementById('private-ignored').style.display = 'none';
-            }
+            isAllowPrivateBrowsing = await browser.extension.isAllowedIncognitoAccess((isAllowPrivateBrowsing) => {
+                if (isAllowPrivateBrowsing) {
+                    document.getElementById('private-ignored').style.display = 'none';
+                }
+            });
             break;
     }
 }
@@ -119,7 +95,7 @@ async function endStage(stage) {
  */
 function failStage(stage) {
     switch (stage) {
-        case 1:
+        case 1: // Failed scrollbar colors
             document.getElementById('color-test').classList.remove('show');
             document.getElementById('color-fail').classList.add('show');
 
@@ -130,7 +106,7 @@ function failStage(stage) {
             });
             break;
 
-        case 2:
+        case 2: // Failed scrollbar width
             document.getElementById('width-test').classList.remove('show');
             document.getElementById('width-fail').classList.add('show');
 
@@ -141,7 +117,7 @@ function failStage(stage) {
             });
             break;
 
-        case 3:
+        case 3: // Failed Private Browsing access
             window.open('https://github.com/WesleyBranton/Custom-Scrollbar/wiki/No-customizations-in-Private-Browsing-mode', '_blank');
             break;
     }
@@ -152,6 +128,8 @@ function failStage(stage) {
  * @async
  */
 async function handleVersion79() {
+    if (isChrome) return;
+
     const browserInfo = await browser.runtime.getBrowserInfo();
     const browserVersion = parseInt(browserInfo.version.split('.', 1)[0]);
 
@@ -159,6 +137,35 @@ async function handleVersion79() {
         endStage(1);
         endStage(2);
     }
+}
+
+const UI = {
+    preview: document.getElementById('preview'),
+    button: {
+        color: {
+            yes: document.getElementById('color-yes'),
+            no: document.getElementById('color-no'),
+            fix: document.getElementById('color-fix')
+        },
+        width: {
+            yes: document.getElementById('width-yes'),
+            no: document.getElementById('width-no'),
+            fix: document.getElementById('width-fix')
+        },
+        private: {
+            yes: document.getElementById('private-yes'),
+            no: document.getElementById('private-no')
+        }
+    }
+}
+
+let currentStage = 1;
+let isChrome = false;
+
+// Chromium specific code
+if (typeof browser != "function") {
+    isChrome = true;
+    browser = chrome;
 }
 
 endStage(0);
