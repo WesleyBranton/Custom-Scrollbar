@@ -64,7 +64,7 @@ let css = null;
 let contentScript = null;
 
 // Chromium specific code
-if (typeof browser != "function") {
+if (typeof browser != "object") {
     isChrome = true;
     browser = chrome;
 
