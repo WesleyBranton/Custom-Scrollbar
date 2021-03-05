@@ -75,4 +75,4 @@ If you are enjoying the add-on, consider sharing it with your friends. New users
 Also, consider leaving a review on the add-on store page. These reviews help others find the add-on in the store search page.
 
 ### Donate
-While donations are certainly not required, they are very much appreciated. Financial support (even if it's just the cost of a cup of coffee) helps fund future development of this add-on.
+While donations are certainly not required, they are very much appreciated. Financial support (even if it's just the cost of a cup of coffee) helps fund future development of this add-on. To make sure that you are donating to a legitimate source, please [use this link](https://donate.wesleybranton.com).
