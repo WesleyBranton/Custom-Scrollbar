@@ -11,10 +11,11 @@
   <link rel="icon" href="../icons/icon-32.png">
   <link rel="stylesheet" href="../lib/new_browser_style.css" />
   <link rel="stylesheet" href="style.css" />
+  <style type="text/css" id="preview-css"></style>
 </head>
 
 <body class="browser-style">
-  <form name="settings">
+  <form name="settings" class="no-custom-colors">
     <header class="panel-section panel-section-header">
       <img class="icon-section-header" src="../icons/icon-32.png" alt="CS">
       <h1 class="text-section-header">Custom Scrollbars Options</h1>
@@ -86,20 +87,24 @@
     </section>
     <section class="panel-section help-row has-help">
       <div id="saveWarning" class="saved">
-        <div class="message-bar success">All changes have been saved!</div>
+        <div class="message-bar success">All changes have been saved! You will need to refresh all tabs to see the changes.</div>
         <div class="message-bar warning">You have unsaved changes!</div>
       </div>
     </section>
     <section class="panel-section help-row has-help">
-      <div class="message-bar general">You will need to refresh all tabs to see the changes</div>
+      <div class="message-bar general">
+        <div>Something not working? <a href="https://github.com/WesleyBranton/Custom-Scrollbar/wiki" target="_blank">Click here to visit our support wiki...</a></div>
+      </div>
     </section>
     <section class="panel-section help-row">
       <div class="message-bar general">
-        <div>Something not working? <a href="../help/troubleshoot.html" target="_blank">Click here...</a></div>
+        <div>Enjoying this add-on? <a href="https://donate.wesleybranton.com" target="_blank">Click here to donate</a> or <a href="https://github.com/WesleyBranton/Custom-Scrollbar#contribute" target="_blank">click here to find out other ways to support the add-on</a>.</div>
       </div>
     </section>
   </form>
   <script src="../lib/vanilla-picker.min.js"></script>
+  <script src="../defaults.js"></script>
+  <script src="../generateCSS.js"></script>
   <script src="script.js"></script>
 </body>
 

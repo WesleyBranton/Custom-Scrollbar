@@ -1,0 +1,37 @@
+{
+    "manifest_version": 2,
+    "name": "Custom Scrollbars",
+    "version": "1.2",
+    "description": "Give Firefox a personal touch with customized scrollbars!",
+    "author": "Wesley Branton",
+
+    "icons": {
+        "32": "icons/icon-32.png",
+        "48": "icons/icon-48.png",
+        "64": "icons/icon-64.png",
+        "96": "icons/icon-96.png",
+        "128": "icons/icon-128.png"
+    },
+
+    "options_ui": {
+        "page": "options/options.html",
+        "browser_style": false,
+        "open_in_tab": true
+    },
+
+    "background": {
+        "scripts": ["defaults.js", "generateCSS.js", "background.js"]
+    },
+
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "js": ["content.js"],
+        "run_at": "document_start"
+    }],
+
+    "permissions": [
+        "storage",
+        "<all_urls>",
+        "activeTab"
+    ]
+}

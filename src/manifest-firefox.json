@@ -19,8 +19,9 @@
     },
 
     "options_ui": {
-        "page": "options/preview.html",
-        "browser_style": false
+        "page": "options/options.html",
+        "browser_style": false,
+        "open_in_tab": true
     },
 
     "browser_specific_settings": {
@@ -31,7 +32,7 @@
     },
 
     "background": {
-        "scripts": ["background.js"]
+        "scripts": ["defaults.js", "generateCSS.js", "background.js"]
     },
 
     "permissions": [

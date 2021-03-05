@@ -7,23 +7,11 @@
  * @param {Object} setting - The Storage API object
  */
 function restore(setting) {
-    if (setting.width) {
-        document.settings.width.value = setting.width;
-    } else {
-        document.settings.width.value = 'unset';
-    }
+    document.settings.customColors.value = (!setting.colorThumb || !setting.colorTrack) ? 'no' : 'yes';
 
-    if (!setting.colorThumb || !setting.colorTrack) {
-        document.settings.customColors.value = 'no';
-    } else {
-        document.settings.customColors.value = 'yes';
-    }
-
-    if (setting.allowOverride) {
-        document.settings.override.value = setting.allowOverride;
-    } else {
-        document.settings.override.value = 0;
-    }
+    setting = loadWithDefaults(setting);
+    document.settings.width.value = setting.width;
+    document.settings.override.value = setting.allowOverride;
 
     previousToggleValue = document.settings.customColors.value;
     toggleColors();
@@ -31,22 +19,16 @@ function restore(setting) {
     colorPickerThumb.setColor(setting.colorThumb);
     colorPickerTrack.setColor(setting.colorTrack);
 
-    togglePrivateNotice();
+    browser.extension.isAllowedIncognitoAccess(togglePrivateNotice);
     toggleChangesWarning(false);
-    updateWindowScrollbar();
 }
 
 /**
  * Save settings to Storage API
  */
 function save() {
-    let colTrack = '';
-    let colThumb = '';
-
-    if (document.settings.customColors.value == 'yes') {
-        colThumb = colorPickerThumb.color.hex;
-        colTrack = colorPickerTrack.color.hex;
-    }
+    const colTrack = (document.settings.customColors.value == 'yes') ? colorPickerTrack.color.hex : '';
+    const colThumb = (document.settings.customColors.value == 'yes') ? colorPickerThumb.color.hex : '';
 
     browser.storage.local.set({
         width: document.settings.width.value,
@@ -56,7 +38,6 @@ function save() {
     });
 
     toggleChangesWarning(false);
-    updateWindowScrollbar();
 }
 
 /**
@@ -66,12 +47,12 @@ function createColorPickers() {
     colorPickerThumb = new Picker({
         parent: document.getElementById('colorThumb'),
         popup: false,
-        color: '#CDCDCDFF'
+        color: defaults.colorThumb
     });
     colorPickerTrack = new Picker({
         parent: document.getElementById('colorTrack'),
         popup: false,
-        color: '#F0F0F0FF'
+        color: defaults.colorTrack
     });
 
     colorPickerThumb.onChange = function(color) {
@@ -90,8 +71,8 @@ function toggleColors() {
 
     if (document.settings.customColors.value == 'yes') {
         if (previousToggleValue != 'yes') {
-            colorPickerThumb.setColor('#CDCDCDFF');
-            colorPickerTrack.setColor('#F0F0F0FF');
+            colorPickerThumb.setColor(defaults.colorThumb);
+            colorPickerTrack.setColor(defaults.colorTrack);
         }
         document.settings.className = '';
     } else {
@@ -106,26 +87,17 @@ function toggleColors() {
  * @param {boolean} show
  */
 function toggleChangesWarning(show) {
-    if (show) {
-        document.getElementById('saveWarning').className = 'unsaved';
-        document.getElementById('saveChanges').disabled = false;
-        pendingChanges = true;
-    } else {
-        document.getElementById('saveWarning').className = 'saved';
-        document.getElementById('saveChanges').disabled = true;
-        pendingChanges = false;
-    }
+    document.getElementById('saveWarning').className = (show) ? 'unsaved' : 'saved';
+    document.getElementById('saveChanges').disabled = !show;
+    pendingChanges = show;
 
     updatePreview();
 }
 
 /**
  * Display Private Browsing access warning message, if required
- * @async
  */
-async function togglePrivateNotice() {
-    let isAllowPrivateBrowsing = await browser.extension.isAllowedIncognitoAccess();
-
+function togglePrivateNotice(isAllowPrivateBrowsing) {
     if (!isAllowPrivateBrowsing) {
         document.getElementById('private-notice').classList.remove('hide');
     }
@@ -135,18 +107,7 @@ async function togglePrivateNotice() {
  * Updates the live preview textarea style
  */
 function updatePreview() {
-    const preview = document.getElementById('preview');
-    const css = getNewCSS();
-
-    preview.setAttribute('style', css);
-}
-
-/**
- * Changes scrollbars on options page to match the new settings
- */
-function updateWindowScrollbar() {
-    const css = getNewCSS();
-    document.documentElement.setAttribute('style', css);
+    document.getElementById('preview-css').textContent = getNewCSS();
 }
 
 /**
@@ -155,19 +116,21 @@ function updateWindowScrollbar() {
  */
 function getNewCSS() {
     const width = document.settings.width.value;
-    let colThumb = (document.settings.customColors.value == 'yes') ? colorPickerThumb.color.hex : 'unset';
-    let colTrack = (document.settings.customColors.value == 'yes') ? colorPickerTrack.color.hex : 'unset';
+    let colThumb = (document.settings.customColors.value == 'yes') ? colorPickerThumb.color.hex : null;
+    let colTrack = (document.settings.customColors.value == 'yes') ? colorPickerTrack.color.hex : null;
 
-    const css = `scrollbar-width: ${width} !important; scrollbar-color: ${colThumb} ${colTrack} !important;`;
+    return generateCSS(width, colTrack, colThumb, 0);
+}
 
-    return css;
+// Chromium specific code
+if (typeof browser != "function") {
+    browser = chrome;
 }
 
 let colorPickerThumb, colorPickerTrack, previousToggleValue;
 let pendingChanges = false;
 createColorPickers();
-let data = browser.storage.local.get();
-data.then(restore);
+let data = browser.storage.local.get(restore);
 
 document.getElementById('saveChanges').addEventListener('click', save);
 document.settings.addEventListener('change', toggleColors);
