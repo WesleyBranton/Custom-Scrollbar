@@ -56,6 +56,10 @@ async function removeStyle() {
 function handleInstalled(details) {
     if (details.reason == 'install') {
         browser.runtime.openOptionsPage();
+        browser.tabs.create({
+            url: "https://addons.wesleybranton.com/customscrollbars/landing",
+            active: true
+        });
     }
 }
 
