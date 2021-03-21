@@ -122,14 +122,28 @@ function getNewCSS() {
     return generateCSS(width, colTrack, colThumb, 0);
 }
 
-// Chromium specific code
-if (typeof browser != "function") {
-    browser = chrome;
+/**
+ * Update the Private Browsing name label
+ */
+function updatePrivateBrowsingName() {
+    const labels = document.getElementsByClassName('private-notice-name');
+    let name;
+
+    if (runningOn == browsers.FIREFOX) name = "Private Browsing";
+    else if (runningOn == browsers.CHROME) name = "Incognito";
+    else if (runningOn == browsers.EDGE) name = "InPrivate";
+    else if (runningOn == browsers.OPERA) name = "Incognito";
+    else return;
+
+    for (l of labels) {
+        l.textContent = name;
+    }
 }
 
 let colorPickerThumb, colorPickerTrack, previousToggleValue;
 let pendingChanges = false;
 createColorPickers();
+updatePrivateBrowsingName();
 let data = browser.storage.local.get(restore);
 
 document.getElementById('saveChanges').addEventListener('click', save);
