@@ -32,7 +32,7 @@
     },
 
     "background": {
-        "scripts": ["defaults.js", "generateCSS.js", "background.js"]
+        "scripts": ["defaults.js", "generateCSS.js", "crossbrowser.js", "background.js"]
     },
 
     "permissions": [

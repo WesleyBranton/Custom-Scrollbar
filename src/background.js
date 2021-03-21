@@ -13,7 +13,7 @@ async function applyStyle(settings) {
     css = generateCSS(settings.width, settings.colorTrack, settings.colorThumb, settings.allowOverride);
 
     // Register content script (Firefox only)
-    if (!isChrome) {
+    if (runningOn == browsers.FIREFOX) {
         const options = {
             allFrames: true,
             css: [{
@@ -63,15 +63,11 @@ function handleInstalled(details) {
     }
 }
 
-let isChrome = false;
 let css = null;
 let contentScript = null;
 
 // Chromium specific code
-if (typeof browser != "object") {
-    isChrome = true;
-    browser = chrome;
-
+if (runningOn != browsers.FIREFOX) {
     chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         sendResponse({ css: css });
     });
