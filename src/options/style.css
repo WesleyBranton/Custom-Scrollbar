@@ -93,3 +93,19 @@ form {
   flex: unset !important;
   margin-right: 1em;
 }
+
+/* Color picker */
+.picker_sl,
+.picker_sl > div {
+  cursor: crosshair !important;
+}
+
+.picker_alpha,
+.picker_alpha > div {
+  cursor: ns-resize !important;
+}
+
+.picker_hue,
+.picker_hue > div {
+  cursor: ew-resize !important;
+}
