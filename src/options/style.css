@@ -94,6 +94,10 @@ form {
   margin-right: 1em;
 }
 
+.clickable {
+  cursor: pointer;
+}
+
 /* Color picker */
 .picker_sl,
 .picker_sl > div {
