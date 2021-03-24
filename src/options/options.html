@@ -55,7 +55,12 @@
         <img src="thumb.svg">
         <label for="colorThumb">Scrollbar thumb color</label>
       </div>
-      <div id="colorThumb">
+      <div>
+        <div id="colorThumb"></div>
+        <div class="colorPickerPreview">
+          <div id="colorThumbPreview"></div>
+          <input type="text" maxlength="9" size="9" name="colorThumb">
+        </div>
       </div>
     </section>
     <div class="panel-section-separator only-colors"></div>
@@ -64,7 +69,12 @@
         <img src="track.svg">
         <label for="colorTrack">Scrollbar track color</label>
       </div>
-      <div id="colorTrack">
+      <div>
+        <div id="colorTrack"></div>
+        <div class="colorPickerPreview">
+          <div id="colorTrackPreview"></div>
+          <input type="text" maxlength="9" size="9" name="colorTrack">
+        </div>
       </div>
     </section>
     <div class="panel-section-separator"></div>
@@ -102,7 +112,7 @@
       </div>
     </section>
   </form>
-  <script src="../lib/vanilla-picker.min.js"></script>
+  <script src="../lib/iro.min.js"></script>
   <script src="../defaults.js"></script>
   <script src="../generateCSS.js"></script>
   <script src="../crossbrowser.js"></script>

@@ -21,27 +21,6 @@ form {
   display: none !important;
 }
 
-.picker_wrapper {
-  background: none !important;
-  box-shadow: none !important;
-}
-
-.picker_wrapper * {
-  font-size: 10px !important;
-}
-
-.picker_wrapper .picker_selector {
-  background: none !important;
-}
-
-.picker_wrapper .picker_done {
-  display: none !important;
-}
-
-.picker_wrapper .picker_editor input {
-  font-size: 15px !important;
-}
-
 #saveWarning.saved .warning,
 #saveWarning.unsaved .success {
   display: none !important;
@@ -99,17 +78,19 @@ form {
 }
 
 /* Color picker */
-.picker_sl,
-.picker_sl > div {
+.IroWheel {
   cursor: crosshair !important;
 }
 
-.picker_alpha,
-.picker_alpha > div {
+.IroSlider {
   cursor: ns-resize !important;
 }
 
-.picker_hue,
-.picker_hue > div {
-  cursor: ew-resize !important;
+.colorPickerPreview {
+  display: flex;
+  background: rgba(0, 0, 0, 0) conic-gradient(rgb(204, 204, 204) 25%, rgb(255, 255, 255) 0deg, rgb(255, 255, 255) 50%, rgb(204, 204, 204) 0deg, rgb(204, 204, 204) 75%, rgb(255, 255, 255) 0deg) repeat scroll 0% 0% / 8px 8px;
+}
+
+.colorPickerPreview > * {
+  flex: 1;
 }

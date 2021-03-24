@@ -16,8 +16,8 @@ function restore(setting) {
     previousToggleValue = document.settings.customColors.value;
     toggleColors();
 
-    colorPickerThumb.setColor(setting.colorThumb);
-    colorPickerTrack.setColor(setting.colorTrack);
+    colorPickerThumb.color.hex8String = setting.colorThumb;
+    colorPickerTrack.color.hex8String = setting.colorTrack;
 
     browser.extension.isAllowedIncognitoAccess(togglePrivateNotice);
     toggleChangesWarning(false);
@@ -27,8 +27,8 @@ function restore(setting) {
  * Save settings to Storage API
  */
 function save() {
-    const colTrack = (document.settings.customColors.value == 'yes') ? colorPickerTrack.color.hex : '';
-    const colThumb = (document.settings.customColors.value == 'yes') ? colorPickerThumb.color.hex : '';
+    const colTrack = (document.settings.customColors.value == 'yes') ? colorPickerTrack.color.hex8String : '';
+    const colThumb = (document.settings.customColors.value == 'yes') ? colorPickerThumb.color.hex8String : '';
 
     browser.storage.local.set({
         width: document.settings.width.value,
@@ -44,23 +44,51 @@ function save() {
  * Create color picker utilities
  */
 function createColorPickers() {
-    colorPickerThumb = new Picker({
-        parent: document.getElementById('colorThumb'),
-        popup: false,
-        color: defaults.colorThumb
-    });
-    colorPickerTrack = new Picker({
-        parent: document.getElementById('colorTrack'),
-        popup: false,
-        color: defaults.colorTrack
+    colorPickerThumb = createColorPicker(
+        document.getElementById('colorThumb'),
+        document.getElementsByName('colorThumb')[0],
+        document.getElementById('colorThumbPreview'),
+        defaults.colorThumb
+    );
+    colorPickerTrack = createColorPicker(
+        document.getElementById('colorTrack'),
+        document.getElementsByName('colorTrack')[0],
+        document.getElementById('colorTrackPreview'),
+        defaults.colorThumb
+    );
+}
+
+function createColorPicker(container, input, preview, setTo) {
+    const picker = new iro.ColorPicker(container, {
+        color: setTo,
+        layout: [
+            { component: iro.ui.Wheel },
+            {
+                component: iro.ui.Slider,
+                options: { sliderType: 'value' }
+            },
+            {
+                component: iro.ui.Slider,
+                options: { sliderType: 'alpha' }
+            }
+        ],
+        layoutDirection: 'horizontal'
     });
 
-    colorPickerThumb.onChange = function(color) {
+    picker.on('color:change', (color) => {
+        input.value = color.hex8String;
+        preview.style.backgroundColor = color.hex8String;
         toggleChangesWarning(true);
-    };
-    colorPickerTrack.onChange = function(color) {
-        toggleChangesWarning(true);
-    };
+    });
+
+    input.addEventListener('change', () => {
+        picker.color.hex8String = input.value.trim();
+    })
+
+    input.value = picker.color.hex8String;
+    preview.style.backgroundColor = picker.color.hex8String;
+
+    return picker;
 }
 
 /**
@@ -71,8 +99,8 @@ function toggleColors() {
 
     if (document.settings.customColors.value == 'yes') {
         if (previousToggleValue != 'yes') {
-            colorPickerThumb.setColor(defaults.colorThumb);
-            colorPickerTrack.setColor(defaults.colorTrack);
+            colorPickerThumb.color.hex8String = defaults.colorThumb;
+            colorPickerTrack.color.hex8String = defaults.colorTrack;
         }
         document.settings.className = '';
     } else {
@@ -116,8 +144,8 @@ function updatePreview() {
  */
 function getNewCSS() {
     const width = document.settings.width.value;
-    let colThumb = (document.settings.customColors.value == 'yes') ? colorPickerThumb.color.hex : null;
-    let colTrack = (document.settings.customColors.value == 'yes') ? colorPickerTrack.color.hex : null;
+    let colThumb = (document.settings.customColors.value == 'yes') ? colorPickerThumb.color.hex8String : null;
+    let colTrack = (document.settings.customColors.value == 'yes') ? colorPickerTrack.color.hex8String : null;
 
     return generateCSS(width, colTrack, colThumb, 0);
 }
