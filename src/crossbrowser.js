@@ -11,7 +11,7 @@ function detectBrowser() {
     if (typeof browser != "object") browser = chrome;
 
     if (browser.runtime.getURL('').startsWith('moz-extension://')) {
-        return browser.FIREFOX;
+        return browsers.FIREFOX;
     } else if (browser.runtime.getURL('').startsWith('edge://extension')) {
         return browsers.EDGE;
     } else {
