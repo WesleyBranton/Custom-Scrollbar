@@ -94,3 +94,23 @@ form {
 .colorPickerPreview > * {
   flex: 1;
 }
+
+.colorPickerValues {
+  background: white;
+}
+
+.colorPickerValues tr td:first-of-type {
+  width: 100%;
+}
+
+.rgb,
+.hsv,
+.hex {
+  display: none;
+}
+
+.showHEX .hex,
+.showRGB .rgb,
+.showHSV .hsv {
+  display: block;
+}
