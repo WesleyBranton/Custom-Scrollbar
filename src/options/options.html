@@ -55,11 +55,54 @@
         <img src="thumb.svg">
         <label for="colorThumb">Scrollbar thumb color</label>
       </div>
-      <div>
+      <div class="showHEX">
         <div id="colorThumb"></div>
+        <div id="colorThumbTabs" class="panel-section-tabs">
+          <button type="button" class="panel-section-tabs-button selected">Hex</button>
+          <div class="panel-section-tabs-separator"></div>
+          <button type="button" class="panel-section-tabs-button">RGB</button>
+          <div class="panel-section-tabs-separator"></div>
+          <button type="button" class="panel-section-tabs-button">HSV</button>
+        </div>
         <div class="colorPickerPreview">
           <div id="colorThumbPreview"></div>
-          <input type="text" maxlength="9" size="9" name="colorThumb">
+          <input type="text" maxlength="9" size="9" id="colorThumbHEX" class="hex" name="colorThumb">
+          <table id="colorThumbRGB" class="colorPickerValues rgb">
+            <tr>
+              <td><label for="">Red:</label></td>
+              <td><input type="number" maxlength="3" size="3" min="0" max="255"></td>
+            </tr>
+            <tr>
+              <td><label for="">Green:</label></td>
+              <td><input type="number" maxlength="3" size="3" min="0" max="255"></td>
+            </tr>
+            <tr>
+              <td><label for="">Blue:</label></td>
+              <td><input type="number" maxlength="3" size="3" min="0" max="255"></td>
+            </tr>
+            <tr>
+              <td><label for="">Alpha:</label></td>
+              <td><input type="number" maxlength="3" size="3" min="0" max="255"></td>
+            </tr>
+          </table>
+          <table id="colorThumbHSV" class="colorPickerValues hsv">
+            <tr>
+              <td><label for="">Hue:</label></td>
+              <td><input type="number" maxlength="3" size="3" min="0" max="360"></td>
+            </tr>
+            <tr>
+              <td><label for="">Saturation:</label></td>
+              <td><input type="number" maxlength="3" size="3" min="0" max="100"></td>
+            </tr>
+            <tr>
+              <td><label for="">Value:</label></td>
+              <td><input type="number" maxlength="3" size="3" min="0" max="100"></td>
+            </tr>
+            <tr>
+              <td><label for="">Alpha:</label></td>
+              <td><input type="number" maxlength="3" size="3" min="0" max="255"></td>
+            </tr>
+          </table>
         </div>
       </div>
     </section>
@@ -69,11 +112,54 @@
         <img src="track.svg">
         <label for="colorTrack">Scrollbar track color</label>
       </div>
-      <div>
+      <div class="showHEX">
         <div id="colorTrack"></div>
+        <div id="colorTrackTabs" class="panel-section-tabs">
+          <button type="button" class="panel-section-tabs-button selected">Hex</button>
+          <div class="panel-section-tabs-separator"></div>
+          <button type="button" class="panel-section-tabs-button">RGB</button>
+          <div class="panel-section-tabs-separator"></div>
+          <button type="button" class="panel-section-tabs-button">HSV</button>
+        </div>
         <div class="colorPickerPreview">
           <div id="colorTrackPreview"></div>
-          <input type="text" maxlength="9" size="9" name="colorTrack">
+          <input type="text" maxlength="9" size="9" id="colorTrackHEX" class="hex" name="colorTrack">
+          <table id="colorTrackRGB" class="colorPickerValues rgb">
+            <tr>
+              <td><label for="">Red:</label></td>
+              <td><input type="number" maxlength="3" size="3" min="0" max="255"></td>
+            </tr>
+            <tr>
+              <td><label for="">Green:</label></td>
+              <td><input type="number" maxlength="3" size="3" min="0" max="255"></td>
+            </tr>
+            <tr>
+              <td><label for="">Blue:</label></td>
+              <td><input type="number" maxlength="3" size="3" min="0" max="255"></td>
+            </tr>
+            <tr>
+              <td><label for="">Alpha:</label></td>
+              <td><input type="number" maxlength="3" size="3" min="0" max="255"></td>
+            </tr>
+          </table>
+          <table id="colorTrackHSV" class="colorPickerValues hsv">
+            <tr>
+              <td><label for="">Hue:</label></td>
+              <td><input type="number" maxlength="3" size="3" min="0" max="360"></td>
+            </tr>
+            <tr>
+              <td><label for="">Saturation:</label></td>
+              <td><input type="number" maxlength="3" size="3" min="0" max="100"></td>
+            </tr>
+            <tr>
+              <td><label for="">Value:</label></td>
+              <td><input type="number" maxlength="3" size="3" min="0" max="100"></td>
+            </tr>
+            <tr>
+              <td><label for="">Alpha:</label></td>
+              <td><input type="number" maxlength="3" size="3" min="0" max="255"></td>
+            </tr>
+          </table>
         </div>
       </div>
     </section>

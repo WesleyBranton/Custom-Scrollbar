@@ -41,57 +41,6 @@ function save() {
 }
 
 /**
- * Create color picker utilities
- */
-function createColorPickers() {
-    colorPickerThumb = createColorPicker(
-        document.getElementById('colorThumb'),
-        document.getElementsByName('colorThumb')[0],
-        document.getElementById('colorThumbPreview'),
-        defaults.colorThumb
-    );
-    colorPickerTrack = createColorPicker(
-        document.getElementById('colorTrack'),
-        document.getElementsByName('colorTrack')[0],
-        document.getElementById('colorTrackPreview'),
-        defaults.colorThumb
-    );
-}
-
-function createColorPicker(container, input, preview, setTo) {
-    const picker = new iro.ColorPicker(container, {
-        color: setTo,
-        layout: [
-            { component: iro.ui.Wheel },
-            {
-                component: iro.ui.Slider,
-                options: { sliderType: 'value' }
-            },
-            {
-                component: iro.ui.Slider,
-                options: { sliderType: 'alpha' }
-            }
-        ],
-        layoutDirection: 'horizontal'
-    });
-
-    picker.on('color:change', (color) => {
-        input.value = color.hex8String;
-        preview.style.backgroundColor = color.hex8String;
-        toggleChangesWarning(true);
-    });
-
-    input.addEventListener('change', () => {
-        picker.color.hex8String = input.value.trim();
-    })
-
-    input.value = picker.color.hex8String;
-    preview.style.backgroundColor = picker.color.hex8String;
-
-    return picker;
-}
-
-/**
  * Show/hide custom colors
  */
 function toggleColors() {
@@ -168,7 +117,203 @@ function updatePrivateBrowsingName() {
     }
 }
 
+/**
+ * Create color picker utilities
+ */
+ function createColorPickers() {
+    colorPickerThumb = createColorPicker(
+        document.getElementById('colorThumb'),
+        getColorInputs('colorThumb'),
+        document.getElementById('colorThumbPreview'),
+        defaults.colorThumb
+    );
+    colorPickerTrack = createColorPicker(
+        document.getElementById('colorTrack'),
+        getColorInputs('colorTrack'),
+        document.getElementById('colorTrackPreview'),
+        defaults.colorThumb
+    );
+}
+
+/**
+ * Create color picker
+ * @param {HTMLElement} container
+ * @param {Object} inputs
+ * @param {HTMLElement} preview
+ * @param {string} setTo
+ * @returns 
+ */
+function createColorPicker(container, inputs, preview, setTo) {
+    const picker = new iro.ColorPicker(container, {
+        color: setTo,
+        layout: [
+            { component: iro.ui.Wheel },
+            {
+                component: iro.ui.Slider,
+                options: { sliderType: 'value' }
+            },
+            {
+                component: iro.ui.Slider,
+                options: { sliderType: 'alpha' }
+            }
+        ],
+        layoutDirection: 'horizontal'
+    });
+
+    picker.on('color:change', (color) => {
+        inputs.hex.value = color.hex8String;
+
+        inputs.rgb.red.value = Math.round(color.red);
+        inputs.rgb.green.value = Math.round(color.green);
+        inputs.rgb.blue.value = Math.round(color.blue);
+        inputs.rgb.alpha.value = Math.round(color.alpha * 100);
+
+        inputs.hsv.hue.value = Math.round(color.hue);
+        inputs.hsv.saturation.value = Math.round(color.saturation);
+        inputs.hsv.value.value = Math.round(color.value);
+        inputs.hsv.alpha.value = Math.round(color.alpha * 100);
+
+        preview.style.backgroundColor = color.hex8String;
+        toggleChangesWarning(true);
+    });
+
+    inputs.tabs.hex.addEventListener('click', () => { changeColorMode(inputs.tabs, inputs.tabs.hex, 'hex') });
+    inputs.tabs.rgb.addEventListener('click', () => { changeColorMode(inputs.tabs, inputs.tabs.rgb, 'rgb') });
+    inputs.tabs.hsv.addEventListener('click', () => { changeColorMode(inputs.tabs, inputs.tabs.hsv, 'hsv') });
+
+    inputs.hex.addEventListener('change', () => {
+        picker.color.hex8String = inputs.hex.value.trim();
+    });
+    inputs.rgb.red.addEventListener('change', () => {
+        validateColor(inputs.rgb.red, 255, picker.color.red, false);
+        picker.color.red = inputs.rgb.red.value.trim();
+    });
+    inputs.rgb.green.addEventListener('change', () => {
+        validateColor(inputs.rgb.green, 255, picker.color.green, false);
+        picker.color.green = inputs.rgb.green.value.trim();
+    });
+    inputs.rgb.blue.addEventListener('change', () => {
+        validateColor(inputs.rgb.blue, 255, picker.color.blue, false);
+        picker.color.blue = inputs.rgb.blue.value.trim();
+    });
+    inputs.rgb.alpha.addEventListener('change', () => {
+        validateColor(inputs.rgb.alpha, 100, picker.color.alpha, true);
+        picker.color.alpha = inputs.rgb.alpha.value.trim();
+    });
+    inputs.hsv.hue.addEventListener('change', () => {
+        validateColor(inputs.hsv.hue, 360, picker.color.hue, false);
+        picker.color.hue = inputs.hsv.hue.value.trim();
+    });
+    inputs.hsv.saturation.addEventListener('change', () => {
+        validateColor(inputs.hsv.saturation, 100, picker.color.saturation, false);
+        picker.color.saturation = inputs.hsv.saturation.value.trim();
+    });
+    inputs.hsv.value.addEventListener('change', () => {
+        validateColor(inputs.hsv.value, 100, picker.color.value, false);
+        picker.color.value = inputs.hsv.value.value.trim();
+    });
+    inputs.hsv.alpha.addEventListener('change', () => {
+        validateColor(inputs.hsv.alpha, 100, picker.color.alpha, true);
+        picker.color.alpha = inputs.hsv.alpha.value.trim();
+    });
+
+    inputs.hex.value = picker.color.hex8String;
+
+    inputs.rgb.red.value = Math.round(picker.color.red);
+    inputs.rgb.green.value = Math.round(picker.color.green);
+    inputs.rgb.blue.value = Math.round(picker.color.blue);
+    inputs.rgb.alpha.value = Math.round(picker.color.alpha * 100);
+
+    inputs.hsv.hue.value = Math.round(picker.color.hue);
+    inputs.hsv.saturation.value = Math.round(picker.color.saturation);
+    inputs.hsv.value.value = Math.round(picker.color.value);
+    inputs.hsv.alpha.value = Math.round(picker.color.alpha * 100);
+
+    preview.style.backgroundColor = picker.color.hex8String;
+
+    return picker;
+}
+
+/**
+ * Make sure that the color entered is valid
+ * @param {HTMLElement} value
+ * @param {number} max
+ * @param {number} original
+ * @param {boolean} percentage
+ */
+function validateColor(value, max, original, percentage) {
+    const parsedValue = parseFloat(value.value.trim());
+    if (isNaN(parsedValue)) value.value = original;
+    else if (parsedValue < 0) value.value = 0;
+    else if (parsedValue > max) value.value = max;
+    if (percentage) value.value = parsedValue / 100;
+}
+
+/**
+ * Change between Hex, RGB or HSV mode
+ * @param {Object} tabs 
+ * @param {HTMLElement} selected 
+ * @param {string} key 
+ */
+function changeColorMode(tabs, selected, key) {
+    clearTabSelection(tabs);
+    selected.classList.add('selected');
+    selected.parentNode.parentNode.classList.add('show' + key.toUpperCase());
+}
+
+/**
+ * Get all elements of the color inputs
+ * @param {string} parentId
+ * @returns Object of all HTML elements
+ */
+function getColorInputs(parentId) {
+    const hex = document.getElementById(parentId + 'HEX');
+    const rgb = document.getElementById(parentId + 'RGB');
+    const hsv = document.getElementById(parentId + 'HSV');
+    const tabs = document.getElementById(parentId + "Tabs");
+
+    const obj = {
+        hex: hex,
+        rgb: {
+            red: rgb.getElementsByTagName('input')[0],
+            green: rgb.getElementsByTagName('input')[1],
+            blue: rgb.getElementsByTagName('input')[2],
+            alpha: rgb.getElementsByTagName('input')[3]
+        },
+        hsv: {
+            hue: hsv.getElementsByTagName('input')[0],
+            saturation: hsv.getElementsByTagName('input')[1],
+            value: hsv.getElementsByTagName('input')[2],
+            alpha: hsv.getElementsByTagName('input')[3]
+        },
+        container: document.getElementById(parentId).parentElement,
+        tabs: {
+            hex: tabs.getElementsByTagName('button')[0],
+            rgb: tabs.getElementsByTagName('button')[1],
+            hsv: tabs.getElementsByTagName('button')[2],
+        }
+    };
+
+    return obj;
+}
+
+/**
+ * Reset the tab selection
+ * @param {Object} tabs 
+ */
+function clearTabSelection(tabs) {
+    tabs.hex.classList.remove('selected');
+    tabs.rgb.classList.remove('selected');
+    tabs.hsv.classList.remove('selected');
+
+    const container = tabs.hex.parentNode.parentNode;
+    container.classList.remove('showHEX');
+    container.classList.remove('showRGB');
+    container.classList.remove('showHSV');
+}
+
 let colorPickerThumb, colorPickerTrack, previousToggleValue;
+const colorInputs = {};
 let pendingChanges = false;
 createColorPickers();
 updatePrivateBrowsingName();
