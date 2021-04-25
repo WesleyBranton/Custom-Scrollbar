@@ -1,9 +1,10 @@
 {
     "manifest_version": 2,
-    "name": "Custom Scrollbars",
+    "name": "__MSG_extensionName__",
     "version": "2.0",
-    "description": "Give your browser a personal touch with customized scrollbars!",
+    "description": "__MSG_extensionDescription__",
     "author": "Wesley Branton",
+    "default_locale": "en",
 
     "developer": {
         "name": "Wesley Branton",
@@ -32,7 +33,12 @@
     },
 
     "background": {
-        "scripts": ["defaults.js", "generateCSS.js", "crossbrowser.js", "background.js"]
+        "scripts": [
+            "defaults.js",
+            "generateCSS.js",
+            "crossbrowser.js",
+            "background.js"
+        ]
     },
 
     "permissions": [

@@ -57,7 +57,7 @@ function handleInstalled(details) {
     if (details.reason == 'install') {
         browser.runtime.openOptionsPage();
         browser.tabs.create({
-            url: "https://addons.wesleybranton.com/customscrollbars/landing",
+            url: "https://addons.wesleybranton.com/customscrollbars/landing?locale=" + browser.i18n.getUILanguage(),
             active: true
         });
     }
