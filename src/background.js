@@ -76,3 +76,4 @@ if (runningOn != browsers.FIREFOX) {
 loadSettings();
 browser.storage.onChanged.addListener(loadSettings);
 browser.runtime.onInstalled.addListener(handleInstalled);
+browser.browserAction.onClicked.addListener(() => { browser.runtime.openOptionsPage(); });
