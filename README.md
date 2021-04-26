@@ -1,6 +1,8 @@
 # Custom Scrollbars [<img align="right" src=".github/fxaddon.png">](https://addons.mozilla.org/firefox/addon/custom-scrollbars/)
 Give your browser a personalized touch with custom scrollbar colors! You can select from any range of colors and toggle between the default width and thin scrollbar... or hide it altogether if that's what floats your boat.
 
+[![Crowdin](https://badges.crowdin.net/custom-scrollbars/localized.svg)](https://crowdin.com/project/custom-scrollbars)
+
 ## Release Notes
 Release notes can be found on [this GitHub repository](https://github.com/WesleyBranton/Custom-Scrollbar/releases).
 
