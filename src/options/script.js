@@ -3,6 +3,18 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 /**
+ * Load i18n data
+ */
+function parsei18n() {
+    document.title = browser.i18n.getMessage('optionsTitle');
+
+    const elements = document.querySelectorAll('[data-i18n]');
+    for (e of elements) {
+        e.textContent = browser.i18n.getMessage(e.dataset.i18n);
+    }
+}
+
+/**
  * Load settings from Storage API
  * @param {Object} setting - The Storage API object
  */
@@ -103,18 +115,16 @@ function getNewCSS() {
  * Update the Private Browsing name label
  */
 function updatePrivateBrowsingName() {
-    const labels = document.getElementsByClassName('private-notice-name');
+    const label = document.getElementById('private-notice-message');
     let name;
 
-    if (runningOn == browsers.FIREFOX) name = "Private Browsing";
-    else if (runningOn == browsers.CHROME) name = "Incognito";
-    else if (runningOn == browsers.EDGE) name = "InPrivate";
-    else if (runningOn == browsers.OPERA) name = "Incognito";
+    if (runningOn == browsers.FIREFOX) name = browser.i18n.getMessage("privateBrowsingFirefox");
+    else if (runningOn == browsers.CHROME) name = browser.i18n.getMessage("privateBrowsingChrome");
+    else if (runningOn == browsers.EDGE) name = browser.i18n.getMessage("privateBrowsingEdge");
+    else if (runningOn == browsers.OPERA) name = browser.i18n.getMessage("privateBrowsingOpera");
     else return;
 
-    for (l of labels) {
-        l.textContent = name;
-    }
+    label.textContent = browser.i18n.getMessage("promptPrivateBrowsing", name);
 }
 
 /**
@@ -312,6 +322,7 @@ function clearTabSelection(tabs) {
     container.classList.remove('showHSV');
 }
 
+parsei18n();
 let colorPickerThumb, colorPickerTrack, previousToggleValue;
 const colorInputs = {};
 let pendingChanges = false;
