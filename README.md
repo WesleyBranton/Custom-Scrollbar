@@ -7,6 +7,15 @@ Give your browser a personalized touch with custom scrollbar colors! You can sel
 Release notes can be found on [this GitHub repository](https://github.com/WesleyBranton/Custom-Scrollbar/releases).
 
 ## Contribute
+### Localization
+The Custom Scrollbars add-on is used by people around the world. I'd like to provide users with the best experience. As such, I'd love to make the add-on available in languages other than English. But for that, I need some help.
+
+Seeing as I only know English, I need the people who use and love this add-on to help me translate it into other languages.
+
+Thanks to the great folks at Crowdin, I have posted all of the English text that's used in the add-on to the Crowdin platform. If you'd like to help provide translations for the add-on, you can go to [the Custom Scrollbars page on Crowdin](https://crowdin.com/project/custom-scrollbars) and start translating the add-on into other languages.
+
+Don't see your language listed on Crowdin? I've included the languages that are most common (according to my add-on statistics), but I'd be happy to add other languages to the list. [Create an issue on GitHub](https://github.com/WesleyBranton/Custom-Scrollbar/issues) and I'll add the language to the Crowdin page.
+
 ### Development
 This repository contains all of the required source code files to make changes to this extension. The "master" branch contains the source code for the latest stable release. If you want to test that version, you can view the release section to download the XPI file or visit the add-on listing on Mozilla.
 
