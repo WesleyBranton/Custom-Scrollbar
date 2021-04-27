@@ -114,3 +114,13 @@ form {
 .showHSV .hsv {
   display: block;
 }
+
+.panel-section-footer > div {
+  text-align: center;
+  border-left: 1px solid var(--grey-90-a30);
+  padding: 0.5em;
+}
+
+.panel-section-footer > div:first-of-type {
+  border: none;
+}

@@ -132,32 +132,24 @@
         }
     },
 
-    "promptSupport": {
-        "message": "Something not working?"
+    "linkHelp": {
+        "message": "Help"
     },
 
-    "promptContribute": {
-        "message": "Enjoying this add-on?"
+    "linkContribute": {
+        "message": "Contribute"
     },
 
-    "wordOr": {
-        "message": "or"
+    "linkDonate": {
+        "message": "Donate"
+    },
+
+    "linkTranslate": {
+        "message": "Translate"
     },
 
     "callToActionLearn": {
         "message": "Learn more..."
-    },
-
-    "callToActionSupport": {
-        "message": "Click here to visit the support wiki..."
-    },
-
-    "callToActionDonate": {
-        "message": "Click here to donate"
-    },
-
-    "callToActionContribute": {
-        "message": "click here to find out other ways to support the add-on"
     },
 
     "privateBrowsingFirefox": {
