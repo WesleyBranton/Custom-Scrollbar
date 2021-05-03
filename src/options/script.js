@@ -39,8 +39,8 @@ function restore(setting) {
  * Save settings to Storage API
  */
 function save() {
-    const colTrack = (document.settings.customColors.value == 'yes') ? colorPickerTrack.color.hex8String : '';
-    const colThumb = (document.settings.customColors.value == 'yes') ? colorPickerThumb.color.hex8String : '';
+    const colTrack = (document.settings.customColors.value == 'yes') ? colorPickerTrack.color.hex8String : null;
+    const colThumb = (document.settings.customColors.value == 'yes') ? colorPickerThumb.color.hex8String : null;
 
     browser.storage.local.set({
         width: document.settings.width.value,
