@@ -47,6 +47,10 @@
         "message": "Hidden"
     },
 
+    "sizeOther": {
+        "message": "Other"
+    },
+
     "optionYes": {
         "message": "Yes"
     },

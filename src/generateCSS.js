@@ -5,13 +5,15 @@
  * @param {string} colorThumb
  * @return {string} css
  */
-function generateCSS(width, colorTrack, colorThumb, override) {
+function generateCSS(width, colorTrack, colorThumb, override, customWidth) {
     let css, color, widthPx;
 
     if (width == 'thin') {
         widthPx = '7px';
     } else if (width == 'none') {
         widthPx = '0';
+    } else if (width == 'other') {
+        widthPx = customWidth;
     } else {
         widthPx = defaults.width;
     }

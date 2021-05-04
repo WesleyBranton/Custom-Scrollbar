@@ -47,6 +47,22 @@
         <label class="clickable">
           <input type="radio" name="width" value="none">
           <span data-i18n="sizeHidden"></span>
+        </label><br>
+        <label class="clickable chromium-only">
+          <input type="radio" name="width" value="other">
+          <span data-i18n="sizeOther"></span>
+          <input id="customWidthValue" name="customWidthValue" type="text" min="1" value="17" disabled>
+          <select id="customWidthUnit" name="customWidthUnit">
+            <option value="cm">cm</option>
+            <option value="em">em</option>
+            <option value="in">in</option>
+            <option value="mm">mm</option>
+            <option value="pt">pt</option>
+            <option value="px">px</option>
+            <option value="rem">rem</option>
+            <option value="vw">vw</option>
+          </select>
+          <a href="https://github.com/WesleyBranton/Custom-Scrollbar/wiki/Custom-scrollbar-width" target="_blank" id="customWidthHelp">?</a>
         </label>
       </div>
     </section>
