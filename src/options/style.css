@@ -124,3 +124,33 @@ form {
 .panel-section-footer > div:first-of-type {
   border: none;
 }
+
+#customWidthValue {
+  text-align: center;
+  height: unset !important;
+  width: 4em;
+}
+
+body:not(.firefox) .firefox-only,
+body:not(.chromium) .chromium-only {
+  display: none !important;
+}
+
+#customWidthUnit {
+  appearance: none;
+  height: unset !important;
+  text-align: center;
+}
+
+#customWidthValue:disabled,
+#customWidthUnit:disabled {
+  background-color: white;
+  border-color: var(--grey-30);
+  opacity: 0.7;
+  cursor: default;
+}
+
+/* Fail safe for settings page */
+body::-webkit-scrollbar {
+  max-width: 50vw !important;
+}

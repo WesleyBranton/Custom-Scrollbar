@@ -10,7 +10,8 @@
  */
 async function applyStyle(settings) {
     settings = loadWithDefaults(settings);
-    css = generateCSS(settings.width, settings.colorTrack, settings.colorThumb, settings.allowOverride);
+    const customWidth = settings.customWidthValue + settings.customWidthUnit;
+    css = generateCSS(settings.width, settings.colorTrack, settings.colorThumb, settings.allowOverride, customWidth);
 
     // Register content script (Firefox only)
     if (runningOn == browsers.FIREFOX) {

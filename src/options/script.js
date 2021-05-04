@@ -6,12 +6,24 @@
  * Load i18n data
  */
 function parsei18n() {
-    document.title = browser.i18n.getMessage('optionsTitle');
+    document.title = browser.i18n.getMessage('optionsTitle', browser.i18n.getMessage('extensionName'));
 
     const elements = document.querySelectorAll('[data-i18n]');
     for (e of elements) {
-        e.textContent = browser.i18n.getMessage(e.dataset.i18n);
+        const placeholders = [];
+
+        if (e.hasAttribute('data-i18n-placeholders')) {
+            const num = parseInt(e.getAttribute('data-i18n-placeholders'));
+
+            for (let i = 1; i <= num; i++) {
+                placeholders.push(browser.i18n.getMessage(e.getAttribute('data-i18n-placeholder-' + i)));
+            }
+        }
+
+        e.textContent = browser.i18n.getMessage(e.dataset.i18n, placeholders);
     }
+
+    document.getElementById('customWidthHelp').title = browser.i18n.getMessage('linkHelp');
 }
 
 /**
@@ -24,6 +36,8 @@ function restore(setting) {
     setting = loadWithDefaults(setting);
     document.settings.width.value = setting.width;
     document.settings.override.value = setting.allowOverride;
+    document.settings.customWidthValue.value = setting.customWidthValue;
+    document.settings.customWidthUnit.value = setting.customWidthUnit;
 
     previousToggleValue = document.settings.customColors.value;
     toggleColors();
@@ -33,6 +47,8 @@ function restore(setting) {
 
     browser.extension.isAllowedIncognitoAccess(togglePrivateNotice);
     toggleChangesWarning(false);
+    toggleCustomWidth();
+    parseCustomWidthValue(false);
 }
 
 /**
@@ -41,13 +57,19 @@ function restore(setting) {
 function save() {
     const colTrack = (document.settings.customColors.value == 'yes') ? colorPickerTrack.color.hex8String : null;
     const colThumb = (document.settings.customColors.value == 'yes') ? colorPickerThumb.color.hex8String : null;
-
-    browser.storage.local.set({
+    const save = {
         width: document.settings.width.value,
         colorTrack: colTrack,
         colorThumb: colThumb,
         allowOverride: parseInt(document.settings.override.value)
-    });
+    };
+
+    if (save.width == 'other') {
+        save['customWidthValue'] = parseInt(document.settings.customWidthValue.value);
+        save['customWidthUnit'] = document.settings.customWidthUnit.value;
+    }
+
+    browser.storage.local.set(save);
 
     toggleChangesWarning(false);
 }
@@ -105,10 +127,11 @@ function updatePreview() {
  */
 function getNewCSS() {
     const width = document.settings.width.value;
-    let colThumb = (document.settings.customColors.value == 'yes') ? colorPickerThumb.color.hex8String : null;
-    let colTrack = (document.settings.customColors.value == 'yes') ? colorPickerTrack.color.hex8String : null;
+    const colThumb = (document.settings.customColors.value == 'yes') ? colorPickerThumb.color.hex8String : null;
+    const colTrack = (document.settings.customColors.value == 'yes') ? colorPickerTrack.color.hex8String : null;
+    const customWidth = (document.settings.width.value == 'other') ? document.settings.customWidthValue.value + document.settings.customWidthUnit.value : null;
 
-    return generateCSS(width, colTrack, colThumb, 0);
+    return generateCSS(width, colTrack, colThumb, 0, customWidth);
 }
 
 /**
@@ -322,6 +345,39 @@ function clearTabSelection(tabs) {
     container.classList.remove('showHSV');
 }
 
+/**
+ * Toggle the options for width of other
+ */
+function toggleCustomWidth() {
+    const customWidthValue = document.getElementById('customWidthValue');
+    const customWidthUnit = document.getElementById('customWidthUnit');
+
+    if (document.settings.width.value == 'other') {
+        customWidthValue.disabled = false;
+        customWidthUnit.disabled = false;
+    } else {
+        customWidthValue.disabled = true;
+        customWidthUnit.disabled = true;
+    }
+}
+
+/**
+ * Parse and handle focus of custom with value
+ * @param {boolean} showNumber
+ */
+function parseCustomWidthValue(showNumber) {
+    const otherText = document.getElementById('customWidthValue');
+
+    if (showNumber) {
+        otherText.type = 'number';
+    } else {
+        otherText.type = 'text';
+        if (isNaN(parseInt(otherText.value))) {
+            otherText.value = defaults.customWidthValue;
+        }
+    }
+}
+
 parsei18n();
 let colorPickerThumb, colorPickerTrack, previousToggleValue;
 const colorInputs = {};
@@ -330,8 +386,18 @@ createColorPickers();
 updatePrivateBrowsingName();
 let data = browser.storage.local.get(restore);
 
+// Add browser tag to body class
+if (runningOn == browsers.FIREFOX) {
+    document.body.classList.add('firefox');
+} else {
+    document.body.classList.add('chromium');
+}
+
 document.getElementById('saveChanges').addEventListener('click', save);
 document.settings.addEventListener('change', toggleColors);
+document.settings.addEventListener('change', toggleCustomWidth);
+document.getElementById('customWidthValue').addEventListener('focus', () => { parseCustomWidthValue(true) });
+document.getElementById('customWidthValue').addEventListener('blur', () => { parseCustomWidthValue(false) });
 window.addEventListener('beforeunload', (event) => {
     // Prevent user from leaving if they have unsaved changes
     if (pendingChanges) {
