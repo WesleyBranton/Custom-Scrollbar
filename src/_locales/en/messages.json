@@ -8,7 +8,12 @@
     },
 
     "optionsTitle": {
-        "message": "Custom Scrollbars Options"
+        "message": "$EXTENSIONNAME$ Options",
+        "placeholders": {
+            "extensionname": {
+                "content": "$1"
+            }
+        }
     },
 
     "optionsSectionPreview": {

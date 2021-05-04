@@ -6,11 +6,21 @@
  * Load i18n data
  */
 function parsei18n() {
-    document.title = browser.i18n.getMessage('optionsTitle');
+    document.title = browser.i18n.getMessage('optionsTitle', browser.i18n.getMessage('extensionName'));
 
     const elements = document.querySelectorAll('[data-i18n]');
     for (e of elements) {
-        e.textContent = browser.i18n.getMessage(e.dataset.i18n);
+        const placeholders = [];
+
+        if (e.hasAttribute('data-i18n-placeholders')) {
+            const num = parseInt(e.getAttribute('data-i18n-placeholders'));
+
+            for (let i = 1; i <= num; i++) {
+                placeholders.push(browser.i18n.getMessage(e.getAttribute('data-i18n-placeholder-' + i)));
+            }
+        }
+
+        e.textContent = browser.i18n.getMessage(e.dataset.i18n, placeholders);
     }
 
     document.getElementById('customWidthHelp').title = browser.i18n.getMessage('linkHelp');
