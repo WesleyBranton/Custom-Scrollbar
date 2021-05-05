@@ -2,11 +2,9 @@
     "extensionName": {
         "message": "Custom Scrollbars"
     },
-    
     "extensionDescription": {
         "message": "Give your browser a personal touch with customized scrollbars!"
     },
-
     "optionsTitle": {
         "message": "$EXTENSIONNAME$ Options",
         "placeholders": {
@@ -15,123 +13,93 @@
             }
         }
     },
-
     "optionsSectionPreview": {
         "message": "Live preview"
     },
-
     "optionsSectionWidth": {
         "message": "Scrollbar width"
     },
-
     "optionsSectionUseColors": {
         "message": "Use custom colors"
     },
-
     "optionsSectionThumb": {
         "message": "Scrollbar thumb color"
     },
-
     "optionsSectionTrack": {
         "message": "Scrollbar track color"
     },
-
     "optionsSectionOverride": {
         "message": "Allow websites to override"
     },
-
     "sizeWide": {
         "message": "Wide"
     },
-
     "sizeThin": {
         "message": "Thin"
     },
-
     "sizeHidden": {
         "message": "Hidden"
     },
-
     "sizeOther": {
         "message": "Other"
     },
-
     "optionYes": {
         "message": "Yes"
     },
-
     "optionNo": {
         "message": "No"
     },
-
     "colorFormatRGB": {
         "message": "RGB"
     },
-
     "colorFormatHSV": {
         "message": "HSV"
     },
-
     "colorFormatHEX": {
         "message": "HEX"
     },
-
     "colorRed": {
         "message": "Red"
     },
-
     "colorGreen": {
         "message": "Green"
     },
-
     "colorBlue": {
         "message": "Blue"
     },
-
     "colorHue": {
         "message": "Hue"
     },
-
     "colorSaturation": {
         "message": "Saturation"
     },
-
     "colorValue": {
         "message": "Value"
     },
-
     "colorAlpha": {
         "message": "Alpha"
     },
-
     "overrideColor": {
         "message": "Only color"
     },
-
     "overrideWidth": {
         "message": "Only width"
     },
-
     "overrideAll": {
         "message": "Color & width"
     },
-
     "overrideNone": {
         "message": "None"
     },
-
     "buttonSave": {
         "message": "Save"
     },
-
     "messageSaved": {
         "message": "All changes have been saved! You will need to refresh all tabs to see the changes."
     },
-
     "messageUnsaved": {
         "message": "You have unsaved changes!"
     },
-
     "promptPrivateBrowsing": {
         "message": "Custom scrollbars will not be visible in $PRIVATEBROWSING$ windows unless you give this extension permission to run in $PRIVATEBROWSING$ mode.",
         "placeholders": {
@@ -140,39 +108,30 @@
             }
         }
     },
-
     "linkHelp": {
         "message": "Help"
     },
-
     "linkContribute": {
         "message": "Contribute"
     },
-
     "linkDonate": {
         "message": "Donate"
     },
-
     "linkTranslate": {
         "message": "Translate"
     },
-
     "callToActionLearn": {
         "message": "Learn more..."
     },
-
     "privateBrowsingFirefox": {
         "message": "Private Browsing"
     },
-
     "privateBrowsingChrome": {
         "message": "Incognito"
     },
-
     "privateBrowsingEdge": {
         "message": "InPrivate"
     },
-
     "privateBrowsingOpera": {
         "message": "Incognito"
     }
