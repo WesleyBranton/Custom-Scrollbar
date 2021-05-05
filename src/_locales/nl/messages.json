@@ -1,0 +1,135 @@
+{
+    "extensionDescription": {
+        "message": "Personaliseer je browser met aangepaste schuifbalken!"
+    },
+    "optionsTitle": {
+        "message": "$EXTENSIONNAME$ - Instellingen",
+        "placeholders": {
+            "extensionname": {
+                "content": "$1"
+            }
+        }
+    },
+    "optionsSectionPreview": {
+        "message": "Live-voorvertoning"
+    },
+    "optionsSectionWidth": {
+        "message": "Breedte"
+    },
+    "optionsSectionUseColors": {
+        "message": "Aangepaste kleuren gebruiken"
+    },
+    "optionsSectionThumb": {
+        "message": "Kleur van schuifje"
+    },
+    "optionsSectionTrack": {
+        "message": "Kleur van schuifspoor"
+    },
+    "optionsSectionOverride": {
+        "message": "Websites toestaan om eigen schuifbalken te tonen"
+    },
+    "sizeWide": {
+        "message": "Breed"
+    },
+    "sizeThin": {
+        "message": "Dun"
+    },
+    "sizeHidden": {
+        "message": "Verborgen"
+    },
+    "sizeOther": {
+        "message": "Anders"
+    },
+    "optionYes": {
+        "message": "Ja"
+    },
+    "optionNo": {
+        "message": "Nee"
+    },
+    "colorFormatRGB": {
+        "message": "RGB"
+    },
+    "colorFormatHSV": {
+        "message": "HSV"
+    },
+    "colorFormatHEX": {
+        "message": "HEX"
+    },
+    "colorRed": {
+        "message": "Rood"
+    },
+    "colorGreen": {
+        "message": "Groen"
+    },
+    "colorBlue": {
+        "message": "Blauw"
+    },
+    "colorHue": {
+        "message": "Tint"
+    },
+    "colorSaturation": {
+        "message": "Verzadiging"
+    },
+    "colorValue": {
+        "message": "Waarde"
+    },
+    "colorAlpha": {
+        "message": "Alfa"
+    },
+    "overrideColor": {
+        "message": "Alleen de kleur"
+    },
+    "overrideWidth": {
+        "message": "Alleen de breedte"
+    },
+    "overrideAll": {
+        "message": "Kleur en breedte"
+    },
+    "overrideNone": {
+        "message": "Niet"
+    },
+    "buttonSave": {
+        "message": "Opslaan"
+    },
+    "messageSaved": {
+        "message": "De wijzigingen zijn opgeslagen! Herlaad alle tabbladen om de wijzigingen toe te passen."
+    },
+    "messageUnsaved": {
+        "message": "Je hebt niet-opgeslagen wijzigingen!"
+    },
+    "promptPrivateBrowsing": {
+        "message": "Aangepaste scrollbalken zijn niet zichtbaar in $PRIVATEBROWSING$ vensters, tenzij je deze extensie toestemming geeft om te draaien in de $PRIVATEBROWSING$ modus.",
+        "placeholders": {
+            "privatebrowsing": {
+                "content": "$1"
+            }
+        }
+    },
+    "linkHelp": {
+        "message": "Hulp"
+    },
+    "linkContribute": {
+        "message": "Bijdragen"
+    },
+    "linkDonate": {
+        "message": "Doneren"
+    },
+    "linkTranslate": {
+        "message": "Vertalen"
+    },
+    "callToActionLearn": {
+        "message": "Meer informatie…"
+    },
+    "privateBrowsingFirefox": {
+        "message": "Privénavigatie"
+    },
+    "privateBrowsingChrome": {
+        "message": "Incognito"
+    },
+    "privateBrowsingEdge": {
+        "message": "Inprivé"
+    },
+    "privateBrowsingOpera": {
+        "message": "Incognito"
+    }
+}
