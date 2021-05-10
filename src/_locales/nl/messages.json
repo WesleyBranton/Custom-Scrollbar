@@ -1,4 +1,7 @@
 {
+    "extensionName": {
+        "message": "Custom Scrollbars"
+    },
     "extensionDescription": {
         "message": "Personaliseer je browser met aangepaste schuifbalken!"
     },
