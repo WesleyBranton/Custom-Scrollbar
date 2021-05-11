@@ -5,6 +5,7 @@ Give your browser a personalized touch with custom scrollbar colors! You can sel
 
 [<img src=".github/firefox.png">](https://addons.mozilla.org/firefox/addon/custom-scrollbars/)
 [<img src=".github/chrome.png">](https://chrome.google.com/webstore/detail/custom-scrollbars/ddbipglapfjojhfapmpmofnaoellkggc)
+[<img src=".github/edge.png">](https://microsoftedge.microsoft.com/addons/detail/custom-scrollbars/lbndfndhkcagjkndlnpllplacpfmbpbk)
 
 ## Release Notes
 Release notes can be found on [this GitHub repository](https://github.com/WesleyBranton/Custom-Scrollbar/releases).
