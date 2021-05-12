@@ -13,6 +13,9 @@
             }
         }
     },
+    "optionsSectionProfile": {
+        "message": "Settings profile"
+    },
     "optionsSectionPreview": {
         "message": "Live preview"
     },
@@ -48,6 +51,12 @@
     },
     "optionNo": {
         "message": "No"
+    },
+    "optionOk": {
+        "message": "Ok"
+    },
+    "optionCancel": {
+        "message": "Cancel"
     },
     "colorFormatRGB": {
         "message": "RGB"
@@ -134,5 +143,32 @@
     },
     "privateBrowsingOpera": {
         "message": "Incognito"
+    },
+    "dialogChangesWillBeLost": {
+        "message": "Your unsaved changes will be lost. Are you sure you want to continue?"
+    },
+    "dialogCannotBeUndone": {
+        "message": "This action cannot be undone. Are you sure you want to continue?"
+    },
+    "dialogCannotDeleteDefault": {
+        "message": "Cannot delete default profile. Please set a new default profile before deleting."
+    },
+    "profileActionNew": {
+        "message": "New"
+    },
+    "profileActionRename": {
+        "message": "Rename"
+    },
+    "profileActionRemove": {
+        "message": "Remove"
+    },
+    "profileActionChangeDefault": {
+        "message": "Set As Default"
+    },
+    "defaultProfileName": {
+        "message": "New Profile"
+    },
+    "migratedProfileName": {
+        "message": "General"
     }
 }

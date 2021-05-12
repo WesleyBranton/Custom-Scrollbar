@@ -34,6 +34,23 @@
     </section>
     <div class="panel-section-separator"></div>
     <section class="panel-section">
+      <label data-i18n="optionsSectionProfile"></label>
+      <div>
+        <select id="profileSelection" name="profile"></select>
+        <br>
+        <button id="profile-add" type="button" class="secondary" data-i18n="profileActionNew"></button>
+        <button id="profile-rename" type="button" class="secondary" data-i18n="profileActionRename"></button>
+        <button id="profile-remove" type="button" class="secondary" data-i18n="profileActionRemove"></button>
+        <button id="profile-setDefault" type="button" class="secondary" data-i18n="profileActionChangeDefault"></button>
+      </div>
+    </section>
+    <!--<div class="panel-section-separator"></div>
+    <section class="panel-section">
+      <label data-i18n="optionsSectionProfileName"></label>
+      <input name="profileName" type="text" minlength="1">
+    </section>-->
+    <div class="panel-section-separator"></div>
+    <section class="panel-section">
       <label for="width" data-i18n="optionsSectionWidth"></label>
       <div>
         <label class="clickable">
@@ -245,10 +262,28 @@
       </div>
     </footer>
   </form>
+  <div id="dialog-overlay" class="hide">
+    <div id="dialog" class="confirmation">
+      <span id="dialog-text" class="confirmation-only popup-only"></span>
+      <input type="text" id="dialog-input" class="prompt-only">
+      <div id="confirmation-buttons" class="confirmation-only">
+        <button id="confirmation-yes" type="button" class="default" data-i18n="optionYes"></button>
+        <button id="confirmation-no" type="button" class="secondary" data-i18n="optionNo"></button>
+      </div>
+      <div id="prompt-buttons" class="prompt-only">
+        <button id="prompt-yes" type="button" class="default" data-i18n="buttonSave"></button>
+        <button id="prompt-no" type="button" class="secondary" data-i18n="optionCancel"></button>
+      </div>
+      <div id="popup-buttons" class="popup-only">
+        <button id="popup-yes" type="button" class="default" data-i18n="optionOk"></button>
+      </div>
+    </div>
+  </div>
   <script src="../lib/iro.min.js"></script>
   <script src="../defaults.js"></script>
   <script src="../generateCSS.js"></script>
   <script src="../crossbrowser.js"></script>
+  <script src="dialogs.js"></script>
   <script src="script.js"></script>
 </body>
 

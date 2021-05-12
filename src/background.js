@@ -8,10 +8,17 @@
  * @param {string} colorTrack
  * @param {string} colorThumb
  */
-async function applyStyle(settings) {
-    settings = loadWithDefaults(settings);
-    const customWidth = settings.customWidthValue + settings.customWidthUnit;
-    css = generateCSS(settings.width, settings.colorTrack, settings.colorThumb, settings.allowOverride, customWidth);
+async function applyStyle(profile) {
+    profile = profile[Object.keys(profile)[0]];
+
+    if (typeof profile == 'undefined') {
+        console.error('Settings profile cannot be loaded from storage.');
+        return;
+    }
+
+    profile = loadWithDefaults(profile);
+    const customWidth = profile.customWidthValue + profile.customWidthUnit;
+    css = generateCSS(profile.width, profile.colorTrack, profile.colorThumb, profile.allowOverride, customWidth);
 
     // Register content script (Firefox only)
     if (runningOn == browsers.FIREFOX) {
@@ -30,12 +37,51 @@ async function applyStyle(settings) {
 }
 
 /**
- * Load settings from Storage API
- * @async
+ * Reload the CSS for the default profile
  */
-async function loadSettings() {
+async function refreshDefault() {
     await removeStyle();
-    browser.storage.local.get(applyStyle);
+    browser.storage.local.get('defaultProfile', (data) => {
+        if (data.defaultProfile) {
+            browser.storage.local.get(`profile_${data.defaultProfile}`, applyStyle);
+        }
+    });
+}
+
+/**
+ * Load data from Storage API when add-on starts
+ * @param {Object} data
+ */
+function firstLoad(data) {
+    if (data.defaultProfile) {
+        defaultProfile = data.defaultProfile;
+    } else {
+        if (typeof data.schema == 'undefined' || data.schema < 2) {
+            console.warn('Old storage schema detected. Migrating data.');
+            browser.storage.local.get(migrateStorage);
+        }
+    }
+}
+
+/**
+ * Migrate old data to the profile model
+ * @param {Object} data
+ */
+function migrateStorage(data) {
+    const id = Date.now();
+    const migrated = {
+        schema: 2,
+        defaultProfile: id
+    }
+    migrated[`profile_${id}`] = data;
+    migrated[`profile_${id}`]['name'] = browser.i18n.getMessage('migratedProfileName');
+
+    browser.storage.local.clear(() => {
+        browser.storage.local.set(migrated, () => {
+            defaultProfile = id;
+            refreshDefault();
+        });
+    });
 }
 
 /**
@@ -66,6 +112,7 @@ function handleInstalled(details) {
 
 let css = null;
 let contentScript = null;
+let defaultProfile = null;
 
 // Chromium specific code
 if (runningOn != browsers.FIREFOX) {
@@ -74,7 +121,7 @@ if (runningOn != browsers.FIREFOX) {
     });
 }
 
-loadSettings();
-browser.storage.onChanged.addListener(loadSettings);
+browser.storage.local.get(['schema', 'defaultProfile'], firstLoad);
+browser.storage.onChanged.addListener(refreshDefault);
 browser.runtime.onInstalled.addListener(handleInstalled);
 browser.browserAction.onClicked.addListener(() => { browser.runtime.openOptionsPage(); });

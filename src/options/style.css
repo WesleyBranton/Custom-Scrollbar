@@ -154,3 +154,53 @@ body:not(.chromium) .chromium-only {
 body::-webkit-scrollbar {
   max-width: 50vw !important;
 }
+
+#profileSelection {
+  width: 100%;
+  margin-bottom: 0.5em;
+  appearance: none;
+}
+
+#dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  display: flex;
+}
+
+#dialog {
+  background: white;
+  margin: auto;
+  width: max-content;
+  padding: 1em 2em;
+  box-sizing: border-box;
+  max-width: 500px;
+}
+
+#dialog-text {
+  margin-bottom: 1em;
+  display: block;
+}
+
+#dialog > div {
+  width: max-content;
+  margin: auto;
+  display: none;
+}
+
+#dialog #dialog-input {
+  display: none;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 1em;
+}
+
+.confirmation .confirmation-only,
+.prompt .prompt-only,
+.popup .popup-only {
+  display: block !important;
+}
