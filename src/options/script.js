@@ -31,6 +31,12 @@ function parsei18n() {
  * @param {Object} setting - The Storage API object
  */
 function restore(setting) {
+    setting = setting[Object.keys(setting)[0]];
+
+    if (typeof setting == 'undefined') {
+        return;
+    }
+
     document.settings.customColors.value = (!setting.colorThumb || !setting.colorTrack) ? 'no' : 'yes';
 
     setting = loadWithDefaults(setting);
@@ -57,7 +63,9 @@ function restore(setting) {
 function save() {
     const colTrack = (document.settings.customColors.value == 'yes') ? colorPickerTrack.color.hex8String : null;
     const colThumb = (document.settings.customColors.value == 'yes') ? colorPickerThumb.color.hex8String : null;
+    const profileName = document.getElementById('profileSelection').options[document.getElementById('profileSelection').selectedIndex].textContent.trim();
     const save = {
+        name: profileName,
         width: document.settings.width.value,
         colorTrack: colTrack,
         colorThumb: colThumb,
@@ -69,9 +77,13 @@ function save() {
         save['customWidthUnit'] = document.settings.customWidthUnit.value;
     }
 
-    browser.storage.local.set(save);
+    const wrapper = {};
+    wrapper[`profile_${selectedProfile}`] = save;
 
-    toggleChangesWarning(false);
+    browser.storage.local.set(wrapper, () => {
+        toggleChangesWarning(false);
+        reloadProfileSelection();
+    });
 }
 
 /**
@@ -378,13 +390,150 @@ function parseCustomWidthValue(showNumber) {
     }
 }
 
+/**
+ * Load data from the Storage API
+ * @param {Object} data
+ */
+function loadStorage(data) {
+    if (data.defaultProfile) {
+        selectedProfile = data.defaultProfile;
+        defaultProfile = selectedProfile;
+        changeProfile(selectedProfile);
+    }
+
+    reloadProfileSelection();
+    settings.profile.value = selectedProfile;
+}
+
+/**
+ * Change the selected profile
+ * @param {number} id
+ */
+function changeProfile(id) {
+    selectedProfile = id;
+    document.getElementById('profile-setDefault').disabled = selectedProfile == defaultProfile;
+    browser.storage.local.get(`profile_${id}`, restore);
+}
+
+/**
+ * Add new profile
+ */
+function addProfile() {
+    const id = Date.now();
+    const newProfile = {};
+    newProfile[`profile_${id}`] = {
+        name: generateUnconflictingProfileName(browser.i18n.getMessage('defaultProfileName'), id)
+    };
+
+    browser.storage.local.set(newProfile, () => {
+        reloadProfileSelection();
+        changeProfile(id);
+    });
+}
+
+/**
+ * Remove selected profile
+ */
+function removeProfile() {
+    browser.storage.local.remove(`profile_${selectedProfile}`, () => {
+        reloadProfileSelection();
+        changeProfile(defaultProfile);
+    })
+}
+
+/**
+ * Change the profile that's used as default
+ */
+function updateDefaultProfile() {
+    browser.storage.local.set({defaultProfile: selectedProfile}, () => {
+        defaultProfile = selectedProfile;
+        reloadProfileSelection();
+    });
+}
+
+/**
+ * Rename the profile that's currently selected
+ * @param {String} input
+ */
+function renameProfile(input) {
+    input = generateUnconflictingProfileName(input, selectedProfile);
+
+    browser.storage.local.get(`profile_${selectedProfile}`, (data) => {
+        data[`profile_${selectedProfile}`].name = input;
+        browser.storage.local.set(data, () => {
+            reloadProfileSelection();
+        });
+    })
+}
+
+/**
+ * Reload the list of profiles from the Storage API
+ */
+function reloadProfileSelection() {
+    browser.storage.local.get((data) => {
+        const selector = document.getElementById('profileSelection');
+        selector.textContent = '';
+
+        for (let key of Object.keys(data)) {
+            if (key.split('_')[0]  == 'profile') {
+                const option = document.createElement('option');
+                option.textContent = data[key].name;
+                option.value = key.split('_')[1];
+                selector.appendChild(option);
+            }
+        }
+
+        let options = selector.options;
+        let sortedOptions = [];
+
+        for (let o of options) {
+            sortedOptions.push(o);
+        }
+
+        sortedOptions = sortedOptions.sort((a, b) => {
+            return a.textContent.toUpperCase().localeCompare(b.textContent.toUpperCase());
+        })
+
+        for (let i = 0; i <= options.length; i++) {
+            options[i] = sortedOptions[i];
+        }
+
+        document.settings.profile.value = selectedProfile;
+        document.getElementById('profile-setDefault').disabled = selectedProfile == defaultProfile;
+    });
+}
+
+/**
+ * Generate a unique name from the given string (prevents duplicate profile names)
+ * @param {String} name
+ * @param {number} id
+ * @returns Unique Name
+ */
+ function generateUnconflictingProfileName(name, id) {
+    const selector = document.getElementById('profileSelection');
+    const names = selector.getElementsByTagName('option');
+    let finalName = name;
+    let counter = 1;
+
+    for (let i = 0; i < names.length; i++) {
+        if (names[i].textContent == finalName && names[i].value != id) {
+            i = -1;
+            counter++;
+            finalName = `${name} (${counter})`;
+        }
+    }
+
+    return finalName;
+}
+
 parsei18n();
 let colorPickerThumb, colorPickerTrack, previousToggleValue;
+let defaultProfile, selectedProfile, selectedProfileName;
 const colorInputs = {};
 let pendingChanges = false;
 createColorPickers();
 updatePrivateBrowsingName();
-let data = browser.storage.local.get(restore);
+let data = browser.storage.local.get('defaultProfile', loadStorage);
 
 // Add browser tag to body class
 if (runningOn == browsers.FIREFOX) {
@@ -398,6 +547,50 @@ document.settings.addEventListener('change', toggleColors);
 document.settings.addEventListener('change', toggleCustomWidth);
 document.getElementById('customWidthValue').addEventListener('focus', () => { parseCustomWidthValue(true) });
 document.getElementById('customWidthValue').addEventListener('blur', () => { parseCustomWidthValue(false) });
+
+document.settings.profile.addEventListener('change', () => {
+    confirmAction(
+        browser.i18n.getMessage('dialogChangesWillBeLost'),
+        function() { changeProfile(document.settings.profile.value) },
+        function() { document.settings.profile.value = selectedProfile },
+        !pendingChanges
+    );
+});
+document.getElementById('profile-add').addEventListener('click', () => {
+    confirmAction(
+        browser.i18n.getMessage('dialogChangesWillBeLost'),
+        addProfile,
+        null,
+        !pendingChanges
+    );
+});
+document.getElementById('profile-rename').addEventListener('click', () => {
+    const selector = document.getElementById('profileSelection');
+    showPrompt(
+        renameProfile,
+        null,
+        selector.options[selector.selectedIndex].textContent
+    );
+});
+document.getElementById('profile-remove').addEventListener('click', () => {
+    if (selectedProfile == defaultProfile) {
+        showAlert(
+            browser.i18n.getMessage('dialogCannotDeleteDefault'),
+            null,
+            false
+        );
+        return;
+    }
+
+    confirmAction(
+        browser.i18n.getMessage('dialogCannotBeUndone'),
+        removeProfile,
+        null,
+        false
+    );
+});
+document.getElementById('profile-setDefault').addEventListener('click', updateDefaultProfile);
+
 window.addEventListener('beforeunload', (event) => {
     // Prevent user from leaving if they have unsaved changes
     if (pendingChanges) {
