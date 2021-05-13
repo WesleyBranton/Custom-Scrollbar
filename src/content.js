@@ -4,15 +4,46 @@
 
 /**
  * Request the CSS code from background file
- * ** Only Chromium-based browsers need to use this
  * @param {Object} response 
  */
-function injectCSS(response) {
-    const sheet = document.createElement('style');
-    sheet.setAttribute('type', 'text/css');
-    sheet.id = 'custom-scrollbar-css';
-    sheet.textContent = response.css;
-    document.head.appendChild(sheet);
+function injectCSS(css) {
+    let sheet = document.getElementById('custom-scrollbar-css');
+
+    if (!sheet) {
+        sheet = document.createElement('style');
+        sheet.setAttribute('type', 'text/css');
+        sheet.id = 'custom-scrollbar-css';
+        document.head.appendChild(sheet);
+    }
+
+    sheet.textContent = css;
 }
 
-chrome.runtime.sendMessage('css', injectCSS);
+/**
+ * Request CSS from background script
+ */
+function refreshCSS() {
+    port.postMessage({
+        action: 'getCSS'
+    });
+}
+
+/**
+ * Handle incoming messages from background script
+ * @param {Object} message
+ */
+function handleMessages(message) {
+    switch (message.action) {
+        case 'updateCSS':
+            injectCSS(message.css);
+            break;
+        case 'queryCSS':
+            refreshCSS();
+            break;
+    }
+}
+
+if (typeof browser != "object") browser = chrome;
+const port = browser.runtime.connect({ name: Date.now() + "" });
+port.onMessage.addListener(handleMessages);
+refreshCSS();

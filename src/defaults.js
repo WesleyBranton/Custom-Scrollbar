@@ -1,5 +1,5 @@
 const defaults = {
-    width: 'unset',
+    width: 'auto',
     color: 'unset',
     colorThumb: '#CDCDCDFF',
     colorTrack: '#F0F0F0FF',

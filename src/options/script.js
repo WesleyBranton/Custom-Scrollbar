@@ -40,6 +40,7 @@ function restore(setting) {
     document.settings.customColors.value = (!setting.colorThumb || !setting.colorTrack) ? 'no' : 'yes';
 
     setting = loadWithDefaults(setting);
+    if (setting.width == 'unset') setting.width = 'auto';
     document.settings.width.value = setting.width;
     document.settings.override.value = setting.allowOverride;
     document.settings.customWidthValue.value = setting.customWidthValue;

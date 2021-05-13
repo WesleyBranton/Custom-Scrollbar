@@ -21,7 +21,6 @@ echo. > "build\EDIT THE FILES IN THE SRC DIRECTORY AND RUN BUILD AGAIN"
 echo | set /p output="Creating Firefox files... "
 xcopy "src" "build\firefox" /s/e/y/q > nul
 del "build\firefox\manifest-chromium.json" /f/q
-del "build\firefox\content.js" /f/q
 rename "build\firefox\manifest-firefox.json" "manifest.json"
 echo Done!
 

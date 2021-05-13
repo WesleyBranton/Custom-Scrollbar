@@ -34,7 +34,6 @@ The majority of the files in the source code are compatible with all supported b
 | Firefox Only | Chromium Only |
 | --- | --- |
 | `manifest-firefox.json` | `manifest-chromium.json` |
-| | `content.js` |
 
 Other files may contain sections of code that are only used by a certain browser. These sections of code will still be included in the source code for other browsers, but should be appropriately labelled with a comment (were possible) to indicate that it's only used by a specific browser.
 
