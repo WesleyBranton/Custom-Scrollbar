@@ -149,4 +149,3 @@ browser.runtime.onConnect.addListener(registerPort);
 browser.storage.local.get(['schema', 'defaultProfile'], firstLoad);
 browser.storage.onChanged.addListener(refreshDefault);
 browser.runtime.onInstalled.addListener(handleInstalled);
-browser.browserAction.onClicked.addListener(() => { browser.runtime.openOptionsPage(); });

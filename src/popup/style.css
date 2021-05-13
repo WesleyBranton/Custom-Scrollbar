@@ -1,0 +1,25 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+
+body {
+    width: 100%;
+    max-width: 500px;
+    min-width: 400px;
+}
+
+#profile {
+    width: 100%;
+    appearance: none;
+}
+
+.button-bar {
+    text-align: center;
+}
+
+.color-output {
+    border: 1px solid var(--grey-90-a20);
+    width: 5em;
+    height: 1em;
+    border-radius: 5px;
+}
