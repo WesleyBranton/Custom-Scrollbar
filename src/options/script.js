@@ -646,12 +646,14 @@ function processBackupFile(event) {
         return;
     }
 
-    browser.storage.local.set(data, () => {
-        showAlert(
-            browser.i18n.getMessage('dialogBackupRestored'),
-            () => { window.location.reload() },
-            null
-        );
+    browser.storage.local.clear(() => {
+        browser.storage.local.set(data, () => {
+            showAlert(
+                browser.i18n.getMessage('dialogBackupRestored'),
+                () => { window.location.reload() },
+                null
+            );
+        });
     });
 }
 
