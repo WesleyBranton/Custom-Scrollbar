@@ -26,13 +26,15 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth) {
         colorTrack = defaults.colorTrack;
     }
 
-    css = 
+    if (runningOn == browsers.FIREFOX) {
+        css = 
 `* {
     scrollbar-width: ${width} ${(parseInt(override / 10) == 0) ? '!important' : ''};
     scrollbar-color: ${color} ${(override % 10 == 0) ? '!important' : ''};
-}
-
-::-webkit-scrollbar {
+}`;
+    } else {
+        css = 
+`::-webkit-scrollbar {
     width: ${widthPx} ${(parseInt(override / 10) == 0) ? '!important' : ''};
 }
 
@@ -43,6 +45,7 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth) {
 ::-webkit-scrollbar-track {
     background: ${colorTrack} ${(override % 10 == 0) ? '!important' : ''};
 }`;
+    }
 
     return css;
 }

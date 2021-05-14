@@ -1,0 +1,56 @@
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
+
+   <!DOCTYPE html>
+   <html>
+   
+   <head>
+     <meta charset="utf-8" />
+     <title>Custom Scrollbars</title>
+     <link rel="stylesheet" href="../lib/new_browser_style.css" />
+     <link rel="stylesheet" href="style.css" />
+   </head>
+   
+   <body class="browser-style">
+     <form name="manager">
+        <section class="panel-section has-help">
+            <label data-i18n="optionsSectionProfile"></label>
+          </section>
+       <section class="panel-section help-row">
+         <div>
+             <select id="profile" name="profile"></select>
+         </div>
+       </section>
+       <div class="panel-section-separator"></div>
+       <section class="panel-section has-help">
+        <label data-i18n="optionsSectionWidth"></label>
+        <span id="detail-width"></span>
+      </section>
+      <section class="panel-section has-help help-row">
+        <label data-i18n="optionsSectionThumb"></label>
+        <span id="detail-color-thumb" class="color-output"></span>
+      </section>
+      <section class="panel-section has-help help-row">
+        <label data-i18n="optionsSectionTrack"></label>
+        <span id="detail-color-track" class="color-output"></span>
+      </section>
+      <section class="panel-section help-row">
+        <label data-i18n="optionsSectionOverride"></label>
+        <span id="detail-override"></span>
+      </section>
+      <div class="panel-section-separator"></div>
+      <section class="panel-section">
+        <div class="button-bar">
+            <button id="button-setDefault" type="button" class="default" data-i18n="profileActionChangeDefault" disabled></button>
+            <button id="button-options" type="button" class="secondary" data-i18n="options"></button>
+        </div>
+      </section>
+    </form>
+    <script src="../defaults.js"></script>
+    <script src="../crossbrowser.js"></script>
+    <script src="script.js"></script>
+   </body>
+   
+   </html>
+   

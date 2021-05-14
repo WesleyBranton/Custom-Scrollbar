@@ -1,5 +1,9 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+
 const defaults = {
-    width: 'unset',
+    width: 'auto',
     color: 'unset',
     colorThumb: '#CDCDCDFF',
     colorTrack: '#F0F0F0FF',

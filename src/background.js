@@ -8,7 +8,7 @@
  * @param {string} colorTrack
  * @param {string} colorThumb
  */
-async function applyStyle(profile) {
+function applyStyle(profile) {
     profile = profile[Object.keys(profile)[0]];
 
     if (typeof profile == 'undefined') {
@@ -19,28 +19,24 @@ async function applyStyle(profile) {
     profile = loadWithDefaults(profile);
     const customWidth = profile.customWidthValue + profile.customWidthUnit;
     css = generateCSS(profile.width, profile.colorTrack, profile.colorThumb, profile.allowOverride, customWidth);
+    updateCSSOnAllPorts();
+}
 
-    // Register content script (Firefox only)
-    if (runningOn == browsers.FIREFOX) {
-        const options = {
-            allFrames: true,
-            css: [{
-                code: css
-            }],
-            matchAboutBlank: true,
-            matches: ['<all_urls>'],
-            runAt: 'document_start'
-        };
-
-        contentScript = await browser.contentScripts.register(options);
+/**
+ * Send update message to all connected content scripts
+ */
+function updateCSSOnAllPorts() {
+    for (let port of Object.values(ports)) {
+        port.postMessage({
+            action: 'queryCSS'
+        });
     }
 }
 
 /**
  * Reload the CSS for the default profile
  */
-async function refreshDefault() {
-    await removeStyle();
+function refreshDefault() {
     browser.storage.local.get('defaultProfile', (data) => {
         if (data.defaultProfile) {
             browser.storage.local.get(`profile_${data.defaultProfile}`, applyStyle);
@@ -55,6 +51,7 @@ async function refreshDefault() {
 function firstLoad(data) {
     if (data.defaultProfile) {
         defaultProfile = data.defaultProfile;
+        refreshDefault();
     } else {
         if (typeof data.schema == 'undefined' || data.schema < 2) {
             console.warn('Old storage schema detected. Migrating data.');
@@ -85,18 +82,6 @@ function migrateStorage(data) {
 }
 
 /**
- * Remove the active content script (if required)
- * @async
- */
-async function removeStyle() {
-    if (contentScript) {
-        await contentScript.unregister();
-        contentScript = null;
-    }
-    return;
-}
-
-/**
  * Open options page on first install
  * @param {Object} details 
  */
@@ -110,18 +95,57 @@ function handleInstalled(details) {
     }
 }
 
-let css = null;
-let contentScript = null;
-let defaultProfile = null;
+/**
+ * Register a new port for content script
+ * @param {Object} port
+ */
+function registerPort(port) {
+    while (ports[port.name]) {
+        port.name = parseInt(port.name) + 1 + "";
+    }
+    ports[port.name] = port;
+    port.onDisconnect.addListener(unregisterPort);
+    port.onMessage.addListener(handleMessageFromPort);
+}
 
-// Chromium specific code
-if (runningOn != browsers.FIREFOX) {
-    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-        sendResponse({ css: css });
+/**
+ * Unregister a port for content script
+ * @param {Object} port
+ */
+function unregisterPort(port) {
+    delete ports[port.name];
+}
+
+/**
+ * Handle incoming messages from content script
+ * @param {Object} message
+ * @param {Object} port
+ */
+function handleMessageFromPort(message, port) {
+    switch (message.action) {
+        case 'getCSS':
+            sendCSSToPort(port);
+            break;
+    }
+}
+
+/**
+ * Sends CSS code to port
+ * @param {Object} port
+ */
+function sendCSSToPort(port) {
+    port.postMessage({
+        action: 'updateCSS',
+        css: css
     });
 }
 
+let css = null;
+let contentScript = null;
+let defaultProfile = null;
+let ports = {};
+
+browser.runtime.onConnect.addListener(registerPort);
 browser.storage.local.get(['schema', 'defaultProfile'], firstLoad);
 browser.storage.onChanged.addListener(refreshDefault);
 browser.runtime.onInstalled.addListener(handleInstalled);
-browser.browserAction.onClicked.addListener(() => { browser.runtime.openOptionsPage(); });
