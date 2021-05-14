@@ -62,5 +62,9 @@
     "permissions": [
         "storage",
         "<all_urls>"
+    ],
+    
+    "optional_permissions": [
+        "downloads"
     ]
 }
