@@ -527,6 +527,134 @@ function reloadProfileSelection() {
     return finalName;
 }
 
+/**
+ * Change the main settings tabs
+ * @param {Event} event
+ */
+function changeTab(event) {
+    if (!event.target.id.includes('tabselect')) {
+        return;
+    }
+
+    const selected = event.target.id.split('-')[1];
+
+    // Show correct section
+    const tabs = document.getElementsByClassName('tab-section');
+    for (let tab of tabs) {
+        if (tab.id == `tab-${selected}`) {
+            tab.classList.remove('hide');
+        } else {
+            tab.classList.add('hide');
+        }
+    }
+
+    // Change selected tab on tab bar
+    const tabButtons = document.getElementById('tab-bar').getElementsByTagName('button');
+    for (let button of tabButtons) {
+        button.classList.remove('selected');
+    }
+    document.getElementById(`tabselect-${selected}`).classList.add('selected');
+}
+
+/**
+ * Save Storage API backup (requires permission)
+ */
+function saveBackup() {
+    browser.permissions.request({ permissions: ['downloads'] }, (granted) => {
+        if (granted) {
+            browser.storage.local.get((data) => {
+                const file = new Blob([JSON.stringify(data)], {type: 'application/json'});
+                const fileURL = URL.createObjectURL(file);
+
+                browser.downloads.download({
+                    filename: `custom-scrollbars-backup-${Date.now()}.json`,
+                    saveAs: true,
+                    url: fileURL
+                });
+            });
+        } else {
+            showAlert(browser.i18n.getMessage('dialogPermissionRequired'), null, null);
+        }
+    });
+}
+
+/**
+ * Update file selection
+ */
+function selectFile() {
+    const fileInput = document.getElementById('restore-file');
+    const fileNameOutput = document.getElementById('restore-file-name');
+    const restoreButton = document.getElementById('button-restore');
+    const clearFileButton = document.getElementById('button-removeFile');
+
+    if (fileInput.files.length == 1) {
+        fileNameOutput.textContent = fileInput.files[0].name;
+        restoreButton.disabled = false;
+        clearFileButton.classList.remove('hide');
+    } else {
+        fileNameOutput.textContent = browser.i18n.getMessage('noFileSelected');
+        restoreButton.disabled = true;
+        clearFileButton.classList.add('hide');
+    }
+}
+
+/**
+ * Clear the selected file
+ */
+function clearFile() {
+    document.getElementById('restore-file').value = '';
+    selectFile();
+}
+
+/**
+ * Apply backup to Storage API
+ */
+function loadBackup() {
+    const fileInput = document.getElementById('restore-file');
+
+    if (fileInput.files.length == 1) {
+        const reader = new FileReader();
+        reader.onload = processBackupFile;
+        reader.readAsText(fileInput.files[0]);
+    }
+}
+
+/**
+ * Restore the applied file into the Storage API
+ * @param {Event} event
+ */
+function processBackupFile(event) {
+    let data;
+
+    try {
+        data = JSON.parse(event.target.result);
+    } catch (error) {
+        showAlert(
+            browser.i18n.getMessage('dialogInvalidBackup'),
+            clearFile,
+            null
+        );
+        return;
+    }
+
+    if (!data.schema || !data.defaultProfile || !data[`profile_${data.defaultProfile}`]) {
+        showAlert(
+            browser.i18n.getMessage('dialogInvalidBackup'),
+            clearFile,
+            null
+        );
+        return;
+    }
+
+    browser.storage.local.set(data, () => {
+        showAlert(
+            browser.i18n.getMessage('dialogBackupRestored'),
+            () => { window.location.reload() },
+            null
+        );
+    });
+}
+
 parsei18n();
 let colorPickerThumb, colorPickerTrack, previousToggleValue;
 let defaultProfile, selectedProfile, selectedProfileName;
@@ -534,6 +662,7 @@ const colorInputs = {};
 let pendingChanges = false;
 createColorPickers();
 updatePrivateBrowsingName();
+clearFile();
 let data = browser.storage.local.get('defaultProfile', loadStorage);
 
 // Add browser tag to body class
@@ -548,6 +677,7 @@ document.settings.addEventListener('change', toggleColors);
 document.settings.addEventListener('change', toggleCustomWidth);
 document.getElementById('customWidthValue').addEventListener('focus', () => { parseCustomWidthValue(true) });
 document.getElementById('customWidthValue').addEventListener('blur', () => { parseCustomWidthValue(false) });
+document.getElementById('tab-bar').addEventListener('click', changeTab);
 
 document.settings.profile.addEventListener('change', () => {
     confirmAction(
@@ -591,6 +721,21 @@ document.getElementById('profile-remove').addEventListener('click', () => {
     );
 });
 document.getElementById('profile-setDefault').addEventListener('click', updateDefaultProfile);
+
+document.getElementById('button-backup').addEventListener('click', saveBackup);
+document.getElementById('button-removeFile').addEventListener('click', clearFile);
+document.getElementById('restore-file').addEventListener('change', selectFile);
+document.getElementById('button-changeFile').addEventListener('click', () => {
+    document.getElementById('restore-file').click();
+});
+document.getElementById('button-restore').addEventListener('click', () => {
+    confirmAction(
+        browser.i18n.getMessage('dialogDataOverwrite'),
+        loadBackup,
+        null,
+        false
+    );
+});
 
 window.addEventListener('beforeunload', (event) => {
     // Prevent user from leaving if they have unsaved changes

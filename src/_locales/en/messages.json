@@ -173,5 +173,32 @@
     },
     "options": {
         "message": "Options"
+    },
+    "backupSection": {
+        "message": "Download backup"
+    },
+    "restoreSection": {
+        "message": "Restore from backup"
+    },
+    "buttonSelectFile": {
+        "message": "Select File..."
+    },
+    "buttonRestore": {
+        "message": "Restore"
+    },
+    "noFileSelected": {
+        "message": "No file selected"
+    },
+    "dialogInvalidBackup": {
+        "message": "Invalid backup file"
+    },
+    "dialogPermissionRequired": {
+        "message": "Required permission is missing. Please try again."
+    },
+    "dialogDataOverwrite": {
+        "message": "Restoring this backup will replace your existing settings. This cannot be undone. Are you sure you want to continue?"
+    },
+    "dialogBackupRestored": {
+        "message": "Backup has been successfully restored!"
     }
 }

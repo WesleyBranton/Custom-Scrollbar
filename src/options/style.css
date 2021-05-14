@@ -204,3 +204,12 @@ body::-webkit-scrollbar {
 .popup .popup-only {
   display: block !important;
 }
+
+.restore-section {
+  text-align: right;
+}
+
+#restore-file-name {
+  display: inline-block;
+  margin-bottom: 1em;
+}
