@@ -59,6 +59,11 @@ function firstLoad(data) {
             browser.storage.local.get(migrateStorage);
         }
     }
+
+    if (showOptions) {
+        showOptions = false;
+        browser.runtime.openOptionsPage();
+    }
 }
 
 /**
@@ -88,7 +93,11 @@ function migrateStorage(data) {
  */
 function handleInstalled(details) {
     if (details.reason == 'install') {
-        browser.runtime.openOptionsPage();
+        if (loaded) {
+            browser.runtime.openOptionsPage();
+        } else {
+            showOptions = true;
+        }
         browser.tabs.create({
             url: "https://addons.wesleybranton.com/addon/custom-scrollbars/welcome/1?locale=" + browser.i18n.getUILanguage(),
             active: true
@@ -149,6 +158,7 @@ let contentScript = null;
 let defaultProfile = null;
 let ports = {};
 let loaded = false;
+let showOptions = false;
 
 browser.runtime.onConnect.addListener(registerPort);
 browser.storage.local.get(['schema', 'defaultProfile'], firstLoad);
