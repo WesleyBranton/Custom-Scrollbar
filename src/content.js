@@ -7,6 +7,15 @@
  * @param {Object} response 
  */
 function injectCSS(css) {
+    if (!document.head) {
+        document.onreadystatechange = () => {
+            if (document.readyState == 'interactive') {
+                injectCSS(css);
+            }
+        }
+        return;
+    }
+
     let sheet = document.getElementById('custom-scrollbar-css');
 
     if (!sheet) {
