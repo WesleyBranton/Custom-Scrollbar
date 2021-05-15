@@ -19,6 +19,7 @@ function applyStyle(profile) {
     profile = loadWithDefaults(profile);
     const customWidth = profile.customWidthValue + profile.customWidthUnit;
     css = generateCSS(profile.width, profile.colorTrack, profile.colorThumb, profile.allowOverride, customWidth);
+    loaded = true;
     updateCSSOnAllPorts();
 }
 
@@ -124,6 +125,9 @@ function unregisterPort(port) {
 function handleMessageFromPort(message, port) {
     switch (message.action) {
         case 'getCSS':
+            if (!loaded) {
+                return;
+            }
             sendCSSToPort(port);
             break;
     }
@@ -144,6 +148,7 @@ let css = null;
 let contentScript = null;
 let defaultProfile = null;
 let ports = {};
+let loaded = false;
 
 browser.runtime.onConnect.addListener(registerPort);
 browser.storage.local.get(['schema', 'defaultProfile'], firstLoad);
