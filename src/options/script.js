@@ -573,6 +573,7 @@ function saveBackup() {
                 });
             });
         } else {
+            console.error('Missing persmission to manage downloads');
             showAlert(browser.i18n.getMessage('dialogPermissionRequired'), null, null);
         }
     });
@@ -629,6 +630,7 @@ function processBackupFile(event) {
     try {
         data = JSON.parse(event.target.result);
     } catch (error) {
+        console.error('File is not in JSON format');
         showAlert(
             browser.i18n.getMessage('dialogInvalidBackup'),
             clearFile,
@@ -638,6 +640,10 @@ function processBackupFile(event) {
     }
 
     if (!data.schema || !data.defaultProfile || !data[`profile_${data.defaultProfile}`]) {
+        if (!data.schema) console.error('File missing schema marker');
+        if (!data.defaultProfile) console.error('File missing default profile marker');
+        else if (!data[`profile_${data.defaultProfile}`]) console.error('File missing default profile');
+
         showAlert(
             browser.i18n.getMessage('dialogInvalidBackup'),
             clearFile,
