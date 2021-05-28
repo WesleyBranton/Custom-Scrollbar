@@ -190,9 +190,9 @@ function updatePrivateBrowsingName() {
  * @returns 
  */
 function createColorPicker(container, inputs, preview, setTo) {
-    const picker = new iro.ColorPicker(container, {
-        color: setTo,
-        layout: [
+    let layout;
+    if (CSS.supports('background', 'rgba(0, 0, 0, 0) conic-gradient(red, magenta, blue, aqua, lime, yellow, red) repeat scroll 0% 0%')) {
+        layout = [
             { component: iro.ui.Wheel },
             {
                 component: iro.ui.Slider,
@@ -202,7 +202,24 @@ function createColorPicker(container, inputs, preview, setTo) {
                 component: iro.ui.Slider,
                 options: { sliderType: 'alpha' }
             }
-        ],
+        ];
+    } else {
+        layout = [
+            { component: iro.ui.Box },
+            {
+                component: iro.ui.Slider,
+                options: { sliderType: 'hue' }
+            },
+            {
+                component: iro.ui.Slider,
+                options: { sliderType: 'alpha' }
+            }
+        ];
+    }
+
+    const picker = new iro.ColorPicker(container, {
+        color: setTo,
+        layout: layout,
         layoutDirection: 'horizontal'
     });
 
