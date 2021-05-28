@@ -20,7 +20,7 @@ const defaults = {
  */
 function loadWithDefaults(settings) {
     const keys = Object.keys(defaults);
-    for (k of keys) {
+    for (let k of keys) {
         if (typeof defaults[k] != typeof settings[k]) {
             settings[k] = defaults[k];
         }

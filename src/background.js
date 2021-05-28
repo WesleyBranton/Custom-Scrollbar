@@ -139,13 +139,11 @@ function unregisterPort(port) {
  * @param {Object} port
  */
 function handleMessageFromPort(message, port) {
-    switch (message.action) {
-        case 'getCSS':
-            if (!loaded) {
-                return;
-            }
-            sendCSSToPort(port);
-            break;
+    if (message.action == 'getCSS') {
+        if (!loaded) {
+            return;
+        }
+        sendCSSToPort(port);
     }
 }
 

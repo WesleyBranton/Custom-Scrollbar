@@ -7,7 +7,7 @@
  */
  function parsei18n() {
     const elements = document.querySelectorAll('[data-i18n]');
-    for (e of elements) {
+    for (let e of elements) {
         e.textContent = browser.i18n.getMessage(e.dataset.i18n);
     }
 }

@@ -9,7 +9,7 @@ function parsei18n() {
     document.title = browser.i18n.getMessage('optionsTitle', browser.i18n.getMessage('extensionName'));
 
     const elements = document.querySelectorAll('[data-i18n]');
-    for (e of elements) {
+    for (let e of elements) {
         const placeholders = [];
 
         if (e.hasAttribute('data-i18n-placeholders')) {
@@ -65,7 +65,7 @@ function save() {
     const colTrack = (document.settings.customColors.value == 'yes') ? colorPickerTrack.color.hex8String : null;
     const colThumb = (document.settings.customColors.value == 'yes') ? colorPickerThumb.color.hex8String : null;
     const profileName = document.getElementById('profileSelection').options[document.getElementById('profileSelection').selectedIndex].textContent.trim();
-    const save = {
+    const profileData = {
         name: profileName,
         width: document.settings.width.value,
         colorTrack: colTrack,
@@ -73,13 +73,13 @@ function save() {
         allowOverride: parseInt(document.settings.override.value)
     };
 
-    if (save.width == 'other') {
-        save['customWidthValue'] = parseInt(document.settings.customWidthValue.value);
-        save['customWidthUnit'] = document.settings.customWidthUnit.value;
+    if (profileData.width == 'other') {
+        profileData['customWidthValue'] = parseInt(document.settings.customWidthValue.value);
+        profileData['customWidthUnit'] = document.settings.customWidthUnit.value;
     }
 
     const wrapper = {};
-    wrapper[`profile_${selectedProfile}`] = save;
+    wrapper[`profile_${selectedProfile}`] = profileData;
 
     browser.storage.local.set(wrapper, () => {
         toggleChangesWarning(false);
@@ -335,7 +335,7 @@ function getColorInputs(parentId) {
     const hsv = document.getElementById(parentId + 'HSV');
     const tabs = document.getElementById(parentId + "Tabs");
 
-    const obj = {
+    return {
         hex: hex,
         rgb: {
             red: rgb.getElementsByTagName('input')[0],
@@ -356,8 +356,6 @@ function getColorInputs(parentId) {
             hsv: tabs.getElementsByTagName('button')[2],
         }
     };
-
-    return obj;
 }
 
 /**
@@ -531,15 +529,21 @@ function reloadProfileSelection() {
     const selector = document.getElementById('profileSelection');
     const names = selector.getElementsByTagName('option');
     let finalName = name;
+    let exists = false;
     let counter = 1;
 
-    for (let i = 0; i < names.length; i++) {
-        if (names[i].textContent == finalName && names[i].value != id) {
-            i = -1;
-            counter++;
-            finalName = `${name} (${counter})`;
+    do {
+        exists = false;
+
+        for (let n of names) {
+            if (n.textContent == finalName && n.value != id) {
+                exists = true;
+                counter++;
+                finalName = `${name} (${counter})`;
+            }
         }
-    }
+
+    } while (exists);
 
     return finalName;
 }
@@ -688,7 +692,7 @@ let pendingChanges = false;
 createColorPickers();
 updatePrivateBrowsingName();
 clearFile();
-let data = browser.storage.local.get('defaultProfile', loadStorage);
+browser.storage.local.get('defaultProfile', loadStorage);
 
 // Add browser tag to body class
 if (runningOn == browsers.FIREFOX) {
@@ -762,10 +766,10 @@ document.getElementById('button-restore').addEventListener('click', () => {
     );
 });
 
-window.addEventListener('beforeunload', (event) => {
+window.onbeforeunload = (event) => {
     // Prevent user from leaving if they have unsaved changes
     if (pendingChanges) {
         event.preventDefault();
         event.returnValue = '';
     }
-});
+};
