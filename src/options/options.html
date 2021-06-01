@@ -20,94 +20,151 @@
       <img class="icon-section-header" src="../icons/icon-32.png" alt="CS">
       <h1 class="text-section-header" data-i18n="optionsTitle" data-i18n-placeholders="1" data-i18n-placeholder-1="extensionName"></h1>
     </header>
+
     <section id="tab-bar" class="panel-section-tabs">
       <button id="tabselect-options" type="button" class="panel-section-tabs-button selected" data-i18n="options"></button>
       <div class="panel-section-tabs-separator"></div>
       <button id="tabselect-backup" type="button" class="panel-section-tabs-button" data-i18n="backupAndRestore"></button>
     </section>
 
-    <section id="tab-options" class="tab-section">
-      <section class="panel-section">
-        <div class="message-bar private hide" id="private-notice">
-          <div>
-            <span id="private-notice-message"></span>
-            <a href="https://github.com/WesleyBranton/Custom-Scrollbar/wiki/No-customizations-in-Private-Browsing-mode" target="_blank" data-i18n="callToActionLearn"></a>
-          </div>
-        </div>
-      </section>
-      <section class="panel-section help-row">
-        <label data-i18n="optionsSectionPreview"></label>
-        <textarea id="preview" readonly disabled>Lorem ipsum dolor sit amet, in porttitor congue taciti velit, ut ipsum integer et proin, a eget, ut dolores, sed nec ante. Aenean ipsum ultricies neque suscipit fusce eu, rutrum mauris, posuere nulla. Arcu nonummy amet nibh et eu leo, risus non, wisi vitae. Mauris erat, nulla a neque arcu etiam, eget metus rhoncus, rhoncus phasellus, ut suspendisse hendrerit imperdiet urna suspendisse. In est ut sollicitudin orci tristique, porta sed cum id nonummy aliquam, ullamcorper pretium. Pellentesque nullam nam quisque sit ultricies, in nec nonummy ante mauris, neque nec montes in, eleifend posuere lacus diam magna scelerisque. Luctus elementum donec leo, lectus integer in justo elit quam. Id amet a. Pellentesque quae a maecenas eget, urna nibh amet eros, placerat ante pellentesque duis suspendisse etiam tempus, nunc proin maecenas interdum quisque cum penatibus, fusce nullam inceptos commodo ut. Arcu lorem purus eu vitae aliquet, dolor nullam nisl varius, vestibulum lacus velit rutrum morbi, nec et.</textarea>
-      </section>
-      <div class="panel-section-separator"></div>
-      <section class="panel-section">
-        <label data-i18n="optionsSectionProfile"></label>
+    <section class="panel-section">
+      <div class="message-bar private hide" id="private-notice">
         <div>
-          <select id="profileSelection" name="profile"></select>
-          <br>
-          <button id="profile-add" type="button" class="secondary" data-i18n="profileActionNew"></button>
-          <button id="profile-rename" type="button" class="secondary" data-i18n="profileActionRename"></button>
-          <button id="profile-remove" type="button" class="secondary" data-i18n="profileActionRemove"></button>
-          <button id="profile-setDefault" type="button" class="secondary" data-i18n="profileActionChangeDefault"></button>
+          <span id="private-notice-message"></span>
+          <a href="https://github.com/WesleyBranton/Custom-Scrollbar/wiki/No-customizations-in-Private-Browsing-mode" target="_blank" data-i18n="callToActionLearn"></a>
         </div>
-      </section>
-      <div class="panel-section-separator"></div>
-      <section class="panel-section">
-        <label for="width" data-i18n="optionsSectionWidth"></label>
-        <div>
-          <label class="clickable">
-            <input type="radio" name="width" value="auto">
-            <span data-i18n="sizeWide"></span>
-          </label><br>
-          <label class="clickable">
-            <input type="radio" name="width" value="thin">
-            <span data-i18n="sizeThin"></span>
-          </label><br>
-          <label class="clickable">
-            <input type="radio" name="width" value="none">
-            <span data-i18n="sizeHidden"></span>
-          </label><br>
-          <label class="clickable chromium-only">
-            <input type="radio" name="width" value="other">
-            <span data-i18n="sizeOther"></span>
-            <input id="customWidthValue" name="customWidthValue" type="text" min="1" value="17" disabled>
-            <select id="customWidthUnit" name="customWidthUnit">
-              <option value="cm">cm</option>
-              <option value="em">em</option>
-              <option value="in">in</option>
-              <option value="mm">mm</option>
-              <option value="pt">pt</option>
-              <option value="px">px</option>
-              <option value="rem">rem</option>
-              <option value="vw">vw</option>
-            </select>
-            <a href="https://github.com/WesleyBranton/Custom-Scrollbar/wiki/Custom-scrollbar-width" target="_blank" id="customWidthHelp">?</a>
-          </label>
-        </div>
-      </section>
-      <div class="panel-section-separator"></div>
-      <section class="panel-section">
-        <label for="customColors" data-i18n="optionsSectionUseColors"></label>
-        <div>
-          <label class="clickable">
-            <input type="radio" name="customColors" value="yes">
-            <span data-i18n="optionYes"></span>
-          </label><br>
-          <label class="clickable">
-            <input type="radio" name="customColors" value="no">
-            <span data-i18n="optionNo"></span>
-          </label>
-        </div>
-      </section>
+      </div>
+    </section>
+
+    <section class="panel-section help-row">
+      <label data-i18n="optionsSectionPreview"></label>
+      <textarea id="preview" readonly disabled>Lorem ipsum dolor sit amet, in porttitor congue taciti velit, ut ipsum integer et proin, a eget, ut dolores, sed nec ante. Aenean ipsum ultricies neque suscipit fusce eu, rutrum mauris, posuere nulla. Arcu nonummy amet nibh et eu leo, risus non, wisi vitae. Mauris erat, nulla a neque arcu etiam, eget metus rhoncus, rhoncus phasellus, ut suspendisse hendrerit imperdiet urna suspendisse. In est ut sollicitudin orci tristique, porta sed cum id nonummy aliquam, ullamcorper pretium. Pellentesque nullam nam quisque sit ultricies, in nec nonummy ante mauris, neque nec montes in, eleifend posuere lacus diam magna scelerisque. Luctus elementum donec leo, lectus integer in justo elit quam. Id amet a. Pellentesque quae a maecenas eget, urna nibh amet eros, placerat ante pellentesque duis suspendisse etiam tempus, nunc proin maecenas interdum quisque cum penatibus, fusce nullam inceptos commodo ut. Arcu lorem purus eu vitae aliquet, dolor nullam nisl varius, vestibulum lacus velit rutrum morbi, nec et.</textarea>
+    </section>
+    <div class="panel-section-separator"></div>
+    <section class="panel-section">
+      <label data-i18n="optionsSectionProfile"></label>
+      <div>
+        <select id="profileSelection" name="profile"></select>
+        <br>
+        <button id="profile-add" type="button" class="secondary" data-i18n="profileActionNew"></button>
+        <button id="profile-rename" type="button" class="secondary" data-i18n="profileActionRename"></button>
+        <button id="profile-remove" type="button" class="secondary" data-i18n="profileActionRemove"></button>
+        <button id="profile-setDefault" type="button" class="secondary" data-i18n="profileActionChangeDefault"></button>
+      </div>
+    </section>
+    <div class="panel-section-separator"></div>
+    <section class="panel-section">
+      <label for="width" data-i18n="optionsSectionWidth"></label>
+      <div>
+        <label class="clickable">
+          <input type="radio" name="width" value="auto">
+          <span data-i18n="sizeWide"></span>
+        </label><br>
+        <label class="clickable">
+          <input type="radio" name="width" value="thin">
+          <span data-i18n="sizeThin"></span>
+        </label><br>
+        <label class="clickable">
+          <input type="radio" name="width" value="none">
+          <span data-i18n="sizeHidden"></span>
+        </label><br>
+        <label class="clickable chromium-only">
+          <input type="radio" name="width" value="other">
+          <span data-i18n="sizeOther"></span>
+          <input id="customWidthValue" name="customWidthValue" type="text" min="1" value="17" disabled>
+          <select id="customWidthUnit" name="customWidthUnit">
+            <option value="cm">cm</option>
+            <option value="em">em</option>
+            <option value="in">in</option>
+            <option value="mm">mm</option>
+            <option value="pt">pt</option>
+            <option value="px">px</option>
+            <option value="rem">rem</option>
+            <option value="vw">vw</option>
+          </select>
+          <a href="https://github.com/WesleyBranton/Custom-Scrollbar/wiki/Custom-scrollbar-width" target="_blank" id="customWidthHelp">?</a>
+        </label>
+      </div>
+    </section>
+    <div class="panel-section-separator"></div>
+    <section class="panel-section">
+      <label for="customColors" data-i18n="optionsSectionUseColors"></label>
+      <div>
+        <label class="clickable">
+          <input type="radio" name="customColors" value="yes">
+          <span data-i18n="optionYes"></span>
+        </label><br>
+        <label class="clickable">
+          <input type="radio" name="customColors" value="no">
+          <span data-i18n="optionNo"></span>
+        </label>
+      </div>
+    </section>
+  <div class="panel-section-separator only-colors"></div>
+  <section class="panel-section only-colors">
+    <div class="image-helper">
+      <img src="thumb.svg">
+      <label for="colorThumb" data-i18n="optionsSectionThumb"></label>
+    </div>
+    <div class="showHEX">
+      <div id="colorThumb"></div>
+      <div id="colorThumbTabs" class="panel-section-tabs">
+        <button type="button" class="panel-section-tabs-button selected" data-i18n="colorFormatHEX"></button>
+        <div class="panel-section-tabs-separator"></div>
+        <button type="button" class="panel-section-tabs-button" data-i18n="colorFormatRGB"></button>
+        <div class="panel-section-tabs-separator"></div>
+        <button type="button" class="panel-section-tabs-button" data-i18n="colorFormatHSV"></button>
+      </div>
+      <div class="colorPickerPreview">
+        <div id="colorThumbPreview"></div>
+        <input type="text" maxlength="9" size="9" id="colorThumbHEX" class="hex" name="colorThumb">
+        <table id="colorThumbRGB" class="colorPickerValues rgb">
+          <tr>
+            <td><label for="colorThumbRed" data-i18n="colorRed"></label></td>
+            <td><input name="colorThumbRed" type="number" maxlength="3" size="3" min="0" max="255"></td>
+          </tr>
+          <tr>
+            <td><label for="colorThumbGreen" data-i18n="colorGreen"></label></td>
+            <td><input name="colorThumbGreen" type="number" maxlength="3" size="3" min="0" max="255"></td>
+          </tr>
+          <tr>
+            <td><label for="colorThumbBlue" data-i18n="colorBlue"></label></td>
+            <td><input name="colorThumbBlue" type="number" maxlength="3" size="3" min="0" max="255"></td>
+          </tr>
+          <tr>
+            <td><label for="colorThumbRGBAlpha" data-i18n="colorAlpha"></label></td>
+            <td><input name="colorThumbRGBAlpha" type="number" maxlength="3" size="3" min="0" max="255"></td>
+          </tr>
+        </table>
+        <table id="colorThumbHSV" class="colorPickerValues hsv">
+          <tr>
+            <td><label for="colorThumbHue" data-i18n="colorHue"></label></td>
+            <td><input name="colorThumbHue" type="number" maxlength="3" size="3" min="0" max="360"></td>
+          </tr>
+          <tr>
+            <td><label for="colorThumbSaturation" data-i18n="colorSaturation"></label></td>
+            <td><input name="colorThumbSaturation" type="number" maxlength="3" size="3" min="0" max="100"></td>
+          </tr>
+          <tr>
+            <td><label for="colorThumbValue" data-i18n="colorValue"></label></td>
+            <td><input name="colorThumbValue" type="number" maxlength="3" size="3" min="0" max="100"></td>
+          </tr>
+          <tr>
+            <td><label for="colorThumbHSVAlpha" data-i18n="colorAlpha"></label></td>
+            <td><input name="colorThumbHSVAlpha" type="number" maxlength="3" size="3" min="0" max="255"></td>
+          </tr>
+        </table>
+      </div>
+    </section>
     <div class="panel-section-separator only-colors"></div>
     <section class="panel-section only-colors">
       <div class="image-helper">
-        <img src="thumb.svg">
-        <label for="colorThumb" data-i18n="optionsSectionThumb"></label>
+        <img src="track.svg">
+        <label for="colorTrack" data-i18n="optionsSectionTrack"></label>
       </div>
       <div class="showHEX">
-        <div id="colorThumb"></div>
-        <div id="colorThumbTabs" class="panel-section-tabs">
+        <div id="colorTrack"></div>
+        <div id="colorTrackTabs" class="panel-section-tabs">
           <button type="button" class="panel-section-tabs-button selected" data-i18n="colorFormatHEX"></button>
           <div class="panel-section-tabs-separator"></div>
           <button type="button" class="panel-section-tabs-button" data-i18n="colorFormatRGB"></button>
@@ -115,155 +172,82 @@
           <button type="button" class="panel-section-tabs-button" data-i18n="colorFormatHSV"></button>
         </div>
         <div class="colorPickerPreview">
-          <div id="colorThumbPreview"></div>
-          <input type="text" maxlength="9" size="9" id="colorThumbHEX" class="hex" name="colorThumb">
-          <table id="colorThumbRGB" class="colorPickerValues rgb">
+          <div id="colorTrackPreview"></div>
+          <input type="text" maxlength="9" size="9" id="colorTrackHEX" class="hex" name="colorTrack">
+          <table id="colorTrackRGB" class="colorPickerValues rgb">
             <tr>
-              <td><label for="colorThumbRed" data-i18n="colorRed"></label></td>
-              <td><input name="colorThumbRed" type="number" maxlength="3" size="3" min="0" max="255"></td>
+              <td><label for="colorTrackRed" data-i18n="colorRed"></label></td>
+              <td><input name="colorTrackRed" type="number" maxlength="3" size="3" min="0" max="255"></td>
             </tr>
             <tr>
-              <td><label for="colorThumbGreen" data-i18n="colorGreen"></label></td>
-              <td><input name="colorThumbGreen" type="number" maxlength="3" size="3" min="0" max="255"></td>
+              <td><label for="colorTrackGreen" data-i18n="colorGreen"></label></td>
+              <td><input name="colorTrackGreen" type="number" maxlength="3" size="3" min="0" max="255"></td>
             </tr>
             <tr>
-              <td><label for="colorThumbBlue" data-i18n="colorBlue"></label></td>
-              <td><input name="colorThumbBlue" type="number" maxlength="3" size="3" min="0" max="255"></td>
+              <td><label for="colorTrackBlue" data-i18n="colorBlue"></label></td>
+              <td><input name="colorTrackBlue" type="number" maxlength="3" size="3" min="0" max="255"></td>
             </tr>
             <tr>
-              <td><label for="colorThumbRGBAlpha" data-i18n="colorAlpha"></label></td>
-              <td><input name="colorThumbRGBAlpha" type="number" maxlength="3" size="3" min="0" max="255"></td>
-            </tr>
-          </table>
-          <table id="colorThumbHSV" class="colorPickerValues hsv">
-            <tr>
-              <td><label for="colorThumbHue" data-i18n="colorHue"></label></td>
-              <td><input name="colorThumbHue" type="number" maxlength="3" size="3" min="0" max="360"></td>
-            </tr>
-            <tr>
-              <td><label for="colorThumbSaturation" data-i18n="colorSaturation"></label></td>
-              <td><input name="colorThumbSaturation" type="number" maxlength="3" size="3" min="0" max="100"></td>
-            </tr>
-            <tr>
-              <td><label for="colorThumbValue" data-i18n="colorValue"></label></td>
-              <td><input name="colorThumbValue" type="number" maxlength="3" size="3" min="0" max="100"></td>
-            </tr>
-            <tr>
-              <td><label for="colorThumbHSVAlpha" data-i18n="colorAlpha"></label></td>
-              <td><input name="colorThumbHSVAlpha" type="number" maxlength="3" size="3" min="0" max="255"></td>
+              <td><label for="colorTrackRGBAlpha" data-i18n="colorAlpha"></label></td>
+              <td><input name="colorTrackRGBAlpha" type="number" maxlength="3" size="3" min="0" max="255"></td>
             </tr>
           </table>
+          <table id="colorTrackHSV" class="colorPickerValues hsv">
+            <tr>
+              <td><label for="colorTrackHue" data-i18n="colorHue"></label></td>
+              <td><input name="colorTrackHue" type="number" maxlength="3" size="3" min="0" max="360"></td>
+            </tr>
+            <tr>
+              <td><label for="colorTrackSaturation" data-i18n="colorSaturation"></label></td>
+              <td><input name="colorTrackSaturation" type="number" maxlength="3" size="3" min="0" max="100"></td>
+            </tr>
+            <tr>
+              <td><label for="colorTrackValue" data-i18n="colorValue"></label></td>
+              <td><input name="colorTrackValue" type="number" maxlength="3" size="3" min="0" max="100"></td>
+            </tr>
+            <tr>
+              <td><label for="colorTrackHSVAlpha" data-i18n="colorAlpha"></label></td>
+              <td><input name="colorTrackHSVAlpha" type="number" maxlength="3" size="3" min="0" max="255"></td>
+            </tr>
+          </table>
         </div>
-      </section>
-      <div class="panel-section-separator only-colors"></div>
-      <section class="panel-section only-colors">
-        <div class="image-helper">
-          <img src="track.svg">
-          <label for="colorTrack" data-i18n="optionsSectionTrack"></label>
-        </div>
-        <div class="showHEX">
-          <div id="colorTrack"></div>
-          <div id="colorTrackTabs" class="panel-section-tabs">
-            <button type="button" class="panel-section-tabs-button selected" data-i18n="colorFormatHEX"></button>
-            <div class="panel-section-tabs-separator"></div>
-            <button type="button" class="panel-section-tabs-button" data-i18n="colorFormatRGB"></button>
-            <div class="panel-section-tabs-separator"></div>
-            <button type="button" class="panel-section-tabs-button" data-i18n="colorFormatHSV"></button>
-          </div>
-          <div class="colorPickerPreview">
-            <div id="colorTrackPreview"></div>
-            <input type="text" maxlength="9" size="9" id="colorTrackHEX" class="hex" name="colorTrack">
-            <table id="colorTrackRGB" class="colorPickerValues rgb">
-              <tr>
-                <td><label for="colorTrackRed" data-i18n="colorRed"></label></td>
-                <td><input name="colorTrackRed" type="number" maxlength="3" size="3" min="0" max="255"></td>
-              </tr>
-              <tr>
-                <td><label for="colorTrackGreen" data-i18n="colorGreen"></label></td>
-                <td><input name="colorTrackGreen" type="number" maxlength="3" size="3" min="0" max="255"></td>
-              </tr>
-              <tr>
-                <td><label for="colorTrackBlue" data-i18n="colorBlue"></label></td>
-                <td><input name="colorTrackBlue" type="number" maxlength="3" size="3" min="0" max="255"></td>
-              </tr>
-              <tr>
-                <td><label for="colorTrackRGBAlpha" data-i18n="colorAlpha"></label></td>
-                <td><input name="colorTrackRGBAlpha" type="number" maxlength="3" size="3" min="0" max="255"></td>
-              </tr>
-            </table>
-            <table id="colorTrackHSV" class="colorPickerValues hsv">
-              <tr>
-                <td><label for="colorTrackHue" data-i18n="colorHue"></label></td>
-                <td><input name="colorTrackHue" type="number" maxlength="3" size="3" min="0" max="360"></td>
-              </tr>
-              <tr>
-                <td><label for="colorTrackSaturation" data-i18n="colorSaturation"></label></td>
-                <td><input name="colorTrackSaturation" type="number" maxlength="3" size="3" min="0" max="100"></td>
-              </tr>
-              <tr>
-                <td><label for="colorTrackValue" data-i18n="colorValue"></label></td>
-                <td><input name="colorTrackValue" type="number" maxlength="3" size="3" min="0" max="100"></td>
-              </tr>
-              <tr>
-                <td><label for="colorTrackHSVAlpha" data-i18n="colorAlpha"></label></td>
-                <td><input name="colorTrackHSVAlpha" type="number" maxlength="3" size="3" min="0" max="255"></td>
-              </tr>
-            </table>
-          </div>
-        </div>
-      </section>
-      <div class="panel-section-separator"></div>
-      <section class="panel-section">
-        <label for="override" data-i18n="optionsSectionOverride"></label>
-        <div>
-          <!-- Set using bit-style setting 
-              1 is true and 0 is false
-              digits are: width, color -->
-          <label class="clickable">
-            <input type="radio" name="override" value="1">
-            <span data-i18n="overrideColor"></span>
-          </label><br>
-          <label class="clickable">
-            <input type="radio" name="override" value="10">
-            <span data-i18n="overrideWidth"></span>
-          </label><br>
-          <label class="clickable">
-            <input type="radio" name="override" value="11">
-            <span data-i18n="overrideAll"></span>
-          </label><br>
-          <label class="clickable">
-            <input type="radio" name="override" value="0">
-            <span data-i18n="overrideNone"></span>
-          </label>
-        </div>
-      </section>
-      <div class="panel-section-separator"></div>
-      <section class="panel-section has-help">
-        <label id="changesSavedUI"></label>
-        <button id="saveChanges" class="default puffy" type="button" data-i18n="buttonSave"></button>
-      </section>
-      <section class="panel-section help-row has-help">
-        <div id="saveWarning" class="saved">
-          <div class="message-bar success" data-i18n="messageSaved"></div>
-          <div class="message-bar warning" data-i18n="messageUnsaved"></div>
-        </div>
-      </section>
+      </div>
     </section>
-
-    <section id="tab-backup" class="tab-section hide">
-      <section class="panel-section">
-        <label data-i18n="backupSection"></label>
-        <button id="button-backup" class="default" type="button" data-i18n="buttonSave"></button>
-      </section>
-      <div class="panel-section-separator"></div>
-      <section class="panel-section">
-        <label data-i18n="restoreSection"></label>
-        <div class="restore-section">
-          <span id="restore-file-name"></span><button id="button-removeFile" class="ghost hide" type="button">X</button><br>
-          <button id="button-changeFile" class="default" type="button" data-i18n="buttonSelectFile"></button>
-          <button id="button-restore" class="default" type="button" data-i18n="buttonRestore" disabled></button>
-        </div>
-      </section>
+    <div class="panel-section-separator"></div>
+    <section class="panel-section">
+      <label for="override" data-i18n="optionsSectionOverride"></label>
+      <div>
+        <!-- Set using bit-style setting 
+            1 is true and 0 is false
+            digits are: width, color -->
+        <label class="clickable">
+          <input type="radio" name="override" value="1">
+          <span data-i18n="overrideColor"></span>
+        </label><br>
+        <label class="clickable">
+          <input type="radio" name="override" value="10">
+          <span data-i18n="overrideWidth"></span>
+        </label><br>
+        <label class="clickable">
+          <input type="radio" name="override" value="11">
+          <span data-i18n="overrideAll"></span>
+        </label><br>
+        <label class="clickable">
+          <input type="radio" name="override" value="0">
+          <span data-i18n="overrideNone"></span>
+        </label>
+      </div>
+    </section>
+    <div class="panel-section-separator"></div>
+    <section class="panel-section has-help">
+      <label id="changesSavedUI"></label>
+      <button id="saveChanges" class="default puffy" type="button" data-i18n="buttonSave"></button>
+    </section>
+    <section class="panel-section help-row has-help">
+      <div id="saveWarning" class="saved">
+        <div class="message-bar success" data-i18n="messageSaved"></div>
+        <div class="message-bar warning" data-i18n="messageUnsaved"></div>
+      </div>
     </section>
 
     <footer class="panel-section panel-section-footer">
@@ -281,8 +265,6 @@
       </div>
     </footer>
   </form>
-
-  <input id="restore-file" type="file" multiple="false" accept=".json" style="display: none !important;">
 
   <div id="dialog-overlay" class="hide">
     <div id="dialog" class="confirmation">
@@ -305,8 +287,9 @@
   <script src="../defaults.js"></script>
   <script src="../generateCSS.js"></script>
   <script src="../crossbrowser.js"></script>
-  <script src="dialogs.js"></script>
-  <script src="script.js"></script>
+  <script src="scripts/dialogs.js"></script>
+  <script src="scripts/general.js"></script>
+  <script src="scripts/options.js"></script>
 </body>
 
 </html>
