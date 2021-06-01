@@ -13,6 +13,9 @@
             }
         }
     },
+    "optionsSectionProfile": {
+        "message": "Instellingenprofiel"
+    },
     "optionsSectionPreview": {
         "message": "Live-voorvertoning"
     },
@@ -48,6 +51,12 @@
     },
     "optionNo": {
         "message": "Nee"
+    },
+    "optionOk": {
+        "message": "Oké"
+    },
+    "optionCancel": {
+        "message": "Annuleren"
     },
     "colorFormatRGB": {
         "message": "RGB"
@@ -101,7 +110,7 @@
         "message": "Je hebt niet-opgeslagen wijzigingen!"
     },
     "promptPrivateBrowsing": {
-        "message": "Aangepaste scrollbalken zijn niet zichtbaar in $PRIVATEBROWSING$ vensters, tenzij je deze extensie toestemming geeft om te draaien in de $PRIVATEBROWSING$ modus.",
+        "message": "Aangepaste schuifbalken zijn niet zichtbaar in $PRIVATEBROWSING$vensters, tenzij je deze extensie toestemming geeft om te draaien in de $PRIVATEBROWSING$modus.",
         "placeholders": {
             "privatebrowsing": {
                 "content": "$1"
@@ -134,5 +143,65 @@
     },
     "privateBrowsingOpera": {
         "message": "Incognito"
+    },
+    "dialogChangesWillBeLost": {
+        "message": "Niet-opgeslagen wijzigingen gaan verloren. Weet je zeker dat je wilt doorgaan?"
+    },
+    "dialogCannotBeUndone": {
+        "message": "Deze actie kan niet ongedaan worden gemaakt. Weet je zeker dat je wilt doorgaan?"
+    },
+    "dialogCannotDeleteDefault": {
+        "message": "Het standaardprofiel kan pas worden verwijderd na het instellen van een nieuw standaardprofiel."
+    },
+    "profileActionNew": {
+        "message": "Nieuw"
+    },
+    "profileActionRename": {
+        "message": "Naam wijzigen"
+    },
+    "profileActionRemove": {
+        "message": "Verwijderen"
+    },
+    "profileActionChangeDefault": {
+        "message": "Instellen als standaard"
+    },
+    "defaultProfileName": {
+        "message": "Nieuw profiel"
+    },
+    "migratedProfileName": {
+        "message": "Algemeen"
+    },
+    "options": {
+        "message": "Instellingen"
+    },
+    "backupAndRestore": {
+        "message": "Back-uppen/Herstellen"
+    },
+    "backupSection": {
+        "message": "Back-up downloaden"
+    },
+    "restoreSection": {
+        "message": "Herstellen uit back-up"
+    },
+    "buttonSelectFile": {
+        "message": "Kies een bestand…"
+    },
+    "buttonRestore": {
+        "message": "Herstellen"
+    },
+    "noFileSelected": {
+        "message": "Geen bestand gekozen"
+    },
+    "dialogInvalidBackup": {
+        "message": "Ongeldig back-upbestand"
+    },
+    "dialogPermissionRequired": {
+        "message": "De vereiste toestemming ontbreekt - probeer het opnieuw."
+    },
+    "dialogDataOverwrite": {
+        "message": "Door het herstellen van deze back-up worden je bestaande instellingen vervangen - dit kan niet ongedaan worden gemaakt. Weet je zeker dat je wilt doorgaan?"
+    },
+    "dialogBackupRestored": {
+        "message": "De back-up is hersteld!"
     }
 }
