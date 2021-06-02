@@ -192,17 +192,43 @@ body::-webkit-scrollbar {
   display: none;
 }
 
-#dialog #dialog-input {
+#dialog #dialog-input-container,
+#dialog #dialog-dropdown-container {
   display: none;
   width: 100%;
   box-sizing: border-box;
   margin-bottom: 1em;
+  align-items: center;
+}
+
+#dialog #dialog-input-container > input,
+#dialog #dialog-dropdown-container > select {
+  flex: 1;
+}
+
+#dialog #dialog-input-container > label,
+#dialog #dialog-dropdown-container > label,
+#dialog #dialog-checkbox-container > label {
+  margin-right: 1em;
+}
+
+#dialog button {
+  margin: 0 0.1em;
+}
+
+#dialog #dialog-error {
+  color: red;
+  margin-bottom: 1em;
+  display: block;
+}
 }
 
 .confirmation .confirmation-only,
 .prompt .prompt-only,
-.popup .popup-only {
-  display: block !important;
+.popup .popup-only,
+.dropdown .dropdown-only,
+.ruleadd .ruleadd-only {
+  display: flex !important;
 }
 
 .restore-section {

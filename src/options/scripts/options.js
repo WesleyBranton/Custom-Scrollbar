@@ -511,6 +511,7 @@ document.getElementById('profile-add').addEventListener('click', () => {
 document.getElementById('profile-rename').addEventListener('click', () => {
     const selector = document.getElementById('profileSelection');
     showPrompt(
+        null,
         renameProfile,
         null,
         selector.options[selector.selectedIndex].textContent

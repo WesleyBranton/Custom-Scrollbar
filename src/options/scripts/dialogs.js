@@ -24,6 +24,8 @@ function openDialog(message, type, yesAction, noAction) {
  */
 function closeDialog() {
     document.getElementById('dialog-overlay').classList.add('hide');
+    document.getElementById('dialog-error').textContent = '';
+    document.getElementById('dialog-input').value = '';
 }
 
 /**
@@ -63,7 +65,15 @@ function showAlert(message, yesAction, skip) {
  * @param {Function} noAction
  * @param {String} prefill
  */
-function showPrompt(yesAction, noAction, prefill) {
+function showPrompt(label, yesAction, noAction, prefill) {
+    const text = document.getElementById('dialog-input-label');
+    if (label == null) {
+        text.classList.add('hide');
+    } else {
+        text.classList.remove('hide');
+        text.textContent = label + ':';
+    }
+
     const input = document.getElementById('dialog-input');
     input.value = prefill.trim();
     openDialog('', 'prompt', yesAction, noAction);
@@ -78,24 +88,23 @@ document.getElementById('prompt-yes').addEventListener('click', () => {
     const text = document.getElementById('dialog-input').value.trim();
 
     if (text.length > 0) {
-        closeDialog();
         actionYes(text);
-        document.getElementById('dialog-input').value = '';
+        closeDialog();
     }
 });
 document.getElementById('prompt-no').addEventListener('click', () => {
-    closeDialog();
     actionNo();
+    closeDialog();
 });
 document.getElementById('confirmation-yes').addEventListener('click', () => {
-    closeDialog();
     actionYes();
+    closeDialog();
 });
 document.getElementById('confirmation-no').addEventListener('click', () => {
-    closeDialog();
     actionNo();
+    closeDialog();
 });
 document.getElementById('popup-yes').addEventListener('click', () => {
-    closeDialog();
     actionYes();
+    closeDialog();
 });

@@ -71,22 +71,31 @@
      <input id="restore-file" type="file" multiple="false" accept=".json" style="display: none !important;">
    
      <div id="dialog-overlay" class="hide">
-       <div id="dialog" class="confirmation">
-         <span id="dialog-text" class="confirmation-only popup-only"></span>
-         <input type="text" id="dialog-input" class="prompt-only">
-         <div id="confirmation-buttons" class="confirmation-only">
-           <button id="confirmation-yes" type="button" class="default" data-i18n="optionYes"></button>
-           <button id="confirmation-no" type="button" class="secondary" data-i18n="optionNo"></button>
-         </div>
-         <div id="prompt-buttons" class="prompt-only">
-           <button id="prompt-yes" type="button" class="default" data-i18n="buttonSave"></button>
-           <button id="prompt-no" type="button" class="secondary" data-i18n="optionCancel"></button>
-         </div>
-         <div id="popup-buttons" class="popup-only">
-           <button id="popup-yes" type="button" class="default" data-i18n="optionOk"></button>
-         </div>
-       </div>
-     </div>
+      <div id="dialog" class="confirmation">
+        <span id="dialog-text" class="confirmation-only popup-only"></span>
+
+        <div id="dialog-input-container" class="prompt-only ruleadd-only">
+          <label id="dialog-input-label" for="dialog-input"></label>
+          <input type="text" id="dialog-input">
+        </div>
+
+        <div id="dialog-error"></div>
+
+        <div id="confirmation-buttons" class="confirmation-only">
+          <button id="confirmation-yes" type="button" class="default" data-i18n="optionYes"></button>
+          <button id="confirmation-no" type="button" class="secondary" data-i18n="optionNo"></button>
+        </div>
+
+        <div id="prompt-buttons" class="prompt-only">
+          <button id="prompt-yes" type="button" class="default" data-i18n="buttonSave"></button>
+          <button id="prompt-no" type="button" class="secondary" data-i18n="optionCancel"></button>
+        </div>
+
+        <div id="popup-buttons" class="popup-only">
+          <button id="popup-yes" type="button" class="default" data-i18n="optionOk"></button>
+        </div>
+      </div>
+    </div>
 
      <script src="../defaults.js"></script>
      <script src="../generateCSS.js"></script>
