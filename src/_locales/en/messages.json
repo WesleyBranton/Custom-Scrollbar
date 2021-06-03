@@ -203,5 +203,48 @@
     },
     "dialogBackupRestored": {
         "message": "Backup has been successfully restored!"
+    },
+    "changeProfileFor": {
+        "message": "Editing profile for: $WEBSITE$",
+        "placeholders": {
+            "website": {
+                "content": "$1"
+            }
+        }
+    },
+    "profileUsingDefault": {
+        "message": "Use default ($PROFILENAME$)",
+        "placeholders": {
+            "profilename": {
+                "content": "$1"
+            }
+        }
+    },
+    "profileActionUseOnWebsite": {
+        "message": "Use on this website"
+    },
+    "errorInvalidDomain": {
+        "message": "Invalid domain name entered"
+    },
+    "errorRuleAlreadyExists": {
+        "message": "Rule for this domain already exists"
+    },
+    "domain": {
+        "message": "Domain"
+    },
+    "subdomainsOnly": {
+        "message": "Subdomains Only"
+    },
+    "noRulesSet": {
+        "message": "No website rules set"
+    },
+    "websiteRules": {
+        "message": "Website Rules"
+    },
+    "add": {
+        "message": "Add"
+    },
+    "ruleActionChangeProfile": {
+        "message": "Change Profile..."
     }
 }

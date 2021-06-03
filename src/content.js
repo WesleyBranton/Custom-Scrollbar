@@ -33,7 +33,8 @@ function injectCSS(css) {
  */
 function refreshCSS() {
     port.postMessage({
-        action: 'getCSS'
+        action: 'getCSS',
+        domain: window.location.hostname
     });
 }
 

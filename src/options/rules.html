@@ -24,9 +24,9 @@
        <section id="tab-bar" class="panel-section-tabs">
          <button id="tabselect-options" type="button" class="panel-section-tabs-button" data-i18n="options"></button>
          <div class="panel-section-tabs-separator"></div>
-         <button id="tabselect-rules" type="button" class="panel-section-tabs-button" data-i18n="websiteRules"></button>
+         <button id="tabselect-rules" type="button" class="panel-section-tabs-button selected" data-i18n="websiteRules"></button>
          <div class="panel-section-tabs-separator"></div>
-         <button id="tabselect-backup" type="button" class="panel-section-tabs-button selected" data-i18n="backupAndRestore"></button>
+         <button id="tabselect-backup" type="button" class="panel-section-tabs-button" data-i18n="backupAndRestore"></button>
        </section>
 
        <section class="panel-section">
@@ -38,21 +38,37 @@
         </div>
       </section>
 
-       <section>
-         <section class="panel-section">
-           <label data-i18n="backupSection"></label>
-           <button id="button-backup" class="default" type="button" data-i18n="buttonSave"></button>
-         </section>
-         <div class="panel-section-separator"></div>
-         <section class="panel-section">
-           <label data-i18n="restoreSection"></label>
-           <div class="restore-section">
-             <span id="restore-file-name"></span><button id="button-removeFile" class="ghost hide" type="button">X</button><br>
-             <button id="button-changeFile" class="default" type="button" data-i18n="buttonSelectFile"></button>
-             <button id="button-restore" class="default" type="button" data-i18n="buttonRestore" disabled></button>
-           </div>
-         </section>
-       </section>
+      <section id="rule-list" class="panel-section panel-section-list">
+        <!-- Filled by ruleManager.js -->
+      </section>
+      <section class="panel-section help-row">
+          <div></div>
+          <div>
+              <button id="rule-add" class="default micro" type="button" data-i18n="add"></button>
+          </div>
+      </section>
+      <template id="template-rule">
+          <div class="panel-list-item">
+              <div class="text"></div>
+              <div class="text-shortcut">
+                  <label class="rule-profile"></label>
+                  <button class="default micro" type="button" data-action="change" data-i18n="ruleActionChangeProfile"></button>
+                  <button class="secondary micro" type="button" data-action="remove" data-i18n="profileActionRemove"></button>
+              </div>
+          </div>
+      </template>
+
+      <div class="panel-section-separator"></div>
+      <section class="panel-section has-help">
+          <label id="changesSavedUI"></label>
+          <button id="saveChanges" class="default puffy" type="button" data-i18n="buttonSave"></button>
+      </section>
+      <section class="panel-section help-row has-help">
+          <div id="saveWarning" class="saved">
+          <div class="message-bar success" data-i18n="messageSaved"></div>
+          <div class="message-bar warning" data-i18n="messageUnsaved"></div>
+          </div>
+      </section>
    
        <footer class="panel-section panel-section-footer">
          <div>
@@ -70,9 +86,7 @@
        </footer>
      </form>
    
-     <input id="restore-file" type="file" multiple="false" accept=".json" style="display: none !important;">
-   
-     <div id="dialog-overlay" class="hide">
+    <div id="dialog-overlay" class="hide">
       <div id="dialog" class="confirmation">
         <span id="dialog-text" class="confirmation-only popup-only"></span>
 
@@ -123,8 +137,9 @@
      <script src="../generateCSS.js"></script>
      <script src="../crossbrowser.js"></script>
      <script src="scripts/dialogs.js"></script>
+     <script src="Rule.js"></script>
      <script src="scripts/general.js"></script>
-     <script src="scripts/backup.js"></script>
+     <script src="scripts/rules.js"></script>
    </body>
    
    </html>

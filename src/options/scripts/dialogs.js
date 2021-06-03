@@ -26,6 +26,7 @@ function closeDialog() {
     document.getElementById('dialog-overlay').classList.add('hide');
     document.getElementById('dialog-error').textContent = '';
     document.getElementById('dialog-input').value = '';
+    document.getElementById('dialog-checkbox').checked = false;
 }
 
 /**
@@ -82,8 +83,74 @@ function showPrompt(label, yesAction, noAction, prefill) {
     input.selectionEnd = prefill.trim().length;
 }
 
+/**
+ * Prompt user for dropdown input
+ * @param {String} message
+ * @param {String} label
+ * @param {Function} yesAction
+ * @param {Function} noAction
+ */
+function showDowndown(message, label, yesAction, noAction) {
+    const text = document.getElementById('dialog-dropdown-label');
+    const input = document.getElementById('dialog-dropdown');
+
+    if (label == null) {
+        text.classList.add('hide');
+    } else {
+        text.classList.remove('hide');
+        text.textContent = label + ':';
+    }
+
+    openDialog(message, 'dropdown', yesAction, noAction);
+    input.focus();
+}
+
+/**
+ * Prompt user for new website rule
+ * @param {String} message
+ * @param {String} inputText
+ * @param {String} dropdownText
+ * @param {String} checkboxText
+ * @param {Function} yesAction
+ * @param {Function} noAction
+ * @param {Function} validate
+ */
+function showRuleAdd(message, inputText, dropdownText, checkboxText, yesAction, noAction, validate) {
+    const input = document.getElementById('dialog-input');
+    const inputLabel = document.getElementById('dialog-input-label');
+    const dropdownLabel = document.getElementById('dialog-dropdown-label');
+    const checkboxLabel = document.getElementById('dialog-checkbox-label');
+
+    if (inputText == null) {
+        inputLabel.classList.add('hide');
+    } else {
+        inputLabel.classList.remove('hide');
+        inputLabel.textContent = inputText + ':';
+    }
+
+    if (checkboxText == null) {
+        checkboxLabel.classList.add('hide');
+    } else {
+        checkboxLabel.classList.remove('hide');
+        checkboxLabel.textContent = checkboxText + ':';
+    }
+
+    if (dropdownText == null) {
+        dropdownLabel.classList.add('hide');
+    } else {
+        dropdownLabel.classList.remove('hide');
+        dropdownLabel.textContent = dropdownText + ':';
+    }
+
+    validation = (validate) ? validate : ()=>{};
+
+    openDialog(message, 'ruleadd', yesAction, noAction);
+    input.focus();
+}
+
 let actionYes = ()=>{};
 let actionNo = ()=>{};
+let validation = ()=>{};
 document.getElementById('prompt-yes').addEventListener('click', () => {
     const text = document.getElementById('dialog-input').value.trim();
 
@@ -106,5 +173,23 @@ document.getElementById('confirmation-no').addEventListener('click', () => {
 });
 document.getElementById('popup-yes').addEventListener('click', () => {
     actionYes();
+    closeDialog();
+});
+document.getElementById('dropdown-yes').addEventListener('click', () => {
+    actionYes(document.getElementById('dialog-dropdown').value);
+    closeDialog();
+});
+document.getElementById('dropdown-no').addEventListener('click', () => {
+    actionNo();
+    closeDialog();
+});
+document.getElementById('ruleadd-yes').addEventListener('click', () => {
+    if (validation(document.getElementById('dialog-input').value, document.getElementById('dialog-checkbox').checked, document.getElementById('dialog-error'))) {
+        actionYes(document.getElementById('dialog-input').value, document.getElementById('dialog-dropdown').value, document.getElementById('dialog-checkbox').checked);
+        closeDialog();
+    }
+});
+document.getElementById('ruleadd-no').addEventListener('click', () => {
+    actionNo();
     closeDialog();
 });

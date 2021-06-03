@@ -221,6 +221,10 @@ body::-webkit-scrollbar {
   margin-bottom: 1em;
   display: block;
 }
+
+#dialog #dialog-checkbox-container {
+  margin-bottom: 1em;
+  width: 100%;
 }
 
 .confirmation .confirmation-only,
@@ -238,4 +242,17 @@ body::-webkit-scrollbar {
 #restore-file-name {
   display: inline-block;
   margin-bottom: 1em;
+}
+
+#rule-list {
+  max-height: 450px;
+  overflow-y: auto;
+}
+
+#rule-list .text-shortcut > label {
+  margin-right: 1em;
+}
+
+#rule-list > .panel-list-item {
+  margin: 0.2em 0;
 }

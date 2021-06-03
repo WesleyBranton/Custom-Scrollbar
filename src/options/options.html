@@ -24,6 +24,8 @@
     <section id="tab-bar" class="panel-section-tabs">
       <button id="tabselect-options" type="button" class="panel-section-tabs-button selected" data-i18n="options"></button>
       <div class="panel-section-tabs-separator"></div>
+      <button id="tabselect-rules" type="button" class="panel-section-tabs-button" data-i18n="websiteRules"></button>
+      <div class="panel-section-tabs-separator"></div>
       <button id="tabselect-backup" type="button" class="panel-section-tabs-button" data-i18n="backupAndRestore"></button>
     </section>
 
@@ -275,16 +277,38 @@
         <input type="text" id="dialog-input">
       </div>
 
+      <div id="dialog-checkbox-container" class="ruleadd-only" style="display: none !important;">
+        <label id="dialog-checkbox-label" for="dialog-checkbox"></label>
+        <input id="dialog-checkbox" type="checkbox">
+      </div>
+
+      <div id="dialog-dropdown-container" class="dropdown-only ruleadd-only">
+        <label id="dialog-dropdown-label" for="dialog-dropdown"></label>
+        <select id="dialog-dropdown"></select>
+      </div>
+
       <div id="dialog-error"></div>
 
       <div id="confirmation-buttons" class="confirmation-only">
         <button id="confirmation-yes" type="button" class="default" data-i18n="optionYes"></button>
         <button id="confirmation-no" type="button" class="secondary" data-i18n="optionNo"></button>
       </div>
+
+      <div id="dropdown-buttons" class="dropdown-only">
+        <button id="dropdown-yes" type="button" class="default" data-i18n="buttonSave"></button>
+        <button id="dropdown-no" type="button" class="secondary" data-i18n="optionCancel"></button>
+      </div>
+
       <div id="prompt-buttons" class="prompt-only">
         <button id="prompt-yes" type="button" class="default" data-i18n="buttonSave"></button>
         <button id="prompt-no" type="button" class="secondary" data-i18n="optionCancel"></button>
       </div>
+
+      <div id="ruleadd-buttons" class="ruleadd-only">
+        <button id="ruleadd-yes" type="button" class="default" data-i18n="buttonSave"></button>
+        <button id="ruleadd-no" type="button" class="secondary" data-i18n="optionCancel"></button>
+      </div>
+
       <div id="popup-buttons" class="popup-only">
         <button id="popup-yes" type="button" class="default" data-i18n="optionOk"></button>
       </div>
