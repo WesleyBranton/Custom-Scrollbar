@@ -139,7 +139,7 @@ function handleMessageFromPort(message, port) {
         }
 
         const rule = getRule(message.domain);
-        if (rule) {
+        if (rule && rule != 'default') {
             browser.storage.local.get(rule, (profile) => {
                 const css = loadCSSForProfile(profile, rule, false);
 

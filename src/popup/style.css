@@ -23,3 +23,7 @@ body {
     height: 1em;
     border-radius: 5px;
 }
+
+.hide {
+    display: none !important;
+}

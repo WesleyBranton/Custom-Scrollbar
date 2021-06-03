@@ -252,5 +252,13 @@
     },
     "ruleNoProfileSet": {
         "message": "PROFILE MISSING"
+    },
+    "ruleInherit": {
+        "message": "Inherited from $DOMAIN$",
+        "placeholders": {
+            "domain": {
+                "content": "$1"
+            }
+        }
     }
 }

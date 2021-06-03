@@ -26,7 +26,9 @@ function addRule(profile, domain) {
     clone.getElementsByClassName('text')[0].textContent = rule.displayDomain();
 
     const profileNameOutput = clone.getElementsByClassName('rule-profile')[0];
-    if (listOfProfiles[rule.profile]) {
+    if (rule.profile == 'default') {
+        profileNameOutput.textContent = browser.i18n.getMessage('profileUsingDefault', listOfProfiles[`profile_${defaultProfile}`]);
+    } else if (listOfProfiles[rule.profile]) {
         profileNameOutput.textContent = listOfProfiles[rule.profile];
     } else {
         console.warn(`Settings profile "${rule.profile}" cannot be loaded from storage for rule "${rule.fullDomain()}".`);
@@ -274,6 +276,7 @@ function firstLoad() {
         }
 
         populateProfileDropdown();
+        defaultProfile = data.defaultProfile;
 
         // Load rules
         if (data.rules) {
@@ -296,6 +299,7 @@ updatePreview = () => {};
 
 let rules = {};
 let listOfProfiles = {};
+let defaultProfile;
 
 parsei18nOfTemplate();
 firstLoad();

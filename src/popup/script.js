@@ -112,7 +112,7 @@ function loadProfile(id) {
  */
 function refreshSetAsDefaultButton() {
     document.getElementById('button-setDefault').disabled = defaultProfile == document.manager.profile.value || document.manager.profile.value == 'default';
-    if (document.getElementById('button-use')) document.getElementById('button-use').disabled = currentRule == document.manager.profile.value;
+    if (document.getElementById('button-use')) document.getElementById('button-use').disabled = !ruleInherit && currentRule == document.manager.profile.value;
 }
 
 /**
@@ -190,7 +190,7 @@ function setUpTabForURL(domain, rules) {
         startAt++;
     }
 
-    if (usingRule != null) {
+    if (usingRule != null && usingRule != 'default') {
         usingRule = usingRule.split('_')[1];
         document.manager.profile.value = usingRule;
 
@@ -200,13 +200,36 @@ function setUpTabForURL(domain, rules) {
             currentRule = defaultProfile;
             document.manager.profile.value = usingRule;
         } else {
+            toggleInheritance(selectedDomain);
             currentRule = usingRule;
         }
 
         loadProfile(currentRule);
     } else {
+        toggleInheritance('none');
         currentRule = 'default';
         loadProfile(defaultProfile);
+    }
+}
+
+/**
+ * Toggle rule inheritance information
+ * @param {String} domain
+ */
+function toggleInheritance(domain) {
+    const selector = document.getElementById('profile-selector-container');
+    const bar = document.getElementById('profile-inherit');
+
+    if (domain.charAt(0) == '*') {
+        ruleInherit = true;
+        bar.textContent = browser.i18n.getMessage('ruleInherit', domain);
+        bar.parentNode.classList.remove('hide');
+        selector.classList.add('has-help');
+    } else {
+        ruleInherit = false;
+        bar.textContent = '';
+        bar.parentNode.classList.add('hide');
+        selector.classList.remove('has-help');
     }
 }
 
@@ -216,7 +239,11 @@ function setUpTabForURL(domain, rules) {
 function updateRule() {
     browser.storage.local.get('rules', (data) => {
         if (document.manager.profile.value == 'default') {
-            delete data.rules[ruleForDomain];
+            if (ruleInherit) {
+                data.rules[ruleForDomain] = 'default';
+            } else {
+                delete data.rules[ruleForDomain];
+            }
         } else {
             data.rules[ruleForDomain] = `profile_${document.manager.profile.value}`;
         }
@@ -276,7 +303,7 @@ function loadProfileList(data) {
     document.manager.profile.value = 'default';
 }
 
-let defaultProfile, ruleForDomain, currentRule;
+let defaultProfile, ruleForDomain, currentRule, ruleInherit;
 parsei18n();
 browser.storage.local.get(loadStorage);
 document.manager.profile.addEventListener('change', changeSelectedProfile);
