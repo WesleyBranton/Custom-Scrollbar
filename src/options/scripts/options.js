@@ -58,7 +58,7 @@ function save() {
 
     browser.storage.local.set(wrapper, () => {
         toggleChangesWarning(false);
-        reloadProfileSelection();
+        reloadProfileSelection(null, null);
     });
 }
 
@@ -348,7 +348,7 @@ function loadStorage(data) {
         changeProfile(selectedProfile);
     }
 
-    reloadProfileSelection();
+    reloadProfileSelection(null, null);
     settings.profile.value = selectedProfile;
 }
 
@@ -373,7 +373,7 @@ function addProfile() {
     };
 
     browser.storage.local.set(newProfile, () => {
-        reloadProfileSelection();
+        reloadProfileSelection(null, null);
         changeProfile(id);
     });
 }
@@ -383,9 +383,69 @@ function addProfile() {
  */
 function removeProfile() {
     browser.storage.local.remove(`profile_${selectedProfile}`, () => {
-        reloadProfileSelection();
+        const removedProfile = `profile_${selectedProfile}`;
+        reloadProfileSelection(null, null);
         changeProfile(defaultProfile);
+
+        browser.storage.local.get('rules', (storage) => {
+            if (storage.rules) {
+                let hasRules = false;
+                for (let key of Object.keys(storage.rules)) {
+                    if (storage.rules[key] == removedProfile) {
+                        hasRules = true;
+                        break;
+                    }
+                }
+
+                if (hasRules) {
+                    reloadProfileSelection(document.getElementById('dialog-dropdown'), () => {
+                        const dropdown = document.getElementById('dialog-dropdown');
+                        const option = document.createElement('option');
+                        let profilename = '';
+
+                        for (let o of dropdown.options) {
+                            if (o.value == defaultProfile) {
+                                profilename = o.textContent;
+                                break;
+                            }
+                        }
+
+                        option.textContent = browser.i18n.getMessage('profileUsingDefault', profilename);
+                        option.value = 'default';
+                        dropdown.insertBefore(option, dropdown.firstChild);
+                        dropdown.value = 'default';
+
+                        const dropdownNoButton = document.getElementById('dropdown-no');
+                        dropdownNoButton.classList.add('hide');
+                        
+                        showDowndown(
+                            browser.i18n.getMessage('profileMoveExistingRules'),
+                            null,
+                            (to) => {
+                                dropdownNoButton.classList.remove('hide');
+                                bulkUpdateRules(removedProfile, to, storage.rules);
+                            },
+                            null
+                        );
+                    });
+                }
+            }
+        });
     })
+}
+
+function bulkUpdateRules(from, to, rules) {
+    for (let key of Object.keys(rules)) {
+        if (rules[key] == from) {
+            if (to == 'default') {
+                delete rules[key];
+            } else {
+                rules[key] = `profile_${to}`;
+            }
+        }
+    }
+
+    browser.storage.local.set({ rules: rules });
 }
 
 /**
@@ -394,7 +454,7 @@ function removeProfile() {
 function updateDefaultProfile() {
     browser.storage.local.set({defaultProfile: selectedProfile}, () => {
         defaultProfile = selectedProfile;
-        reloadProfileSelection();
+        reloadProfileSelection(null, null);
     });
 }
 
@@ -408,7 +468,7 @@ function renameProfile(input) {
     browser.storage.local.get(`profile_${selectedProfile}`, (data) => {
         data[`profile_${selectedProfile}`].name = input;
         browser.storage.local.set(data, () => {
-            reloadProfileSelection();
+            reloadProfileSelection(null, null);
         });
     })
 }
@@ -416,9 +476,9 @@ function renameProfile(input) {
 /**
  * Reload the list of profiles from the Storage API
  */
-function reloadProfileSelection() {
+function reloadProfileSelection(selector, callback) {
     browser.storage.local.get((data) => {
-        const selector = document.getElementById('profileSelection');
+        if (!selector) selector = document.getElementById('profileSelection');
         selector.textContent = '';
 
         for (let key of Object.keys(data)) {
@@ -447,6 +507,8 @@ function reloadProfileSelection() {
 
         document.settings.profile.value = selectedProfile;
         document.getElementById('profile-setDefault').disabled = selectedProfile == defaultProfile;
+
+        if (callback) callback();
     });
 }
 
