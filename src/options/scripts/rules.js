@@ -24,7 +24,15 @@ function addRule(profile, domain) {
     const clone = template.content.cloneNode(true).children[0];
 
     clone.getElementsByClassName('text')[0].textContent = rule.displayDomain();
-    clone.getElementsByClassName('rule-profile')[0].textContent = listOfProfiles[rule.profile];
+
+    const profileNameOutput = clone.getElementsByClassName('rule-profile')[0];
+    if (listOfProfiles[rule.profile]) {
+        profileNameOutput.textContent = listOfProfiles[rule.profile];
+    } else {
+        console.warn(`Settings profile "${rule.profile}" cannot be loaded from storage for rule "${rule.fullDomain()}".`);
+        profileNameOutput.textContent = `** ${browser.i18n.getMessage('ruleNoProfileSet')} **`;
+        profileNameOutput.classList.add('profile-missing');
+    }
 
     list.appendChild(clone);
     clone.scrollIntoView();
@@ -94,7 +102,17 @@ function triggerChangeProfile(item) {
         null,
         (value) => {
             r.profile = `profile_${value}`;
-            item.getElementsByClassName('rule-profile')[0].textContent = listOfProfiles[r.profile];
+
+            const profileNameOutput = item.getElementsByClassName('rule-profile')[0];
+            if (listOfProfiles[r.profile]) {
+                profileNameOutput.textContent = listOfProfiles[r.profile];
+                profileNameOutput.classList.remove('profile-missing');
+            } else {
+                console.warn(`Settings profile "${r.profile}" cannot be loaded from storage for rule "${r.fullDomain()}".`);
+                profileNameOutput.textContent = `** ${browser.i18n.getMessage('ruleNoProfileSet')} **`;
+                profileNameOutput.classList.add('profile-missing');
+            }
+
             toggleChangesWarning(true);
         },
         null

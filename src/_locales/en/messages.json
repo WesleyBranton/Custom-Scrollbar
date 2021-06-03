@@ -249,5 +249,8 @@
     },
     "profileMoveExistingRules": {
         "message": "There are website rules that used this profile. Which profile should these website rules use instead?"
+    },
+    "ruleNoProfileSet": {
+        "message": "PROFILE MISSING"
     }
 }

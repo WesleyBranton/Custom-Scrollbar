@@ -4,12 +4,11 @@
 
 /**
  * Apply options changes to CSS
- * @param {string} width
- * @param {string} colorTrack
- * @param {string} colorThumb
+ * @param {Object} profile
+ * @param {String} key
  */
-function applyStyle(profile) {
-    defaultCSS = loadCSSForProfile(profile);
+function applyStyle(profile, key) {
+    defaultCSS = loadCSSForProfile(profile, key, true);
     loaded = true;
     updateCSSOnAllPorts();
 }
@@ -33,7 +32,9 @@ function refreshStorageData() {
         rules = (data.rules) ? data.rules : {};
 
         if (data.defaultProfile) {
-            browser.storage.local.get(`profile_${data.defaultProfile}`, applyStyle);
+            browser.storage.local.get(`profile_${data.defaultProfile}`, (profile) => {
+                applyStyle(profile, `profile_${data.defaultProfile}`);
+            });
         }
     });
 }
@@ -140,7 +141,7 @@ function handleMessageFromPort(message, port) {
         const rule = getRule(message.domain);
         if (rule) {
             browser.storage.local.get(rule, (profile) => {
-                const css = loadCSSForProfile(profile);
+                const css = loadCSSForProfile(profile, rule, false);
 
                 if (css != null) {
                     sendCSSToPort(css, port);
@@ -159,11 +160,15 @@ function handleMessageFromPort(message, port) {
  * @param {Object} profile
  * @returns CSS
  */
-function loadCSSForProfile(profile) {
+function loadCSSForProfile(profile, key, isDefault) {
     profile = profile[Object.keys(profile)[0]];
 
     if (typeof profile == 'undefined') {
-        console.error('Settings profile cannot be loaded from storage.');
+        if (isDefault) {
+            console.error('Default settings profile "%s" cannot be loaded from storage.', key);
+        } else {
+            console.error('Settings profile "%s" cannot be loaded from storage. Using default profile.', key);
+        }
         return null;
     }
 

@@ -193,8 +193,17 @@ function setUpTabForURL(domain, rules) {
     if (usingRule != null) {
         usingRule = usingRule.split('_')[1];
         document.manager.profile.value = usingRule;
-        currentRule = usingRule;
-        loadProfile(usingRule);
+
+        if (!document.manager.profile.options[document.manager.profile.selectedIndex]) {
+            console.error('Settings profile "%s" cannot be loaded from storage for rule "%s". Using default profile.', `profile_${usingRule}`, selectedDomain);
+            usingRule = 'default';
+            currentRule = defaultProfile;
+            document.manager.profile.value = usingRule;
+        } else {
+            currentRule = usingRule;
+        }
+
+        loadProfile(currentRule);
     } else {
         currentRule = 'default';
         loadProfile(defaultProfile);

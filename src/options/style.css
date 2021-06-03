@@ -256,3 +256,7 @@ body::-webkit-scrollbar {
 #rule-list > .panel-list-item {
   margin: 0.2em 0;
 }
+
+#rule-list .profile-missing {
+  color: red !important;
+}
