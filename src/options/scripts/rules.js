@@ -18,7 +18,14 @@ function addRule(profile, domain) {
     }
 
     rules[domain] = rule;
+    addListItem(rule);
+}
 
+/**
+ * Add rule list item to UI
+ * @param {Object} rule
+ */
+function addListItem(rule) {
     const list = document.getElementById('rule-list');
     const template = document.getElementById('template-rule');
     const clone = template.content.cloneNode(true).children[0];
@@ -36,7 +43,19 @@ function addRule(profile, domain) {
         profileNameOutput.classList.add('profile-missing');
     }
 
-    list.appendChild(clone);
+    checkIfListIsEmpty();
+
+    let sortIndex = 0;
+    const listItems = list.children;
+    for (let item of listItems) {
+        if (sortingFunction(rule, getRuleFromListItem(item)) > 0) {
+            ++sortIndex;
+        } else {
+            break;
+        }
+    }
+
+    list.insertBefore(clone, list.childNodes[sortIndex]);
     clone.scrollIntoView();
 }
 
@@ -74,6 +93,87 @@ function saveRules() {
     });
 
     toggleChangesWarning(false);
+}
+
+/**
+ * Sorts list items by domain
+ * @param {Object} a
+ * @param {Object} b
+ * @returns Sorted position
+ */
+function sortByDomain(a, b) {
+    const aP = a.domain.split('.');
+    const bP = b.domain.split('.');
+
+    let iA = aP.length - 2;
+    let iB = bP.length - 2;
+
+    while (true) {
+        if (iA < 0 && iB < 0) {
+            if (a.includeSubdomains && !b.includeSubdomains) {
+                return -1;
+            } else if (!a.includeSubdomains && b.includeSubdomains) {
+                return 1;
+            }
+            return 0;
+        } else if (iA < 0) {
+            return 1;
+        } else if (iB < 0) {
+            return -1;
+        }
+
+        if (aP[iA] != bP[iB]) {
+            return aP[iA].localeCompare(bP[iB]);
+        }
+
+        iA--;
+        iB--;
+    }
+}
+
+/**
+ * Sorts list items by profile name
+ * @param {Object} a
+ * @param {Object} b
+ * @returns Sorted position
+ */
+function sortByProfile(a, b) {
+    const aName = listOfProfiles[a.profile];
+    const bName = listOfProfiles[b.profile];
+
+    if (aName == bName) {
+        return sortByDomain(a, b);
+    }
+
+    return listOfProfiles[a.profile].localeCompare(listOfProfiles[b.profile]);
+}
+
+/**
+ * Change the sorting method
+ */
+ function changeSorting() {
+    const sortInput = document.getElementById('ruleSorting');
+
+    switch (sortInput.value) {
+        case 'domain':
+            sortingFunction = sortByDomain;
+            break;
+        case 'profile':
+            sortingFunction = sortByProfile;
+            break;
+        default:
+            sortingFunction = sortByDomain;
+            sortInput.value = 'domain';
+            break;
+    }
+
+    const list = document.getElementById('rule-list');
+    list.textContent = '';
+
+    for (let rule of Object.values(rules)) {
+        addListItem(rule);
+    }
+    checkIfListIsEmpty();
 }
 
 /**
@@ -300,6 +400,7 @@ updatePreview = () => {};
 let rules = {};
 let listOfProfiles = {};
 let defaultProfile;
+let sortingFunction = sortByDomain;
 
 parsei18nOfTemplate();
 firstLoad();
@@ -308,3 +409,5 @@ toggleChangesWarning(false);
 document.getElementById('rule-list').addEventListener('click', handleListClick);
 document.getElementById('rule-add').addEventListener('click', triggerAddNewRule);
 document.getElementById('saveChanges').addEventListener('click', saveRules);
+document.getElementById('ruleSorting').addEventListener('change', changeSorting);
+document.getElementById('ruleSearch').addEventListener('keyup', searchRules);

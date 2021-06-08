@@ -260,5 +260,14 @@
                 "content": "$1"
             }
         }
+    },
+    "ruleSort": {
+        "message": "Sort By"
+    },
+    "sortDomain": {
+        "message": "Domain"
+    },
+    "sortProfile": {
+        "message": "Profile"
     }
 }
