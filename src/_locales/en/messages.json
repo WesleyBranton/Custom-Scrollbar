@@ -238,6 +238,9 @@
     "noRulesSet": {
         "message": "No website rules set"
     },
+    "noRulesFound": {
+        "message": "No website rules found in search"
+    },
     "websiteRules": {
         "message": "Website Rules"
     },
@@ -269,5 +272,8 @@
     },
     "sortProfile": {
         "message": "Profile"
+    },
+    "search": {
+        "message": "Search"
     }
 }

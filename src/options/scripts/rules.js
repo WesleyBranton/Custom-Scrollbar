@@ -177,6 +177,50 @@ function sortByProfile(a, b) {
 }
 
 /**
+ * Filter rules by search term
+ */
+function searchRules() {
+    if (Object.keys(rules).length > 0) {
+        const listItems = document.getElementById('rule-list').children;
+        const searchTerm = document.getElementById('ruleSearch').value.trim().toLowerCase();
+        let found = false;
+
+        for (let item of listItems) {
+            const rule = getRuleFromListItem(item);
+
+            if (rule && rule.displayDomain().toLowerCase().includes(searchTerm)) {
+                item.classList.remove('hide');
+                found = true;
+            } else {
+                item.classList.add('hide');
+            }
+        }
+
+        const list = document.getElementById('rule-list');
+        const empty = document.getElementById('rule-list-not-found');
+
+        if (found) {
+            if (empty) list.removeChild(empty);
+        } else {
+            if (!empty) {
+                const template = document.getElementById('template-rule');
+                const clone = template.content.cloneNode(true).children[0];
+
+                clone.getElementsByClassName('text')[0].textContent = browser.i18n.getMessage('noRulesFound');
+                clone.getElementsByClassName('text-shortcut')[0].textContent = '';
+                clone.id = 'rule-list-not-found';
+
+                list.appendChild(clone);
+            } else {
+                empty.classList.remove('hide');
+            }
+        }
+    } else {
+        checkIfListIsEmpty();
+    }
+}
+
+/**
  * Load rule from provided UI list item
  * @param {HTMLElement} item
  * @returns Rule
@@ -266,6 +310,7 @@ function triggerRemoveProfile(item) {
             document.getElementById('rule-list').removeChild(item);
             toggleChangesWarning(true);
             checkIfListIsEmpty();
+            searchRules();
         },
         null,
         false
@@ -288,6 +333,7 @@ function triggerAddNewRule() {
             addRule(`profile_${profile}`, domain);
             toggleChangesWarning(true);
             checkIfListIsEmpty();
+            searchRules();
         },
         null,
         userInputDomainValidation
