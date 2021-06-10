@@ -30,7 +30,7 @@ function addListItem(rule) {
     const template = document.getElementById('template-rule');
     const clone = template.content.cloneNode(true).children[0];
 
-    clone.getElementsByClassName('text')[0].textContent = rule.displayDomain();
+    clone.getElementsByClassName('rule-domain')[0].textContent = rule.displayDomain();
 
     const profileNameOutput = clone.getElementsByClassName('rule-profile')[0];
     if (rule.profile == 'default') {
@@ -76,6 +76,8 @@ function parseRules(raw) {
         addRule(raw[r], r);
     }
     checkIfListIsEmpty();
+    selectAll(false);
+    updateBulkToolbar();
 }
 
 /**
@@ -218,6 +220,111 @@ function searchRules() {
     } else {
         checkIfListIsEmpty();
     }
+
+    updateBulkToolbar();
+}
+
+/**
+ * Select/Deselect all visible rules
+ * @param {boolean} check
+ */
+function selectAll(check) {
+    if (Object.keys(rules).length > 0) {
+        const listItems = document.getElementById('rule-list').children;
+
+        for (let item of listItems) {
+            if (!item.classList.contains('hide')) {
+                const checkbox = item.getElementsByClassName('rule-select-checkbox')[0];
+                if (checkbox) {
+                    checkbox.checked = check;
+                }
+            }
+        }
+    }
+
+    updateBulkToolbar();
+}
+
+/**
+ * Get all selected rule list items
+ * @returns List of selected rule items
+ */
+function getSelected() {
+    const listItems = document.getElementById('rule-list').children;
+    let selectedItems = [];
+
+    for (let item of listItems) {
+        if (!item.classList.contains('hide')) {
+            const checkbox = item.getElementsByClassName('rule-select-checkbox')[0];
+            if (checkbox && checkbox.checked) {
+                selectedItems.push(item);
+            }
+        }
+    }
+
+    return selectedItems;
+}
+
+/**
+ * Delete selected rules
+ */
+function bulkDelete() {
+    confirmAction(
+        browser.i18n.getMessage('dialogCannotBeUndone'),
+        () => {
+            for (let item of getSelected()) {
+                const r = getRuleFromListItem(item);
+                removeRule(r.fullDomain());
+                document.getElementById('rule-list').removeChild(item);
+            }
+
+            toggleChangesWarning(true);
+            checkIfListIsEmpty();
+            searchRules();
+        },
+        null,
+        false
+    );
+}
+
+/**
+ * Change profile of selected rules
+ */
+function bulkChangeProfile() {
+    showDowndown(
+        browser.i18n.getMessage('changeProfileFor', browser.i18n.getMessage('selectedRules')),
+        null,
+        (value) => {
+            for (let item of getSelected()) {
+                const r = getRuleFromListItem(item);
+                r.profile = `profile_${value}`;
+
+                const profileNameOutput = item.getElementsByClassName('rule-profile')[0];
+                if (listOfProfiles[r.profile]) {
+                    profileNameOutput.textContent = listOfProfiles[r.profile];
+                    profileNameOutput.classList.remove('profile-missing');
+                } else {
+                    console.warn(`Settings profile "${r.profile}" cannot be loaded from storage for rule "${r.fullDomain()}".`);
+                    profileNameOutput.textContent = `** ${browser.i18n.getMessage('ruleNoProfileSet')} **`;
+                    profileNameOutput.classList.add('profile-missing');
+                }
+            }
+
+            toggleChangesWarning(true);
+        },
+        null
+    );
+}
+
+/**
+ * Enable/Disable bulk edit tools
+ */
+function updateBulkToolbar() {
+    const disable = getSelected().length < 1;
+
+    document.getElementById('rule-deselect-all').disabled = disable;
+    document.getElementById('rule-delete-all').disabled = disable;
+    document.getElementById('rule-change-all').disabled = disable;
 }
 
 /**
@@ -407,6 +514,8 @@ function handleListClick(event) {
         default:
             break;
     }
+
+    updateBulkToolbar();
 }
 
 /**
@@ -441,6 +550,14 @@ function parsei18nOfTemplate() {
     }
 }
 
+/**
+ * Reset UI to default state
+ */
+function clear() {
+    document.getElementById('ruleSorting').value = 'domain';
+    document.getElementById('ruleSearch').value = '';
+}
+
 updatePreview = () => {};
 
 let rules = {};
@@ -448,6 +565,7 @@ let listOfProfiles = {};
 let defaultProfile;
 let sortingFunction = sortByDomain;
 
+clear();
 parsei18nOfTemplate();
 firstLoad();
 getDefaultScrollbar();
@@ -457,3 +575,7 @@ document.getElementById('rule-add').addEventListener('click', triggerAddNewRule)
 document.getElementById('saveChanges').addEventListener('click', saveRules);
 document.getElementById('ruleSorting').addEventListener('change', changeSorting);
 document.getElementById('ruleSearch').addEventListener('keyup', searchRules);
+document.getElementById('rule-select-all').addEventListener('click', () => { selectAll(true); });
+document.getElementById('rule-deselect-all').addEventListener('click', () => { selectAll(false); });
+document.getElementById('rule-delete-all').addEventListener('click', bulkDelete);
+document.getElementById('rule-change-all').addEventListener('click', bulkChangeProfile);

@@ -275,5 +275,20 @@
     },
     "search": {
         "message": "Search"
+    },
+    "selectAll": {
+        "message": "Select All"
+    },
+    "deselectAll": {
+        "message": "Deselect All"
+    },
+    "deleteSelected": {
+        "message": "Delete Selected"
+    },
+    "changeSelected": {
+        "message": "Change Profile of Selected"
+    },
+    "selectedRules": {
+        "message": "All selected rules"
     }
 }

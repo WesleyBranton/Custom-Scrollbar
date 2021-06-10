@@ -38,7 +38,7 @@
         </div>
       </section>
 
-      <section class="panel-section">
+      <section class="panel-section has-help">
         <div>
           <label for="ruleSorting" data-i18n="ruleSort"></label>:
           <select id="ruleSorting" name="ruleSorting">
@@ -49,6 +49,17 @@
         <div>
           <label for="ruleSearch" data-i18n="search"></label>:
           <input type="search" id="ruleSearch" name="ruleSearch">
+        </div>
+      </section>
+
+      <section class="panel-section help-row">
+        <div>
+          <button id="rule-select-all" class="default micro" type="button" data-i18n="selectAll"></button>
+          <button id="rule-deselect-all" class="default micro" type="button" data-i18n="deselectAll"></button>
+        </div>
+        <div>
+          <button id="rule-delete-all" class="secondary micro" type="button" data-i18n="deleteSelected"></button>
+          <button id="rule-change-all" class="default micro" type="button" data-i18n="changeSelected"></button>
         </div>
       </section>
 
@@ -64,7 +75,10 @@
       </section>
       <template id="template-rule">
           <div class="panel-list-item">
-              <div class="text"></div>
+              <div class="text">
+                <input type="checkbox" class="rule-select-checkbox">
+                <span class="rule-domain"></span>
+              </div>
               <div class="text-shortcut">
                   <label class="rule-profile"></label>
                   <button class="default micro" type="button" data-action="change" data-i18n="ruleActionChangeProfile"></button>
