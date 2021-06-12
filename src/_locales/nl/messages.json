@@ -34,6 +34,9 @@
     "optionsSectionOverride": {
         "message": "Websites toestaan om eigen schuifbalken te tonen"
     },
+    "sizeDefault": {
+        "message": "Standaard Platform"
+    },
     "sizeWide": {
         "message": "Breed"
     },
