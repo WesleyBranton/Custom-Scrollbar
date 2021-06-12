@@ -33,6 +33,7 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth) {
     scrollbar-color: ${color} ${(override % 10 == 0) ? '!important' : ''};
 }`;
     } else {
+        const brightFactor = (isLightColor(colorThumb)) ? 1 : -1;
         css = 
 `::-webkit-scrollbar {
     width: ${widthPx} ${(parseInt(override / 10) == 0) ? '!important' : ''};
@@ -42,10 +43,65 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth) {
     background: ${colorThumb} ${(override % 10 == 0) ? '!important' : ''};
 }
 
+::-webkit-scrollbar-thumb:hover {
+    background: ${changeBrightness(colorThumb, 10 * brightFactor)} ${(override % 10 == 0) ? '!important' : ''};
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: ${changeBrightness(colorThumb, 30 * brightFactor)} ${(override % 10 == 0) ? '!important' : ''};
+}
+
 ::-webkit-scrollbar-track {
     background: ${colorTrack} ${(override % 10 == 0) ? '!important' : ''};
 }`;
     }
 
     return css;
+}
+
+/**
+ * Change the brightness of a HEX color
+ * @param {String} color
+ * @param {number} percentage
+ * @returns HEX color
+ */
+function changeBrightness(color, percentage) {
+    const change = Math.round(2.55 * percentage);
+    let hex = (color.charAt(0) == '#') ? '#' : '';
+
+    for (let i = hex.length; i < 6; i += 2) {
+        let updated = parseInt(color.substring(i, i + 2), 16) + change;
+        if (updated > 255) {
+            updated = 255;
+        } else if (updated < 0) {
+            updated = 0;
+        }
+
+        updated = updated.toString(16);
+        if (updated.length < 2) {
+            updated = '0' + updated;
+        }
+
+        hex += updated;
+    }
+
+    return hex + color.substring(hex.length, hex.length + 2);
+}
+
+/**
+ * Determine if the color is light or dark
+ * @param {String} color
+ * @returns Is light
+ */
+function isLightColor(color) {
+    if (color.charAt(0) == '#') {
+        color = color.substring(1);
+    }
+    
+    const r = parseInt(color.substring(0, 2), 16);
+    const g = parseInt(color.substring(2, 4), 16);
+    const b = parseInt(color.substring(4, 6), 16);
+    const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+
+    return luma < 40;
 }
