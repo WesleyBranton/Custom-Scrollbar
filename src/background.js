@@ -4,21 +4,11 @@
 
 /**
  * Apply options changes to CSS
- * @param {string} width
- * @param {string} colorTrack
- * @param {string} colorThumb
+ * @param {Object} profile
+ * @param {String} key
  */
-function applyStyle(profile) {
-    profile = profile[Object.keys(profile)[0]];
-
-    if (typeof profile == 'undefined') {
-        console.error('Settings profile cannot be loaded from storage.');
-        return;
-    }
-
-    profile = loadWithDefaults(profile);
-    const customWidth = profile.customWidthValue + profile.customWidthUnit;
-    css = generateCSS(profile.width, profile.colorTrack, profile.colorThumb, profile.allowOverride, customWidth);
+function applyStyle(profile, key) {
+    defaultCSS = loadCSSForProfile(profile, key, true);
     loaded = true;
     updateCSSOnAllPorts();
 }
@@ -37,10 +27,14 @@ function updateCSSOnAllPorts() {
 /**
  * Reload the CSS for the default profile
  */
-function refreshDefault() {
-    browser.storage.local.get('defaultProfile', (data) => {
+function refreshStorageData() {
+    browser.storage.local.get(['defaultProfile', 'rules'], (data) => {
+        rules = (data.rules) ? data.rules : {};
+
         if (data.defaultProfile) {
-            browser.storage.local.get(`profile_${data.defaultProfile}`, applyStyle);
+            browser.storage.local.get(`profile_${data.defaultProfile}`, (profile) => {
+                applyStyle(profile, `profile_${data.defaultProfile}`);
+            });
         }
     });
 }
@@ -52,7 +46,7 @@ function refreshDefault() {
 function firstLoad(data) {
     if (data.defaultProfile) {
         defaultProfile = data.defaultProfile;
-        refreshDefault();
+        refreshStorageData();
     } else {
         if (typeof data.schema == 'undefined' || data.schema < 2) {
             console.warn('Old storage schema detected. Migrating data.');
@@ -82,7 +76,7 @@ function migrateStorage(data) {
     browser.storage.local.clear(() => {
         browser.storage.local.set(migrated, () => {
             defaultProfile = id;
-            refreshDefault();
+            refreshStorageData();
         });
     });
 }
@@ -143,29 +137,100 @@ function handleMessageFromPort(message, port) {
         if (!loaded) {
             return;
         }
-        sendCSSToPort(port);
+
+        const rule = getRule(message.domain);
+        if (rule && rule != 'default') {
+            browser.storage.local.get(rule, (profile) => {
+                const css = loadCSSForProfile(profile, rule, false);
+
+                if (css != null) {
+                    sendCSSToPort(css, port);
+                } else {
+                    sendCSSToPort(defaultCSS, port);
+                }
+            });
+        } else {
+            sendCSSToPort(defaultCSS, port);
+        }
     }
+}
+
+/**
+ * Generate CSS for profile
+ * @param {Object} profile
+ * @returns CSS
+ */
+function loadCSSForProfile(profile, key, isDefault) {
+    profile = profile[Object.keys(profile)[0]];
+
+    if (typeof profile == 'undefined') {
+        if (isDefault) {
+            console.error('Default settings profile "%s" cannot be loaded from storage.', key);
+        } else {
+            console.error('Settings profile "%s" cannot be loaded from storage. Using default profile.', key);
+        }
+        return null;
+    }
+
+    profile = loadWithDefaults(profile);
+    const customWidth = profile.customWidthValue + profile.customWidthUnit;
+    return generateCSS(profile.width, profile.colorTrack, profile.colorThumb, profile.allowOverride, customWidth);
 }
 
 /**
  * Sends CSS code to port
  * @param {Object} port
  */
-function sendCSSToPort(port) {
+function sendCSSToPort(css, port) {
     port.postMessage({
         action: 'updateCSS',
         css: css
     });
 }
 
-let css = null;
+
+/**
+ * Find rule that matches domain name
+ *     Returns null if no rule is found for the domain
+ * @param {String} domain
+ * @returns Profile ID
+ */
+function getRule(domain) {
+    const domainParts = domain.split('.');
+    let startAt = 0;
+
+    while (startAt < domainParts.length - 1) {
+        let selectedDomain = '';
+
+        for (let i = startAt; i < domainParts.length; i++) {
+            selectedDomain += '.' + domainParts[i];
+        }
+
+        if (startAt == 0) {
+            selectedDomain = selectedDomain.substring(1);
+        } else {
+            selectedDomain = '*' + selectedDomain;
+        }
+
+        if (rules[selectedDomain]) {
+            return rules[selectedDomain];
+        }
+
+        startAt++;
+    }
+
+    return null;
+}
+
+let defaultCSS = null;
 let contentScript = null;
 let defaultProfile = null;
 let ports = {};
 let loaded = false;
 let showOptions = false;
+let rules = {};
 
 browser.runtime.onConnect.addListener(registerPort);
-browser.storage.local.get(['schema', 'defaultProfile'], firstLoad);
-browser.storage.onChanged.addListener(refreshDefault);
+browser.storage.local.get(['schema', 'defaultProfile', 'rules'], firstLoad);
+browser.storage.onChanged.addListener(refreshStorageData);
 browser.runtime.onInstalled.addListener(handleInstalled);

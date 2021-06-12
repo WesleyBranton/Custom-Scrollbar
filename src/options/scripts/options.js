@@ -3,30 +3,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 /**
- * Load i18n data
- */
-function parsei18n() {
-    document.title = browser.i18n.getMessage('optionsTitle', browser.i18n.getMessage('extensionName'));
-
-    const elements = document.querySelectorAll('[data-i18n]');
-    for (let e of elements) {
-        const placeholders = [];
-
-        if (e.hasAttribute('data-i18n-placeholders')) {
-            const num = parseInt(e.getAttribute('data-i18n-placeholders'));
-
-            for (let i = 1; i <= num; i++) {
-                placeholders.push(browser.i18n.getMessage(e.getAttribute('data-i18n-placeholder-' + i)));
-            }
-        }
-
-        e.textContent = browser.i18n.getMessage(e.dataset.i18n, placeholders);
-    }
-
-    document.getElementById('customWidthHelp').title = browser.i18n.getMessage('linkHelp');
-}
-
-/**
  * Load settings from Storage API
  * @param {Object} setting - The Storage API object
  */
@@ -52,7 +28,6 @@ function restore(setting) {
     colorPickerThumb.color.hex8String = setting.colorThumb;
     colorPickerTrack.color.hex8String = setting.colorTrack;
 
-    browser.extension.isAllowedIncognitoAccess(togglePrivateNotice);
     toggleChangesWarning(false);
     toggleCustomWidth();
     parseCustomWidthValue(false);
@@ -83,7 +58,7 @@ function save() {
 
     browser.storage.local.set(wrapper, () => {
         toggleChangesWarning(false);
-        reloadProfileSelection();
+        reloadProfileSelection(null, null);
     });
 }
 
@@ -107,34 +82,6 @@ function toggleColors() {
 }
 
 /**
- * Change the unsaved changes warning banner
- * @param {boolean} show
- */
-function toggleChangesWarning(show) {
-    document.getElementById('saveWarning').className = (show) ? 'unsaved' : 'saved';
-    document.getElementById('saveChanges').disabled = !show;
-    pendingChanges = show;
-
-    updatePreview();
-}
-
-/**
- * Display Private Browsing access warning message, if required
- */
-function togglePrivateNotice(isAllowPrivateBrowsing) {
-    if (!isAllowPrivateBrowsing) {
-        document.getElementById('private-notice').classList.remove('hide');
-    }
-}
-
-/**
- * Updates the live preview textarea style
- */
-function updatePreview() {
-    document.getElementById('preview-css').textContent = getNewCSS();
-}
-
-/**
  * Generates new CSS code for scrollbars
  * @returns {string} css
  */
@@ -145,22 +92,6 @@ function getNewCSS() {
     const customWidth = (document.settings.width.value == 'other') ? document.settings.customWidthValue.value + document.settings.customWidthUnit.value : null;
 
     return generateCSS(width, colTrack, colThumb, 0, customWidth);
-}
-
-/**
- * Update the Private Browsing name label
- */
-function updatePrivateBrowsingName() {
-    const label = document.getElementById('private-notice-message');
-    let name;
-
-    if (runningOn == browsers.FIREFOX) name = browser.i18n.getMessage("privateBrowsingFirefox");
-    else if (runningOn == browsers.CHROME) name = browser.i18n.getMessage("privateBrowsingChrome");
-    else if (runningOn == browsers.EDGE) name = browser.i18n.getMessage("privateBrowsingEdge");
-    else if (runningOn == browsers.OPERA) name = browser.i18n.getMessage("privateBrowsingOpera");
-    else return;
-
-    label.textContent = browser.i18n.getMessage("promptPrivateBrowsing", name);
 }
 
 /**
@@ -417,7 +348,7 @@ function loadStorage(data) {
         changeProfile(selectedProfile);
     }
 
-    reloadProfileSelection();
+    reloadProfileSelection(null, null);
     settings.profile.value = selectedProfile;
 }
 
@@ -442,7 +373,7 @@ function addProfile() {
     };
 
     browser.storage.local.set(newProfile, () => {
-        reloadProfileSelection();
+        reloadProfileSelection(null, null);
         changeProfile(id);
     });
 }
@@ -452,9 +383,69 @@ function addProfile() {
  */
 function removeProfile() {
     browser.storage.local.remove(`profile_${selectedProfile}`, () => {
-        reloadProfileSelection();
+        const removedProfile = `profile_${selectedProfile}`;
+        reloadProfileSelection(null, null);
         changeProfile(defaultProfile);
+
+        browser.storage.local.get('rules', (storage) => {
+            if (storage.rules) {
+                let hasRules = false;
+                for (let key of Object.keys(storage.rules)) {
+                    if (storage.rules[key] == removedProfile) {
+                        hasRules = true;
+                        break;
+                    }
+                }
+
+                if (hasRules) {
+                    reloadProfileSelection(document.getElementById('dialog-dropdown'), () => {
+                        const dropdown = document.getElementById('dialog-dropdown');
+                        const option = document.createElement('option');
+                        let profilename = '';
+
+                        for (let o of dropdown.options) {
+                            if (o.value == defaultProfile) {
+                                profilename = o.textContent;
+                                break;
+                            }
+                        }
+
+                        option.textContent = browser.i18n.getMessage('profileUsingDefault', profilename);
+                        option.value = 'default';
+                        dropdown.insertBefore(option, dropdown.firstChild);
+                        dropdown.value = 'default';
+
+                        const dropdownNoButton = document.getElementById('dropdown-no');
+                        dropdownNoButton.classList.add('hide');
+                        
+                        showDowndown(
+                            browser.i18n.getMessage('profileMoveExistingRules'),
+                            null,
+                            (to) => {
+                                dropdownNoButton.classList.remove('hide');
+                                bulkUpdateRules(removedProfile, to, storage.rules);
+                            },
+                            null
+                        );
+                    });
+                }
+            }
+        });
     })
+}
+
+function bulkUpdateRules(from, to, rules) {
+    for (let key of Object.keys(rules)) {
+        if (rules[key] == from) {
+            if (to == 'default') {
+                delete rules[key];
+            } else {
+                rules[key] = `profile_${to}`;
+            }
+        }
+    }
+
+    browser.storage.local.set({ rules: rules });
 }
 
 /**
@@ -463,7 +454,7 @@ function removeProfile() {
 function updateDefaultProfile() {
     browser.storage.local.set({defaultProfile: selectedProfile}, () => {
         defaultProfile = selectedProfile;
-        reloadProfileSelection();
+        reloadProfileSelection(null, null);
     });
 }
 
@@ -477,7 +468,7 @@ function renameProfile(input) {
     browser.storage.local.get(`profile_${selectedProfile}`, (data) => {
         data[`profile_${selectedProfile}`].name = input;
         browser.storage.local.set(data, () => {
-            reloadProfileSelection();
+            reloadProfileSelection(null, null);
         });
     })
 }
@@ -485,9 +476,9 @@ function renameProfile(input) {
 /**
  * Reload the list of profiles from the Storage API
  */
-function reloadProfileSelection() {
+function reloadProfileSelection(selector, callback) {
     browser.storage.local.get((data) => {
-        const selector = document.getElementById('profileSelection');
+        if (!selector) selector = document.getElementById('profileSelection');
         selector.textContent = '';
 
         for (let key of Object.keys(data)) {
@@ -516,6 +507,8 @@ function reloadProfileSelection() {
 
         document.settings.profile.value = selectedProfile;
         document.getElementById('profile-setDefault').disabled = selectedProfile == defaultProfile;
+
+        if (callback) callback();
     });
 }
 
@@ -548,165 +541,18 @@ function reloadProfileSelection() {
     return finalName;
 }
 
-/**
- * Change the main settings tabs
- * @param {Event} event
- */
-function changeTab(event) {
-    if (!event.target.id.includes('tabselect')) {
-        return;
-    }
-
-    const selected = event.target.id.split('-')[1];
-
-    // Show correct section
-    const tabs = document.getElementsByClassName('tab-section');
-    for (let tab of tabs) {
-        if (tab.id == `tab-${selected}`) {
-            tab.classList.remove('hide');
-        } else {
-            tab.classList.add('hide');
-        }
-    }
-
-    // Change selected tab on tab bar
-    const tabButtons = document.getElementById('tab-bar').getElementsByTagName('button');
-    for (let button of tabButtons) {
-        button.classList.remove('selected');
-    }
-    document.getElementById(`tabselect-${selected}`).classList.add('selected');
-}
-
-/**
- * Save Storage API backup (requires permission)
- */
-function saveBackup() {
-    browser.permissions.request({ permissions: ['downloads'] }, (granted) => {
-        if (granted) {
-            browser.storage.local.get((data) => {
-                const file = new Blob([JSON.stringify(data)], {type: 'application/json'});
-                const fileURL = URL.createObjectURL(file);
-
-                browser.downloads.download({
-                    filename: `custom-scrollbars-backup-${Date.now()}.json`,
-                    saveAs: true,
-                    url: fileURL
-                });
-            });
-        } else {
-            console.error('Missing persmission to manage downloads');
-            showAlert(browser.i18n.getMessage('dialogPermissionRequired'), null, null);
-        }
-    });
-}
-
-/**
- * Update file selection
- */
-function selectFile() {
-    const fileInput = document.getElementById('restore-file');
-    const fileNameOutput = document.getElementById('restore-file-name');
-    const restoreButton = document.getElementById('button-restore');
-    const clearFileButton = document.getElementById('button-removeFile');
-
-    if (fileInput.files.length == 1) {
-        fileNameOutput.textContent = fileInput.files[0].name;
-        restoreButton.disabled = false;
-        clearFileButton.classList.remove('hide');
-    } else {
-        fileNameOutput.textContent = browser.i18n.getMessage('noFileSelected');
-        restoreButton.disabled = true;
-        clearFileButton.classList.add('hide');
-    }
-}
-
-/**
- * Clear the selected file
- */
-function clearFile() {
-    document.getElementById('restore-file').value = '';
-    selectFile();
-}
-
-/**
- * Apply backup to Storage API
- */
-function loadBackup() {
-    const fileInput = document.getElementById('restore-file');
-
-    if (fileInput.files.length == 1) {
-        const reader = new FileReader();
-        reader.onload = processBackupFile;
-        reader.readAsText(fileInput.files[0]);
-    }
-}
-
-/**
- * Restore the applied file into the Storage API
- * @param {Event} event
- */
-function processBackupFile(event) {
-    let data;
-
-    try {
-        data = JSON.parse(event.target.result);
-    } catch (error) {
-        console.error('File is not in JSON format');
-        showAlert(
-            browser.i18n.getMessage('dialogInvalidBackup'),
-            clearFile,
-            null
-        );
-        return;
-    }
-
-    if (!data.schema || !data.defaultProfile || !data[`profile_${data.defaultProfile}`]) {
-        if (!data.schema) console.error('File missing schema marker');
-        if (!data.defaultProfile) console.error('File missing default profile marker');
-        else if (!data[`profile_${data.defaultProfile}`]) console.error('File missing default profile');
-
-        showAlert(
-            browser.i18n.getMessage('dialogInvalidBackup'),
-            clearFile,
-            null
-        );
-        return;
-    }
-
-    browser.storage.local.clear(() => {
-        browser.storage.local.set(data, () => {
-            showAlert(
-                browser.i18n.getMessage('dialogBackupRestored'),
-                () => { window.location.reload() },
-                null
-            );
-        });
-    });
-}
-
-parsei18n();
 let colorPickerThumb, colorPickerTrack, previousToggleValue;
 let defaultProfile, selectedProfile, selectedProfileName;
 const colorInputs = {};
-let pendingChanges = false;
 createColorPickers();
-updatePrivateBrowsingName();
-clearFile();
-browser.storage.local.get('defaultProfile', loadStorage);
-
-// Add browser tag to body class
-if (runningOn == browsers.FIREFOX) {
-    document.body.classList.add('firefox');
-} else {
-    document.body.classList.add('chromium');
-}
+browser.storage.local.get(['defaultProfile'], loadStorage);
 
 document.getElementById('saveChanges').addEventListener('click', save);
 document.settings.addEventListener('change', toggleColors);
 document.settings.addEventListener('change', toggleCustomWidth);
 document.getElementById('customWidthValue').addEventListener('focus', () => { parseCustomWidthValue(true) });
 document.getElementById('customWidthValue').addEventListener('blur', () => { parseCustomWidthValue(false) });
-document.getElementById('tab-bar').addEventListener('click', changeTab);
+document.getElementById('profile-setDefault').addEventListener('click', updateDefaultProfile);
 
 document.settings.profile.addEventListener('change', () => {
     confirmAction(
@@ -727,6 +573,7 @@ document.getElementById('profile-add').addEventListener('click', () => {
 document.getElementById('profile-rename').addEventListener('click', () => {
     const selector = document.getElementById('profileSelection');
     showPrompt(
+        null,
         renameProfile,
         null,
         selector.options[selector.selectedIndex].textContent
@@ -749,27 +596,3 @@ document.getElementById('profile-remove').addEventListener('click', () => {
         false
     );
 });
-document.getElementById('profile-setDefault').addEventListener('click', updateDefaultProfile);
-
-document.getElementById('button-backup').addEventListener('click', saveBackup);
-document.getElementById('button-removeFile').addEventListener('click', clearFile);
-document.getElementById('restore-file').addEventListener('change', selectFile);
-document.getElementById('button-changeFile').addEventListener('click', () => {
-    document.getElementById('restore-file').click();
-});
-document.getElementById('button-restore').addEventListener('click', () => {
-    confirmAction(
-        browser.i18n.getMessage('dialogDataOverwrite'),
-        loadBackup,
-        null,
-        false
-    );
-});
-
-window.onbeforeunload = (event) => {
-    // Prevent user from leaving if they have unsaved changes
-    if (pendingChanges) {
-        event.preventDefault();
-        event.returnValue = '';
-    }
-};

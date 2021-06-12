@@ -206,5 +206,92 @@
     },
     "dialogBackupRestored": {
         "message": "Backup has been successfully restored!"
+    },
+    "changeProfileFor": {
+        "message": "Editing profile for: $WEBSITE$",
+        "placeholders": {
+            "website": {
+                "content": "$1"
+            }
+        }
+    },
+    "profileUsingDefault": {
+        "message": "Use default ($PROFILENAME$)",
+        "placeholders": {
+            "profilename": {
+                "content": "$1"
+            }
+        }
+    },
+    "profileActionUseOnWebsite": {
+        "message": "Use on this website"
+    },
+    "errorInvalidDomain": {
+        "message": "Invalid domain name entered"
+    },
+    "errorRuleAlreadyExists": {
+        "message": "Rule for this domain already exists"
+    },
+    "domain": {
+        "message": "Domain"
+    },
+    "subdomainsOnly": {
+        "message": "Subdomains Only"
+    },
+    "noRulesSet": {
+        "message": "No website rules set"
+    },
+    "noRulesFound": {
+        "message": "No website rules found in search"
+    },
+    "websiteRules": {
+        "message": "Website Rules"
+    },
+    "add": {
+        "message": "Add"
+    },
+    "ruleActionChangeProfile": {
+        "message": "Change Profile..."
+    },
+    "profileMoveExistingRules": {
+        "message": "There are website rules that used this profile. Which profile should these website rules use instead?"
+    },
+    "ruleNoProfileSet": {
+        "message": "PROFILE MISSING"
+    },
+    "ruleInherit": {
+        "message": "Inherited from $DOMAIN$",
+        "placeholders": {
+            "domain": {
+                "content": "$1"
+            }
+        }
+    },
+    "ruleSort": {
+        "message": "Sort By"
+    },
+    "sortDomain": {
+        "message": "Domain"
+    },
+    "sortProfile": {
+        "message": "Profile"
+    },
+    "search": {
+        "message": "Search"
+    },
+    "selectAll": {
+        "message": "Select All"
+    },
+    "deselectAll": {
+        "message": "Deselect All"
+    },
+    "deleteSelected": {
+        "message": "Delete Selected"
+    },
+    "changeSelected": {
+        "message": "Change Profile of Selected"
+    },
+    "selectedRules": {
+        "message": "All selected rules"
     }
 }

@@ -1,0 +1,175 @@
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
+
+   <!DOCTYPE html>
+   <html>
+   
+   <head>
+     <meta charset="utf-8" />
+     <title>Custom Scrollbars Options</title>
+     <link rel="icon" href="../icons/icon-32.png">
+     <link rel="stylesheet" href="../lib/new_browser_style.css" />
+     <link rel="stylesheet" href="style.css" />
+     <style type="text/css" id="preview-css"></style>
+   </head>
+   
+   <body class="browser-style">
+     <form name="settings" class="no-custom-colors">
+       <header class="panel-section panel-section-header">
+         <img class="icon-section-header" src="../icons/icon-32.png" alt="CS">
+         <h1 class="text-section-header" data-i18n="optionsTitle" data-i18n-placeholders="1" data-i18n-placeholder-1="extensionName"></h1>
+       </header>
+
+       <section id="tab-bar" class="panel-section-tabs">
+         <button id="tabselect-options" type="button" class="panel-section-tabs-button" data-i18n="options"></button>
+         <div class="panel-section-tabs-separator"></div>
+         <button id="tabselect-rules" type="button" class="panel-section-tabs-button selected" data-i18n="websiteRules"></button>
+         <div class="panel-section-tabs-separator"></div>
+         <button id="tabselect-backup" type="button" class="panel-section-tabs-button" data-i18n="backupAndRestore"></button>
+       </section>
+
+       <section class="panel-section">
+        <div class="message-bar private hide" id="private-notice">
+          <div>
+            <span id="private-notice-message"></span>
+            <a href="https://github.com/WesleyBranton/Custom-Scrollbar/wiki/No-customizations-in-Private-Browsing-mode" target="_blank" data-i18n="callToActionLearn"></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel-section has-help">
+        <div>
+          <label for="ruleSorting" data-i18n="ruleSort"></label>:
+          <select id="ruleSorting" name="ruleSorting">
+            <option value="domain" data-i18n="sortDomain"></option>
+            <option value="profile" data-i18n="sortProfile"></option>
+          </select>
+        </div>
+        <div>
+          <label for="ruleSearch" data-i18n="search"></label>:
+          <input type="search" id="ruleSearch" name="ruleSearch">
+        </div>
+      </section>
+
+      <section class="panel-section help-row">
+        <div>
+          <button id="rule-select-all" class="default micro" type="button" data-i18n="selectAll"></button>
+          <button id="rule-deselect-all" class="default micro" type="button" data-i18n="deselectAll"></button>
+        </div>
+        <div>
+          <button id="rule-delete-all" class="secondary micro" type="button" data-i18n="deleteSelected"></button>
+          <button id="rule-change-all" class="default micro" type="button" data-i18n="changeSelected"></button>
+        </div>
+      </section>
+
+      <div class="panel-section-separator"></div>
+      <section id="rule-list" class="panel-section panel-section-list">
+        <!-- Filled by ruleManager.js -->
+      </section>
+      <section class="panel-section help-row">
+          <div></div>
+          <div>
+              <button id="rule-add" class="default micro" type="button" data-i18n="add"></button>
+          </div>
+      </section>
+      <template id="template-rule">
+          <div class="panel-list-item">
+              <div class="text">
+                <input type="checkbox" class="rule-select-checkbox">
+                <span class="rule-domain"></span>
+              </div>
+              <div class="text-shortcut">
+                  <label class="rule-profile"></label>
+                  <button class="default micro" type="button" data-action="change" data-i18n="ruleActionChangeProfile"></button>
+                  <button class="secondary micro" type="button" data-action="remove" data-i18n="profileActionRemove"></button>
+              </div>
+          </div>
+      </template>
+
+      <div class="panel-section-separator"></div>
+      <section class="panel-section has-help">
+          <label id="changesSavedUI"></label>
+          <button id="saveChanges" class="default puffy" type="button" data-i18n="buttonSave"></button>
+      </section>
+      <section class="panel-section help-row has-help">
+          <div id="saveWarning" class="saved">
+          <div class="message-bar success" data-i18n="messageSaved"></div>
+          <div class="message-bar warning" data-i18n="messageUnsaved"></div>
+          </div>
+      </section>
+   
+       <footer class="panel-section panel-section-footer">
+         <div>
+           <a href="https://github.com/WesleyBranton/Custom-Scrollbar/wiki" target="_blank" data-i18n="linkHelp"></a>
+         </div>
+         <div>
+           <a href="https://paypal.me/wbrantonaddons" target="_blank" data-i18n="linkDonate"></a>
+         </div>
+         <div>
+           <a href="https://github.com/WesleyBranton/Custom-Scrollbar#contribute" target="_blank" data-i18n="linkContribute"></a>
+         </div>
+         <div>
+           <a href="https://github.com/WesleyBranton/Custom-Scrollbar/wiki/Help-Localize" target="_blank" data-i18n="linkTranslate"></a>
+         </div>
+       </footer>
+     </form>
+   
+    <div id="dialog-overlay" class="hide">
+      <div id="dialog" class="confirmation">
+        <span id="dialog-text" class="confirmation-only popup-only"></span>
+
+        <div id="dialog-input-container" class="prompt-only ruleadd-only">
+          <label id="dialog-input-label" for="dialog-input"></label>
+          <input type="text" id="dialog-input">
+        </div>
+
+        <div id="dialog-checkbox-container" class="ruleadd-only">
+          <label id="dialog-checkbox-label" for="dialog-checkbox"></label>
+          <input id="dialog-checkbox" type="checkbox">
+        </div>
+
+        <div id="dialog-dropdown-container" class="dropdown-only ruleadd-only">
+          <label id="dialog-dropdown-label" for="dialog-dropdown"></label>
+          <select id="dialog-dropdown"></select>
+        </div>
+
+        <div id="dialog-error"></div>
+
+        <div id="confirmation-buttons" class="confirmation-only">
+          <button id="confirmation-yes" type="button" class="default" data-i18n="optionYes"></button>
+          <button id="confirmation-no" type="button" class="secondary" data-i18n="optionNo"></button>
+        </div>
+
+        <div id="dropdown-buttons" class="dropdown-only">
+          <button id="dropdown-yes" type="button" class="default" data-i18n="buttonSave"></button>
+          <button id="dropdown-no" type="button" class="secondary" data-i18n="optionCancel"></button>
+        </div>
+
+        <div id="prompt-buttons" class="prompt-only">
+          <button id="prompt-yes" type="button" class="default" data-i18n="buttonSave"></button>
+          <button id="prompt-no" type="button" class="secondary" data-i18n="optionCancel"></button>
+        </div>
+
+        <div id="ruleadd-buttons" class="ruleadd-only">
+          <button id="ruleadd-yes" type="button" class="default" data-i18n="buttonSave"></button>
+          <button id="ruleadd-no" type="button" class="secondary" data-i18n="optionCancel"></button>
+        </div>
+
+        <div id="popup-buttons" class="popup-only">
+          <button id="popup-yes" type="button" class="default" data-i18n="optionOk"></button>
+        </div>
+      </div>
+    </div>
+
+     <script src="../defaults.js"></script>
+     <script src="../generateCSS.js"></script>
+     <script src="../crossbrowser.js"></script>
+     <script src="scripts/dialogs.js"></script>
+     <script src="Rule.js"></script>
+     <script src="scripts/general.js"></script>
+     <script src="scripts/rules.js"></script>
+   </body>
+   
+   </html>
+   
