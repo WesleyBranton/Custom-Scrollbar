@@ -1,0 +1,210 @@
+{
+    "extensionName": {
+        "message": "Custom Scrollbars"
+    },
+    "extensionDescription": {
+        "message": "Nadaj swojej przeglądarce indywidualny charakter dzięki spersonalizowanym paskom przewijania!"
+    },
+    "optionsTitle": {
+        "message": "$EXTENSIONNAME$ Opcje",
+        "placeholders": {
+            "extensionname": {
+                "content": "$1"
+            }
+        }
+    },
+    "optionsSectionProfile": {
+        "message": "Profil ustawień"
+    },
+    "optionsSectionPreview": {
+        "message": "Podgląd na żywo"
+    },
+    "optionsSectionWidth": {
+        "message": "Szerokość paska przewijania"
+    },
+    "optionsSectionUseColors": {
+        "message": "Użyj kolorów niestandardowych"
+    },
+    "optionsSectionThumb": {
+        "message": "Kolor belki paska przewijania"
+    },
+    "optionsSectionTrack": {
+        "message": "Kolor paska przewijania"
+    },
+    "optionsSectionOverride": {
+        "message": "Zezwalaj stronom internetowym na zastępowanie"
+    },
+    "sizeDefault": {
+        "message": "Platforma Domyślna"
+    },
+    "sizeWide": {
+        "message": "Szeroki"
+    },
+    "sizeThin": {
+        "message": "Wąski"
+    },
+    "sizeHidden": {
+        "message": "Ukryty"
+    },
+    "sizeOther": {
+        "message": "Inne"
+    },
+    "optionYes": {
+        "message": "Tak"
+    },
+    "optionNo": {
+        "message": "Nie"
+    },
+    "optionOk": {
+        "message": "OK"
+    },
+    "optionCancel": {
+        "message": "Anuluj"
+    },
+    "colorFormatRGB": {
+        "message": "RGB"
+    },
+    "colorFormatHSV": {
+        "message": "HSV"
+    },
+    "colorFormatHEX": {
+        "message": "HEX"
+    },
+    "colorRed": {
+        "message": "Czerwony"
+    },
+    "colorGreen": {
+        "message": "Zielony"
+    },
+    "colorBlue": {
+        "message": "Niebieski"
+    },
+    "colorHue": {
+        "message": "Barwa"
+    },
+    "colorSaturation": {
+        "message": "Nasycenie"
+    },
+    "colorValue": {
+        "message": "Wartość"
+    },
+    "colorAlpha": {
+        "message": "Przeźroczystość"
+    },
+    "overrideColor": {
+        "message": "Tylko kolor"
+    },
+    "overrideWidth": {
+        "message": "Tylko szerokość"
+    },
+    "overrideAll": {
+        "message": "Kolor i szerokość"
+    },
+    "overrideNone": {
+        "message": "Brak"
+    },
+    "buttonSave": {
+        "message": "Zapisz"
+    },
+    "messageSaved": {
+        "message": "Wszystkie zmiany zostały zapisane! Musisz odświeżyć wszystkie zakładki, aby zobaczyć zmiany."
+    },
+    "messageUnsaved": {
+        "message": "Masz niezapisane zmiany!"
+    },
+    "promptPrivateBrowsing": {
+        "message": "Niestandardowe paski przewijania nie będą widoczne w oknach $PRIVATEBROWSING$, chyba że zezwolisz temu rozszerzeniu na działanie w trybie $PRIVATEBROWSING$.",
+        "placeholders": {
+            "privatebrowsing": {
+                "content": "$1"
+            }
+        }
+    },
+    "linkHelp": {
+        "message": "Pomoc"
+    },
+    "linkContribute": {
+        "message": "Przyczynić się do rozwoju"
+    },
+    "linkDonate": {
+        "message": "Przekaż darowiznę"
+    },
+    "linkTranslate": {
+        "message": "Przetłumacz"
+    },
+    "callToActionLearn": {
+        "message": "Dowiedz się więcej..."
+    },
+    "privateBrowsingFirefox": {
+        "message": "Tryb Prywatny"
+    },
+    "privateBrowsingChrome": {
+        "message": "Anonimowo"
+    },
+    "privateBrowsingEdge": {
+        "message": "Prywatnie"
+    },
+    "privateBrowsingOpera": {
+        "message": "Anonimowo"
+    },
+    "dialogChangesWillBeLost": {
+        "message": "Niezachowane zmiany zostaną utracone. Czy na pewno chcesz kontynuować?"
+    },
+    "dialogCannotBeUndone": {
+        "message": "Tej czynności nie można cofnąć. Czy na pewno chcesz kontynuować?"
+    },
+    "dialogCannotDeleteDefault": {
+        "message": "Nie można usunąć profilu domyślnego. Proszę ustawić nowy profil domyślny przed usunięciem."
+    },
+    "profileActionNew": {
+        "message": "Nowy"
+    },
+    "profileActionRename": {
+        "message": "Zmień nazwę"
+    },
+    "profileActionRemove": {
+        "message": "Usuń"
+    },
+    "profileActionChangeDefault": {
+        "message": "Ustaw jako domyślny"
+    },
+    "defaultProfileName": {
+        "message": "Nowy Profil"
+    },
+    "migratedProfileName": {
+        "message": "Ogólny"
+    },
+    "options": {
+        "message": "Opcje"
+    },
+    "backupAndRestore": {
+        "message": "Kopia zapasowa / Przywracanie"
+    },
+    "backupSection": {
+        "message": "Pobierz kopię zapasową"
+    },
+    "restoreSection": {
+        "message": "Przywróć z kopii zapasowej"
+    },
+    "buttonSelectFile": {
+        "message": "Wybierz plik..."
+    },
+    "buttonRestore": {
+        "message": "Przywróć"
+    },
+    "noFileSelected": {
+        "message": "Nie wybrano pliku"
+    },
+    "dialogInvalidBackup": {
+        "message": "Nieprawidłowy plik kopii zapasowej"
+    },
+    "dialogPermissionRequired": {
+        "message": "Brak niezbędnych uprawnień. Proszę spróbować ponownie."
+    },
+    "dialogDataOverwrite": {
+        "message": "Przywrócenie kopii zapasowej spowoduje zastąpienie istniejących ustawień. Nie można tego cofnąć. Czy na pewno chcesz kontynuować?"
+    },
+    "dialogBackupRestored": {
+        "message": "Kopia zapasowa została pomyślnie przywrócona!"
+    }
+}

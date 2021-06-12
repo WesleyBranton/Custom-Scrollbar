@@ -1,0 +1,210 @@
+{
+    "extensionName": {
+        "message": "Custom Scrollbars"
+    },
+    "extensionDescription": {
+        "message": "Dai al tuo browser un tocco personale con barre di scorrimento personalizzate!"
+    },
+    "optionsTitle": {
+        "message": "$EXTENSIONNAME$ Opzioni",
+        "placeholders": {
+            "extensionname": {
+                "content": "$1"
+            }
+        }
+    },
+    "optionsSectionProfile": {
+        "message": "Configurazione profilo"
+    },
+    "optionsSectionPreview": {
+        "message": "Anteprima"
+    },
+    "optionsSectionWidth": {
+        "message": "Ampiezza barra di scorrimento"
+    },
+    "optionsSectionUseColors": {
+        "message": "Utilizza colori personalizzati"
+    },
+    "optionsSectionThumb": {
+        "message": "Colore casella di scorrimento"
+    },
+    "optionsSectionTrack": {
+        "message": "Colore barra di scorrimento"
+    },
+    "optionsSectionOverride": {
+        "message": "Consenti ai siti web di sovrascrivere"
+    },
+    "sizeDefault": {
+        "message": "Piattaforma Predefinita"
+    },
+    "sizeWide": {
+        "message": "Ampio"
+    },
+    "sizeThin": {
+        "message": "Stretto"
+    },
+    "sizeHidden": {
+        "message": "Nascosto"
+    },
+    "sizeOther": {
+        "message": "Altro"
+    },
+    "optionYes": {
+        "message": "Sì"
+    },
+    "optionNo": {
+        "message": "No"
+    },
+    "optionOk": {
+        "message": "Ok"
+    },
+    "optionCancel": {
+        "message": "Annulla"
+    },
+    "colorFormatRGB": {
+        "message": "RGB"
+    },
+    "colorFormatHSV": {
+        "message": "HSV"
+    },
+    "colorFormatHEX": {
+        "message": "HEX"
+    },
+    "colorRed": {
+        "message": "Rosso"
+    },
+    "colorGreen": {
+        "message": "Verde"
+    },
+    "colorBlue": {
+        "message": "Blu"
+    },
+    "colorHue": {
+        "message": "Tonalità"
+    },
+    "colorSaturation": {
+        "message": "Saturazione"
+    },
+    "colorValue": {
+        "message": "Valore"
+    },
+    "colorAlpha": {
+        "message": "Alpha"
+    },
+    "overrideColor": {
+        "message": "Colore unico"
+    },
+    "overrideWidth": {
+        "message": "Ampiezza unica"
+    },
+    "overrideAll": {
+        "message": "Colore e ampiezza"
+    },
+    "overrideNone": {
+        "message": "Nessuno"
+    },
+    "buttonSave": {
+        "message": "Salva"
+    },
+    "messageSaved": {
+        "message": "Tutte le modifiche sono state salvate! Dovrai aggiornare tutte le schede per vedere le modifiche."
+    },
+    "messageUnsaved": {
+        "message": "Ci sono delle modifiche non salvate!"
+    },
+    "promptPrivateBrowsing": {
+        "message": "La barra di scorrimento personalizzata non sarà visibile nelle finestre $PRIVATEBROWSING$ se non permetti l'esecuzione dell'estensione nella modalità $PRIVATEBROWSING$.",
+        "placeholders": {
+            "privatebrowsing": {
+                "content": "$1"
+            }
+        }
+    },
+    "linkHelp": {
+        "message": "Supporto"
+    },
+    "linkContribute": {
+        "message": "Contribuisci"
+    },
+    "linkDonate": {
+        "message": "Dona"
+    },
+    "linkTranslate": {
+        "message": "Traduci"
+    },
+    "callToActionLearn": {
+        "message": "Per saperne di più..."
+    },
+    "privateBrowsingFirefox": {
+        "message": "Navigazione privata"
+    },
+    "privateBrowsingChrome": {
+        "message": "Incognito"
+    },
+    "privateBrowsingEdge": {
+        "message": "InPrivate"
+    },
+    "privateBrowsingOpera": {
+        "message": "Incognito"
+    },
+    "dialogChangesWillBeLost": {
+        "message": "Le modifiche non salvate andranno perse. Sei sicuro di voler continuare?"
+    },
+    "dialogCannotBeUndone": {
+        "message": "Questa azione non può essere annullata. Sei sicuro di voler continuare?"
+    },
+    "dialogCannotDeleteDefault": {
+        "message": "Impossibile eliminare il profilo predefinito. Impostare un nuovo profilo predefinito prima di eliminarlo."
+    },
+    "profileActionNew": {
+        "message": "Nuovo"
+    },
+    "profileActionRename": {
+        "message": "Rinomina"
+    },
+    "profileActionRemove": {
+        "message": "Rimuovi"
+    },
+    "profileActionChangeDefault": {
+        "message": "Imposta come predefinito"
+    },
+    "defaultProfileName": {
+        "message": "Nuovo profilo"
+    },
+    "migratedProfileName": {
+        "message": "Generale"
+    },
+    "options": {
+        "message": "Opzioni"
+    },
+    "backupAndRestore": {
+        "message": "Backup / ripristino"
+    },
+    "backupSection": {
+        "message": "Scarica il backup"
+    },
+    "restoreSection": {
+        "message": "Recupero del backup"
+    },
+    "buttonSelectFile": {
+        "message": "Seleziona file..."
+    },
+    "buttonRestore": {
+        "message": "Recupera"
+    },
+    "noFileSelected": {
+        "message": "Nessun file selezionato"
+    },
+    "dialogInvalidBackup": {
+        "message": "File backup non valido"
+    },
+    "dialogPermissionRequired": {
+        "message": "Permesso richiesto mancante. Riprova."
+    },
+    "dialogDataOverwrite": {
+        "message": "Il recupero di questo backup sostituirà le impostazioni esistenti. Questa operazione non può essere annullata. Sei sicuro di voler continuare?"
+    },
+    "dialogBackupRestored": {
+        "message": "Backup recuperato correttamente!"
+    }
+}
