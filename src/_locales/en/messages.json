@@ -132,6 +132,9 @@
     "linkTranslate": {
         "message": "Translate"
     },
+    "linkCredits": {
+        "message": "Credits"
+    },
     "callToActionLearn": {
         "message": "Learn more..."
     },
