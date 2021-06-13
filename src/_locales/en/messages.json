@@ -107,7 +107,7 @@
         "message": "Save"
     },
     "messageSaved": {
-        "message": "All changes have been saved! You will need to refresh all tabs to see the changes."
+        "message": "All changes have been saved!"
     },
     "messageUnsaved": {
         "message": "You have unsaved changes!"
