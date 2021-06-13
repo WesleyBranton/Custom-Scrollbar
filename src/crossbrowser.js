@@ -19,6 +19,21 @@ function detectBrowser() {
     }
 }
 
+/**
+ * Get the name of the browser the user is running
+ * @returns Browser Name
+ */
+function getBrowserName() {
+    const names = [
+        'Firefox',
+        'Chrome',
+        'Edge',
+        'Opera'
+    ];
+
+    return names[runningOn];
+}
+
 const browsers = {
     FIREFOX: 0,
     CHROME: 1,

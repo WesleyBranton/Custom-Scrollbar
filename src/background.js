@@ -93,14 +93,14 @@ function handleInstalled(details) {
             showOptions = true;
         }
         browser.tabs.create({
-            url: "https://addons.wesleybranton.com/addon/custom-scrollbars/welcome/1?locale=" + browser.i18n.getUILanguage(),
+            url: `https://addons.wesleybranton.com/addon/custom-scrollbars/welcome/1?locale=${browser.i18n.getUILanguage()}&browser=${getBrowserName().toLowerCase()}`,
             active: true
         });
     } else if (details.reason == 'update') {
         const previousVersion = parseFloat(details.previousVersion);
         if (previousVersion < 2.2) {
             browser.tabs.create({
-                url: "https://addons.wesleybranton.com/addon/custom-scrollbars/update/v2_2?locale=" + browser.i18n.getUILanguage()
+                url: `https://addons.wesleybranton.com/addon/custom-scrollbars/update/v2_2?locale=${browser.i18n.getUILanguage()}&browser=${getBrowserName().toLowerCase()}`
             });
         }
     }
