@@ -222,6 +222,15 @@ function getRule(domain) {
     return null;
 }
 
+/**
+ * Set up the uninstall page
+ */
+function setUninstallPage() {
+    const paramBrowser = (runningOn == browsers.FIREFOX) ? 'firefox' : 'chromium';
+    const paramVersion = browser.runtime.getManifest().version;
+    browser.runtime.setUninstallURL(`https://addons.wesleybranton.com/addon/custom-scrollbars/uninstall/?browser=${paramBrowser}&version=${paramVersion}`);
+}
+
 let defaultCSS = null;
 let contentScript = null;
 let defaultProfile = null;
@@ -234,3 +243,4 @@ browser.runtime.onConnect.addListener(registerPort);
 browser.storage.local.get(['schema', 'defaultProfile', 'rules'], firstLoad);
 browser.storage.onChanged.addListener(refreshStorageData);
 browser.runtime.onInstalled.addListener(handleInstalled);
+setUninstallPage();
