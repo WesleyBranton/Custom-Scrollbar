@@ -124,6 +124,10 @@ function loadStorage(data) {
     defaultProfile = data.defaultProfile;
     loadProfileList(data);
 
+    if (!data.rules) {
+        data.rules = {};
+    }
+
     browser.tabs.query({
         active: true,
         currentWindow: true
@@ -238,6 +242,10 @@ function toggleInheritance(domain) {
  */
 function updateRule() {
     browser.storage.local.get('rules', (data) => {
+        if (!data.rules) {
+            data.rules = {};
+        }
+
         if (document.manager.profile.value == 'default') {
             if (ruleInherit) {
                 data.rules[ruleForDomain] = 'default';
