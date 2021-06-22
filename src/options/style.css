@@ -98,7 +98,7 @@
 
 .panel-section-footer > div {
   text-align: center;
-  border-left: 1px solid var(--grey-90-a30);
+  border-left: 1px solid var(--border-color);
   padding: 0.5em;
 }
 
@@ -239,4 +239,8 @@ body::-webkit-scrollbar {
 
 #rule-list .profile-missing {
   color: red !important;
+}
+
+.help-row {
+  color: var(--text-color) !important;
 }

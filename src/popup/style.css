@@ -21,7 +21,7 @@ body {
 }
 
 .color-output {
-    border: 1px solid var(--grey-90-a20);
+    border: 1px solid var(--border-color);
     width: 5em;
     height: 1em;
     border-radius: 0.35rem;
