@@ -4,7 +4,6 @@
 
 body {
     width: 100%;
-    max-width: 500px;
     min-width: 400px;
 }
 
@@ -21,7 +20,11 @@ body {
     border: 1px solid var(--grey-90-a20);
     width: 5em;
     height: 1em;
-    border-radius: 5px;
+    border-radius: 0.35rem;
+}
+
+.help-row {
+    color: var(--text-color) !important;
 }
 
 .hide {
