@@ -4,7 +4,7 @@
 
 body {
     width: 100%;
-    min-width: 400px;
+    min-width: 500px;
 }
 
 #profile {
@@ -14,6 +14,10 @@ body {
 
 .button-bar {
     text-align: center;
+}
+
+.button-bar > button {
+    margin-bottom: 0.2rem;
 }
 
 .color-output {
