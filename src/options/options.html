@@ -61,7 +61,9 @@
         <div>
           <label class="clickable">
             <input type="radio" name="width" value="auto">
-            <span data-i18n="sizeWide"></span>
+            <span class="chromium-only" data-i18n="sizeWide"></span>
+            <span class="firefox-only" data-i18n="sizeDefault"></span>
+            <span class="firefox-only">(<a href="https://github.com/WesleyBranton/Custom-Scrollbar/wiki/What-is-the-platform-default-width" target="_blank" class="internal">?</a>)</span>
           </label><br>
           <label class="clickable">
             <input type="radio" name="width" value="thin">
