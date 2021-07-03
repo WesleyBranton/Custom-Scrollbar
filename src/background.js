@@ -98,7 +98,11 @@ function handleInstalled(details) {
         });
     } else if (details.reason == 'update') {
         const previousVersion = parseFloat(details.previousVersion);
-        if (previousVersion < 2.2) {
+        if (previousVersion < 3) {
+            browser.tabs.create({
+                url: `https://addons.wesleybranton.com/addon/custom-scrollbars/update/v3_0?locale=${browser.i18n.getUILanguage()}&browser=${getBrowserName().toLowerCase()}`
+            });
+        } else if (previousVersion < 2.2) {
             browser.tabs.create({
                 url: `https://addons.wesleybranton.com/addon/custom-scrollbars/update/v2_2?locale=${browser.i18n.getUILanguage()}&browser=${getBrowserName().toLowerCase()}`
             });
