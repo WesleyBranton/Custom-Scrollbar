@@ -35,8 +35,6 @@
   height: 100px;
   width: 50%;
   resize: none;
-  background: white;
-  color: black;
 }
 
 .image-helper {
@@ -72,12 +70,12 @@
   background: rgba(0, 0, 0, 0) conic-gradient(rgb(204, 204, 204) 25%, rgb(255, 255, 255) 0deg, rgb(255, 255, 255) 50%, rgb(204, 204, 204) 0deg, rgb(204, 204, 204) 75%, rgb(255, 255, 255) 0deg) repeat scroll 0% 0% / 8px 8px;
 }
 
-.colorPickerPreview > * {
-  flex: 1;
+.colorPickerPreviewContainer {
+  display: flex;
 }
 
-.colorPickerValues {
-  background: white;
+.colorPickerPreviewContainer > * {
+  flex: 1;
 }
 
 .colorPickerValues tr td:first-of-type {
@@ -124,7 +122,7 @@ body:not(.chromium) .chromium-only {
 
 #customWidthValue:disabled,
 #customWidthUnit:disabled {
-  background-color: white;
+  background-color: var(--body-background);
   border-color: var(--grey-30);
   opacity: 0.7;
   cursor: default;
@@ -152,7 +150,7 @@ body::-webkit-scrollbar {
 }
 
 #dialog {
-  background: white;
+  background: var(--container-background);
   margin: auto;
   width: max-content;
   padding: 1em 2em;
