@@ -93,18 +93,18 @@ function handleInstalled(details) {
             showOptions = true;
         }
         browser.tabs.create({
-            url: `https://addons.wesleybranton.com/addon/custom-scrollbars/welcome/1?locale=${browser.i18n.getUILanguage()}&browser=${getBrowserName().toLowerCase()}`,
+            url: `${webBase}/welcome/1?locale=${browser.i18n.getUILanguage()}&browser=${getBrowserName().toLowerCase()}`,
             active: true
         });
     } else if (details.reason == 'update') {
         const previousVersion = parseFloat(details.previousVersion);
         if (previousVersion < 3) {
             browser.tabs.create({
-                url: `https://addons.wesleybranton.com/addon/custom-scrollbars/update/v3_0?locale=${browser.i18n.getUILanguage()}&browser=${getBrowserName().toLowerCase()}`
+                url: `${webBase}/update/v3_0?locale=${browser.i18n.getUILanguage()}&browser=${getBrowserName().toLowerCase()}`
             });
         } else if (previousVersion < 2.2) {
             browser.tabs.create({
-                url: `https://addons.wesleybranton.com/addon/custom-scrollbars/update/v2_2?locale=${browser.i18n.getUILanguage()}&browser=${getBrowserName().toLowerCase()}`
+                url: `${webBase}/update/v2_2?locale=${browser.i18n.getUILanguage()}&browser=${getBrowserName().toLowerCase()}`
             });
         }
     }
@@ -232,7 +232,7 @@ function getRule(domain) {
 function setUninstallPage() {
     const paramBrowser = (runningOn == browsers.FIREFOX) ? 'firefox' : 'chromium';
     const paramVersion = browser.runtime.getManifest().version;
-    browser.runtime.setUninstallURL(`https://addons.wesleybranton.com/addon/custom-scrollbars/uninstall/?browser=${paramBrowser}&version=${paramVersion}`);
+    browser.runtime.setUninstallURL(`${webBase}/uninstall/?browser=${paramBrowser}&version=${paramVersion}`);
 }
 
 let defaultCSS = null;
@@ -242,6 +242,7 @@ let ports = {};
 let loaded = false;
 let showOptions = false;
 let rules = {};
+const webBase = 'https://addons.wesleybranton.com/addon/custom-scrollbars';
 
 browser.runtime.onConnect.addListener(registerPort);
 browser.storage.local.get(['schema', 'defaultProfile', 'rules'], firstLoad);
