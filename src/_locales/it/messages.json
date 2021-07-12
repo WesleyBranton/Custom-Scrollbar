@@ -107,7 +107,7 @@
         "message": "Salva"
     },
     "messageSaved": {
-        "message": "Tutte le modifiche sono state salvate! Dovrai aggiornare tutte le schede per vedere le modifiche."
+        "message": "Tutte le modifiche sono state salvate!"
     },
     "messageUnsaved": {
         "message": "Ci sono delle modifiche non salvate!"

@@ -35,7 +35,7 @@
         "message": "Websites toestaan om eigen schuifbalken te tonen"
     },
     "sizeDefault": {
-        "message": "Standaard Platform"
+        "message": "Systeemstandaard"
     },
     "sizeWide": {
         "message": "Breed"
@@ -107,7 +107,7 @@
         "message": "Opslaan"
     },
     "messageSaved": {
-        "message": "De wijzigingen zijn opgeslagen! Herlaad alle tabbladen om de wijzigingen toe te passen."
+        "message": "Alle wijzigingen werden opgeslaan!"
     },
     "messageUnsaved": {
         "message": "Je hebt niet-opgeslagen wijzigingen!"
@@ -131,6 +131,9 @@
     },
     "linkTranslate": {
         "message": "Vertalen"
+    },
+    "linkCredits": {
+        "message": "Met dank aan"
     },
     "callToActionLearn": {
         "message": "Meer informatie…"
@@ -206,5 +209,92 @@
     },
     "dialogBackupRestored": {
         "message": "De back-up is hersteld!"
+    },
+    "changeProfileFor": {
+        "message": "Profiel bewerken van $WEBSITE$",
+        "placeholders": {
+            "website": {
+                "content": "$1"
+            }
+        }
+    },
+    "profileUsingDefault": {
+        "message": "Standaardprofiel gebruiken ($PROFILENAME$)",
+        "placeholders": {
+            "profilename": {
+                "content": "$1"
+            }
+        }
+    },
+    "profileActionUseOnWebsite": {
+        "message": "Gebruiken op deze website"
+    },
+    "errorInvalidDomain": {
+        "message": "Ongeldige domeinnaam ingevoerd"
+    },
+    "errorRuleAlreadyExists": {
+        "message": "Er is al een regel voor dit domein"
+    },
+    "domain": {
+        "message": "Domein"
+    },
+    "subdomainsOnly": {
+        "message": "Alleen subdomeinen"
+    },
+    "noRulesSet": {
+        "message": "Geen websiteregels ingesteld"
+    },
+    "noRulesFound": {
+        "message": "Geen websiteregels gevonden in zoekopdracht"
+    },
+    "websiteRules": {
+        "message": "Websiteregels"
+    },
+    "add": {
+        "message": "Toevoegen"
+    },
+    "ruleActionChangeProfile": {
+        "message": "Profiel wijzigen…"
+    },
+    "profileMoveExistingRules": {
+        "message": "Er zijn websiteregels die gebruikmaken van dit profiel. Welk profiel moeten zij in plaats daarvan gebruiken?"
+    },
+    "ruleNoProfileSet": {
+        "message": "PROFIEL ONTBREEKT"
+    },
+    "ruleInherit": {
+        "message": "Overgenomen van $DOMAIN$",
+        "placeholders": {
+            "domain": {
+                "content": "$1"
+            }
+        }
+    },
+    "ruleSort": {
+        "message": "Sorteren op"
+    },
+    "sortDomain": {
+        "message": "Domein"
+    },
+    "sortProfile": {
+        "message": "Profiel"
+    },
+    "search": {
+        "message": "Zoeken"
+    },
+    "selectAll": {
+        "message": "Alles selecteren"
+    },
+    "deselectAll": {
+        "message": "Niets selecteren"
+    },
+    "deleteSelected": {
+        "message": "Selectie verwijderen"
+    },
+    "changeSelected": {
+        "message": "Profiel van selectie wijzigen"
+    },
+    "selectedRules": {
+        "message": "Alle geselecteerde regels"
     }
 }

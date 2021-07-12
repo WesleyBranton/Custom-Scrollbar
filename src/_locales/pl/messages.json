@@ -35,7 +35,7 @@
         "message": "Zezwalaj stronom internetowym na zastępowanie"
     },
     "sizeDefault": {
-        "message": "Platforma Domyślna"
+        "message": "Domyślny"
     },
     "sizeWide": {
         "message": "Szeroki"
@@ -107,7 +107,7 @@
         "message": "Zapisz"
     },
     "messageSaved": {
-        "message": "Wszystkie zmiany zostały zapisane! Musisz odświeżyć wszystkie zakładki, aby zobaczyć zmiany."
+        "message": "Wszystkie zmiany zostały zapisane!"
     },
     "messageUnsaved": {
         "message": "Masz niezapisane zmiany!"
@@ -124,13 +124,16 @@
         "message": "Pomoc"
     },
     "linkContribute": {
-        "message": "Przyczynić się do rozwoju"
+        "message": "Przyczyń się do rozwoju"
     },
     "linkDonate": {
         "message": "Przekaż darowiznę"
     },
     "linkTranslate": {
         "message": "Przetłumacz"
+    },
+    "linkCredits": {
+        "message": "Twórcy"
     },
     "callToActionLearn": {
         "message": "Dowiedz się więcej..."
@@ -206,5 +209,92 @@
     },
     "dialogBackupRestored": {
         "message": "Kopia zapasowa została pomyślnie przywrócona!"
+    },
+    "changeProfileFor": {
+        "message": "Edycja profilu dla: $WEBSITE$",
+        "placeholders": {
+            "website": {
+                "content": "$1"
+            }
+        }
+    },
+    "profileUsingDefault": {
+        "message": "Ustaw ($PROFILENAME$) jako domyślny",
+        "placeholders": {
+            "profilename": {
+                "content": "$1"
+            }
+        }
+    },
+    "profileActionUseOnWebsite": {
+        "message": "Użyj na tej stronie"
+    },
+    "errorInvalidDomain": {
+        "message": "Wprowadzono nieprawidłową nazwę domeny"
+    },
+    "errorRuleAlreadyExists": {
+        "message": "Reguła dla tej domeny już istnieje"
+    },
+    "domain": {
+        "message": "Domena"
+    },
+    "subdomainsOnly": {
+        "message": "Tylko Subdomeny"
+    },
+    "noRulesSet": {
+        "message": "Nie ustalono reguł dla witryny"
+    },
+    "noRulesFound": {
+        "message": "Nie znaleziono reguł dla witryny w trakcie wyszukiwania"
+    },
+    "websiteRules": {
+        "message": "Reguły witryny"
+    },
+    "add": {
+        "message": "Dodaj"
+    },
+    "ruleActionChangeProfile": {
+        "message": "Zmień profil..."
+    },
+    "profileMoveExistingRules": {
+        "message": "Istnieją reguły witryny, które używają tego profilu. Który profil powinien używać tych reguły?"
+    },
+    "ruleNoProfileSet": {
+        "message": "BRAK PROFILU"
+    },
+    "ruleInherit": {
+        "message": "Dziedziczone z $DOMAIN$",
+        "placeholders": {
+            "domain": {
+                "content": "$1"
+            }
+        }
+    },
+    "ruleSort": {
+        "message": "Sortuj wg"
+    },
+    "sortDomain": {
+        "message": "Domena"
+    },
+    "sortProfile": {
+        "message": "Profil"
+    },
+    "search": {
+        "message": "Szukaj"
+    },
+    "selectAll": {
+        "message": "Zaznacz wszystko"
+    },
+    "deselectAll": {
+        "message": "Odznacz wszystko"
+    },
+    "deleteSelected": {
+        "message": "Usuń zaznaczone"
+    },
+    "changeSelected": {
+        "message": "Zmień wybrany profil"
+    },
+    "selectedRules": {
+        "message": "Wszystkie wybrane reguły"
     }
 }

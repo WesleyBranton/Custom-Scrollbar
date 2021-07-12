@@ -1,0 +1,300 @@
+{
+    "extensionName": {
+        "message": "Custom Scrollbars"
+    },
+    "extensionDescription": {
+        "message": "¡Dale a tu navegador un toque personal con barras de desplazamiento personalizadas!"
+    },
+    "optionsTitle": {
+        "message": "$EXTENSIONNAME$ Opciones",
+        "placeholders": {
+            "extensionname": {
+                "content": "$1"
+            }
+        }
+    },
+    "optionsSectionProfile": {
+        "message": "Perfil de configuración"
+    },
+    "optionsSectionPreview": {
+        "message": "Vista previa"
+    },
+    "optionsSectionWidth": {
+        "message": "Ancho de la barra"
+    },
+    "optionsSectionUseColors": {
+        "message": "Usar colores personalizados"
+    },
+    "optionsSectionThumb": {
+        "message": "Color primario"
+    },
+    "optionsSectionTrack": {
+        "message": "Color secundario"
+    },
+    "optionsSectionOverride": {
+        "message": "Permitir a las paginas web sobrescribir el estilo"
+    },
+    "sizeDefault": {
+        "message": "Plataforma Predeterminada"
+    },
+    "sizeWide": {
+        "message": "Ancho"
+    },
+    "sizeThin": {
+        "message": "Fino"
+    },
+    "sizeHidden": {
+        "message": "Oculto"
+    },
+    "sizeOther": {
+        "message": "Otro"
+    },
+    "optionYes": {
+        "message": "Sí"
+    },
+    "optionNo": {
+        "message": "No"
+    },
+    "optionOk": {
+        "message": "Ok"
+    },
+    "optionCancel": {
+        "message": "Cancelar"
+    },
+    "colorFormatRGB": {
+        "message": "RGB"
+    },
+    "colorFormatHSV": {
+        "message": "HSV"
+    },
+    "colorFormatHEX": {
+        "message": "HEX"
+    },
+    "colorRed": {
+        "message": "Rojo"
+    },
+    "colorGreen": {
+        "message": "Verde"
+    },
+    "colorBlue": {
+        "message": "Azul"
+    },
+    "colorHue": {
+        "message": "Tono"
+    },
+    "colorSaturation": {
+        "message": "Saturación"
+    },
+    "colorValue": {
+        "message": "Valor"
+    },
+    "colorAlpha": {
+        "message": "Alpha"
+    },
+    "overrideColor": {
+        "message": "Solo el color"
+    },
+    "overrideWidth": {
+        "message": "Solo el ancho"
+    },
+    "overrideAll": {
+        "message": "Color y ancho"
+    },
+    "overrideNone": {
+        "message": "Ninguno"
+    },
+    "buttonSave": {
+        "message": "Guardar"
+    },
+    "messageSaved": {
+        "message": "¡Todos los cambios se han guardado!"
+    },
+    "messageUnsaved": {
+        "message": "¡Tienes cambios sin guardar!"
+    },
+    "promptPrivateBrowsing": {
+        "message": "Custom Scrollbars no sera visible en ventanas $PRIVATEBROWSING$ si no le das permiso para funcionar en modo $PRIVATEBROWSING$.",
+        "placeholders": {
+            "privatebrowsing": {
+                "content": "$1"
+            }
+        }
+    },
+    "linkHelp": {
+        "message": "Ayuda"
+    },
+    "linkContribute": {
+        "message": "Contribuir"
+    },
+    "linkDonate": {
+        "message": "Donar"
+    },
+    "linkTranslate": {
+        "message": "Traducir"
+    },
+    "linkCredits": {
+        "message": "Créditos"
+    },
+    "callToActionLearn": {
+        "message": "Aprender más..."
+    },
+    "privateBrowsingFirefox": {
+        "message": "Navegación Privada"
+    },
+    "privateBrowsingChrome": {
+        "message": "Incógnito"
+    },
+    "privateBrowsingEdge": {
+        "message": "EnPrivado"
+    },
+    "privateBrowsingOpera": {
+        "message": "Incógnito"
+    },
+    "dialogChangesWillBeLost": {
+        "message": "Tus cambios sin guardar se perderán. ¿Estas seguro de continuar?"
+    },
+    "dialogCannotBeUndone": {
+        "message": "Esta acción no se puede deshacer. ¿Estas seguro de continuar?"
+    },
+    "dialogCannotDeleteDefault": {
+        "message": "No se puede eliminar el perfil por defecto. Por favor establezca un nuevo perfil por defecto antes de eliminarlo."
+    },
+    "profileActionNew": {
+        "message": "Nuevo"
+    },
+    "profileActionRename": {
+        "message": "Renombrar"
+    },
+    "profileActionRemove": {
+        "message": "Borrar"
+    },
+    "profileActionChangeDefault": {
+        "message": "Establecer como predeterminado"
+    },
+    "defaultProfileName": {
+        "message": "Nuevo Perfil"
+    },
+    "migratedProfileName": {
+        "message": "General"
+    },
+    "options": {
+        "message": "Opciones"
+    },
+    "backupAndRestore": {
+        "message": "Respaldar / Restablecer"
+    },
+    "backupSection": {
+        "message": "Descargar respaldo"
+    },
+    "restoreSection": {
+        "message": "Restablecer desde un respaldo"
+    },
+    "buttonSelectFile": {
+        "message": "Seleccionar archivo..."
+    },
+    "buttonRestore": {
+        "message": "Restablecer"
+    },
+    "noFileSelected": {
+        "message": "Ningún archivo seleccionado"
+    },
+    "dialogInvalidBackup": {
+        "message": "Archivo de respaldo invalido"
+    },
+    "dialogPermissionRequired": {
+        "message": "Faltan permisos requeridos. Por favor intentalo de nuevo."
+    },
+    "dialogDataOverwrite": {
+        "message": "Restableciendo este respaldo reemplazara tu configuración actual. Esto no se puede deshacer. ¿Estas seguro de continuar?"
+    },
+    "dialogBackupRestored": {
+        "message": "¡El respaldo se ha restablecido correctamente!"
+    },
+    "changeProfileFor": {
+        "message": "Editando perfil para: $WEBSITE$",
+        "placeholders": {
+            "website": {
+                "content": "$1"
+            }
+        }
+    },
+    "profileUsingDefault": {
+        "message": "Usar por defecto ($PROFILENAME$)",
+        "placeholders": {
+            "profilename": {
+                "content": "$1"
+            }
+        }
+    },
+    "profileActionUseOnWebsite": {
+        "message": "Usar en esta pagina"
+    },
+    "errorInvalidDomain": {
+        "message": "Nombre de dominio invalido"
+    },
+    "errorRuleAlreadyExists": {
+        "message": "Ya existe un regla para este dominio"
+    },
+    "domain": {
+        "message": "Dominio"
+    },
+    "subdomainsOnly": {
+        "message": "Solo Subdominios"
+    },
+    "noRulesSet": {
+        "message": "No hay reglas para paginas web establecidas"
+    },
+    "noRulesFound": {
+        "message": "No hay reglas para paginas web encontradas en la búsqueda"
+    },
+    "websiteRules": {
+        "message": "Reglas para paginas web"
+    },
+    "add": {
+        "message": "Añadir"
+    },
+    "ruleActionChangeProfile": {
+        "message": "Cambiar de perfil..."
+    },
+    "profileMoveExistingRules": {
+        "message": "Hay reglas para paginas web que usan este perfil. ¿Que perfil deberían usar estas reglas?"
+    },
+    "ruleNoProfileSet": {
+        "message": "FALTA PERFIL"
+    },
+    "ruleInherit": {
+        "message": "Heredado de $DOMAIN$",
+        "placeholders": {
+            "domain": {
+                "content": "$1"
+            }
+        }
+    },
+    "ruleSort": {
+        "message": "Ordenar por"
+    },
+    "sortDomain": {
+        "message": "Dominio"
+    },
+    "sortProfile": {
+        "message": "Perfil"
+    },
+    "search": {
+        "message": "Búsqueda"
+    },
+    "selectAll": {
+        "message": "Seleccionar todo"
+    },
+    "deselectAll": {
+        "message": "Deseleccionar todo"
+    },
+    "deleteSelected": {
+        "message": "Eliminar selección"
+    },
+    "changeSelected": {
+        "message": "Cambiar el perfil de lo seleccionado"
+    },
+    "selectedRules": {
+        "message": "Todas las reglas seleccionadas"
+    }
+}
