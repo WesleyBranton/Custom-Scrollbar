@@ -242,3 +242,17 @@ body::-webkit-scrollbar {
 .help-row {
   color: var(--text-color) !important;
 }
+
+a:visited,
+a.visited {
+  color: var(--primary-color-1) !important;
+}
+
+.browser-style a:visited:active,
+.browser-style a:visited.active,
+.browser-style a:visited.pressed,
+.browser-style a.visited:active,
+.browser-style a.visited.active,
+.browser-style a.visited.pressed {
+  color: var(--primary-color-3) !important;
+}
