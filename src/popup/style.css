@@ -34,3 +34,36 @@ body {
 .hide {
     display: none !important;
 }
+
+button.icon > div > img {
+    width: 1em;
+    height: 1em;
+    flex: 1;
+    margin-right: 0.5em;
+  }
+  
+  button.icon > div {
+    display: inline-flex;
+    width: max-content;
+    align-items: center;
+  }
+  
+  button.secondary.icon > div > img,
+  img.icon-text-color {
+    filter: invert(2%) sepia(2%) saturate(2394%) hue-rotate(202deg) brightness(99%) contrast(95%);
+  }
+  
+  button.default.icon > div > img {
+    filter: invert(100%);
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    button.secondary.icon > div > img,
+    img.icon-text-color {
+      filter: invert(94%) sepia(3%) saturate(44%) hue-rotate(197deg) brightness(104%) contrast(98%);
+    }
+    
+    button.default.icon > div > img {
+      filter: invert(100%);
+    }
+  }

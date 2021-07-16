@@ -41,6 +41,7 @@
 
       <section class="panel-section has-help">
         <div>
+          <img src="../images/sort.svg" class="icon-text-color" alt="">
           <label for="ruleSorting" data-i18n="ruleSort"></label>:
           <select id="ruleSorting" name="ruleSorting">
             <option value="domain" data-i18n="sortDomain"></option>
@@ -48,6 +49,7 @@
           </select>
         </div>
         <div>
+          <img src="../images/search.svg" class="icon-text-color" alt="">
           <label for="ruleSearch" data-i18n="search"></label>:
           <input type="search" id="ruleSearch" name="ruleSearch">
         </div>
@@ -55,12 +57,32 @@
 
       <section class="panel-section help-row">
         <div>
-          <button id="rule-select-all" class="default micro" type="button" data-i18n="selectAll"></button>
-          <button id="rule-deselect-all" class="default micro" type="button" data-i18n="deselectAll"></button>
+          <button id="rule-select-all" class="default micro icon" type="button">
+            <div>
+              <img src="../images/plus.svg" alt="">
+              <span data-i18n="selectAll"></span>
+            </div>
+          </button>
+          <button id="rule-deselect-all" class="default micro icon" type="button">
+            <div>
+              <img src="../images/minus.svg" alt="">
+              <span data-i18n="deselectAll"></span>
+            </div>
+          </button>
         </div>
         <div>
-          <button id="rule-delete-all" class="secondary micro" type="button" data-i18n="deleteSelected"></button>
-          <button id="rule-change-all" class="default micro" type="button" data-i18n="changeSelected"></button>
+          <button id="rule-delete-all" class="secondary micro icon" type="button">
+            <div>
+              <img src="../images/delete.svg" alt="">
+              <span data-i18n="deleteSelected"></span>
+            </div>
+          </button>
+          <button id="rule-change-all" class="default micro icon" type="button">
+            <div>
+              <img src="../images/edit.svg" alt="">
+              <span data-i18n="changeSelected"></span>
+            </div>
+          </button>
         </div>
       </section>
 
@@ -71,7 +93,12 @@
       <section class="panel-section help-row">
           <div></div>
           <div>
-            <button id="rule-add" class="default micro" type="button" data-i18n="add"></button>
+            <button id="rule-add" class="default micro icon" type="button">
+              <div>
+                <img src="../images/new.svg" alt="">
+                <span data-i18n="add"></span>
+              </div>
+            </button>
           </div>
       </section>
       <template id="template-rule">
@@ -82,8 +109,18 @@
             </div>
             <div class="text-shortcut">
                 <label class="rule-profile"></label>
-                <button class="default micro" type="button" data-action="change" data-i18n="ruleActionChangeProfile"></button>
-                <button class="secondary micro" type="button" data-action="remove" data-i18n="profileActionRemove"></button>
+                <button class="default micro icon" type="button" data-action="change">
+                  <div>
+                    <img src="../images/edit.svg" alt="">
+                    <span data-i18n="ruleActionChangeProfile"></span>
+                  </div>
+                </button>
+                <button class="secondary micro icon" type="button" data-action="remove">
+                  <div>
+                    <img src="../images/delete.svg" alt="">
+                    <span data-i18n="profileActionRemove"></span>
+                  </div>
+                </button>
             </div>
           </div>
       </template>
@@ -91,7 +128,12 @@
       <div class="panel-section-separator"></div>
       <section class="panel-section has-help">
           <label id="changesSavedUI"></label>
-          <button id="saveChanges" class="default puffy" type="button" data-i18n="buttonSave"></button>
+          <button id="saveChanges" class="default puffy icon" type="button">
+            <div>
+              <img src="../images/save.svg" alt="">
+              <span data-i18n="buttonSave"></span>
+            </div>
+          </button>
       </section>
       <section class="panel-section help-row has-help">
           <div id="saveWarning" class="saved">
@@ -142,27 +184,72 @@
       <div id="dialog-error"></div>
 
       <div id="confirmation-buttons" class="confirmation-only">
-        <button id="confirmation-yes" type="button" class="default" data-i18n="optionYes"></button>
-        <button id="confirmation-no" type="button" class="secondary" data-i18n="optionNo"></button>
+        <button id="confirmation-yes" type="button" class="default icon">
+          <div>
+            <img src="../images/check.svg" alt="">
+            <span data-i18n="optionYes"></span>
+          </div>
+        </button>
+        <button id="confirmation-no" type="button" class="secondary icon">
+          <div>
+            <img src="../images/cancel.svg" alt="">
+            <span data-i18n="optionNo"></span>
+          </div>
+        </button>
       </div>
 
       <div id="dropdown-buttons" class="dropdown-only">
-        <button id="dropdown-yes" type="button" class="default" data-i18n="buttonSave"></button>
-        <button id="dropdown-no" type="button" class="secondary" data-i18n="optionCancel"></button>
+        <button id="dropdown-yes" type="button" class="default icon">
+          <div>
+            <img src="../images/save.svg" alt="">
+            <span data-i18n="buttonSave"></span>
+          </div>
+        </button>
+        <button id="dropdown-no" type="button" class="secondary icon">
+          <div>
+            <img src="../images/cancel.svg" alt="">
+            <span data-i18n="optionCancel"></span>
+          </div>
+        </button>
       </div>
 
       <div id="prompt-buttons" class="prompt-only">
-        <button id="prompt-yes" type="button" class="default" data-i18n="buttonSave"></button>
-        <button id="prompt-no" type="button" class="secondary" data-i18n="optionCancel"></button>
+        <button id="prompt-yes" type="button" class="default icon">
+          <div>
+            <img src="../images/save.svg" alt="">
+            <span data-i18n="buttonSave"></span>
+          </div>
+        </button>
+        <button id="prompt-no" type="button" class="secondary icon">
+          <div>
+            <img src="../images/cancel.svg" alt="">
+            <span data-i18n="optionCancel"></span>
+          </div>
+        </button>
       </div>
 
       <div id="ruleadd-buttons" class="ruleadd-only">
-        <button id="ruleadd-yes" type="button" class="default" data-i18n="buttonSave"></button>
-        <button id="ruleadd-no" type="button" class="secondary" data-i18n="optionCancel"></button>
+        <button id="ruleadd-yes" type="button" class="default icon">
+          <div>
+            <img src="../images/save.svg" alt="">
+            <span data-i18n="buttonSave"></span>
+          </div>
+        </button>
+        <button id="ruleadd-no" type="button" class="secondary icon">
+          <div>
+            <img src="../images/cancel.svg" alt="">
+            <span data-i18n="optionCancel"></span>
+          </div>
+        </button>
       </div>
 
       <div id="popup-buttons" class="popup-only">
-        <button id="popup-yes" type="button" class="default" data-i18n="optionOk"></button>
+        <button id="popup-yes" type="button" class="default icon">
+          <div>
+            <img src="../images/check.svg" alt="">
+            <span data-i18n="optionOk"></span>
+          </div>
+        </button>
       </div>
     </div>
   </div>

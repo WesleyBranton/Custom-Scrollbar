@@ -504,18 +504,42 @@ function userInputDomainValidation(input, checkbox, error) {
  * @param {Event} event
  */
 function handleListClick(event) {
-    switch (event.target.getAttribute('data-action')) {
-        case 'change':
-            triggerChangeProfile(event.target.parentNode.parentNode);
-            break;
-        case 'remove':
-            triggerRemoveProfile(event.target.parentNode.parentNode);
-            break;
-        default:
-            break;
+    const listButton = getListButton(event.target);
+
+    if (listButton != null) {
+        switch (listButton.getAttribute('data-action')) {
+            case 'change':
+                triggerChangeProfile(listButton.parentNode.parentNode);
+                break;
+            case 'remove':
+                triggerRemoveProfile(listButton.parentNode.parentNode);
+                break;
+            default:
+                break;
+        }
     }
 
     updateBulkToolbar();
+}
+
+/**
+ * Get click list button from click event
+ * (Prevents issues if the user clicks the text or icon of button)
+ * @param {HTMLElement} element
+ * @returns Button
+ */
+function getListButton(element) {
+    switch (element.tagName.toLowerCase()) {
+        case 'button':
+            return element;
+        case 'span':
+        case 'img':
+            return element.parentElement.parentElement;
+        case 'div':
+            return element.parentElement;
+        default:
+            return null;
+    }
 }
 
 /**

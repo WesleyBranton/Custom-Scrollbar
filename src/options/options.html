@@ -49,10 +49,30 @@
         <div>
           <select id="profileSelection" name="profile"></select>
           <br>
-          <button id="profile-add" type="button" class="secondary" data-i18n="profileActionNew"></button>
-          <button id="profile-rename" type="button" class="secondary" data-i18n="profileActionRename"></button>
-          <button id="profile-remove" type="button" class="secondary" data-i18n="profileActionRemove"></button>
-          <button id="profile-setDefault" type="button" class="secondary" data-i18n="profileActionChangeDefault"></button>
+          <button id="profile-add" type="button" class="secondary icon">
+            <div>
+              <img src="../images/new.svg" alt="">
+              <span data-i18n="profileActionNew"></span>
+            </div>
+          </button>
+          <button id="profile-rename" type="button" class="secondary icon">
+            <div>
+              <img src="../images/edit.svg" alt="">
+              <span data-i18n="profileActionRename"></span>
+            </div>
+          </button>
+          <button id="profile-remove" type="button" class="secondary icon">
+            <div>
+              <img src="../images/delete.svg" alt="">
+              <span data-i18n="profileActionRemove"></span>
+            </div>
+          </button>
+          <button id="profile-setDefault" type="button" class="secondary icon">
+            <div>
+              <img src="../images/check.svg" alt="">
+              <span data-i18n="profileActionChangeDefault"></span>
+            </div>
+          </button>
         </div>
       </section>
       <div class="panel-section-separator"></div>
@@ -250,7 +270,12 @@
       <div class="panel-section-separator"></div>
       <section class="panel-section has-help">
         <label id="changesSavedUI"></label>
-        <button id="saveChanges" class="default puffy" type="button" data-i18n="buttonSave"></button>
+        <button id="saveChanges" class="default puffy icon" type="button">
+          <div>
+            <img src="../images/save.svg" alt="">
+            <span data-i18n="buttonSave"></span>
+          </div>
+        </button>
       </section>
       <section class="panel-section help-row has-help">
         <div id="saveWarning" class="saved">
@@ -288,7 +313,7 @@
         <input type="text" id="dialog-input">
       </div>
 
-      <div id="dialog-checkbox-container" class="ruleadd-only" style="display: none !important;">
+      <div id="dialog-checkbox-container" class="ruleadd-only">
         <label id="dialog-checkbox-label" for="dialog-checkbox"></label>
         <input id="dialog-checkbox" type="checkbox">
       </div>
@@ -301,27 +326,72 @@
       <div id="dialog-error"></div>
 
       <div id="confirmation-buttons" class="confirmation-only">
-        <button id="confirmation-yes" type="button" class="default" data-i18n="optionYes"></button>
-        <button id="confirmation-no" type="button" class="secondary" data-i18n="optionNo"></button>
+        <button id="confirmation-yes" type="button" class="default icon">
+          <div>
+            <img src="../images/check.svg" alt="">
+            <span data-i18n="optionYes"></span>
+          </div>
+        </button>
+        <button id="confirmation-no" type="button" class="secondary icon">
+          <div>
+            <img src="../images/cancel.svg" alt="">
+            <span data-i18n="optionNo"></span>
+          </div>
+        </button>
       </div>
 
       <div id="dropdown-buttons" class="dropdown-only">
-        <button id="dropdown-yes" type="button" class="default" data-i18n="buttonSave"></button>
-        <button id="dropdown-no" type="button" class="secondary" data-i18n="optionCancel"></button>
+        <button id="dropdown-yes" type="button" class="default icon">
+          <div>
+            <img src="../images/save.svg" alt="">
+            <span data-i18n="buttonSave"></span>
+          </div>
+        </button>
+        <button id="dropdown-no" type="button" class="secondary icon">
+          <div>
+            <img src="../images/cancel.svg" alt="">
+            <span data-i18n="optionCancel"></span>
+          </div>
+        </button>
       </div>
 
       <div id="prompt-buttons" class="prompt-only">
-        <button id="prompt-yes" type="button" class="default" data-i18n="buttonSave"></button>
-        <button id="prompt-no" type="button" class="secondary" data-i18n="optionCancel"></button>
+        <button id="prompt-yes" type="button" class="default icon">
+          <div>
+            <img src="../images/save.svg" alt="">
+            <span data-i18n="buttonSave"></span>
+          </div>
+        </button>
+        <button id="prompt-no" type="button" class="secondary icon">
+          <div>
+            <img src="../images/cancel.svg" alt="">
+            <span data-i18n="optionCancel"></span>
+          </div>
+        </button>
       </div>
 
       <div id="ruleadd-buttons" class="ruleadd-only">
-        <button id="ruleadd-yes" type="button" class="default" data-i18n="buttonSave"></button>
-        <button id="ruleadd-no" type="button" class="secondary" data-i18n="optionCancel"></button>
+        <button id="ruleadd-yes" type="button" class="default icon">
+          <div>
+            <img src="../images/save.svg" alt="">
+            <span data-i18n="buttonSave"></span>
+          </div>
+        </button>
+        <button id="ruleadd-no" type="button" class="secondary icon">
+          <div>
+            <img src="../images/cancel.svg" alt="">
+            <span data-i18n="optionCancel"></span>
+          </div>
+        </button>
       </div>
 
       <div id="popup-buttons" class="popup-only">
-        <button id="popup-yes" type="button" class="default" data-i18n="optionOk"></button>
+        <button id="popup-yes" type="button" class="default icon">
+          <div>
+            <img src="../images/check.svg" alt="">
+            <span data-i18n="optionOk"></span>
+          </div>
+        </button>
       </div>
     </div>
   </div>

@@ -45,9 +45,24 @@
       <div class="panel-section-separator"></div>
       <section class="panel-section">
         <div class="button-bar">
-            <button id="button-use" type="button" class="default" data-i18n="profileActionUseOnWebsite"></button>
-            <button id="button-setDefault" type="button" class="secondary" data-i18n="profileActionChangeDefault" disabled></button>
-            <button id="button-options" type="button" class="secondary" data-i18n="options"></button>
+            <button id="button-use" type="button" class="default icon">
+              <div>
+                <img src="../images/globe.svg" alt="">
+                <span data-i18n="profileActionUseOnWebsite"></span>
+              </div>
+            </button>
+            <button id="button-setDefault" type="button" class="secondary icon" disabled>
+              <div>
+                <img src="../images/check.svg" alt="">
+                <span data-i18n="profileActionChangeDefault"></span>
+              </div>
+            </button>
+            <button id="button-options" type="button" class="secondary icon">
+              <div>
+                <img src="../images/preferences.svg" alt="">
+                <span data-i18n="options"></span>
+              </div>
+            </button>
         </div>
       </section>
     </form>
