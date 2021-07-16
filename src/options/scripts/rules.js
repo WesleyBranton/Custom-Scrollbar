@@ -570,6 +570,8 @@ parsei18nOfTemplate();
 firstLoad();
 getDefaultScrollbar();
 toggleChangesWarning(false);
+checkIfListIsEmpty();
+updateBulkToolbar();
 document.getElementById('rule-list').addEventListener('click', handleListClick);
 document.getElementById('rule-add').addEventListener('click', triggerAddNewRule);
 document.getElementById('saveChanges').addEventListener('click', saveRules);
