@@ -37,6 +37,7 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth) {
         css = 
 `::-webkit-scrollbar {
     width: ${widthPx} ${(parseInt(override / 10) == 0) ? '!important' : ''};
+    height: ${widthPx} ${(parseInt(override / 10) == 0) ? '!important' : ''};
 }
 
 ::-webkit-scrollbar-thumb {
