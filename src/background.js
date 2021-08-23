@@ -28,8 +28,9 @@ function updateCSSOnAllPorts() {
  * Reload the CSS for the default profile
  */
 function refreshStorageData() {
-    browser.storage.local.get(['defaultProfile', 'rules'], (data) => {
+    browser.storage.local.get(['defaultProfile', 'rules', 'framesInherit'], (data) => {
         rules = (data.rules) ? data.rules : {};
+        framesInherit = (typeof data.framesInherit == 'boolean') ? data.framesInherit : true;
 
         if (data.defaultProfile) {
             browser.storage.local.get(`profile_${data.defaultProfile}`, (profile) => {
@@ -142,7 +143,10 @@ function handleMessageFromPort(message, port) {
             return;
         }
 
-        const rule = getRule(message.domain);
+        const url = (framesInherit) ? port.sender.tab.url : port.sender.url;
+        const domain = new URL(url).hostname;
+
+        const rule = getRule(domain);
         if (rule && rule != 'default') {
             browser.storage.local.get(rule, (profile) => {
                 const css = loadCSSForProfile(profile, rule, false);
@@ -242,6 +246,7 @@ let ports = {};
 let loaded = false;
 let showOptions = false;
 let rules = {};
+let framesInherit = true;
 const webBase = 'https://addons.wesleybranton.com/addon/custom-scrollbars';
 
 browser.runtime.onConnect.addListener(registerPort);

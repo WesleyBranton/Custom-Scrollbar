@@ -91,6 +91,7 @@ function saveRules() {
     }
 
     browser.storage.local.set({
+        framesInherit: settings.framesInherit.value == 'yes',
         rules: temp
     });
 
@@ -547,6 +548,10 @@ function getListButton(element) {
  */
 function firstLoad() {
     browser.storage.local.get((data) => {
+        // Load advanced setting
+        data.framesInherit = (typeof data.framesInherit == 'boolean') ? data.framesInherit : true;
+        settings.framesInherit.value = (data.framesInherit) ? 'yes' : 'no';
+
         // Generate list of profiles
         for (let key of Object.keys(data)) {
             if (key.split('_')[0]  == 'profile') {
@@ -596,6 +601,7 @@ getDefaultScrollbar();
 toggleChangesWarning(false);
 checkIfListIsEmpty();
 updateBulkToolbar();
+document.getElementById('advanced-settings').addEventListener('change', () => { toggleChangesWarning(true) });
 document.getElementById('rule-list').addEventListener('click', handleListClick);
 document.getElementById('rule-add').addEventListener('click', triggerAddNewRule);
 document.getElementById('saveChanges').addEventListener('click', saveRules);
