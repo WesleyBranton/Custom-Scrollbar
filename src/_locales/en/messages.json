@@ -34,6 +34,9 @@
     "optionsSectionOverride": {
         "message": "Allow websites to override"
     },
+    "optionsFramesInherit": {
+        "message": "Allow embedded websites to inherit scrollbar appearance from the main content?"
+    },
     "sizeDefault": {
         "message": "Platform Default"
     },
@@ -296,5 +299,8 @@
     },
     "selectedRules": {
         "message": "All selected rules"
+    },
+    "advancedHeader": {
+        "message": "Advanced Settings"
     }
 }

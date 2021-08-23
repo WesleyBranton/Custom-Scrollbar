@@ -283,6 +283,42 @@ button.default.icon > div > img {
   filter: invert(100%);
 }
 
+.collapse-header {
+  cursor: pointer;
+}
+
+.collapse-header::after {
+  content: "";
+  background-image: var(--down-icon);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 1em;
+  width: 1em;
+  transition: transform 0.2s ease;
+}
+
+.collapse-header[data-collapsible-state="close"]::after {
+  transform: rotate(0deg);
+}
+
+.collapse-header[data-collapsible-state="open"]::after {
+  transform: rotate(180deg);
+}
+
+.collapse-panel {
+  overflow: hidden;
+  transition: max-height 0.2s ease;
+  max-height: 0;
+}
+
+@media (prefers-reduced-motion) {
+  *,
+  .collapse-header::after {
+    transition: none !important;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   button.secondary.icon > div > img,
   img.icon-text-color {

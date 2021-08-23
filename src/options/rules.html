@@ -126,6 +126,29 @@
       </template>
 
       <div class="panel-section-separator"></div>
+      <section id="advanced-settings-button" class="panel-section has-help help-row collapse-header" data-collapsible-state="close" data-collapse-id="advanced-settings">
+        <h4 data-i18n="advancedHeader"></h4>
+      </section>
+      <div id="advanced-settings" class="collapse-panel">
+        <section class="panel-section help-row">
+          <div>
+            <label for="framesInherit" data-i18n="optionsFramesInherit"></label><br>
+            <a href="https://github.com/WesleyBranton/Custom-Scrollbar/wiki/Embedded-websites" target="_blank" data-i18n="callToActionLearn"></a>
+          </div>
+          <div>
+            <label class="clickable">
+              <input type="radio" name="framesInherit" value="yes">
+              <span data-i18n="optionYes"></span>
+            </label><br>
+            <label class="clickable">
+              <input type="radio" name="framesInherit" value="no">
+              <span data-i18n="optionNo"></span>
+            </label>
+          </div>
+        </section>
+      </div>
+
+      <div class="panel-section-separator"></div>
       <section class="panel-section has-help">
           <label id="changesSavedUI"></label>
           <button id="saveChanges" class="default puffy icon" type="button">

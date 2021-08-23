@@ -107,6 +107,27 @@ function getDefaultScrollbar() {
     });
 }
 
+/**
+ * Toggle collapsible panel
+ * @param {Event} event
+ */
+function toggleCollapsiblePanel(event) {
+    let button = event.target;
+    while (!button.classList.contains('collapse-header')) {
+        button = button.parentNode;
+    }
+
+    const panel = document.getElementById(button.dataset.collapseId);
+
+    if (button.dataset.collapsibleState == 'open') {
+        panel.style.maxHeight = null;
+        button.dataset.collapsibleState = 'close';
+    } else {
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+        button.dataset.collapsibleState = 'open';
+    }
+}
+
 // Add browser tag to body class
 if (runningOn == browsers.FIREFOX) {
     document.body.classList.add('firefox');
@@ -118,6 +139,11 @@ let pendingChanges = false;
 browser.extension.isAllowedIncognitoAccess(togglePrivateNotice);
 document.getElementById('tab-bar').addEventListener('click', changeTab);
 parsei18n();
+
+const collapsiblePanelButtons = document.getElementsByClassName('collapse-header');
+for (const btn of collapsiblePanelButtons) {
+    btn.addEventListener('click', toggleCollapsiblePanel);
+}
 
 window.onbeforeunload = (event) => {
     // Prevent user from leaving if they have unsaved changes
