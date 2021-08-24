@@ -90,8 +90,11 @@ function saveRules() {
         temp[r.fullDomain()] = r.profile;
     }
 
+    const localFileProfile = parseInt(settings.localFileProfile.value);
+
     browser.storage.local.set({
         framesInherit: settings.framesInherit.value == 'yes',
+        localFileProfile: (!isNaN(localFileProfile)) ? localFileProfile : null,
         rules: temp
     });
 
@@ -376,20 +379,19 @@ function triggerChangeProfile(item) {
 /**
  * Populate drop-down menu of profiles
  */
-function populateProfileDropdown() {
-    const selector = document.getElementById('dialog-dropdown');
-    selector.textContent = '';
+function populateProfileDropdown(dropdown, showDefault) {
+    dropdown.textContent = '';
 
     for (let key of Object.keys(listOfProfiles)) {
         if (key.split('_')[0]  == 'profile') {
             const option = document.createElement('option');
             option.textContent = listOfProfiles[key];
             option.value = key.split('_')[1];
-            selector.appendChild(option);
+            dropdown.appendChild(option);
         }
     }
 
-    let options = selector.options;
+    let options = dropdown.options;
     let sortedOptions = [];
 
     for (let o of options) {
@@ -402,6 +404,23 @@ function populateProfileDropdown() {
 
     for (let i = 0; i <= options.length; i++) {
         options[i] = sortedOptions[i];
+    }
+
+    if (showDefault) {
+        const option = document.createElement('option');
+        let profilename = '';
+
+        for (let o of dropdown.options) {
+            if (o.value == defaultProfile) {
+                profilename = o.textContent;
+                break;
+            }
+        }
+
+        option.textContent = browser.i18n.getMessage('profileUsingDefault', profilename);
+        option.value = 'default';
+        dropdown.insertBefore(option, dropdown.firstChild);
+        dropdown.value = 'default';
     }
 }
 
@@ -548,10 +567,6 @@ function getListButton(element) {
  */
 function firstLoad() {
     browser.storage.local.get((data) => {
-        // Load advanced setting
-        data.framesInherit = (typeof data.framesInherit == 'boolean') ? data.framesInherit : true;
-        settings.framesInherit.value = (data.framesInherit) ? 'yes' : 'no';
-
         // Generate list of profiles
         for (let key of Object.keys(data)) {
             if (key.split('_')[0]  == 'profile') {
@@ -559,8 +574,18 @@ function firstLoad() {
             }
         }
 
-        populateProfileDropdown();
         defaultProfile = data.defaultProfile;
+
+        populateProfileDropdown(document.getElementById('dialog-dropdown'), false);
+        populateProfileDropdown(document.getElementById('profileSelectionForLocalFileProfile'), true);
+
+        // Load advanced setting
+        data.framesInherit = (typeof data.framesInherit == 'boolean') ? data.framesInherit : true;
+        settings.framesInherit.value = (data.framesInherit) ? 'yes' : 'no';
+
+        if (typeof data.localFileProfile == 'number' && data.localFileProfile != null) {
+            settings.localFileProfile.value = data.localFileProfile;
+        }
 
         // Load rules
         if (data.rules) {

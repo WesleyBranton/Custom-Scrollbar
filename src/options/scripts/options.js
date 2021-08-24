@@ -387,53 +387,67 @@ function removeProfile() {
         reloadProfileSelection(null, null);
         changeProfile(defaultProfile);
 
-        browser.storage.local.get('rules', (storage) => {
+        browser.storage.local.get(['rules', 'localFileProfile'], (storage) => {
+            let hasRules = false;
+            let hasLocalFileRule = false;
             if (storage.rules) {
-                let hasRules = false;
                 for (let key of Object.keys(storage.rules)) {
                     if (storage.rules[key] == removedProfile) {
                         hasRules = true;
                         break;
                     }
                 }
+            }
 
-                if (hasRules) {
-                    reloadProfileSelection(document.getElementById('dialog-dropdown'), () => {
-                        const dropdown = document.getElementById('dialog-dropdown');
-                        const option = document.createElement('option');
-                        let profilename = '';
+            hasLocalFileRule = (storage.localFileProfile && `profile_${storage.localFileProfile}` == removedProfile);
 
-                        for (let o of dropdown.options) {
-                            if (o.value == defaultProfile) {
-                                profilename = o.textContent;
-                                break;
-                            }
+            if (hasRules || hasLocalFileRule) {
+                reloadProfileSelection(document.getElementById('dialog-dropdown'), () => {
+                    const dropdown = document.getElementById('dialog-dropdown');
+                    const option = document.createElement('option');
+                    let profilename = '';
+
+                    for (let o of dropdown.options) {
+                        if (o.value == defaultProfile) {
+                            profilename = o.textContent;
+                            break;
                         }
+                    }
 
-                        option.textContent = browser.i18n.getMessage('profileUsingDefault', profilename);
-                        option.value = 'default';
-                        dropdown.insertBefore(option, dropdown.firstChild);
-                        dropdown.value = 'default';
+                    option.textContent = browser.i18n.getMessage('profileUsingDefault', profilename);
+                    option.value = 'default';
+                    dropdown.insertBefore(option, dropdown.firstChild);
+                    dropdown.value = 'default';
 
-                        const dropdownNoButton = document.getElementById('dropdown-no');
-                        dropdownNoButton.classList.add('hide');
-                        
-                        showDowndown(
-                            browser.i18n.getMessage('profileMoveExistingRules'),
-                            null,
-                            (to) => {
-                                dropdownNoButton.classList.remove('hide');
-                                bulkUpdateRules(removedProfile, to, storage.rules);
-                            },
-                            null
-                        );
-                    });
-                }
+                    const dropdownNoButton = document.getElementById('dropdown-no');
+                    dropdownNoButton.classList.add('hide');
+                    
+                    showDowndown(
+                        browser.i18n.getMessage('profileMoveExistingRules'),
+                        null,
+                        (to) => {
+                            if (hasLocalFileRule) {
+                                const newProfile = parseInt(to);
+                                localFileProfile = (!isNaN(newProfile)) ? newProfile : null;
+                            }
+
+                            dropdownNoButton.classList.remove('hide');
+                            bulkUpdateRules(removedProfile, to, storage.rules);
+                        },
+                        null
+                    );
+                });
             }
         });
     })
 }
 
+/**
+ * Update multiple rules at the same time
+ * @param {string} from
+ * @param {string} to
+ * @param {Object} rules
+ */
 function bulkUpdateRules(from, to, rules) {
     for (let key of Object.keys(rules)) {
         if (rules[key] == from) {
@@ -445,7 +459,10 @@ function bulkUpdateRules(from, to, rules) {
         }
     }
 
-    browser.storage.local.set({ rules: rules });
+    browser.storage.local.set({
+        rules: rules,
+        localFileProfile: localFileProfile
+    });
 }
 
 /**
