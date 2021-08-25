@@ -133,7 +133,7 @@ function loadStorage(data) {
         currentWindow: true
     }, (tabs) => {
         if (tabs[0].url) {
-            setUpTabForURL(tabs[0].url, data.rules);
+            setUpTabForURL(new URL(tabs[0].url), data.rules);
         } else {
             setToGeneralMode();
             loadProfile(defaultProfile);
@@ -144,31 +144,24 @@ function loadStorage(data) {
 }
 
 /**
- * Preload data for the specific domain
- * @param {String} domain
+ * Preload data for the specific URL
+ * @param {URL} url
  * @param {Object} rules
  */
-function setUpTabForURL(domain, rules) {
-    if (domain.indexOf('://') > 0) {
-        domain = domain.substring(domain.indexOf('://') + 3);
-    }
-
-    if (domain.indexOf(':') > 0) {
-        domain = domain.substring(0, domain.indexOf(':'));
-    }
-
-    if (domain.indexOf('/') > 0) {
-        domain = domain.substring(0, domain.indexOf('/'));
+function setUpTabForURL(url, rules) {
+    if (url.protocol == 'file:') {
+        setUpTabForLocalFile();
+        return;
     }
 
     const domainRegex = /^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9](?:\.[a-zA-Z]{2,})+$/;
-    if (!domainRegex.test(domain)) {
+    if (!domainRegex.test(url.hostname)) {
         setToGeneralMode();
         return;
     }
 
-    ruleForDomain = domain;
-    const domainParts = domain.split('.');
+    ruleForDomain = url.hostname;
+    const domainParts = url.hostname.split('.');
     let startAt = 0;
     let usingRule = null;
     let selectedDomain = '';
@@ -217,6 +210,27 @@ function setUpTabForURL(domain, rules) {
 }
 
 /**
+ * Preload data for local file setting
+ */
+function setUpTabForLocalFile() {
+    browser.storage.local.get('localFileProfile', (data) => {
+        if (typeof data.localFileProfile == 'number' && data.localFileProfile != null) {
+            currentRule = data.localFileProfile;
+            loadProfile(data.localFileProfile);
+        } else {
+            currentRule = 'default';
+            loadProfile(defaultProfile);
+        }
+
+        isLocalFile = true;
+        document.body.classList.add('local-file');
+        document.manager.profile.value = currentRule;
+        toggleInheritance('none');
+        refreshSetAsDefaultButton();
+    });
+}
+
+/**
  * Toggle rule inheritance information
  * @param {String} domain
  */
@@ -241,25 +255,33 @@ function toggleInheritance(domain) {
  * Save rule to Storage API
  */
 function updateRule() {
-    browser.storage.local.get('rules', (data) => {
-        if (!data.rules) {
-            data.rules = {};
-        }
-
-        if (document.manager.profile.value == 'default') {
-            if (ruleInherit) {
-                data.rules[ruleForDomain] = 'default';
-            } else {
-                delete data.rules[ruleForDomain];
-            }
-        } else {
-            data.rules[ruleForDomain] = `profile_${document.manager.profile.value}`;
-        }
-
+    if (isLocalFile) {
+        const profile = parseInt(document.manager.profile.value);
+        const data = { localFileProfile: (!isNaN(profile)) ? profile : null };
         browser.storage.local.set(data, () => {
             browser.storage.local.get(loadStorage);
         });
-    })
+    } else {
+        browser.storage.local.get('rules', (data) => {
+            if (!data.rules) {
+                data.rules = {};
+            }
+
+            if (document.manager.profile.value == 'default') {
+                if (ruleInherit) {
+                    data.rules[ruleForDomain] = 'default';
+                } else {
+                    delete data.rules[ruleForDomain];
+                }
+            } else {
+                data.rules[ruleForDomain] = `profile_${document.manager.profile.value}`;
+            }
+
+            browser.storage.local.set(data, () => {
+                browser.storage.local.get(loadStorage);
+            });
+        });
+    }
 }
 
 /**
@@ -312,6 +334,7 @@ function loadProfileList(data) {
 }
 
 let defaultProfile, ruleForDomain, currentRule, ruleInherit;
+let isLocalFile = false;
 parsei18n();
 browser.storage.local.get(loadStorage);
 document.manager.profile.addEventListener('change', changeSelectedProfile);

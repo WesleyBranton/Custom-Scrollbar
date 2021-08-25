@@ -37,6 +37,9 @@
     "optionsFramesInherit": {
         "message": "Allow embedded websites to inherit scrollbar appearance from the main content?"
     },
+    "optionsLocalFileProfile": {
+        "message": "Use this profile when viewing local files"
+    },
     "sizeDefault": {
         "message": "Platform Default"
     },
@@ -231,6 +234,9 @@
     },
     "profileActionUseOnWebsite": {
         "message": "Use on this website"
+    },
+    "profileActionUseOnLocalFiles": {
+        "message": "Use for local files"
     },
     "errorInvalidDomain": {
         "message": "Invalid domain name entered"

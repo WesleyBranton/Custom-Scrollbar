@@ -56,6 +56,11 @@ button.icon > div > img {
   button.default.icon > div > img {
     filter: invert(100%);
   }
+
+  body.local-file .url-only,
+  body:not(.local-file) .local-file-only {
+    display: none !important;
+  }
   
   @media (prefers-color-scheme: dark) {
     button.secondary.icon > div > img,
