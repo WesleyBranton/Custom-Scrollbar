@@ -21,6 +21,7 @@ function restore(setting) {
     document.settings.override.value = setting.allowOverride;
     document.settings.customWidthValue.value = setting.customWidthValue;
     document.settings.customWidthUnit.value = setting.customWidthUnit;
+    document.settings.buttons.value = setting.buttons;
 
     previousToggleValue = document.settings.customColors.value;
     toggleColors();
@@ -45,7 +46,8 @@ function save() {
         width: document.settings.width.value,
         colorTrack: colTrack,
         colorThumb: colThumb,
-        allowOverride: parseInt(document.settings.override.value)
+        allowOverride: parseInt(document.settings.override.value),
+        buttons: document.settings.buttons.value
     };
 
     if (profileData.width == 'other') {
@@ -90,8 +92,9 @@ function getNewCSS() {
     const colThumb = (document.settings.customColors.value == 'yes') ? colorPickerThumb.color.hex8String : null;
     const colTrack = (document.settings.customColors.value == 'yes') ? colorPickerTrack.color.hex8String : null;
     const customWidth = (document.settings.width.value == 'other') ? document.settings.customWidthValue.value + document.settings.customWidthUnit.value : null;
+    const buttons = document.settings.buttons.value;
 
-    return generateCSS(width, colTrack, colThumb, 0, customWidth);
+    return generateCSS(width, colTrack, colThumb, 0, customWidth, buttons);
 }
 
 /**

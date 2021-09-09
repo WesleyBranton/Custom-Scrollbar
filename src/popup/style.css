@@ -61,6 +61,11 @@ button.icon > div > img {
   body:not(.local-file) .local-file-only {
     display: none !important;
   }
+
+  body:not(.firefox) .firefox-only,
+  body:not(.chromium) .chromium-only {
+    display: none !important;
+  }
   
   @media (prefers-color-scheme: dark) {
     button.secondary.icon > div > img,

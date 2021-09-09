@@ -18,6 +18,7 @@
  */
 function displayDetails(profile) {
     const widthOutput = document.getElementById('detail-width');
+    const buttonsOutput = document.getElementById('detail-buttons');
     const colorThumbOutput = document.getElementById('detail-color-thumb');
     const colorTrackOutput = document.getElementById('detail-color-track');
     const overrideOutput = document.getElementById('detail-override');
@@ -36,6 +37,19 @@ function displayDetails(profile) {
             break;
         default:
             widthOutput.textContent = profile.customWidthValue + profile.customWidthUnit;
+            break;
+    }
+
+    // Fill buttons information
+    switch (profile.buttons) {
+        case 'light':
+            buttonsOutput.textContent = browser.i18n.getMessage('optionLight');
+            break;
+        case 'dark':
+            buttonsOutput.textContent = browser.i18n.getMessage('optionDark');
+            break;
+        default:
+            buttonsOutput.textContent = browser.i18n.getMessage('overrideNone');
             break;
     }
 
@@ -331,6 +345,13 @@ function loadProfileList(data) {
     document.manager.profile.insertBefore(option, document.manager.profile.firstChild);
 
     document.manager.profile.value = 'default';
+}
+
+// Add browser tag to body class
+if (runningOn == browsers.FIREFOX) {
+    document.body.classList.add('firefox');
+} else {
+    document.body.classList.add('chromium');
 }
 
 let defaultProfile, ruleForDomain, currentRule, ruleInherit;

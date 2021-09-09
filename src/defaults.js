@@ -9,7 +9,8 @@ const defaults = {
     colorTrack: '#F0F0F0FF',
     allowOverride: 0,
     customWidthValue: 17,
-    customWidthUnit: 'px'
+    customWidthUnit: 'px',
+    buttons: 'none'
 }
 
 /**

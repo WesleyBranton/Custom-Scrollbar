@@ -101,7 +101,8 @@ function getDefaultScrollbar() {
                 profile.colorTrack,
                 profile.colorThumb,
                 profile.allowOverride,
-                profile.customWidthValue + profile.customWidthUnit
+                profile.customWidthValue + profile.customWidthUnit,
+                profile.buttons
             );
         });
     });
