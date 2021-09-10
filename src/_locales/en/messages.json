@@ -22,6 +22,9 @@
     "optionsSectionWidth": {
         "message": "Scrollbar width"
     },
+    "optionsSectionButtons": {
+        "message": "Scrollbar buttons"
+    },
     "optionsSectionUseColors": {
         "message": "Use custom colors"
     },
@@ -54,6 +57,12 @@
     },
     "sizeOther": {
         "message": "Other"
+    },
+    "optionLight": {
+        "message": "Light"
+    },
+    "optionDark": {
+        "message": "Dark"
     },
     "optionYes": {
         "message": "Yes"

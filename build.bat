@@ -20,6 +20,7 @@ echo. > "build\EDIT THE FILES IN THE SRC DIRECTORY AND RUN BUILD AGAIN"
 :: Build Firefox
 echo | set /p output="Creating Firefox files... "
 xcopy "src" "build\firefox" /s/e/y/q > nul
+rmdir "build\firefox\images\components" /q/s
 del "build\firefox\manifest-chromium.json" /f/q
 rename "build\firefox\manifest-firefox.json" "manifest.json"
 echo Done!

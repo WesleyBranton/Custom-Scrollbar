@@ -48,6 +48,11 @@
         "run_at": "document_start"
     }],
 
+    "web_accessible_resources": [
+        "images/components/light/*.svg",
+        "images/components/dark/*.svg"
+    ],
+
     "permissions": [
         "storage",
         "<all_urls>"

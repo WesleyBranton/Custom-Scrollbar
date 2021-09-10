@@ -5,7 +5,7 @@
  * @param {string} colorThumb
  * @return {string} css
  */
-function generateCSS(width, colorTrack, colorThumb, override, customWidth) {
+function generateCSS(width, colorTrack, colorThumb, override, customWidth, buttons) {
     let css, color, widthPx;
 
     if (width == 'thin') {
@@ -34,6 +34,15 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth) {
 }`;
     } else {
         const brightFactor = (isLightColor(colorThumb)) ? 1 : -1;
+        let up, down, left, right;
+
+        if (buttons != 'none') {
+            up = browser.runtime.getURL(`images/components/${buttons}/up.svg`);
+            down = browser.runtime.getURL(`images/components/${buttons}/down.svg`);
+            left = browser.runtime.getURL(`images/components/${buttons}/left.svg`);
+            right = browser.runtime.getURL(`images/components/${buttons}/right.svg`);
+        }
+
         css = 
 `::-webkit-scrollbar {
     width: ${widthPx} ${(parseInt(override / 10) == 0) ? '!important' : ''};
@@ -55,6 +64,41 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth) {
 ::-webkit-scrollbar-track {
     background: ${colorTrack} ${(override % 10 == 0) ? '!important' : ''};
 }`;
+
+if (buttons != 'none') {
+    css += `
+    ::-webkit-scrollbar-button {
+        background-color: ${colorThumb} ${(override % 10 == 0) ? '!important' : ''};
+        width: ${widthPx} ${(parseInt(override / 10) == 0) ? '!important' : ''};
+        height: ${widthPx} ${(parseInt(override / 10) == 0) ? '!important' : ''};
+        background-size: contain;
+        background-position: center;
+    }
+
+    ::-webkit-scrollbar-button:hover {
+        background-color: ${changeBrightness(colorThumb, 10 * brightFactor)} ${(override % 10 == 0) ? '!important' : ''};
+    }
+
+    ::-webkit-scrollbar-button:active {
+        background-color: ${changeBrightness(colorThumb, 30 * brightFactor)} ${(override % 10 == 0) ? '!important' : ''};
+    }
+
+    ::-webkit-scrollbar-button:single-button:vertical:decrement {
+        background-image: url(${up});
+    }
+
+    ::-webkit-scrollbar-button:single-button:vertical:increment {
+        background-image: url(${down});
+    }
+
+    ::-webkit-scrollbar-button:single-button:horizontal:decrement {
+        background-image: url(${left});
+    }
+
+    ::-webkit-scrollbar-button:single-button:horizontal:increment {
+        background-image: url(${right});
+    }`;
+        }
     }
 
     return css;

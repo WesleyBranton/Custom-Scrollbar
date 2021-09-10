@@ -20,6 +20,7 @@ touch "build/EDIT THE FILES IN THE SRC DIRECTORY AND RUN BUILD AGAIN"
 # Build Firefox
 echo -n "Creating Firefox files... "
 cp -r "src/." "build/firefox/"
+rm -rf "build/firefox/images/components"
 rm -f "build/firefox/manifest-chromium.json"
 mv "build/firefox/manifest-firefox.json" "build/firefox/manifest.json"
 echo "Done!"
