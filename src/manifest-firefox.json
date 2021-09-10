@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "__MSG_extensionName__",
-    "version": "3.1",
+    "version": "3.1.1",
     "description": "__MSG_extensionDescription__",
     "author": "Wesley Branton",
     "default_locale": "en",
@@ -62,7 +62,8 @@
 
     "permissions": [
         "storage",
-        "<all_urls>"
+        "<all_urls>",
+        "tabs"
     ],
     
     "optional_permissions": [
