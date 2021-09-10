@@ -102,7 +102,8 @@ function getDefaultScrollbar() {
                 profile.colorThumb,
                 profile.allowOverride,
                 profile.customWidthValue + profile.customWidthUnit,
-                profile.buttons
+                profile.buttons,
+                profile.thumbRadius
             );
         });
     });

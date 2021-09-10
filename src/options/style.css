@@ -128,6 +128,19 @@ body:not(.chromium) .chromium-only {
   cursor: default;
 }
 
+#thumbRadius-container {
+  display: flex;
+  align-items: center;
+}
+
+#thumbRadius-container > span {
+  margin-right: 0.5em;
+}
+
+#thumbRadius-container > input {
+  min-width: 15vw;
+}
+
 /* Fail safe for settings page */
 body::-webkit-scrollbar {
   max-width: 50vw !important;

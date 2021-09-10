@@ -25,6 +25,9 @@
     "optionsSectionButtons": {
         "message": "Scrollbar buttons"
     },
+    "optionsSectionThumbRadius": {
+        "message": "Scrollbar radius"
+    },
     "optionsSectionUseColors": {
         "message": "Use custom colors"
     },

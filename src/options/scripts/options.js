@@ -22,6 +22,7 @@ function restore(setting) {
     document.settings.customWidthValue.value = setting.customWidthValue;
     document.settings.customWidthUnit.value = setting.customWidthUnit;
     document.settings.buttons.value = setting.buttons;
+    document.settings.thumbRadius.value = setting.thumbRadius;
 
     previousToggleValue = document.settings.customColors.value;
     toggleColors();
@@ -32,6 +33,7 @@ function restore(setting) {
     toggleChangesWarning(false);
     toggleCustomWidth();
     parseCustomWidthValue(false);
+    updateRadiusLabel();
 }
 
 /**
@@ -47,7 +49,8 @@ function save() {
         colorTrack: colTrack,
         colorThumb: colThumb,
         allowOverride: parseInt(document.settings.override.value),
-        buttons: document.settings.buttons.value
+        buttons: document.settings.buttons.value,
+        thumbRadius: parseInt(document.settings.thumbRadius.value)
     };
 
     if (profileData.width == 'other') {
@@ -83,6 +86,12 @@ function toggleColors() {
     previousToggleValue = document.settings.customColors.value;
 }
 
+function updateRadiusLabel() {
+    const label = document.getElementById('thumbRadius-label');
+    label.textContent = document.settings.thumbRadius.value + '%';
+    updatePreview();
+}
+
 /**
  * Generates new CSS code for scrollbars
  * @returns {string} css
@@ -93,8 +102,9 @@ function getNewCSS() {
     const colTrack = (document.settings.customColors.value == 'yes') ? colorPickerTrack.color.hex8String : null;
     const customWidth = (document.settings.width.value == 'other') ? document.settings.customWidthValue.value + document.settings.customWidthUnit.value : null;
     const buttons = document.settings.buttons.value;
+    const thumbRadius = parseInt(document.settings.thumbRadius.value);
 
-    return generateCSS(width, colTrack, colThumb, 0, customWidth, buttons);
+    return generateCSS(width, colTrack, colThumb, 0, customWidth, buttons, thumbRadius);
 }
 
 /**
@@ -570,6 +580,7 @@ browser.storage.local.get(['defaultProfile'], loadStorage);
 document.getElementById('saveChanges').addEventListener('click', save);
 document.settings.addEventListener('change', toggleColors);
 document.settings.addEventListener('change', toggleCustomWidth);
+document.settings.thumbRadius.addEventListener('input', updateRadiusLabel);
 document.getElementById('customWidthValue').addEventListener('focus', () => { parseCustomWidthValue(true) });
 document.getElementById('customWidthValue').addEventListener('blur', () => { parseCustomWidthValue(false) });
 document.getElementById('profile-setDefault').addEventListener('click', updateDefaultProfile);

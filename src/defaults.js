@@ -10,7 +10,8 @@ const defaults = {
     allowOverride: 0,
     customWidthValue: 17,
     customWidthUnit: 'px',
-    buttons: 'none'
+    buttons: 'none',
+    thumbRadius: 0
 }
 
 /**

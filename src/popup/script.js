@@ -19,6 +19,7 @@
 function displayDetails(profile) {
     const widthOutput = document.getElementById('detail-width');
     const buttonsOutput = document.getElementById('detail-buttons');
+    const thumbRadiusOutput = document.getElementById('detail-thumbRadius');
     const colorThumbOutput = document.getElementById('detail-color-thumb');
     const colorTrackOutput = document.getElementById('detail-color-track');
     const overrideOutput = document.getElementById('detail-override');
@@ -52,6 +53,9 @@ function displayDetails(profile) {
             buttonsOutput.textContent = browser.i18n.getMessage('overrideNone');
             break;
     }
+
+    // Thumb radius information
+    thumbRadiusOutput.textContent = profile.thumbRadius + '%';
 
     // Fill color information
     if (profile.colorThumb && profile.colorTrack) {
