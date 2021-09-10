@@ -5,7 +5,7 @@
  * @param {string} colorThumb
  * @return {string} css
  */
-function generateCSS(width, colorTrack, colorThumb, override, customWidth, buttons) {
+function generateCSS(width, colorTrack, colorThumb, override, customWidth, buttons, thumbRadius) {
     let css, color, widthPx;
 
     if (width == 'thin') {
@@ -15,7 +15,7 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth, butto
     } else if (width == 'other') {
         widthPx = customWidth;
     } else {
-        widthPx = defaults.width;
+        widthPx = defaults.customWidthValue + defaults.customWidthUnit;
     }
 
     if (colorTrack && colorThumb) {
@@ -51,6 +51,7 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth, butto
 
 ::-webkit-scrollbar-thumb {
     background: ${colorThumb} ${(override % 10 == 0) ? '!important' : ''};
+    border-radius: calc(${widthPx} / 2 * (${thumbRadius} / 100));
 }
 
 ::-webkit-scrollbar-thumb:hover {

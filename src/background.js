@@ -188,7 +188,7 @@ function loadCSSForProfile(profile, key, isDefault) {
 
     profile = loadWithDefaults(profile);
     const customWidth = profile.customWidthValue + profile.customWidthUnit;
-    return generateCSS(profile.width, profile.colorTrack, profile.colorThumb, profile.allowOverride, customWidth, profile.buttons);
+    return generateCSS(profile.width, profile.colorTrack, profile.colorThumb, profile.allowOverride, customWidth, profile.buttons, profile.thumbRadius);
 }
 
 /**
