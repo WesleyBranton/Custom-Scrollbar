@@ -62,7 +62,8 @@
 
     "permissions": [
         "storage",
-        "<all_urls>"
+        "<all_urls>",
+        "tabs"
     ],
     
     "optional_permissions": [
