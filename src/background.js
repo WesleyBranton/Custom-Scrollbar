@@ -100,7 +100,11 @@ function handleInstalled(details) {
         });
     } else if (details.reason == 'update') {
         const previousVersion = parseFloat(details.previousVersion);
-        if (previousVersion < 3) {
+        if (previousVersion < 3.1 && runningOn == browser.FIREFOX) {
+            browser.tabs.create({
+                url: `${webBase}/update/v3_1_2?locale=${browser.i18n.getUILanguage()}&browser=${getBrowserName().toLowerCase()}`
+            });
+        } else if (previousVersion < 3) {
             browser.tabs.create({
                 url: `${webBase}/update/v3_0?locale=${browser.i18n.getUILanguage()}&browser=${getBrowserName().toLowerCase()}`
             });
@@ -144,8 +148,12 @@ function handleMessageFromPort(message, port) {
             return;
         }
 
-        const url = new URL((framesInherit) ? port.sender.tab.url : port.sender.url);
         let rule;
+        let url = new URL(port.sender.url);
+
+        if (framesInherit && typeof port.sender.tab.url != 'undefined') {
+            url = new URL(port.sender.tab.url);
+        }
 
         if (url.protocol == 'file:') {
             rule = localFileProfile;
@@ -245,6 +253,35 @@ function setUninstallPage() {
     browser.runtime.setUninstallURL(`${webBase}/uninstall/?browser=${paramBrowser}&version=${paramVersion}`);
 }
 
+/**
+ * Handle incoming messages from the browser runtime
+ * @param {Object} message
+ * @param {Object} sender
+ * @param {Function} sendResponse
+ */
+function handleMessage(message, sender, sendResponse) {
+    switch (message.action) {
+        case 'isTabRunningContentScript':
+            sendResponse(isTabRunningContentScript(message.tabId));
+            break;
+    }
+}
+
+/**
+ * Checks all connected ports to see if the scrollbars are being customized on that tab
+ * @param {number} tabId
+ * @returns Is content script running on tab
+ */
+function isTabRunningContentScript(tabId) {
+    for (const port of Object.values(ports)) {
+        if (port.sender.tab.id == tabId) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 let defaultCSS = null;
 let contentScript = null;
 let defaultProfile = null;
@@ -260,4 +297,5 @@ browser.runtime.onConnect.addListener(registerPort);
 browser.storage.local.get(['schema', 'defaultProfile', 'rules'], firstLoad);
 browser.storage.onChanged.addListener(refreshStorageData);
 browser.runtime.onInstalled.addListener(handleInstalled);
+browser.runtime.onMessage.addListener(handleMessage);
 setUninstallPage();

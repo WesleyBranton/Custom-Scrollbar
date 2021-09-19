@@ -62,11 +62,11 @@
 
     "permissions": [
         "storage",
-        "<all_urls>",
-        "tabs"
+        "<all_urls>"
     ],
     
     "optional_permissions": [
-        "downloads"
+        "downloads",
+        "tabs"
     ]
 }

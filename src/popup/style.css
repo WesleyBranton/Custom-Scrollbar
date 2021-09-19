@@ -35,6 +35,12 @@ body {
     display: none !important;
 }
 
+#grantPermissionError > .message-bar {
+  max-width: 500px;
+  width: 80%;
+  margin: auto;
+}
+
 button.icon > div > img {
     width: 1em;
     height: 1em;

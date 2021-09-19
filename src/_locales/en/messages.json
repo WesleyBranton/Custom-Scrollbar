@@ -320,5 +320,14 @@
     },
     "advancedHeader": {
         "message": "Advanced Settings"
+    },
+    "featureRequiredAdditionalPermission": {
+        "message": "This feature requires an additional permission before it can be used."
+    },
+    "popupRequiresAdditionalPermission": {
+        "message": "To see information about the settings being used on the website, the add-on needs permission to access your browser tabs."
+    },
+    "grantPermissionButton": {
+        "message": "Grant Permission"
     }
 }

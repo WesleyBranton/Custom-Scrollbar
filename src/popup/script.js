@@ -150,11 +150,24 @@ function loadStorage(data) {
         active: true,
         currentWindow: true
     }, (tabs) => {
-        if (tabs[0].url) {
-            setUpTabForURL(new URL(tabs[0].url), data.rules);
-        } else {
+        if (typeof tabs[0].url == 'undefined') {
             setToGeneralMode();
             loadProfile(defaultProfile);
+
+            // Check if a content script is running on this tab
+            // If there is, then show the tab permission warning
+            if (runningOn == browsers.FIREFOX) {
+                browser.runtime.sendMessage({
+                    action: "isTabRunningContentScript",
+                    tabId: tabs[0].id
+                }, (response) => {
+                    if (response) {
+                        document.getElementById('grantPermissionError').classList.remove('hide');
+                    }
+                });
+            }
+        } else {
+            setUpTabForURL(new URL(tabs[0].url), data.rules);
         }
 
         refreshSetAsDefaultButton();
@@ -366,3 +379,14 @@ document.manager.profile.addEventListener('change', changeSelectedProfile);
 document.getElementById('button-setDefault').addEventListener('click', setAsDefault);
 document.getElementById('button-options').addEventListener('click', () => { browser.runtime.openOptionsPage(); });
 document.getElementById('button-use').addEventListener('click', updateRule);
+document.getElementById('grantPermission').addEventListener('click', askForTabsPermission);
+
+function askForTabsPermission() {
+    browser.permissions.request({ permissions: ['tabs'] }, (granted) => {
+        if (granted) {
+            console.warn('User has not granted "tabs" permission.');
+            document.getElementById('grantPermissionError').classList.add('hide');
+            browser.storage.local.get(loadStorage);
+        }
+    });
+}
