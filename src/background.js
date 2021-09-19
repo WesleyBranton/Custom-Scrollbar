@@ -100,7 +100,7 @@ function handleInstalled(details) {
         });
     } else if (details.reason == 'update') {
         const previousVersion = parseFloat(details.previousVersion);
-        if (previousVersion < 3.1 && runningOn == browser.FIREFOX) {
+        if (details.previousVersion == "3.1.1" && runningOn == browsers.FIREFOX) {
             browser.tabs.create({
                 url: `${webBase}/update/v3_1_2?locale=${browser.i18n.getUILanguage()}&browser=${getBrowserName().toLowerCase()}`
             });
