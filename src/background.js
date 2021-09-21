@@ -99,20 +99,24 @@ function handleInstalled(details) {
             active: true
         });
     } else if (details.reason == 'update') {
-        const previousVersion = parseFloat(details.previousVersion);
-        if (details.previousVersion == "3.1.1" && runningOn == browsers.FIREFOX) {
-            browser.tabs.create({
-                url: `${webBase}/update/v3_1_2?locale=${browser.i18n.getUILanguage()}&browser=${getBrowserName().toLowerCase()}`
-            });
-        } else if (previousVersion < 3) {
-            browser.tabs.create({
-                url: `${webBase}/update/v3_0?locale=${browser.i18n.getUILanguage()}&browser=${getBrowserName().toLowerCase()}`
-            });
-        } else if (previousVersion < 2.2) {
-            browser.tabs.create({
-                url: `${webBase}/update/v2_2?locale=${browser.i18n.getUILanguage()}&browser=${getBrowserName().toLowerCase()}`
-            });
-        }
+        browser.storage.local.get("unsubscribedFromAllUpdateNotifications", (data) => {
+            if (!data.unsubscribedFromAllUpdateNotifications) {
+                const previousVersion = parseFloat(details.previousVersion);
+                if (details.previousVersion == "3.1.1" && runningOn == browsers.FIREFOX) {
+                    browser.tabs.create({
+                        url: `${webBase}/update/v3_1_2?locale=${browser.i18n.getUILanguage()}&browser=${getBrowserName().toLowerCase()}`
+                    });
+                } else if (previousVersion < 3) {
+                    browser.tabs.create({
+                        url: `${webBase}/update/v3_0?locale=${browser.i18n.getUILanguage()}&browser=${getBrowserName().toLowerCase()}`
+                    });
+                } else if (previousVersion < 2.2) {
+                    browser.tabs.create({
+                        url: `${webBase}/update/v2_2?locale=${browser.i18n.getUILanguage()}&browser=${getBrowserName().toLowerCase()}`
+                    });
+                }
+            }
+        });
     }
 }
 
