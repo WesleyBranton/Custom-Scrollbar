@@ -26,6 +26,10 @@
     const customWidthHelp = document.getElementById('customWidthHelp');
     if (customWidthHelp) customWidthHelp.title = browser.i18n.getMessage('linkHelp');
 
+    const whatsNewButton = document.getElementById('whatsnew');
+    whatsNewButton.title = browser.i18n.getMessage('whatsnew');
+    whatsNewButton.getElementsByTagName('img')[0].alt = browser.i18n.getMessage('whatsnew');
+
     updatePrivateBrowsingName();
 }
 
@@ -130,6 +134,39 @@ function toggleCollapsiblePanel(event) {
     }
 }
 
+/**
+ * Show the what's new button (if required)
+ */
+function showWhatsNew() {
+    const whatsNewButton = document.getElementById('whatsnew');
+    const whatsNewLinkBubble = document.getElementById('whatsnewlinkbubble');
+    
+    browser.storage.local.get("showWhatsNew", (data) => {
+        if (data.showWhatsNew) {
+            whatsNewButton.classList.remove('hide');
+            whatsNewLinkBubble.classList.remove('hide');
+        } else {
+            whatsNewButton.classList.add('hide');
+            whatsNewLinkBubble.classList.add('hide');
+        }
+    });
+}
+
+/**
+ * Open the what's new information
+ */
+function openWhatsNew() {
+    browser.storage.local.remove("showWhatsNew", () => {
+        const version = browser.runtime.getManifest().version.replaceAll(".", "_");
+
+        browser.tabs.create({
+            url: `${webBase}/whatsnew/v${version}?locale=${browser.i18n.getUILanguage()}&browser=${getBrowserName().toLowerCase()}`
+        });
+
+        showWhatsNew();
+    });
+}
+
 // Add browser tag to body class
 if (runningOn == browsers.FIREFOX) {
     document.body.classList.add('firefox');
@@ -140,7 +177,10 @@ if (runningOn == browsers.FIREFOX) {
 let pendingChanges = false;
 browser.extension.isAllowedIncognitoAccess(togglePrivateNotice);
 document.getElementById('tab-bar').addEventListener('click', changeTab);
+document.getElementById('whatsnew').addEventListener('click', openWhatsNew);
+document.getElementById('whatsnewlink').addEventListener('click', openWhatsNew);
 parsei18n();
+showWhatsNew();
 
 const collapsiblePanelButtons = document.getElementsByClassName('collapse-header');
 for (const btn of collapsiblePanelButtons) {

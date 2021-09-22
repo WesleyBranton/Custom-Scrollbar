@@ -10,6 +10,10 @@
     for (let e of elements) {
         e.textContent = browser.i18n.getMessage(e.dataset.i18n);
     }
+
+    const whatsNewButton = document.getElementById('whatsnew');
+    whatsNewButton.title = browser.i18n.getMessage('whatsnew');
+    whatsNewButton.getElementsByTagName('img')[0].alt = browser.i18n.getMessage('whatsnew');
 }
 
 /**
@@ -364,6 +368,37 @@ function loadProfileList(data) {
     document.manager.profile.value = 'default';
 }
 
+/**
+ * Show the what's new button (if required)
+ */
+ function showWhatsNew() {
+    const whatsNewButton = document.getElementById('whatsnew');
+    
+    browser.storage.local.get("showWhatsNew", (data) => {
+        if (data.showWhatsNew) {
+            whatsNewButton.classList.remove('hide');
+        } else {
+            whatsNewButton.classList.add('hide');
+        }
+    });
+}
+
+/**
+ * Open the what's new information
+ */
+function openWhatsNew() {
+    browser.storage.local.remove("showWhatsNew", () => {
+        const version = browser.runtime.getManifest().version.replaceAll(".", "_");
+
+        browser.tabs.create({
+            url: `${webBase}/whatsnew/v${version}?locale=${browser.i18n.getUILanguage()}&browser=${getBrowserName().toLowerCase()}`
+        });
+
+        showWhatsNew();
+    });
+}
+
+
 // Add browser tag to body class
 if (runningOn == browsers.FIREFOX) {
     document.body.classList.add('firefox');
@@ -374,6 +409,8 @@ if (runningOn == browsers.FIREFOX) {
 let defaultProfile, ruleForDomain, currentRule, ruleInherit;
 let isLocalFile = false;
 parsei18n();
+showWhatsNew();
+document.getElementById('whatsnew').addEventListener('click', openWhatsNew);
 browser.storage.local.get(loadStorage);
 document.manager.profile.addEventListener('change', changeSelectedProfile);
 document.getElementById('button-setDefault').addEventListener('click', setAsDefault);

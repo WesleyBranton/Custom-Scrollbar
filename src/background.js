@@ -117,6 +117,10 @@ function handleInstalled(details) {
                 }
             }
         });
+
+        if (details.previousVersion != browser.runtime.getManifest().version) {
+            browser.storage.local.set({showWhatsNew: true});
+        }
     }
 }
 
@@ -295,7 +299,6 @@ let showOptions = false;
 let rules = {};
 let framesInherit = true;
 let localFileProfile = null;
-const webBase = 'https://addons.wesleybranton.com/addon/custom-scrollbars';
 
 browser.runtime.onConnect.addListener(registerPort);
 browser.storage.local.get(['schema', 'defaultProfile', 'rules'], firstLoad);
