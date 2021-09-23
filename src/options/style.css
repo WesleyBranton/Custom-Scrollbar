@@ -333,6 +333,29 @@ button.default.icon > div > img {
   max-height: 0;
 }
 
+#whatsnew,
+#whatsnewlink {
+  position: relative;
+  cursor: pointer;
+}
+
+#whatsnew > div,
+#whatsnewlink > div {
+  background: var(--primary-color-1);
+  position: absolute;
+  top: -0.2em;
+  right: -0.2em;
+  border-radius: 1em;
+  width: 0.35em;
+  height: 0.35em;
+}
+
+#whatsnew > img,
+#whatsnewlink > img {
+  width: 1em;
+  height: 1em;
+}
+
 @media (prefers-reduced-motion) {
   *,
   .collapse-header::after {

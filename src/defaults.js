@@ -13,6 +13,7 @@ const defaults = {
     buttons: 'none',
     thumbRadius: 0
 }
+const webBase = 'https://addons.wesleybranton.com/addon/custom-scrollbars';
 
 /**
  * Validates the data loaded from storage

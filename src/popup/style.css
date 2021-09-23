@@ -41,6 +41,26 @@ body {
   margin: auto;
 }
 
+#whatsnew {
+  position: relative;
+  cursor: pointer;
+}
+
+#whatsnew > div {
+  background: var(--primary-color-1);
+  position: absolute;
+  top: -0.2em;
+  right: -0.2em;
+  border-radius: 1em;
+  width: 0.35em;
+  height: 0.35em;
+}
+
+#whatsnew > img {
+  width: 1em;
+  height: 1em;
+}
+
 button.icon > div > img {
     width: 1em;
     height: 1em;

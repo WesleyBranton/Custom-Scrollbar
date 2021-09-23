@@ -329,5 +329,8 @@
     },
     "grantPermissionButton": {
         "message": "Grant Permission"
+    },
+    "whatsNew": {
+        "message": "What's New"
     }
 }
