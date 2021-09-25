@@ -38,7 +38,7 @@ function addListItem(rule) {
     } else if (listOfProfiles[rule.profile]) {
         profileNameOutput.textContent = listOfProfiles[rule.profile];
     } else {
-        console.warn(`Settings profile "${rule.profile}" cannot be loaded from storage for rule "${rule.fullDomain()}".`);
+        console.warn(`Scrollbar "${rule.profile}" cannot be loaded from storage for rule "${rule.fullDomain()}".`);
         profileNameOutput.textContent = `** ${browser.i18n.getMessage('ruleNoProfileSet')} **`;
         profileNameOutput.classList.add('profile-missing');
     }
@@ -311,7 +311,7 @@ function bulkChangeProfile() {
                     profileNameOutput.textContent = listOfProfiles[r.profile];
                     profileNameOutput.classList.remove('profile-missing');
                 } else {
-                    console.warn(`Settings profile "${r.profile}" cannot be loaded from storage for rule "${r.fullDomain()}".`);
+                    console.warn(`Scrollbar "${r.profile}" cannot be loaded from storage for rule "${r.fullDomain()}".`);
                     profileNameOutput.textContent = `** ${browser.i18n.getMessage('ruleNoProfileSet')} **`;
                     profileNameOutput.classList.add('profile-missing');
                 }
@@ -368,7 +368,7 @@ function triggerChangeProfile(item) {
                 profileNameOutput.textContent = listOfProfiles[r.profile];
                 profileNameOutput.classList.remove('profile-missing');
             } else {
-                console.warn(`Settings profile "${r.profile}" cannot be loaded from storage for rule "${r.fullDomain()}".`);
+                console.warn(`Scrollbar "${r.profile}" cannot be loaded from storage for rule "${r.fullDomain()}".`);
                 profileNameOutput.textContent = `** ${browser.i18n.getMessage('ruleNoProfileSet')} **`;
                 profileNameOutput.classList.add('profile-missing');
             }

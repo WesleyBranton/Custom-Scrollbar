@@ -195,9 +195,9 @@ function loadCSSForProfile(profile, key, isDefault) {
 
     if (typeof profile == 'undefined') {
         if (isDefault) {
-            console.error('Default settings profile "%s" cannot be loaded from storage.', key);
+            console.error('Default scrollbar "%s" cannot be loaded from storage.', key);
         } else {
-            console.error('Settings profile "%s" cannot be loaded from storage. Using default profile.', key);
+            console.error('Scrollbar "%s" cannot be loaded from storage. Using default scrollbar.', key);
         }
         return null;
     }

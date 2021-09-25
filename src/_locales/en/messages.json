@@ -14,7 +14,7 @@
         }
     },
     "optionsSectionProfile": {
-        "message": "Settings profile"
+        "message": "Scrollbar"
     },
     "optionsSectionPreview": {
         "message": "Live preview"
@@ -44,7 +44,7 @@
         "message": "Allow embedded websites to inherit scrollbar appearance from the main content?"
     },
     "optionsLocalFileProfile": {
-        "message": "Use this profile when viewing local files"
+        "message": "Use this scrollbar when viewing local files"
     },
     "sizeDefault": {
         "message": "Platform Default"
@@ -175,7 +175,7 @@
         "message": "This action cannot be undone. Are you sure you want to continue?"
     },
     "dialogCannotDeleteDefault": {
-        "message": "Cannot delete default profile. Please set a new default profile before deleting."
+        "message": "Cannot delete default scrollbar. Please set a new default scrollbar before deleting."
     },
     "profileActionNew": {
         "message": "New"
@@ -190,7 +190,7 @@
         "message": "Set As Default"
     },
     "defaultProfileName": {
-        "message": "New Profile"
+        "message": "New Scrollbar"
     },
     "migratedProfileName": {
         "message": "General"
@@ -229,7 +229,7 @@
         "message": "Backup has been successfully restored!"
     },
     "changeProfileFor": {
-        "message": "Editing profile for: $WEBSITE$",
+        "message": "Editing scrollbar for: $WEBSITE$",
         "placeholders": {
             "website": {
                 "content": "$1"
@@ -275,13 +275,13 @@
         "message": "Add"
     },
     "ruleActionChangeProfile": {
-        "message": "Change Profile..."
+        "message": "Change Scrollbar..."
     },
     "profileMoveExistingRules": {
-        "message": "There are website rules that used this profile. Which profile should these website rules use instead?"
+        "message": "There are website rules that used this scrollbar. Which scrollbar should these website rules use instead?"
     },
     "ruleNoProfileSet": {
-        "message": "PROFILE MISSING"
+        "message": "SCROLLBAR MISSING"
     },
     "ruleInherit": {
         "message": "Inherited from $DOMAIN$",
@@ -297,9 +297,6 @@
     "sortDomain": {
         "message": "Domain"
     },
-    "sortProfile": {
-        "message": "Profile"
-    },
     "search": {
         "message": "Search"
     },
@@ -313,7 +310,7 @@
         "message": "Delete Selected"
     },
     "changeSelected": {
-        "message": "Change Profile of Selected"
+        "message": "Change Scrollbar of Selected"
     },
     "selectedRules": {
         "message": "All selected rules"

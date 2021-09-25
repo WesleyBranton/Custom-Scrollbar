@@ -87,8 +87,8 @@ function processBackupFile(event) {
 
     if (!data.schema || !data.defaultProfile || !data[`profile_${data.defaultProfile}`]) {
         if (!data.schema) console.error('File missing schema marker');
-        if (!data.defaultProfile) console.error('File missing default profile marker');
-        else if (!data[`profile_${data.defaultProfile}`]) console.error('File missing default profile');
+        if (!data.defaultProfile) console.error('File missing default scrollbar marker');
+        else if (!data[`profile_${data.defaultProfile}`]) console.error('File missing default scrollbar');
 
         showAlert(
             browser.i18n.getMessage('dialogInvalidBackup'),

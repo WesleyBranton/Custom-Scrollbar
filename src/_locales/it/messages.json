@@ -14,7 +14,7 @@
         }
     },
     "optionsSectionProfile": {
-        "message": "Configurazione profilo"
+        "message": "Barra di scorrimento"
     },
     "optionsSectionPreview": {
         "message": "Anteprima"
@@ -154,7 +154,7 @@
         "message": "Questa azione non può essere annullata. Sei sicuro di voler continuare?"
     },
     "dialogCannotDeleteDefault": {
-        "message": "Impossibile eliminare il profilo predefinito. Impostare un nuovo profilo predefinito prima di eliminarlo."
+        "message": "Impossibile eliminare il barra di scorrimento predefinito. Impostare un nuovo barra di scorrimento predefinito prima di eliminarlo."
     },
     "profileActionNew": {
         "message": "Nuovo"
@@ -169,7 +169,7 @@
         "message": "Imposta come predefinito"
     },
     "defaultProfileName": {
-        "message": "Nuovo profilo"
+        "message": "Nuovo barra di scorrimento"
     },
     "migratedProfileName": {
         "message": "Generale"

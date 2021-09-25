@@ -14,7 +14,7 @@
         }
     },
     "optionsSectionProfile": {
-        "message": "Instellingenprofiel"
+        "message": "Schuifbalk"
     },
     "optionsSectionPreview": {
         "message": "Live-voorvertoning"
@@ -157,7 +157,7 @@
         "message": "Deze actie kan niet ongedaan worden gemaakt. Weet je zeker dat je wilt doorgaan?"
     },
     "dialogCannotDeleteDefault": {
-        "message": "Het standaardprofiel kan pas worden verwijderd na het instellen van een nieuw standaardprofiel."
+        "message": "Het standaardschuifbalk kan pas worden verwijderd na het instellen van een nieuw standaardschuifbalk ."
     },
     "profileActionNew": {
         "message": "Nieuw"
@@ -172,7 +172,7 @@
         "message": "Instellen als standaard"
     },
     "defaultProfileName": {
-        "message": "Nieuw profiel"
+        "message": "Nieuw schuifbalk"
     },
     "migratedProfileName": {
         "message": "Algemeen"
@@ -211,7 +211,7 @@
         "message": "De back-up is hersteld!"
     },
     "changeProfileFor": {
-        "message": "Profiel bewerken van $WEBSITE$",
+        "message": "Schuifbalk bewerken van $WEBSITE$",
         "placeholders": {
             "website": {
                 "content": "$1"
@@ -254,13 +254,13 @@
         "message": "Toevoegen"
     },
     "ruleActionChangeProfile": {
-        "message": "Profiel wijzigen…"
+        "message": "Schuifbalk wijzigen…"
     },
     "profileMoveExistingRules": {
-        "message": "Er zijn websiteregels die gebruikmaken van dit profiel. Welk profiel moeten zij in plaats daarvan gebruiken?"
+        "message": "Er zijn website regels die gebruik maken van dit schuifbalk. Welk schuifbalk moeten zij in plaats daarvan gebruiken?"
     },
     "ruleNoProfileSet": {
-        "message": "PROFIEL ONTBREEKT"
+        "message": "SCHUIFBALK ONTBREEKT"
     },
     "ruleInherit": {
         "message": "Overgenomen van $DOMAIN$",
@@ -276,9 +276,6 @@
     "sortDomain": {
         "message": "Domein"
     },
-    "sortProfile": {
-        "message": "Profiel"
-    },
     "search": {
         "message": "Zoeken"
     },
@@ -292,7 +289,7 @@
         "message": "Selectie verwijderen"
     },
     "changeSelected": {
-        "message": "Profiel van selectie wijzigen"
+        "message": "Schuifbalk van selectie wijzigen"
     },
     "selectedRules": {
         "message": "Alle geselecteerde regels"
