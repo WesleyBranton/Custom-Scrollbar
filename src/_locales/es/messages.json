@@ -14,7 +14,7 @@
         }
     },
     "optionsSectionProfile": {
-        "message": "Perfil de configuración"
+        "message": "Barra de desplazamiento"
     },
     "optionsSectionPreview": {
         "message": "Vista previa"
@@ -157,7 +157,7 @@
         "message": "Esta acción no se puede deshacer. ¿Estas seguro de continuar?"
     },
     "dialogCannotDeleteDefault": {
-        "message": "No se puede eliminar el perfil por defecto. Por favor establezca un nuevo perfil por defecto antes de eliminarlo."
+        "message": "No se puede eliminar el barra de desplazamiento por defecto. Por favor establezca un nuevo barra de desplazamiento por defecto antes de eliminarlo."
     },
     "profileActionNew": {
         "message": "Nuevo"
@@ -172,7 +172,7 @@
         "message": "Establecer como predeterminado"
     },
     "defaultProfileName": {
-        "message": "Nuevo Perfil"
+        "message": "Nueva barra de desplazamiento"
     },
     "migratedProfileName": {
         "message": "General"
@@ -211,7 +211,7 @@
         "message": "¡El respaldo se ha restablecido correctamente!"
     },
     "changeProfileFor": {
-        "message": "Editando perfil para: $WEBSITE$",
+        "message": "Editando barra de desplazamiento para: $WEBSITE$",
         "placeholders": {
             "website": {
                 "content": "$1"
@@ -254,13 +254,13 @@
         "message": "Añadir"
     },
     "ruleActionChangeProfile": {
-        "message": "Cambiar de perfil..."
+        "message": "Cambiar de barra de desplazamiento ..."
     },
     "profileMoveExistingRules": {
-        "message": "Hay reglas para paginas web que usan este perfil. ¿Que perfil deberían usar estas reglas?"
+        "message": "Hay reglas para paginas web que usan este barra de desplazamiento. ¿Que barra de desplazamiento deberían usar estas reglas?"
     },
     "ruleNoProfileSet": {
-        "message": "FALTA PERFIL"
+        "message": "FALTA BARRA DE DESPLAZAMIENTO "
     },
     "ruleInherit": {
         "message": "Heredado de $DOMAIN$",
@@ -276,9 +276,6 @@
     "sortDomain": {
         "message": "Dominio"
     },
-    "sortProfile": {
-        "message": "Perfil"
-    },
     "search": {
         "message": "Búsqueda"
     },
@@ -292,7 +289,7 @@
         "message": "Eliminar selección"
     },
     "changeSelected": {
-        "message": "Cambiar el perfil de lo seleccionado"
+        "message": "Cambiar el barra de desplazamiento de lo seleccionado"
     },
     "selectedRules": {
         "message": "Todas las reglas seleccionadas"

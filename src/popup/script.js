@@ -227,7 +227,7 @@ function setUpTabForURL(url, rules) {
         document.manager.profile.value = usingRule;
 
         if (!document.manager.profile.options[document.manager.profile.selectedIndex]) {
-            console.error('Settings profile "%s" cannot be loaded from storage for rule "%s". Using default profile.', `profile_${usingRule}`, selectedDomain);
+            console.error('Scrollbar "%s" cannot be loaded from storage for rule "%s". Using default Scrollbar.', `profile_${usingRule}`, selectedDomain);
             usingRule = 'default';
             currentRule = defaultProfile;
             document.manager.profile.value = usingRule;

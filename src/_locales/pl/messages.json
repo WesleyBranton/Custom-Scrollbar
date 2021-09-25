@@ -14,7 +14,7 @@
         }
     },
     "optionsSectionProfile": {
-        "message": "Profil ustawień"
+        "message": "Pasek przewijania"
     },
     "optionsSectionPreview": {
         "message": "Podgląd na żywo"
@@ -157,7 +157,7 @@
         "message": "Tej czynności nie można cofnąć. Czy na pewno chcesz kontynuować?"
     },
     "dialogCannotDeleteDefault": {
-        "message": "Nie można usunąć profilu domyślnego. Proszę ustawić nowy profil domyślny przed usunięciem."
+        "message": "Nie można usunąć pasek przewijania domyślnego. Proszę ustawić nowy pasek przewijania domyślny przed usunięciem."
     },
     "profileActionNew": {
         "message": "Nowy"
@@ -172,7 +172,7 @@
         "message": "Ustaw jako domyślny"
     },
     "defaultProfileName": {
-        "message": "Nowy Profil"
+        "message": "Nowy Pasek Przewijania"
     },
     "migratedProfileName": {
         "message": "Ogólny"
@@ -211,7 +211,7 @@
         "message": "Kopia zapasowa została pomyślnie przywrócona!"
     },
     "changeProfileFor": {
-        "message": "Edycja profilu dla: $WEBSITE$",
+        "message": "Edycja pasek przewijania dla: $WEBSITE$",
         "placeholders": {
             "website": {
                 "content": "$1"
@@ -254,13 +254,13 @@
         "message": "Dodaj"
     },
     "ruleActionChangeProfile": {
-        "message": "Zmień profil..."
+        "message": "Zmień pasek przewijania..."
     },
     "profileMoveExistingRules": {
-        "message": "Istnieją reguły witryny, które używają tego profilu. Który profil powinien używać tych reguły?"
+        "message": "Istnieją reguły witryny, które używają tego pasek przewijania. Który pasek przewijania powinien używać tych reguły?"
     },
     "ruleNoProfileSet": {
-        "message": "BRAK PROFILU"
+        "message": "BRAK PASEK PRZEWIJANIA"
     },
     "ruleInherit": {
         "message": "Dziedziczone z $DOMAIN$",
@@ -276,9 +276,6 @@
     "sortDomain": {
         "message": "Domena"
     },
-    "sortProfile": {
-        "message": "Profil"
-    },
     "search": {
         "message": "Szukaj"
     },
@@ -292,7 +289,7 @@
         "message": "Usuń zaznaczone"
     },
     "changeSelected": {
-        "message": "Zmień wybrany profil"
+        "message": "Zmień wybrany pasek przewijania"
     },
     "selectedRules": {
         "message": "Wszystkie wybrane reguły"
