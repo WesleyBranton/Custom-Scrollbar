@@ -5,7 +5,7 @@
 /**
  * Load i18n data
  */
- function parsei18n() {
+function parsei18n() {
     document.title = browser.i18n.getMessage('optionsTitle', browser.i18n.getMessage('extensionName'));
 
     const elements = document.querySelectorAll('[data-i18n]');
@@ -37,7 +37,7 @@
  * Change the main settings tabs
  * @param {Event} event
  */
- function changeTab(event) {
+function changeTab(event) {
     if (!event.target.id.includes('tabselect')) {
         return;
     }
@@ -50,7 +50,7 @@
 /**
  * Update the Private Browsing name label
  */
- function updatePrivateBrowsingName() {
+function updatePrivateBrowsingName() {
     const label = document.getElementById('private-notice-message');
     let name;
 
@@ -66,7 +66,7 @@
 /**
  * Display Private Browsing access warning message, if required
  */
- function togglePrivateNotice(isAllowPrivateBrowsing) {
+function togglePrivateNotice(isAllowPrivateBrowsing) {
     if (!isAllowPrivateBrowsing) {
         document.getElementById('private-notice').classList.remove('hide');
     }
@@ -76,7 +76,7 @@
  * Change the unsaved changes warning banner
  * @param {boolean} show
  */
- function toggleChangesWarning(show) {
+function toggleChangesWarning(show) {
     document.getElementById('saveWarning').className = (show) ? 'unsaved' : 'saved';
     document.getElementById('saveChanges').disabled = !show;
     pendingChanges = show;
@@ -87,7 +87,7 @@
 /**
  * Updates the live preview textarea style
  */
- function updatePreview() {
+function updatePreview() {
     document.getElementById('preview-css').textContent = getNewCSS();
 }
 
@@ -140,7 +140,7 @@ function toggleCollapsiblePanel(event) {
 function showWhatsNew() {
     const whatsNewButton = document.getElementById('whatsnew');
     const whatsNewLinkBubble = document.getElementById('whatsnewlinkbubble');
-    
+
     browser.storage.local.get("showWhatsNew", (data) => {
         if (data.showWhatsNew) {
             whatsNewButton.classList.remove('hide');

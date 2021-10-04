@@ -3,13 +3,13 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 body {
-    width: 100%;
     min-width: 500px;
+    width: 100%;
 }
 
 #profile {
-    width: 100%;
     appearance: none;
+    width: 100%;
 }
 
 .button-bar {
@@ -22,9 +22,9 @@ body {
 
 .color-output {
     border: 1px solid var(--border-color);
-    width: 5em;
-    height: 1em;
     border-radius: 0.35rem;
+    height: 1em;
+    width: 5em;
 }
 
 .help-row {
@@ -36,70 +36,67 @@ body {
 }
 
 #grantPermissionError > .message-bar {
-  max-width: 500px;
-  width: 80%;
-  margin: auto;
+    margin: auto;
+    max-width: 500px;
+    width: 80%;
 }
 
 #whatsnew {
-  position: relative;
-  cursor: pointer;
+    cursor: pointer;
+    position: relative;
 }
 
 #whatsnew > div {
-  background: var(--primary-color-1);
-  position: absolute;
-  top: -0.2em;
-  right: -0.2em;
-  border-radius: 1em;
-  width: 0.35em;
-  height: 0.35em;
+    background: var(--primary-color-1);
+    border-radius: 1em;
+    height: 0.35em;
+    position: absolute;
+    right: -0.2em;
+    top: -0.2em;
+    width: 0.35em;
 }
 
 #whatsnew > img {
-  width: 1em;
-  height: 1em;
+    height: 1em;
+    width: 1em;
 }
 
 button.icon > div > img {
-    width: 1em;
-    height: 1em;
     flex: 1;
+    height: 1em;
     margin-right: 0.5em;
-  }
-  
-  button.icon > div {
+    width: 1em;
+}
+
+button.icon > div {
+    align-items: center;
     display: inline-flex;
     width: max-content;
-    align-items: center;
-  }
-  
-  button.secondary.icon > div > img,
-  img.icon-text-color {
+}
+
+button.secondary.icon > div > img,
+img.icon-text-color {
     filter: invert(2%) sepia(2%) saturate(2394%) hue-rotate(202deg) brightness(99%) contrast(95%);
-  }
-  
-  button.default.icon > div > img {
+}
+
+button.default.icon > div > img {
     filter: invert(100%);
-  }
+}
 
-  body.local-file .url-only,
-  body:not(.local-file) .local-file-only {
+body.local-file .url-only,
+body:not(.local-file) .local-file-only,
+body:not(.firefox) .firefox-only,
+body:not(.chromium) .chromium-only {
     display: none !important;
-  }
+}
 
-  body:not(.firefox) .firefox-only,
-  body:not(.chromium) .chromium-only {
-    display: none !important;
-  }
-  
-  @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
     button.secondary.icon > div > img,
     img.icon-text-color {
-      filter: invert(94%) sepia(3%) saturate(44%) hue-rotate(197deg) brightness(104%) contrast(98%);
+        filter: invert(94%) sepia(3%) saturate(44%) hue-rotate(197deg) brightness(104%) contrast(98%);
     }
-    
+
     button.default.icon > div > img {
-      filter: invert(100%);
+        filter: invert(100%);
     }
-  }
+}

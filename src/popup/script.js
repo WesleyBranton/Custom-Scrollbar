@@ -5,7 +5,7 @@
 /**
  * Load i18n data
  */
- function parsei18n() {
+function parsei18n() {
     const elements = document.querySelectorAll('[data-i18n]');
     for (let e of elements) {
         e.textContent = browser.i18n.getMessage(e.dataset.i18n);
@@ -29,7 +29,7 @@ function displayDetails(profile) {
     const overrideOutput = document.getElementById('detail-override');
 
     // Fill width information
-    switch(profile.width) {
+    switch (profile.width) {
         case 'auto':
         case 'unset':
             widthOutput.textContent = browser.i18n.getMessage('sizeWide');
@@ -81,7 +81,7 @@ function displayDetails(profile) {
     }
 
     // Fill override information
-    switch(profile.allowOverride) {
+    switch (profile.allowOverride) {
         case 0:
             overrideOutput.textContent = browser.i18n.getMessage('overrideNone');
             break;
@@ -101,7 +101,9 @@ function displayDetails(profile) {
  * Update the default profile
  */
 function setAsDefault() {
-    browser.storage.local.set({defaultProfile: document.manager.profile.value}, () => {
+    browser.storage.local.set({
+        defaultProfile: document.manager.profile.value
+    }, () => {
         browser.storage.local.get(loadStorage);
     });
 }
@@ -292,7 +294,9 @@ function toggleInheritance(domain) {
 function updateRule() {
     if (isLocalFile) {
         const profile = parseInt(document.manager.profile.value);
-        const data = { localFileProfile: (!isNaN(profile)) ? profile : null };
+        const data = {
+            localFileProfile: (!isNaN(profile)) ? profile : null
+        };
         browser.storage.local.set(data, () => {
             browser.storage.local.get(loadStorage);
         });
@@ -337,7 +341,7 @@ function loadProfileList(data) {
     document.manager.profile.textContent = '';
 
     for (let key of Object.keys(data)) {
-        if (key.split('_')[0]  == 'profile') {
+        if (key.split('_')[0] == 'profile') {
             const option = document.createElement('option');
             option.textContent = data[key].name;
             option.value = key.split('_')[1];
@@ -371,9 +375,9 @@ function loadProfileList(data) {
 /**
  * Show the what's new button (if required)
  */
- function showWhatsNew() {
+function showWhatsNew() {
     const whatsNewButton = document.getElementById('whatsnew');
-    
+
     browser.storage.local.get("showWhatsNew", (data) => {
         if (data.showWhatsNew) {
             whatsNewButton.classList.remove('hide');
@@ -398,7 +402,6 @@ function openWhatsNew() {
     });
 }
 
-
 // Add browser tag to body class
 if (runningOn == browsers.FIREFOX) {
     document.body.classList.add('firefox');
@@ -414,12 +417,16 @@ document.getElementById('whatsnew').addEventListener('click', openWhatsNew);
 browser.storage.local.get(loadStorage);
 document.manager.profile.addEventListener('change', changeSelectedProfile);
 document.getElementById('button-setDefault').addEventListener('click', setAsDefault);
-document.getElementById('button-options').addEventListener('click', () => { browser.runtime.openOptionsPage(); });
+document.getElementById('button-options').addEventListener('click', () => {
+    browser.runtime.openOptionsPage();
+});
 document.getElementById('button-use').addEventListener('click', updateRule);
 document.getElementById('grantPermission').addEventListener('click', askForTabsPermission);
 
 function askForTabsPermission() {
-    browser.permissions.request({ permissions: ['tabs'] }, (granted) => {
+    browser.permissions.request({
+        permissions: ['tabs']
+    }, (granted) => {
         if (granted) {
             console.warn('User has not granted "tabs" permission.');
             document.getElementById('grantPermissionError').classList.add('hide');

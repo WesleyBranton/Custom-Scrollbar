@@ -53,6 +53,8 @@ function handleMessages(message) {
 }
 
 if (typeof browser != "object") browser = chrome;
-const port = browser.runtime.connect({ name: Date.now() + "" });
+const port = browser.runtime.connect({
+    name: Date.now() + ""
+});
 port.onMessage.addListener(handleMessages);
 refreshCSS();

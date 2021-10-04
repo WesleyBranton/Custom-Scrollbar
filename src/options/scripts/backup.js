@@ -5,11 +5,15 @@
 /**
  * Save Storage API backup (requires permission)
  */
- function saveBackup() {
-    browser.permissions.request({ permissions: ['downloads'] }, (granted) => {
+function saveBackup() {
+    browser.permissions.request({
+        permissions: ['downloads']
+    }, (granted) => {
         if (granted) {
             browser.storage.local.get((data) => {
-                const file = new Blob([JSON.stringify(data)], {type: 'application/json'});
+                const file = new Blob([JSON.stringify(data)], {
+                    type: 'application/json'
+                });
                 const fileURL = URL.createObjectURL(file);
 
                 browser.downloads.download({
@@ -102,7 +106,9 @@ function processBackupFile(event) {
         browser.storage.local.set(data, () => {
             showAlert(
                 browser.i18n.getMessage('dialogBackupRestored'),
-                () => { window.location.replace('options.html'); },
+                () => {
+                    window.location.replace('options.html');
+                },
                 null
             );
         });

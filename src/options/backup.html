@@ -6,206 +6,215 @@
 <html>
 
 <head>
-  <meta charset="utf-8" />
-  <title>Custom Scrollbars Options</title>
-  <link rel="icon" href="../icons/icon-32.png">
-  <link rel="stylesheet" href="../lib/new_browser_style.css" />
-  <link rel="stylesheet" href="style.css" />
-  <style type="text/css" id="preview-css"></style>
+    <meta charset="utf-8" />
+    <title>Custom Scrollbars Options</title>
+    <link rel="icon" href="../icons/icon-32.png">
+    <link rel="stylesheet" href="../lib/new_browser_style.css" />
+    <link rel="stylesheet" href="style.css" />
+    <style type="text/css" id="preview-css"></style>
 </head>
 
 <body class="browser-style browser-style-page">
-  <div class="browser-style-container">
-    <form name="settings" class="no-custom-colors">
-      <header class="panel-section panel-section-header">
-        <img class="icon-section-header" src="../icons/icon-128.png" alt="CS">
-        <h1 class="text-section-header" data-i18n="optionsTitle" data-i18n-placeholders="1" data-i18n-placeholder-1="extensionName"></h1>
-        <div id="whatsnew" class="hide">
-          <div></div>
-          <img class="icon-text-color" src="../images/gift.svg" alt="What's New?">
-        </div>
-      </header>
+    <div class="browser-style-container">
+        <form name="settings" class="no-custom-colors">
+            <header class="panel-section panel-section-header">
+                <img class="icon-section-header" src="../icons/icon-128.png" alt="CS">
+                <h1 class="text-section-header" data-i18n="optionsTitle" data-i18n-placeholders="1" data-i18n-placeholder-1="extensionName"></h1>
+                <div id="whatsnew" class="hide">
+                    <div></div>
+                    <img class="icon-text-color" src="../images/gift.svg" alt="What's New?">
+                </div>
+            </header>
 
-      <section id="tab-bar" class="panel-section-tabs">
-        <button id="tabselect-options" type="button" class="panel-section-tabs-button" data-i18n="options"></button>
-        <div class="panel-section-tabs-separator"></div>
-        <button id="tabselect-rules" type="button" class="panel-section-tabs-button" data-i18n="websiteRules"></button>
-        <div class="panel-section-tabs-separator"></div>
-        <button id="tabselect-backup" type="button" class="panel-section-tabs-button selected" data-i18n="backupAndRestore"></button>
-      </section>
+            <section id="tab-bar" class="panel-section-tabs">
+                <button id="tabselect-options" type="button" class="panel-section-tabs-button" data-i18n="options"></button>
+                <div class="panel-section-tabs-separator"></div>
+                <button id="tabselect-rules" type="button" class="panel-section-tabs-button" data-i18n="websiteRules"></button>
+                <div class="panel-section-tabs-separator"></div>
+                <button id="tabselect-backup" type="button" class="panel-section-tabs-button selected" data-i18n="backupAndRestore"></button>
+            </section>
 
-      <section class="panel-section">
-        <div class="message-bar private hide" id="private-notice">
-          <div>
-            <span id="private-notice-message"></span>
-            <a href="https://github.com/WesleyBranton/Custom-Scrollbar/wiki/No-customizations-in-Private-Browsing-mode" target="_blank" class="internal" data-i18n="callToActionLearn"></a>
-          </div>
-        </div>
-      </section>
+            <section class="panel-section">
+                <div class="message-bar private hide" id="private-notice">
+                    <div>
+                        <span id="private-notice-message"></span>
+                        <a href="https://github.com/WesleyBranton/Custom-Scrollbar/wiki/No-customizations-in-Private-Browsing-mode" target="_blank" class="internal" data-i18n="callToActionLearn"></a>
+                    </div>
+                </div>
+            </section>
 
-      <section>
-        <section class="panel-section">
-          <label data-i18n="backupSection"></label>
-          <button id="button-backup" class="default icon" type="button">
-            <div>
-              <img src="../images/save.svg" alt="">
-              <span data-i18n="buttonSave"></span>
-            </div>
-          </button>
-        </section>
-        <div class="panel-section-separator"></div>
-        <section class="panel-section">
-          <label data-i18n="restoreSection"></label>
-          <div class="restore-section">
-            <span id="restore-file-name"></span>
-            <button id="button-removeFile" class="ghost icon hide" type="button">
-              <div>
-                <img src="../images/cancel.svg" alt="Delete" class="icon-text-color">
-              </div>
-            </button>
-            <br>
-            <button id="button-changeFile" class="default icon" type="button">
-              <div>
-                <img src="../images/folder.svg" alt="">
-                <span data-i18n="buttonSelectFile"></span>
-              </div>
-            </button>
-            <button id="button-restore" class="default icon" type="button" disabled>
-              <div>
-                <img src="../images/redo.svg" alt="">
-                <span data-i18n="buttonRestore"></span>
-              </div>
-            </button>
-          </div>
-        </section>
-      </section>
+            <section>
+                <section class="panel-section">
+                    <label data-i18n="backupSection"></label>
+                    <button id="button-backup" class="default icon" type="button">
+                        <div>
+                            <img src="../images/save.svg" alt="">
+                            <span data-i18n="buttonSave"></span>
+                        </div>
+                    </button>
+                </section>
 
-      <footer class="panel-section panel-section-footer">
-        <div>
-          <a href="https://github.com/WesleyBranton/Custom-Scrollbar/wiki" target="_blank" class="internal" data-i18n="linkHelp"></a>
-        </div>
-        <div>
-          <a href="https://paypal.me/wbrantonaddons" target="_blank" class="internal" data-i18n="linkDonate"></a>
-        </div>
-        <div>
-          <a href="https://github.com/WesleyBranton/Custom-Scrollbar#contribute" target="_blank" class="internal" data-i18n="linkContribute"></a>
-        </div>
-        <div>
-          <a href="https://github.com/WesleyBranton/Custom-Scrollbar/wiki/Credits" target="_blank" class="internal" data-i18n="linkCredits"></a>
-        </div>
-        <div>
-          <a href="https://github.com/WesleyBranton/Custom-Scrollbar/wiki/Help-Localize" target="_blank" class="internal" data-i18n="linkTranslate"></a>
-        </div>
-        <div>
-          <a id="whatsnewlink" class="internal">
-            <span data-i18n="whatsNew"></span>
-            <div id="whatsnewlinkbubble" class="hide"></div>
-          </a>
-        </div>
-      </footer>
-    </form>
-  </div>
+                <div class="panel-section-separator"></div>
 
-  <input id="restore-file" type="file" multiple="false" accept=".json" style="display: none !important;">
+                <section class="panel-section">
+                    <label data-i18n="restoreSection"></label>
+                    <div class="restore-section">
+                        <span id="restore-file-name"></span>
+                        <button id="button-removeFile" class="ghost icon hide" type="button">
+                            <div>
+                                <img src="../images/cancel.svg" alt="Delete" class="icon-text-color">
+                            </div>
+                        </button>
 
-  <div id="dialog-overlay" class="hide">
-    <div id="dialog" class="confirmation">
-      <span id="dialog-text" class="confirmation-only popup-only"></span>
+                        <br>
 
-      <div id="dialog-input-container" class="prompt-only ruleadd-only">
-        <label id="dialog-input-label" for="dialog-input"></label>
-        <input type="text" id="dialog-input">
-      </div>
+                        <button id="button-changeFile" class="default icon" type="button">
+                            <div>
+                                <img src="../images/folder.svg" alt="">
+                                <span data-i18n="buttonSelectFile"></span>
+                            </div>
+                        </button>
 
-      <div id="dialog-checkbox-container" class="ruleadd-only">
-        <label id="dialog-checkbox-label" for="dialog-checkbox"></label>
-        <input id="dialog-checkbox" type="checkbox">
-      </div>
+                        <button id="button-restore" class="default icon" type="button" disabled>
+                            <div>
+                                <img src="../images/redo.svg" alt="">
+                                <span data-i18n="buttonRestore"></span>
+                            </div>
+                        </button>
+                    </div>
+                </section>
+            </section>
 
-      <div id="dialog-dropdown-container" class="dropdown-only ruleadd-only">
-        <label id="dialog-dropdown-label" for="dialog-dropdown"></label>
-        <select id="dialog-dropdown"></select>
-      </div>
-
-      <div id="dialog-error"></div>
-
-      <div id="confirmation-buttons" class="confirmation-only">
-        <button id="confirmation-yes" type="button" class="default icon">
-          <div>
-            <img src="../images/check.svg" alt="">
-            <span data-i18n="optionYes"></span>
-          </div>
-        </button>
-        <button id="confirmation-no" type="button" class="secondary icon">
-          <div>
-            <img src="../images/cancel.svg" alt="">
-            <span data-i18n="optionNo"></span>
-          </div>
-        </button>
-      </div>
-
-      <div id="dropdown-buttons" class="dropdown-only">
-        <button id="dropdown-yes" type="button" class="default icon">
-          <div>
-            <img src="../images/save.svg" alt="">
-            <span data-i18n="buttonSave"></span>
-          </div>
-        </button>
-        <button id="dropdown-no" type="button" class="secondary icon">
-          <div>
-            <img src="../images/cancel.svg" alt="">
-            <span data-i18n="optionCancel"></span>
-          </div>
-        </button>
-      </div>
-
-      <div id="prompt-buttons" class="prompt-only">
-        <button id="prompt-yes" type="button" class="default icon">
-          <div>
-            <img src="../images/save.svg" alt="">
-            <span data-i18n="buttonSave"></span>
-          </div>
-        </button>
-        <button id="prompt-no" type="button" class="secondary icon">
-          <div>
-            <img src="../images/cancel.svg" alt="">
-            <span data-i18n="optionCancel"></span>
-          </div>
-        </button>
-      </div>
-
-      <div id="ruleadd-buttons" class="ruleadd-only">
-        <button id="ruleadd-yes" type="button" class="default icon">
-          <div>
-            <img src="../images/save.svg" alt="">
-            <span data-i18n="buttonSave"></span>
-          </div>
-        </button>
-        <button id="ruleadd-no" type="button" class="secondary icon">
-          <div>
-            <img src="../images/cancel.svg" alt="">
-            <span data-i18n="optionCancel"></span>
-          </div>
-        </button>
-      </div>
-
-      <div id="popup-buttons" class="popup-only">
-        <button id="popup-yes" type="button" class="default icon">
-          <div>
-            <img src="../images/check.svg" alt="">
-            <span data-i18n="optionOk"></span>
-          </div>
-        </button>
-      </div>
+            <footer class="panel-section panel-section-footer">
+                <div>
+                    <a href="https://github.com/WesleyBranton/Custom-Scrollbar/wiki" target="_blank" class="internal" data-i18n="linkHelp"></a>
+                </div>
+                <div>
+                    <a href="https://paypal.me/wbrantonaddons" target="_blank" class="internal" data-i18n="linkDonate"></a>
+                </div>
+                <div>
+                    <a href="https://github.com/WesleyBranton/Custom-Scrollbar#contribute" target="_blank" class="internal" data-i18n="linkContribute"></a>
+                </div>
+                <div>
+                    <a href="https://github.com/WesleyBranton/Custom-Scrollbar/wiki/Credits" target="_blank" class="internal" data-i18n="linkCredits"></a>
+                </div>
+                <div>
+                    <a href="https://github.com/WesleyBranton/Custom-Scrollbar/wiki/Help-Localize" target="_blank" class="internal" data-i18n="linkTranslate"></a>
+                </div>
+                <div>
+                    <a id="whatsnewlink" class="internal">
+                        <span data-i18n="whatsNew"></span>
+                        <div id="whatsnewlinkbubble" class="hide"></div>
+                    </a>
+                </div>
+            </footer>
+        </form>
     </div>
-  </div>
 
-  <script src="../defaults.js"></script>
-  <script src="../generateCSS.js"></script>
-  <script src="../crossbrowser.js"></script>
-  <script src="scripts/dialogs.js"></script>
-  <script src="scripts/general.js"></script>
-  <script src="scripts/backup.js"></script>
+    <input id="restore-file" type="file" multiple="false" accept=".json" style="display: none !important;">
+
+    <div id="dialog-overlay" class="hide">
+        <div id="dialog" class="confirmation">
+            <span id="dialog-text" class="confirmation-only popup-only"></span>
+
+            <div id="dialog-input-container" class="prompt-only ruleadd-only">
+                <label id="dialog-input-label" for="dialog-input"></label>
+                <input type="text" id="dialog-input">
+            </div>
+
+            <div id="dialog-checkbox-container" class="ruleadd-only">
+                <label id="dialog-checkbox-label" for="dialog-checkbox"></label>
+                <input id="dialog-checkbox" type="checkbox">
+            </div>
+
+            <div id="dialog-dropdown-container" class="dropdown-only ruleadd-only">
+                <label id="dialog-dropdown-label" for="dialog-dropdown"></label>
+                <select id="dialog-dropdown"></select>
+            </div>
+
+            <div id="dialog-error"></div>
+
+            <div id="confirmation-buttons" class="confirmation-only">
+                <button id="confirmation-yes" type="button" class="default icon">
+                    <div>
+                        <img src="../images/check.svg" alt="">
+                        <span data-i18n="optionYes"></span>
+                    </div>
+                </button>
+
+                <button id="confirmation-no" type="button" class="secondary icon">
+                    <div>
+                        <img src="../images/cancel.svg" alt="">
+                        <span data-i18n="optionNo"></span>
+                    </div>
+                </button>
+            </div>
+
+            <div id="dropdown-buttons" class="dropdown-only">
+                <button id="dropdown-yes" type="button" class="default icon">
+                    <div>
+                        <img src="../images/save.svg" alt="">
+                        <span data-i18n="buttonSave"></span>
+                    </div>
+                </button>
+
+                <button id="dropdown-no" type="button" class="secondary icon">
+                    <div>
+                        <img src="../images/cancel.svg" alt="">
+                        <span data-i18n="optionCancel"></span>
+                    </div>
+                </button>
+            </div>
+
+            <div id="prompt-buttons" class="prompt-only">
+                <button id="prompt-yes" type="button" class="default icon">
+                    <div>
+                        <img src="../images/save.svg" alt="">
+                        <span data-i18n="buttonSave"></span>
+                    </div>
+                </button>
+
+                <button id="prompt-no" type="button" class="secondary icon">
+                    <div>
+                        <img src="../images/cancel.svg" alt="">
+                        <span data-i18n="optionCancel"></span>
+                    </div>
+                </button>
+            </div>
+
+            <div id="ruleadd-buttons" class="ruleadd-only">
+                <button id="ruleadd-yes" type="button" class="default icon">
+                    <div>
+                        <img src="../images/save.svg" alt="">
+                        <span data-i18n="buttonSave"></span>
+                    </div>
+                </button>
+
+                <button id="ruleadd-no" type="button" class="secondary icon">
+                    <div>
+                        <img src="../images/cancel.svg" alt="">
+                        <span data-i18n="optionCancel"></span>
+                    </div>
+                </button>
+            </div>
+
+            <div id="popup-buttons" class="popup-only">
+                <button id="popup-yes" type="button" class="default icon">
+                    <div>
+                        <img src="../images/check.svg" alt="">
+                        <span data-i18n="optionOk"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../defaults.js"></script>
+    <script src="../generateCSS.js"></script>
+    <script src="../crossbrowser.js"></script>
+    <script src="scripts/dialogs.js"></script>
+    <script src="scripts/general.js"></script>
+    <script src="scripts/backup.js"></script>
 </body>
 
 </html>

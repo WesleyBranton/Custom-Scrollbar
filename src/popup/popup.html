@@ -2,96 +2,110 @@
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
 
-   <!DOCTYPE html>
-   <html>
-   
-   <head>
-     <meta charset="utf-8" />
-     <title>Custom Scrollbars</title>
-     <link rel="stylesheet" href="../lib/new_browser_style.css" />
-     <link rel="stylesheet" href="style.css" />
-   </head>
-   
-   <body class="browser-style">
-     <form name="manager">
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Custom Scrollbars</title>
+    <link rel="stylesheet" href="../lib/new_browser_style.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="browser-style">
+    <form name="manager">
         <section class="panel-section has-help">
             <label data-i18n="optionsSectionProfile"></label>
             <div id="whatsnew" class="hide">
-              <div></div>
-              <img class="icon-text-color" src="../images/gift.svg" alt="What's New">
+                <div></div>
+                <img class="icon-text-color" src="../images/gift.svg" alt="What's New">
             </div>
-          </section>
-       <section id="profile-selector-container" class="panel-section help-row">
-         <div>
-             <select id="profile" name="profile"></select>
-         </div>
-       </section>
-       <section class="panel-section help-row has-help hide">
-        <div id="profile-inherit" class="message-bar general">Inherited from google.com</div>
-      </section>
-       <div class="panel-section-separator"></div>
-       <section class="panel-section has-help">
-        <label data-i18n="optionsSectionWidth"></label>
-        <span id="detail-width"></span>
-      </section>
-       <section class="panel-section has-help help-row chromium-only">
-        <label data-i18n="optionsSectionButtons"></label>
-        <span id="detail-buttons"></span>
-      </section>
-      <section class="panel-section has-help help-row chromium-only">
-        <label data-i18n="optionsSectionThumbRadius"></label>
-        <span id="detail-thumbRadius"></span>
-      </section>
-      <section class="panel-section has-help help-row">
-        <label data-i18n="optionsSectionThumb"></label>
-        <span id="detail-color-thumb" class="color-output"></span>
-      </section>
-      <section class="panel-section has-help help-row">
-        <label data-i18n="optionsSectionTrack"></label>
-        <span id="detail-color-track" class="color-output"></span>
-      </section>
-      <section class="panel-section help-row">
-        <label data-i18n="optionsSectionOverride"></label>
-        <span id="detail-override"></span>
-      </section>
-      <div class="panel-section-separator"></div>
-      <section class="panel-section">
-        <div class="button-bar">
-            <button id="button-use" type="button" class="default icon">
-              <div class="url-only">
-                <img src="../images/globe.svg" alt="">
-                <span data-i18n="profileActionUseOnWebsite"></span>
-              </div>
-              <div class="local-file-only">
-                <img src="../images/folder.svg" alt="">
-                <span data-i18n="profileActionUseOnLocalFiles"></span>
-              </div>
-            </button>
-            <button id="button-setDefault" type="button" class="secondary icon" disabled>
-              <div>
-                <img src="../images/check.svg" alt="">
-                <span data-i18n="profileActionChangeDefault"></span>
-              </div>
-            </button>
-            <button id="button-options" type="button" class="secondary icon">
-              <div>
-                <img src="../images/preferences.svg" alt="">
-                <span data-i18n="options"></span>
-              </div>
-            </button>
-        </div>
-      </section>
-      <section id="grantPermissionError" class="panel-section help-row hide">
-        <div class="message-bar error">
-          <span data-i18n="popupRequiresAdditionalPermission"></span>
-          <button id="grantPermission" type="button" class="default" data-i18n="grantPermissionButton"></button>
-        </div>
-      </section>
+        </section>
+
+        <section id="profile-selector-container" class="panel-section help-row">
+            <div>
+                <select id="profile" name="profile"></select>
+            </div>
+        </section>
+
+        <section class="panel-section help-row has-help hide">
+            <div id="profile-inherit" class="message-bar general">Inherited from google.com</div>
+        </section>
+
+        <div class="panel-section-separator"></div>
+
+        <section class="panel-section has-help">
+            <label data-i18n="optionsSectionWidth"></label>
+            <span id="detail-width"></span>
+        </section>
+
+        <section class="panel-section has-help help-row chromium-only">
+            <label data-i18n="optionsSectionButtons"></label>
+            <span id="detail-buttons"></span>
+        </section>
+
+        <section class="panel-section has-help help-row chromium-only">
+            <label data-i18n="optionsSectionThumbRadius"></label>
+            <span id="detail-thumbRadius"></span>
+        </section>
+
+        <section class="panel-section has-help help-row">
+            <label data-i18n="optionsSectionThumb"></label>
+            <span id="detail-color-thumb" class="color-output"></span>
+        </section>
+
+        <section class="panel-section has-help help-row">
+            <label data-i18n="optionsSectionTrack"></label>
+            <span id="detail-color-track" class="color-output"></span>
+        </section>
+
+        <section class="panel-section help-row">
+            <label data-i18n="optionsSectionOverride"></label>
+            <span id="detail-override"></span>
+        </section>
+
+        <div class="panel-section-separator"></div>
+
+        <section class="panel-section">
+            <div class="button-bar">
+                <button id="button-use" type="button" class="default icon">
+                    <div class="url-only">
+                        <img src="../images/globe.svg" alt="">
+                        <span data-i18n="profileActionUseOnWebsite"></span>
+                    </div>
+                    <div class="local-file-only">
+                        <img src="../images/folder.svg" alt="">
+                        <span data-i18n="profileActionUseOnLocalFiles"></span>
+                    </div>
+                </button>
+
+                <button id="button-setDefault" type="button" class="secondary icon" disabled>
+                    <div>
+                        <img src="../images/check.svg" alt="">
+                        <span data-i18n="profileActionChangeDefault"></span>
+                    </div>
+                </button>
+
+                <button id="button-options" type="button" class="secondary icon">
+                    <div>
+                        <img src="../images/preferences.svg" alt="">
+                        <span data-i18n="options"></span>
+                    </div>
+                </button>
+            </div>
+        </section>
+
+        <section id="grantPermissionError" class="panel-section help-row hide">
+            <div class="message-bar error">
+                <span data-i18n="popupRequiresAdditionalPermission"></span>
+                <button id="grantPermission" type="button" class="default" data-i18n="grantPermissionButton"></button>
+            </div>
+        </section>
     </form>
+
     <script src="../defaults.js"></script>
     <script src="../crossbrowser.js"></script>
     <script src="script.js"></script>
-   </body>
-   
-   </html>
-   
+</body>
+
+</html>

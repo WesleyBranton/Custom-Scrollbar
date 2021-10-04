@@ -119,7 +119,9 @@ function handleInstalled(details) {
         });
 
         if (details.previousVersion != browser.runtime.getManifest().version) {
-            browser.storage.local.set({showWhatsNew: true});
+            browser.storage.local.set({
+                showWhatsNew: true
+            });
         }
     }
 }
@@ -217,7 +219,6 @@ function sendCSSToPort(css, port) {
         css: css
     });
 }
-
 
 /**
  * Find rule that matches domain name

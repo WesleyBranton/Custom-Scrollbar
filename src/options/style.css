@@ -3,226 +3,226 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 .no-custom-colors .only-colors {
-  display: none !important;
+    display: none !important;
 }
 
 #saveWarning.saved .warning,
 #saveWarning.unsaved .success {
-  display: none !important;
+    display: none !important;
 }
 
 .message-bar.private {
-  background-color: #8D20AE;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="white" d="M12.408 11.992c-1.663 0-2.813-2-4.408-2s-2.844 2-4.408 2C1.54 11.992.025 10.048 0 6.719c-.015-2.068.6-2.727 3.265-2.727S6.709 5.082 8 5.082s2.071-1.091 4.735-1.091 3.28.66 3.265 2.727c-.025 3.33-1.54 5.274-3.592 5.274zM4.572 6.537c-1.619.07-2.286 1.035-2.286 1.273s1.073.909 2.122.909 2.286-.384 2.286-.727a1.9 1.9 0 0 0-2.122-1.455zm6.857 0a1.9 1.9 0 0 0-2.123 1.455c0 .343 1.236.727 2.286.727s2.122-.671 2.122-.909-.667-1.203-2.286-1.273z"></path></svg>');
-  padding-top: 6px;
-  padding-bottom: 6px;
+    background-color: #8D20AE;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="white" d="M12.408 11.992c-1.663 0-2.813-2-4.408-2s-2.844 2-4.408 2C1.54 11.992.025 10.048 0 6.719c-.015-2.068.6-2.727 3.265-2.727S6.709 5.082 8 5.082s2.071-1.091 4.735-1.091 3.28.66 3.265 2.727c-.025 3.33-1.54 5.274-3.592 5.274zM4.572 6.537c-1.619.07-2.286 1.035-2.286 1.273s1.073.909 2.122.909 2.286-.384 2.286-.727a1.9 1.9 0 0 0-2.122-1.455zm6.857 0a1.9 1.9 0 0 0-2.123 1.455c0 .343 1.236.727 2.286.727s2.122-.671 2.122-.909-.667-1.203-2.286-1.273z"></path></svg>');
+    padding-bottom: 6px;
+    padding-top: 6px;
 }
 
 .message-bar.private * {
-  color: white;
+    color: white;
 }
 
 .message-bar.private a {
-  font-weight: bold;
-  text-decoration: underline;
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 .hide {
-  display: none !important;
+    display: none !important;
 }
 
 .error {
-  color: red;
+    color: red;
 }
 
 #framesInheritGrantPermission {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 #preview {
-  height: 100px;
-  width: 50%;
-  resize: none;
+    height: 100px;
+    resize: none;
+    width: 50%;
 }
 
 .image-helper {
-  display: flex;
-  align-items: center;
+    align-items: center;
+    display: flex;
 }
 
 .image-helper label {
-  flex: 1;
+    flex: 1;
 }
 
 .image-helper img {
-  width: 20px;
-  flex: unset !important;
-  margin-right: 1em;
+    flex: unset !important;
+    margin-right: 1em;
+    width: 20px;
 }
 
 .clickable {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 /* Color picker */
 .IroWheel {
-  cursor: crosshair !important;
+    cursor: crosshair !important;
 }
 
 .IroSlider {
-  cursor: ns-resize !important;
+    cursor: ns-resize !important;
 }
 
 .colorPickerPreview {
-  display: flex;
-  background: rgba(0, 0, 0, 0) conic-gradient(rgb(204, 204, 204) 25%, rgb(255, 255, 255) 0deg, rgb(255, 255, 255) 50%, rgb(204, 204, 204) 0deg, rgb(204, 204, 204) 75%, rgb(255, 255, 255) 0deg) repeat scroll 0% 0% / 8px 8px;
+    background: rgba(0, 0, 0, 0) conic-gradient(rgb(204, 204, 204) 25%, rgb(255, 255, 255) 0deg, rgb(255, 255, 255) 50%, rgb(204, 204, 204) 0deg, rgb(204, 204, 204) 75%, rgb(255, 255, 255) 0deg) repeat scroll 0% 0% / 8px 8px;
+    display: flex;
 }
 
 .colorPickerPreviewContainer {
-  display: flex;
+    display: flex;
 }
 
 .colorPickerPreviewContainer > * {
-  flex: 1;
+    flex: 1;
 }
 
 .colorPickerValues tr td:first-of-type {
-  width: 100%;
+    width: 100%;
 }
 
 .rgb,
 .hsv,
 .hex {
-  display: none;
+    display: none;
 }
 
 .showHEX .hex,
 .showRGB .rgb,
 .showHSV .hsv {
-  display: block;
+    display: block;
 }
 
 .panel-section-footer > div {
-  text-align: center;
-  border-left: 1px solid var(--border-color);
-  padding: 0.5em;
+    border-left: 1px solid var(--border-color);
+    padding: 0.5em;
+    text-align: center;
 }
 
 .panel-section-footer > div:first-of-type {
-  border: none;
+    border: none;
 }
 
 #customWidthValue {
-  text-align: center;
-  height: unset !important;
-  width: 4em;
+    height: unset !important;
+    text-align: center;
+    width: 4em;
 }
 
 body:not(.firefox) .firefox-only,
 body:not(.chromium) .chromium-only {
-  display: none !important;
+    display: none !important;
 }
 
 #customWidthUnit {
-  height: unset !important;
-  text-align: center;
+    height: unset !important;
+    text-align: center;
 }
 
 #customWidthValue:disabled,
 #customWidthUnit:disabled {
-  background-color: var(--body-background);
-  border-color: var(--grey-30);
-  opacity: 0.7;
-  cursor: default;
+    background-color: var(--body-background);
+    border-color: var(--grey-30);
+    cursor: default;
+    opacity: 0.7;
 }
 
 #thumbRadius-container {
-  display: flex;
-  align-items: center;
+    align-items: center;
+    display: flex;
 }
 
 #thumbRadius-container > span {
-  margin-right: 0.5em;
+    margin-right: 0.5em;
 }
 
 #thumbRadius-container > input {
-  min-width: 15vw;
+    min-width: 15vw;
 }
 
 /* Fail safe for settings page */
 body::-webkit-scrollbar {
-  max-width: 50vw !important;
+    max-width: 50vw !important;
 }
 
 #profileSelection {
-  width: 100%;
-  margin-bottom: 0.5em;
+    margin-bottom: 0.5em;
+    width: 100%;
 }
 
 #dialog-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 100;
-  display: flex;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    height: 100vh;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 100;
 }
 
 #dialog {
-  background: var(--container-background);
-  margin: auto;
-  width: max-content;
-  padding: 1em 2em;
-  box-sizing: border-box;
-  max-width: 500px;
+    background: var(--container-background);
+    box-sizing: border-box;
+    margin: auto;
+    max-width: 500px;
+    padding: 1em 2em;
+    width: max-content;
 }
 
 #dialog-text {
-  margin-bottom: 1em;
-  display: block;
+    display: block;
+    margin-bottom: 1em;
 }
 
 #dialog > div {
-  width: max-content;
-  margin: auto;
-  display: none;
+    display: none;
+    margin: auto;
+    width: max-content;
 }
 
 #dialog #dialog-input-container,
 #dialog #dialog-dropdown-container {
-  display: none;
-  width: 100%;
-  box-sizing: border-box;
-  margin-bottom: 1em;
-  align-items: center;
+    align-items: center;
+    box-sizing: border-box;
+    display: none;
+    margin-bottom: 1em;
+    width: 100%;
 }
 
 #dialog #dialog-input-container > input,
 #dialog #dialog-dropdown-container > select {
-  flex: 1;
+    flex: 1;
 }
 
 #dialog #dialog-input-container > label,
 #dialog #dialog-dropdown-container > label,
 #dialog #dialog-checkbox-container > label {
-  margin-right: 1em;
+    margin-right: 1em;
 }
 
 #dialog button {
-  margin: 0 0.1em;
+    margin: 0 0.1em;
 }
 
 #dialog #dialog-error {
-  color: red;
-  margin-bottom: 1em;
-  display: block;
+    color: red;
+    display: block;
+    margin-bottom: 1em;
 }
 
 #dialog #dialog-checkbox-container {
-  margin-bottom: 1em;
-  width: 100%;
+    margin-bottom: 1em;
+    width: 100%;
 }
 
 .confirmation .confirmation-only,
@@ -230,43 +230,43 @@ body::-webkit-scrollbar {
 .popup .popup-only,
 .dropdown .dropdown-only,
 .ruleadd .ruleadd-only {
-  display: flex !important;
+    display: flex !important;
 }
 
 .restore-section {
-  text-align: right;
+    text-align: right;
 }
 
 #restore-file-name {
-  display: inline-block;
-  margin-bottom: 1em;
+    display: inline-block;
+    margin-bottom: 1em;
 }
 
 #rule-list {
-  max-height: 450px;
-  overflow-y: auto;
+    max-height: 450px;
+    overflow-y: auto;
 }
 
 #rule-list .text-shortcut > label {
-  margin-right: 1em;
-  color: var(--text-color);
+    color: var(--text-color);
+    margin-right: 1em;
 }
 
 #rule-list > .panel-list-item {
-  margin: 0.2em 0;
+    margin: 0.2em 0;
 }
 
 #rule-list .profile-missing {
-  color: red !important;
+    color: red !important;
 }
 
 .help-row {
-  color: var(--text-color) !important;
+    color: var(--text-color) !important;
 }
 
 a:visited,
 a.visited {
-  color: var(--primary-color-1) !important;
+    color: var(--primary-color-1) !important;
 }
 
 .browser-style a:visited:active,
@@ -275,101 +275,101 @@ a.visited {
 .browser-style a.visited:active,
 .browser-style a.visited.active,
 .browser-style a.visited.pressed {
-  color: var(--primary-color-3) !important;
+    color: var(--primary-color-3) !important;
 }
 
 button.icon > div > img {
-  width: 1em;
-  height: 1em;
-  flex: 1;
-  margin-right: 0.5em;
+    flex: 1;
+    height: 1em;
+    margin-right: 0.5em;
+    width: 1em;
 }
 
 #button-removeFile > div > img {
-  margin-right: 0 !important;
+    margin-right: 0 !important;
 }
 
 button.icon > div {
-  display: inline-flex;
-  width: max-content;
-  align-items: center;
+    align-items: center;
+    display: inline-flex;
+    width: max-content;
 }
 
 button.secondary.icon > div > img,
 img.icon-text-color {
-  filter: invert(2%) sepia(2%) saturate(2394%) hue-rotate(202deg) brightness(99%) contrast(95%);
+    filter: invert(2%) sepia(2%) saturate(2394%) hue-rotate(202deg) brightness(99%) contrast(95%);
 }
 
 button.default.icon > div > img {
-  filter: invert(100%);
+    filter: invert(100%);
 }
 
 .collapse-header {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .collapse-header::after {
-  content: "";
-  background-image: var(--down-icon);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  height: 1em;
-  width: 1em;
-  transition: transform 0.2s ease;
+    background-image: var(--down-icon);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    content: "";
+    height: 1em;
+    transition: transform 0.2s ease;
+    width: 1em;
 }
 
 .collapse-header[data-collapsible-state="close"]::after {
-  transform: rotate(0deg);
+    transform: rotate(0deg);
 }
 
 .collapse-header[data-collapsible-state="open"]::after {
-  transform: rotate(180deg);
+    transform: rotate(180deg);
 }
 
 .collapse-panel {
-  overflow: hidden;
-  transition: max-height 0.2s ease;
-  max-height: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease;
 }
 
 #whatsnew,
 #whatsnewlink {
-  position: relative;
-  cursor: pointer;
+    cursor: pointer;
+    position: relative;
 }
 
 #whatsnew > div,
 #whatsnewlink > div {
-  background: var(--primary-color-1);
-  position: absolute;
-  top: -0.2em;
-  right: -0.2em;
-  border-radius: 1em;
-  width: 0.35em;
-  height: 0.35em;
+    background: var(--primary-color-1);
+    border-radius: 1em;
+    height: 0.35em;
+    position: absolute;
+    right: -0.2em;
+    top: -0.2em;
+    width: 0.35em;
 }
 
 #whatsnew > img,
 #whatsnewlink > img {
-  width: 1em;
-  height: 1em;
+    height: 1em;
+    width: 1em;
 }
 
 @media (prefers-reduced-motion) {
-  *,
-  .collapse-header::after {
-    transition: none !important;
-  }
+    *,
+    .collapse-header::after {
+        transition: none !important;
+    }
 }
 
 @media (prefers-color-scheme: dark) {
-  button.secondary.icon > div > img,
-  img.icon-text-color {
-    filter: invert(94%) sepia(3%) saturate(44%) hue-rotate(197deg) brightness(104%) contrast(98%);
-  }
-  
-  button.default.icon > div > img {
-    filter: invert(100%);
-  }
+    button.secondary.icon > div > img,
+    img.icon-text-color {
+        filter: invert(94%) sepia(3%) saturate(44%) hue-rotate(197deg) brightness(104%) contrast(98%);
+    }
+
+    button.default.icon > div > img {
+        filter: invert(100%);
+    }
 }
