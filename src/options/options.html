@@ -16,7 +16,7 @@
 
 <body class="browser-style browser-style-page">
     <div class="browser-style-container">
-        <form name="settings" class="no-custom-colors">
+        <form name="settings">
             <header class="panel-section panel-section-header">
                 <img class="icon-section-header" src="../icons/icon-128.png" alt="CS">
                 <h1 class="text-section-header" data-i18n="optionsTitle" data-i18n-placeholders="extensionName"></h1>
@@ -52,9 +52,9 @@
 
             <section class="panel-section">
                 <label data-i18n="optionsSectionProfile"></label>
-                <div>
+                <div id="profile-selection-container">
                     <select id="profileSelection" name="profile"></select>
-                    
+
                     <br>
 
                     <button id="profile-add" type="button" class="secondary icon">
@@ -128,180 +128,184 @@
                 </div>
             </section>
 
-            <div class="panel-section-separator chromium-only"></div>
+            <div id="only-not-hidden">
+                <div class="panel-section-separator chromium-only"></div>
 
-            <section class="panel-section chromium-only">
-                <label for="buttons" data-i18n="optionsSectionButtons"></label>
-                <div>
-                    <label class="clickable">
-                        <input type="radio" name="buttons" value="none">
-                        <span data-i18n="overrideNone"></span>
-                    </label><br>
+                <section class="panel-section chromium-only">
+                    <label for="buttons" data-i18n="optionsSectionButtons"></label>
+                    <div>
+                        <label class="clickable">
+                            <input type="radio" name="buttons" value="none">
+                            <span data-i18n="overrideNone"></span>
+                        </label><br>
 
-                    <label class="clickable">
-                        <input type="radio" name="buttons" value="light">
-                        <span data-i18n="optionLight"></span>
-                    </label><br>
+                        <label class="clickable">
+                            <input type="radio" name="buttons" value="light">
+                            <span data-i18n="optionLight"></span>
+                        </label><br>
 
-                    <label class="clickable">
-                        <input type="radio" name="buttons" value="dark">
-                        <span data-i18n="optionDark"></span>
-                    </label>
-                </div>
-            </section>
-
-            <div class="panel-section-separator chromium-only"></div>
-
-            <section class="panel-section chromium-only">
-                <label for="thumbRadius" data-i18n="optionsSectionThumbRadius"></label>
-                <div id="thumbRadius-container">
-                    <span id="thumbRadius-label">0%</span>
-                    <input type="range" min="0" max="100" step="1" name="thumbRadius" list="thumbRadius-list" size="200">
-                    <datalist id="thumbRadius-list">
-                        <option value="0" label="0%"></option>
-                        <option value="50" label="50%"></option>
-                        <option value="100" label="100%"></option>
-                    </datalist>
-                </div>
-            </section>
-
-            <div class="panel-section-separator"></div>
-
-            <section class="panel-section">
-                <label for="customColors" data-i18n="optionsSectionUseColors"></label>
-                <div>
-                    <label class="clickable">
-                        <input type="radio" name="customColors" value="yes">
-                        <span data-i18n="optionYes"></span>
-                    </label><br>
-
-                    <label class="clickable">
-                        <input type="radio" name="customColors" value="no">
-                        <span data-i18n="optionNo"></span>
-                    </label>
-                </div>
-            </section>
-
-            <div class="panel-section-separator only-colors"></div>
-
-            <section class="panel-section only-colors">
-                <div class="image-helper">
-                    <img src="thumb.svg">
-                    <label for="colorThumb" data-i18n="optionsSectionThumb"></label>
-                </div>
-                <div class="showHEX">
-                    <div id="colorThumb"></div>
-                    <div id="colorThumbTabs" class="panel-section-tabs">
-                        <button type="button" class="panel-section-tabs-button selected" data-i18n="colorFormatHEX"></button>
-                        <div class="panel-section-tabs-separator"></div>
-                        <button type="button" class="panel-section-tabs-button" data-i18n="colorFormatRGB"></button>
-                        <div class="panel-section-tabs-separator"></div>
-                        <button type="button" class="panel-section-tabs-button" data-i18n="colorFormatHSV"></button>
+                        <label class="clickable">
+                            <input type="radio" name="buttons" value="dark">
+                            <span data-i18n="optionDark"></span>
+                        </label>
                     </div>
-                    <div class="colorPickerPreviewContainer">
-                        <div class="colorPickerPreview">
-                            <div id="colorThumbPreview"></div>
+                </section>
+
+                <div class="panel-section-separator chromium-only"></div>
+
+                <section class="panel-section chromium-only">
+                    <label for="thumbRadius" data-i18n="optionsSectionThumbRadius"></label>
+                    <div id="thumbRadius-container">
+                        <span id="thumbRadius-label">0%</span>
+                        <input type="range" min="0" max="100" step="1" name="thumbRadius" list="thumbRadius-list" size="200">
+                        <datalist id="thumbRadius-list">
+                            <option value="0" label="0%"></option>
+                            <option value="50" label="50%"></option>
+                            <option value="100" label="100%"></option>
+                        </datalist>
+                    </div>
+                </section>
+
+                <div class="panel-section-separator"></div>
+
+                <section class="panel-section">
+                    <label for="customColors" data-i18n="optionsSectionUseColors"></label>
+                    <div>
+                        <label class="clickable">
+                            <input type="radio" name="customColors" value="yes">
+                            <span data-i18n="optionYes"></span>
+                        </label><br>
+
+                        <label class="clickable">
+                            <input type="radio" name="customColors" value="no">
+                            <span data-i18n="optionNo"></span>
+                        </label>
+                    </div>
+                </section>
+
+                <div id="only-colors" class="hide">
+                    <div class="panel-section-separator"></div>
+
+                    <section class="panel-section">
+                        <div class="image-helper">
+                            <img src="thumb.svg">
+                            <label for="colorThumb" data-i18n="optionsSectionThumb"></label>
                         </div>
-                        <input type="text" maxlength="9" size="9" id="colorThumbHEX" class="hex" name="colorThumb">
-                        <table id="colorThumbRGB" class="colorPickerValues rgb">
-                            <tr>
-                                <td><label for="colorThumbRed" data-i18n="colorRed"></label></td>
-                                <td><input name="colorThumbRed" type="number" maxlength="3" size="3" min="0" max="255"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="colorThumbGreen" data-i18n="colorGreen"></label></td>
-                                <td><input name="colorThumbGreen" type="number" maxlength="3" size="3" min="0" max="255"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="colorThumbBlue" data-i18n="colorBlue"></label></td>
-                                <td><input name="colorThumbBlue" type="number" maxlength="3" size="3" min="0" max="255"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="colorThumbRGBAlpha" data-i18n="colorAlpha"></label></td>
-                                <td><input name="colorThumbRGBAlpha" type="number" maxlength="3" size="3" min="0" max="255"></td>
-                            </tr>
-                        </table>
-                        <table id="colorThumbHSV" class="colorPickerValues hsv">
-                            <tr>
-                                <td><label for="colorThumbHue" data-i18n="colorHue"></label></td>
-                                <td><input name="colorThumbHue" type="number" maxlength="3" size="3" min="0" max="360"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="colorThumbSaturation" data-i18n="colorSaturation"></label></td>
-                                <td><input name="colorThumbSaturation" type="number" maxlength="3" size="3" min="0" max="100"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="colorThumbValue" data-i18n="colorValue"></label></td>
-                                <td><input name="colorThumbValue" type="number" maxlength="3" size="3" min="0" max="100"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="colorThumbHSVAlpha" data-i18n="colorAlpha"></label></td>
-                                <td><input name="colorThumbHSVAlpha" type="number" maxlength="3" size="3" min="0" max="255"></td>
-                            </tr>
-                        </table>
-                    </div>
-            </section>
+                        <div class="showHEX">
+                            <div id="colorThumb"></div>
+                            <div id="colorThumbTabs" class="panel-section-tabs">
+                                <button type="button" class="panel-section-tabs-button selected" data-i18n="colorFormatHEX"></button>
+                                <div class="panel-section-tabs-separator"></div>
+                                <button type="button" class="panel-section-tabs-button" data-i18n="colorFormatRGB"></button>
+                                <div class="panel-section-tabs-separator"></div>
+                                <button type="button" class="panel-section-tabs-button" data-i18n="colorFormatHSV"></button>
+                            </div>
+                            <div class="colorPickerPreviewContainer">
+                                <div class="colorPickerPreview">
+                                    <div id="colorThumbPreview"></div>
+                                </div>
+                                <input type="text" maxlength="9" size="9" id="colorThumbHEX" class="hex" name="colorThumb">
+                                <table id="colorThumbRGB" class="colorPickerValues rgb">
+                                    <tr>
+                                        <td><label for="colorThumbRed" data-i18n="colorRed"></label></td>
+                                        <td><input name="colorThumbRed" type="number" maxlength="3" size="3" min="0" max="255"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="colorThumbGreen" data-i18n="colorGreen"></label></td>
+                                        <td><input name="colorThumbGreen" type="number" maxlength="3" size="3" min="0" max="255"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="colorThumbBlue" data-i18n="colorBlue"></label></td>
+                                        <td><input name="colorThumbBlue" type="number" maxlength="3" size="3" min="0" max="255"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="colorThumbRGBAlpha" data-i18n="colorAlpha"></label></td>
+                                        <td><input name="colorThumbRGBAlpha" type="number" maxlength="3" size="3" min="0" max="255"></td>
+                                    </tr>
+                                </table>
+                                <table id="colorThumbHSV" class="colorPickerValues hsv">
+                                    <tr>
+                                        <td><label for="colorThumbHue" data-i18n="colorHue"></label></td>
+                                        <td><input name="colorThumbHue" type="number" maxlength="3" size="3" min="0" max="360"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="colorThumbSaturation" data-i18n="colorSaturation"></label></td>
+                                        <td><input name="colorThumbSaturation" type="number" maxlength="3" size="3" min="0" max="100"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="colorThumbValue" data-i18n="colorValue"></label></td>
+                                        <td><input name="colorThumbValue" type="number" maxlength="3" size="3" min="0" max="100"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="colorThumbHSVAlpha" data-i18n="colorAlpha"></label></td>
+                                        <td><input name="colorThumbHSVAlpha" type="number" maxlength="3" size="3" min="0" max="255"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                    </section>
 
-            <div class="panel-section-separator only-colors"></div>
+                    <div class="panel-section-separator"></div>
 
-            <section class="panel-section only-colors">
-                <div class="image-helper">
-                    <img src="track.svg">
-                    <label for="colorTrack" data-i18n="optionsSectionTrack"></label>
-                </div>
-                <div class="showHEX">
-                    <div id="colorTrack"></div>
-                    <div id="colorTrackTabs" class="panel-section-tabs">
-                        <button type="button" class="panel-section-tabs-button selected" data-i18n="colorFormatHEX"></button>
-                        <div class="panel-section-tabs-separator"></div>
-                        <button type="button" class="panel-section-tabs-button" data-i18n="colorFormatRGB"></button>
-                        <div class="panel-section-tabs-separator"></div>
-                        <button type="button" class="panel-section-tabs-button" data-i18n="colorFormatHSV"></button>
-                    </div>
-                    <div class="colorPickerPreviewContainer">
-                        <div class="colorPickerPreview">
-                            <div id="colorTrackPreview"></div>
+                    <section class="panel-section">
+                        <div class="image-helper">
+                            <img src="track.svg">
+                            <label for="colorTrack" data-i18n="optionsSectionTrack"></label>
                         </div>
-                        <input type="text" maxlength="9" size="9" id="colorTrackHEX" class="hex" name="colorTrack">
-                        <table id="colorTrackRGB" class="colorPickerValues rgb">
-                            <tr>
-                                <td><label for="colorTrackRed" data-i18n="colorRed"></label></td>
-                                <td><input name="colorTrackRed" type="number" maxlength="3" size="3" min="0" max="255"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="colorTrackGreen" data-i18n="colorGreen"></label></td>
-                                <td><input name="colorTrackGreen" type="number" maxlength="3" size="3" min="0" max="255"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="colorTrackBlue" data-i18n="colorBlue"></label></td>
-                                <td><input name="colorTrackBlue" type="number" maxlength="3" size="3" min="0" max="255"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="colorTrackRGBAlpha" data-i18n="colorAlpha"></label></td>
-                                <td><input name="colorTrackRGBAlpha" type="number" maxlength="3" size="3" min="0" max="255"></td>
-                            </tr>
-                        </table>
-                        <table id="colorTrackHSV" class="colorPickerValues hsv">
-                            <tr>
-                                <td><label for="colorTrackHue" data-i18n="colorHue"></label></td>
-                                <td><input name="colorTrackHue" type="number" maxlength="3" size="3" min="0" max="360"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="colorTrackSaturation" data-i18n="colorSaturation"></label></td>
-                                <td><input name="colorTrackSaturation" type="number" maxlength="3" size="3" min="0" max="100"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="colorTrackValue" data-i18n="colorValue"></label></td>
-                                <td><input name="colorTrackValue" type="number" maxlength="3" size="3" min="0" max="100"></td>
-                            </tr>
-                            <tr>
-                                <td><label for="colorTrackHSVAlpha" data-i18n="colorAlpha"></label></td>
-                                <td><input name="colorTrackHSVAlpha" type="number" maxlength="3" size="3" min="0" max="255"></td>
-                            </tr>
-                        </table>
-                    </div>
+                        <div class="showHEX">
+                            <div id="colorTrack"></div>
+                            <div id="colorTrackTabs" class="panel-section-tabs">
+                                <button type="button" class="panel-section-tabs-button selected" data-i18n="colorFormatHEX"></button>
+                                <div class="panel-section-tabs-separator"></div>
+                                <button type="button" class="panel-section-tabs-button" data-i18n="colorFormatRGB"></button>
+                                <div class="panel-section-tabs-separator"></div>
+                                <button type="button" class="panel-section-tabs-button" data-i18n="colorFormatHSV"></button>
+                            </div>
+                            <div class="colorPickerPreviewContainer">
+                                <div class="colorPickerPreview">
+                                    <div id="colorTrackPreview"></div>
+                                </div>
+                                <input type="text" maxlength="9" size="9" id="colorTrackHEX" class="hex" name="colorTrack">
+                                <table id="colorTrackRGB" class="colorPickerValues rgb">
+                                    <tr>
+                                        <td><label for="colorTrackRed" data-i18n="colorRed"></label></td>
+                                        <td><input name="colorTrackRed" type="number" maxlength="3" size="3" min="0" max="255"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="colorTrackGreen" data-i18n="colorGreen"></label></td>
+                                        <td><input name="colorTrackGreen" type="number" maxlength="3" size="3" min="0" max="255"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="colorTrackBlue" data-i18n="colorBlue"></label></td>
+                                        <td><input name="colorTrackBlue" type="number" maxlength="3" size="3" min="0" max="255"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="colorTrackRGBAlpha" data-i18n="colorAlpha"></label></td>
+                                        <td><input name="colorTrackRGBAlpha" type="number" maxlength="3" size="3" min="0" max="255"></td>
+                                    </tr>
+                                </table>
+                                <table id="colorTrackHSV" class="colorPickerValues hsv">
+                                    <tr>
+                                        <td><label for="colorTrackHue" data-i18n="colorHue"></label></td>
+                                        <td><input name="colorTrackHue" type="number" maxlength="3" size="3" min="0" max="360"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="colorTrackSaturation" data-i18n="colorSaturation"></label></td>
+                                        <td><input name="colorTrackSaturation" type="number" maxlength="3" size="3" min="0" max="100"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="colorTrackValue" data-i18n="colorValue"></label></td>
+                                        <td><input name="colorTrackValue" type="number" maxlength="3" size="3" min="0" max="100"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label for="colorTrackHSVAlpha" data-i18n="colorAlpha"></label></td>
+                                        <td><input name="colorTrackHSVAlpha" type="number" maxlength="3" size="3" min="0" max="255"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
                 </div>
-            </section>
+            </div>
 
             <div class="panel-section-separator"></div>
 
@@ -344,7 +348,7 @@
                     </div>
                 </button>
             </section>
-            
+
             <section class="panel-section help-row has-help">
                 <div id="saveWarning" class="saved">
                     <div class="message-bar success" data-i18n="messageSaved"></div>
