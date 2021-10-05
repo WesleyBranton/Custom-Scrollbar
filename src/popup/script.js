@@ -228,24 +228,31 @@
                 break;
         }
 
-        // Fill buttons information
-        switch (profile.buttons) {
-            case 'light':
-                buttonsOutput.textContent = browser.i18n.getMessage('optionLight');
-                break;
-            case 'dark':
-                buttonsOutput.textContent = browser.i18n.getMessage('optionDark');
-                break;
-            default:
-                buttonsOutput.textContent = browser.i18n.getMessage('overrideNone');
-                break;
+        if (profile.width != 'none') {
+            // Fill buttons information
+            switch (profile.buttons) {
+                case 'light':
+                    buttonsOutput.textContent = browser.i18n.getMessage('optionLight');
+                    break;
+                case 'dark':
+                    buttonsOutput.textContent = browser.i18n.getMessage('optionDark');
+                    break;
+                default:
+                    buttonsOutput.textContent = browser.i18n.getMessage('overrideNone');
+                    break;
+            }
+
+            // Thumb radius information
+            thumbRadiusOutput.textContent = profile.thumbRadius + '%';
+        } else {
+            buttonsOutput.textContent = '-';
+            thumbRadiusOutput.textContent = '-';
         }
 
-        // Thumb radius information
-        thumbRadiusOutput.textContent = profile.thumbRadius + '%';
+            
 
         // Fill color information
-        if (profile.colorThumb && profile.colorTrack) {
+        if (profile.colorThumb && profile.colorTrack && profile.width != 'none') {
             colorThumbOutput.style.background = profile.colorThumb;
             colorThumbOutput.textContent = '';
             colorThumbOutput.classList.add('color-output');

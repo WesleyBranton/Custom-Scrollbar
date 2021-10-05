@@ -445,6 +445,17 @@ function toggleColorSettings() {
 }
 
 /**
+ * Show/hide settings that are not relevant for hidden scrollbars
+ */
+function toggleHiddenSettings() {
+    if (document.settings.width.value == 'none') {
+        document.getElementById('only-not-hidden').classList.add('hide');
+    } else {
+        document.getElementById('only-not-hidden').classList.remove('hide');
+    }
+}
+
+/**
  * Change between Hex, RGB or HSV mode
  * @param {Object} tabs 
  * @param {HTMLElement} selected 
@@ -558,6 +569,7 @@ document.getElementById('saveChanges').addEventListener('click', saveScrollbar);
 document.settings.addEventListener('change', () => {
     toggleColorSettings();
     toggleCustomWidth();
+    toggleHiddenSettings();
     toggleChangesWarning(true);
 });
 document.settings.thumbRadius.addEventListener('input', updateRadiusLabel);
