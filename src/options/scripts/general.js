@@ -175,9 +175,25 @@ function toggleCollapsiblePanel(event) {
     if (button.dataset.collapsibleState == 'open') {
         panel.style.maxHeight = null;
         button.dataset.collapsibleState = 'close';
+        setKeyboardNavigation(panel, false);
     } else {
         panel.style.maxHeight = panel.scrollHeight + 'px';
         button.dataset.collapsibleState = 'open';
+        setKeyboardNavigation(panel, true);
+    }
+}
+
+/**
+ * Handle keyboard events that toggle collapsible panels
+ * @param {KeyboardEvent} event 
+ */
+function toggleCollapsiblePanelWithKeyboard(event) {
+    switch (event.key) {
+        case 'Enter':
+        case ' ':
+            event.preventDefault();
+            toggleCollapsiblePanel(event);
+            break;
     }
 }
 
@@ -214,6 +230,38 @@ function openWhatsNew() {
     });
 }
 
+/**
+ * Allow/Disable keyboard navigation for all children of an element
+ */
+ function setKeyboardNavigation(parent, allow) {
+    if (allow) {
+        const elements = parent.querySelectorAll('[data-restore-tabindex]');
+
+        for (const element of elements) {
+            element.removeAttribute('data-restore-tabindex');
+            element.removeAttribute('tabindex');
+    
+            if (element.hasAttribute('data-restore-tabindex-value')) {
+                element.tabIndex = element.getAttribute('data-restore-tabindex-value');
+                element.removeAttribute('data-restore-tabindex-value');
+            }
+        }
+    } else {
+        const elements = parent.querySelectorAll('a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])');
+
+        for (const element of elements) {
+            element.setAttribute('data-restore-tabindex', true);
+    
+            if (element.hasAttribute('tabindex')) {
+                element.setAttribute('data-restore-tabindex-value', element.tabIndex);
+            }
+    
+            element.tabIndex = -1;
+        }
+    }
+    
+}
+
 // Add browser tag to body class
 if (runningOn == browsers.FIREFOX) {
     document.body.classList.add('firefox');
@@ -232,6 +280,7 @@ showWhatsNew();
 const collapsiblePanelButtons = document.getElementsByClassName('collapse-header');
 for (const btn of collapsiblePanelButtons) {
     btn.addEventListener('click', toggleCollapsiblePanel);
+    btn.addEventListener('keyup', toggleCollapsiblePanelWithKeyboard);
 }
 
 window.onbeforeunload = (event) => {

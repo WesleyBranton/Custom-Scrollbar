@@ -304,6 +304,10 @@ button.default.icon > div > img {
     cursor: pointer;
 }
 
+.collapse-header:focus {
+    box-shadow: 0 0 0 0.05rem var(--focus-color) inset, 0 0 0 0.05rem var(--focus-color), 0 0 0 0.2rem var(--focus-color-fade);
+}
+
 .collapse-header::after {
     background-image: var(--down-icon);
     background-position: center;
