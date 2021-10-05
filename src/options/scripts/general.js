@@ -175,9 +175,25 @@ function toggleCollapsiblePanel(event) {
     if (button.dataset.collapsibleState == 'open') {
         panel.style.maxHeight = null;
         button.dataset.collapsibleState = 'close';
+        setKeyboardNavigation(panel, false);
     } else {
         panel.style.maxHeight = panel.scrollHeight + 'px';
         button.dataset.collapsibleState = 'open';
+        setKeyboardNavigation(panel, true);
+    }
+}
+
+/**
+ * Handle keyboard events that toggle collapsible panels
+ * @param {KeyboardEvent} event 
+ */
+function toggleCollapsiblePanelWithKeyboard(event) {
+    switch (event.key) {
+        case 'Enter':
+        case ' ':
+            event.preventDefault();
+            toggleCollapsiblePanel(event);
+            break;
     }
 }
 
@@ -264,6 +280,7 @@ showWhatsNew();
 const collapsiblePanelButtons = document.getElementsByClassName('collapse-header');
 for (const btn of collapsiblePanelButtons) {
     btn.addEventListener('click', toggleCollapsiblePanel);
+    btn.addEventListener('keyup', toggleCollapsiblePanelWithKeyboard);
 }
 
 window.onbeforeunload = (event) => {
