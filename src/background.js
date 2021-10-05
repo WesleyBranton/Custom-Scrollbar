@@ -273,6 +273,9 @@ function handleMessage(message, sender, sendResponse) {
         case 'isTabRunningContentScript':
             sendResponse(isTabRunningContentScript(message.tabId));
             break;
+        case 'openAddonOptions':
+            browser.runtime.openOptionsPage();
+            break;
     }
 }
 

@@ -60,7 +60,7 @@
         "run_at": "document_start"
     }, {
         "matches": ["*://addons.wesleybranton.com/addon/custom-scrollbars/*"],
-        "js": ["crossbrowser.js", "unsubscribeFromNotifications.js"],
+        "js": ["crossbrowser.js", "webservice/unsubscribeFromNotifications.js", "webservice/openOptions.js"],
         "all_frames": false,
         "run_at": "document_end"
     }],
