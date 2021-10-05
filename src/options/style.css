@@ -2,10 +2,6 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
-.no-custom-colors .only-colors {
-    display: none !important;
-}
-
 #saveWarning.saved .warning,
 #saveWarning.unsaved .success {
     display: none !important;
@@ -19,7 +15,7 @@
 }
 
 .message-bar.private * {
-    color: white;
+    color: white !important;
 }
 
 .message-bar.private a {

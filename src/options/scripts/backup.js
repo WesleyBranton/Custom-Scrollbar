@@ -77,6 +77,7 @@ function loadBackup() {
 function processBackupFile(event) {
     let data;
 
+    // Parse file contents into JSON object
     try {
         data = JSON.parse(event.target.result);
     } catch (error) {
@@ -89,6 +90,7 @@ function processBackupFile(event) {
         return;
     }
 
+    // Verify integrity of file data
     if (!data.schema || !data.defaultProfile || !data[`profile_${data.defaultProfile}`]) {
         if (!data.schema) console.error('File missing schema marker');
         if (!data.defaultProfile) console.error('File missing default scrollbar marker');
@@ -102,6 +104,7 @@ function processBackupFile(event) {
         return;
     }
 
+    // Overwrite Storage API with data from file
     browser.storage.local.clear(() => {
         browser.storage.local.set(data, () => {
             showAlert(

@@ -5,27 +5,16 @@
 /**
  * Load i18n data
  */
-function parsei18n() {
+ function parsei18n() {
     document.title = browser.i18n.getMessage('optionsTitle', browser.i18n.getMessage('extensionName'));
 
-    const elements = document.querySelectorAll('[data-i18n]');
-    for (let e of elements) {
-        const placeholders = [];
+    i18nParse();
 
-        if (e.hasAttribute('data-i18n-placeholders')) {
-            const num = parseInt(e.getAttribute('data-i18n-placeholders'));
-
-            for (let i = 1; i <= num; i++) {
-                placeholders.push(browser.i18n.getMessage(e.getAttribute('data-i18n-placeholder-' + i)));
-            }
-        }
-
-        e.textContent = browser.i18n.getMessage(e.dataset.i18n, placeholders);
-    }
-
+    // Set tooltip for width help button
     const customWidthHelp = document.getElementById('customWidthHelp');
     if (customWidthHelp) customWidthHelp.title = browser.i18n.getMessage('linkHelp');
 
+    // Set tooltip for what's new button
     const whatsNewButton = document.getElementById('whatsnew');
     whatsNewButton.title = browser.i18n.getMessage('whatsnew');
     whatsNewButton.getElementsByTagName('img')[0].alt = browser.i18n.getMessage('whatsnew');
@@ -34,39 +23,36 @@ function parsei18n() {
 }
 
 /**
- * Change the main settings tabs
- * @param {Event} event
- */
-function changeTab(event) {
-    if (!event.target.id.includes('tabselect')) {
-        return;
-    }
-
-    const selected = event.target.id.split('-')[1];
-
-    window.location.replace(selected + '.html');
-}
-
-/**
  * Update the Private Browsing name label
  */
-function updatePrivateBrowsingName() {
+ function updatePrivateBrowsingName() {
     const label = document.getElementById('private-notice-message');
-    let name;
+    let i18nKey;
 
-    if (runningOn == browsers.FIREFOX) name = browser.i18n.getMessage("privateBrowsingFirefox");
-    else if (runningOn == browsers.CHROME) name = browser.i18n.getMessage("privateBrowsingChrome");
-    else if (runningOn == browsers.EDGE) name = browser.i18n.getMessage("privateBrowsingEdge");
-    else if (runningOn == browsers.OPERA) name = browser.i18n.getMessage("privateBrowsingOpera");
-    else return;
+    switch (runningOn) {
+        case browsers.FIREFOX:
+            i18nKey = 'privateBrowsingFirefox';
+            break;
+        case browsers.CHROME:
+            i18nKey = 'privateBrowsingChrome';
+            break;
+        case browsers.EDGE:
+            i18nKey = 'privateBrowsingEdge';
+            break;
+        case browsers.OPERA:
+            i18nKey = 'privateBrowsingOpera';
+            break;
+        default:
+            return;
+    }
 
-    label.textContent = browser.i18n.getMessage("promptPrivateBrowsing", name);
+    label.textContent = browser.i18n.getMessage('promptPrivateBrowsing', browser.i18n.getMessage(i18nKey));
 }
 
 /**
  * Display Private Browsing access warning message, if required
  */
-function togglePrivateNotice(isAllowPrivateBrowsing) {
+ function togglePrivateNotice(isAllowPrivateBrowsing) {
     if (!isAllowPrivateBrowsing) {
         document.getElementById('private-notice').classList.remove('hide');
     }
@@ -76,7 +62,7 @@ function togglePrivateNotice(isAllowPrivateBrowsing) {
  * Change the unsaved changes warning banner
  * @param {boolean} show
  */
-function toggleChangesWarning(show) {
+ function toggleChangesWarning(show) {
     document.getElementById('saveWarning').className = (show) ? 'unsaved' : 'saved';
     document.getElementById('saveChanges').disabled = !show;
     pendingChanges = show;
@@ -89,6 +75,67 @@ function toggleChangesWarning(show) {
  */
 function updatePreview() {
     document.getElementById('preview-css').textContent = getNewCSS();
+}
+
+/**
+ * Change the main settings tabs
+ * @param {Event} event
+ */
+function changeTab(event) {
+    if (!event.target.id.includes('tabselect')) {
+        return;
+    }
+
+    const selected = event.target.id.split('-')[1];
+    window.location.replace(selected + '.html');
+}
+
+/**
+ * Reload the list of profiles from the Storage API
+ * @param {HTMLSelectElement} dropdown
+ * @param {Function} callback
+ */
+ function reloadProfileSelection(dropdown, callback) {
+    browser.storage.local.get((data) => {
+        let sortedOptions = [];
+        dropdown.textContent = '';
+
+        for (const key of Object.keys(data)) {
+            if (key.split('_')[0] == 'profile') {
+                const option = document.createElement('option');
+                option.textContent = data[key].name;
+                option.value = key.split('_')[1];
+                sortedOptions.push(option);
+            }
+        }
+
+        sortedOptions = sortedOptions.sort((a, b) => {
+            return a.textContent.toUpperCase().localeCompare(b.textContent.toUpperCase());
+        });
+
+        for (const option of sortedOptions) {
+            dropdown.appendChild(option);
+        }
+
+        if (callback) callback();
+    });
+}
+
+function addDefaultProfileOption(dropdown) {
+    const option = document.createElement('option');
+    let profilename = '';
+
+    for (const o of dropdown.options) {
+        if (o.value == defaultProfile) {
+            profilename = o.textContent;
+            break;
+        }
+    }
+
+    option.textContent = browser.i18n.getMessage('profileUsingDefault', profilename);
+    option.value = 'default';
+    dropdown.insertBefore(option, dropdown.firstChild);
+    dropdown.value = 'default';
 }
 
 /**

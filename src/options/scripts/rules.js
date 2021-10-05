@@ -47,7 +47,7 @@ function addListItem(rule) {
 
     let sortIndex = 0;
     const listItems = list.children;
-    for (let item of listItems) {
+    for (const item of listItems) {
         if (sortingFunction(rule, getRuleFromListItem(item)) > 0) {
             ++sortIndex;
         } else {
@@ -72,8 +72,8 @@ function removeRule(domain) {
  * @param {Object} raw
  */
 function parseRules(raw) {
-    for (let r of Object.keys(raw)) {
-        addRule(raw[r], r);
+    for (const rule of Object.keys(raw)) {
+        addRule(raw[rule], rule);
     }
     checkIfListIsEmpty();
     selectAll(false);
@@ -86,8 +86,8 @@ function parseRules(raw) {
 function saveRules() {
     let temp = {};
 
-    for (let r of Object.values(rules)) {
-        temp[r.fullDomain()] = r.profile;
+    for (const rule of Object.values(rules)) {
+        temp[rule.fullDomain()] = rule.profile;
     }
 
     const localFileProfile = parseInt(settings.localFileProfile.value);
@@ -111,32 +111,32 @@ function saveRules() {
  * @returns Sorted position
  */
 function sortByDomain(a, b) {
-    const aP = a.domain.split('.');
-    const bP = b.domain.split('.');
+    const aParts = a.domain.split('.');
+    const bParts = b.domain.split('.');
 
-    let iA = aP.length - 2;
-    let iB = bP.length - 2;
+    let aIndex = aParts.length - 2;
+    let bIndex = bParts.length - 2;
 
     while (true) {
-        if (iA < 0 && iB < 0) {
+        if (aIndex < 0 && bIndex < 0) {
             if (a.includeSubdomains && !b.includeSubdomains) {
                 return -1;
             } else if (!a.includeSubdomains && b.includeSubdomains) {
                 return 1;
             }
             return 0;
-        } else if (iA < 0) {
+        } else if (aIndex < 0) {
             return 1;
-        } else if (iB < 0) {
+        } else if (bIndex < 0) {
             return -1;
         }
 
-        if (aP[iA] != bP[iB]) {
-            return aP[iA].localeCompare(bP[iB]);
+        if (aParts[aIndex] != bParts[bIndex]) {
+            return aParts[aIndex].localeCompare(bParts[bIndex]);
         }
 
-        iA--;
-        iB--;
+        aIndex--;
+        bIndex--;
     }
 }
 
@@ -179,7 +179,7 @@ function changeSorting() {
     const list = document.getElementById('rule-list');
     list.textContent = '';
 
-    for (let rule of Object.values(rules)) {
+    for (const rule of Object.values(rules)) {
         addListItem(rule);
     }
     checkIfListIsEmpty();
@@ -194,7 +194,7 @@ function searchRules() {
         const searchTerm = document.getElementById('ruleSearch').value.trim().toLowerCase();
         let found = false;
 
-        for (let item of listItems) {
+        for (const item of listItems) {
             const rule = getRuleFromListItem(item);
 
             if (rule && rule.displayDomain().toLowerCase().includes(searchTerm)) {
@@ -239,7 +239,7 @@ function selectAll(check) {
     if (Object.keys(rules).length > 0) {
         const listItems = document.getElementById('rule-list').children;
 
-        for (let item of listItems) {
+        for (const item of listItems) {
             if (!item.classList.contains('hide')) {
                 const checkbox = item.getElementsByClassName('rule-select-checkbox')[0];
                 if (checkbox) {
@@ -258,9 +258,9 @@ function selectAll(check) {
  */
 function getSelected() {
     const listItems = document.getElementById('rule-list').children;
-    let selectedItems = [];
+    const selectedItems = [];
 
-    for (let item of listItems) {
+    for (const item of listItems) {
         if (!item.classList.contains('hide')) {
             const checkbox = item.getElementsByClassName('rule-select-checkbox')[0];
             if (checkbox && checkbox.checked) {
@@ -279,9 +279,9 @@ function bulkDelete() {
     confirmAction(
         browser.i18n.getMessage('dialogCannotBeUndone'),
         () => {
-            for (let item of getSelected()) {
-                const r = getRuleFromListItem(item);
-                removeRule(r.fullDomain());
+            for (const item of getSelected()) {
+                const rule = getRuleFromListItem(item);
+                removeRule(rule.fullDomain());
                 document.getElementById('rule-list').removeChild(item);
             }
 
@@ -302,16 +302,16 @@ function bulkChangeProfile() {
         browser.i18n.getMessage('changeProfileFor', browser.i18n.getMessage('selectedRules')),
         null,
         (value) => {
-            for (let item of getSelected()) {
-                const r = getRuleFromListItem(item);
-                r.profile = `profile_${value}`;
-
+            for (const item of getSelected()) {
                 const profileNameOutput = item.getElementsByClassName('rule-profile')[0];
-                if (listOfProfiles[r.profile]) {
-                    profileNameOutput.textContent = listOfProfiles[r.profile];
+                const rule = getRuleFromListItem(item);
+                rule.profile = `profile_${value}`;
+
+                if (listOfProfiles[rule.profile]) {
+                    profileNameOutput.textContent = listOfProfiles[rule.profile];
                     profileNameOutput.classList.remove('profile-missing');
                 } else {
-                    console.warn(`Scrollbar "${r.profile}" cannot be loaded from storage for rule "${r.fullDomain()}".`);
+                    console.warn(`Scrollbar "${rule.profile}" cannot be loaded from storage for rule "${rule.fullDomain()}".`);
                     profileNameOutput.textContent = `** ${browser.i18n.getMessage('ruleNoProfileSet')} **`;
                     profileNameOutput.classList.add('profile-missing');
                 }
@@ -354,21 +354,21 @@ function getRuleFromListItem(item) {
  * @param {HTMLElement} item
  */
 function triggerChangeProfile(item) {
-    const r = getRuleFromListItem(item);
-    document.getElementById('dialog-dropdown').value = r.profile.split('_')[1];
+    const rule = getRuleFromListItem(item);
+    document.getElementById('dialog-dropdown').value = rule.profile.split('_')[1];
 
     showDowndown(
-        browser.i18n.getMessage('changeProfileFor', r.displayDomain()),
+        browser.i18n.getMessage('changeProfileFor', rule.displayDomain()),
         null,
         (value) => {
-            r.profile = `profile_${value}`;
-
             const profileNameOutput = item.getElementsByClassName('rule-profile')[0];
-            if (listOfProfiles[r.profile]) {
-                profileNameOutput.textContent = listOfProfiles[r.profile];
+            rule.profile = `profile_${value}`;
+
+            if (listOfProfiles[rule.profile]) {
+                profileNameOutput.textContent = listOfProfiles[rule.profile];
                 profileNameOutput.classList.remove('profile-missing');
             } else {
-                console.warn(`Scrollbar "${r.profile}" cannot be loaded from storage for rule "${r.fullDomain()}".`);
+                console.warn(`Scrollbar "${rule.profile}" cannot be loaded from storage for rule "${rule.fullDomain()}".`);
                 profileNameOutput.textContent = `** ${browser.i18n.getMessage('ruleNoProfileSet')} **`;
                 profileNameOutput.classList.add('profile-missing');
             }
@@ -380,54 +380,6 @@ function triggerChangeProfile(item) {
 }
 
 /**
- * Populate drop-down menu of profiles
- */
-function populateProfileDropdown(dropdown, showDefault) {
-    dropdown.textContent = '';
-
-    for (let key of Object.keys(listOfProfiles)) {
-        if (key.split('_')[0] == 'profile') {
-            const option = document.createElement('option');
-            option.textContent = listOfProfiles[key];
-            option.value = key.split('_')[1];
-            dropdown.appendChild(option);
-        }
-    }
-
-    let options = dropdown.options;
-    let sortedOptions = [];
-
-    for (let o of options) {
-        sortedOptions.push(o);
-    }
-
-    sortedOptions = sortedOptions.sort((a, b) => {
-        return a.textContent.toUpperCase().localeCompare(b.textContent.toUpperCase());
-    })
-
-    for (let i = 0; i <= options.length; i++) {
-        options[i] = sortedOptions[i];
-    }
-
-    if (showDefault) {
-        const option = document.createElement('option');
-        let profilename = '';
-
-        for (let o of dropdown.options) {
-            if (o.value == defaultProfile) {
-                profilename = o.textContent;
-                break;
-            }
-        }
-
-        option.textContent = browser.i18n.getMessage('profileUsingDefault', profilename);
-        option.value = 'default';
-        dropdown.insertBefore(option, dropdown.firstChild);
-        dropdown.value = 'default';
-    }
-}
-
-/**
  * Handle remove rule button click
  * @param {HTMLElement} item
  */
@@ -435,8 +387,8 @@ function triggerRemoveProfile(item) {
     confirmAction(
         browser.i18n.getMessage('dialogCannotBeUndone'),
         () => {
-            const r = getRuleFromListItem(item);
-            removeRule(r.fullDomain());
+            const rule = getRuleFromListItem(item);
+            removeRule(rule.fullDomain());
             document.getElementById('rule-list').removeChild(item);
             toggleChangesWarning(true);
             checkIfListIsEmpty();
@@ -568,10 +520,10 @@ function getListButton(element) {
 /**
  * Initial load of data from Storage API
  */
-function firstLoad() {
+function init() {
     browser.storage.local.get((data) => {
         // Generate list of profiles
-        for (let key of Object.keys(data)) {
+        for (const key of Object.keys(data)) {
             if (key.split('_')[0] == 'profile') {
                 listOfProfiles[key] = data[key].name;
             }
@@ -579,8 +531,11 @@ function firstLoad() {
 
         defaultProfile = data.defaultProfile;
 
-        populateProfileDropdown(document.getElementById('dialog-dropdown'), false);
-        populateProfileDropdown(document.getElementById('profileSelectionForLocalFileProfile'), true);
+        reloadProfileSelection(document.getElementById('dialog-dropdown'), null);
+        const localProfileSelectionDropdown = document.getElementById('profileSelectionForLocalFileProfile');
+        reloadProfileSelection(localProfileSelectionDropdown, () => {
+            addDefaultProfileOption(localProfileSelectionDropdown);
+        });
 
         // Load advanced setting
         data.framesInherit = (typeof data.framesInherit == 'boolean') ? data.framesInherit : true;
@@ -641,8 +596,8 @@ function toggleTabsPermissionWarning(show) {
     const error = document.getElementById('framesInheritPermissionError');
     const options = document.getElementsByName('framesInherit');
 
-    for (o of options) {
-        o.disabled = show;
+    for (const option of options) {
+        option.disabled = show;
     }
 
     if (show) {
@@ -658,8 +613,8 @@ function toggleTabsPermissionWarning(show) {
  */
 function parsei18nOfTemplate() {
     const elements = document.getElementById('template-rule').content.children[0].querySelectorAll('[data-i18n]');
-    for (let e of elements) {
-        e.textContent = browser.i18n.getMessage(e.dataset.i18n);
+    for (const element of elements) {
+        element.textContent = browser.i18n.getMessage(element.dataset.i18n);
     }
 }
 
@@ -680,7 +635,7 @@ let sortingFunction = sortByDomain;
 
 clear();
 parsei18nOfTemplate();
-firstLoad();
+init();
 getDefaultScrollbar();
 toggleChangesWarning(false);
 checkIfListIsEmpty();

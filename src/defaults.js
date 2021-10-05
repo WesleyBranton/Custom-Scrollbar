@@ -23,9 +23,9 @@ const webBase = 'https://addons.wesleybranton.com/addon/custom-scrollbars';
  */
 function loadWithDefaults(settings) {
     const keys = Object.keys(defaults);
-    for (let k of keys) {
-        if (typeof defaults[k] != typeof settings[k]) {
-            settings[k] = defaults[k];
+    for (const key of keys) {
+        if (typeof defaults[key] != typeof settings[key]) {
+            settings[key] = defaults[key];
         }
     }
     return settings;
