@@ -590,7 +590,7 @@ function generateUnconflictingProfileName(name, id) {
 }
 
 let colorPickerThumb, colorPickerTrack, previousToggleValue;
-let defaultProfile, selectedProfile, selectedProfileName;
+let defaultProfile, selectedProfile, selectedProfileName, localFileProfile;
 const colorInputs = {};
 createColorPickers();
 browser.storage.local.get(['defaultProfile'], loadStorage);
