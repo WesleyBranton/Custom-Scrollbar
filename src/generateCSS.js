@@ -27,8 +27,7 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth, butto
     }
 
     if (runningOn == browsers.FIREFOX) {
-        css = 
-`* {
+        css = `* {
     scrollbar-width: ${width} ${(parseInt(override / 10) == 0) ? '!important' : ''};
     scrollbar-color: ${color} ${(override % 10 == 0) ? '!important' : ''};
 }`;
@@ -43,8 +42,7 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth, butto
             right = browser.runtime.getURL(`images/components/${buttons}/right.svg`);
         }
 
-        css = 
-`::-webkit-scrollbar {
+        css = `::-webkit-scrollbar {
     width: ${widthPx} ${(parseInt(override / 10) == 0) ? '!important' : ''};
     height: ${widthPx} ${(parseInt(override / 10) == 0) ? '!important' : ''};
 }
@@ -66,8 +64,8 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth, butto
     background: ${colorTrack} ${(override % 10 == 0) ? '!important' : ''};
 }`;
 
-if (buttons != 'none') {
-    css += `
+        if (buttons != 'none') {
+            css += `
     ::-webkit-scrollbar-button {
         background-color: ${colorThumb} ${(override % 10 == 0) ? '!important' : ''};
         width: ${widthPx} ${(parseInt(override / 10) == 0) ? '!important' : ''};
@@ -143,7 +141,7 @@ function isLightColor(color) {
     if (color.charAt(0) == '#') {
         color = color.substring(1);
     }
-    
+
     const r = parseInt(color.substring(0, 2), 16);
     const g = parseInt(color.substring(2, 4), 16);
     const b = parseInt(color.substring(4, 6), 16);

@@ -19,7 +19,6 @@
         "indent_head_inner_html": true,
         "indent_inner_html": false,
         "indent_scripts": "normal",
-        "indent_size": 2,
         "inline": [
             "a",
             "abbr",
@@ -116,7 +115,6 @@
     },
 
     "css": {
-        "indent_size": 2,
         "newline_between_rules": false,
         "selector_separator_newline": true,
         "space_around_combinator": true

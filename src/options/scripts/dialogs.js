@@ -13,8 +13,8 @@ function openDialog(message, type, yesAction, noAction) {
     document.getElementById('dialog-text').textContent = message;
     document.getElementById('dialog').className = type;
 
-    actionYes = (yesAction) ? yesAction : ()=>{};
-    actionNo = (noAction) ? noAction : ()=>{};
+    actionYes = (yesAction) ? yesAction : () => {};
+    actionNo = (noAction) ? noAction : () => {};
 
     document.getElementById('dialog-overlay').classList.remove('hide');
 }
@@ -142,15 +142,15 @@ function showRuleAdd(message, inputText, dropdownText, checkboxText, yesAction, 
         dropdownLabel.textContent = dropdownText + ':';
     }
 
-    validation = (validate) ? validate : ()=>{};
+    validation = (validate) ? validate : () => {};
 
     openDialog(message, 'ruleadd', yesAction, noAction);
     input.focus();
 }
 
-let actionYes = ()=>{};
-let actionNo = ()=>{};
-let validation = ()=>{};
+let actionYes = () => {};
+let actionNo = () => {};
+let validation = () => {};
 document.getElementById('prompt-yes').addEventListener('click', () => {
     const text = document.getElementById('dialog-input').value.trim();
 

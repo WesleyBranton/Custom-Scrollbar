@@ -10,7 +10,7 @@
 function addRule(profile, domain) {
     domain = domain.trim();
     let rule;
-    
+
     if (domain.charAt(0) == '*') {
         rule = new Rule(profile, domain.substring(2), true);
     } else {
@@ -160,7 +160,7 @@ function sortByProfile(a, b) {
 /**
  * Change the sorting method
  */
- function changeSorting() {
+function changeSorting() {
     const sortInput = document.getElementById('ruleSorting');
 
     switch (sortInput.value) {
@@ -386,7 +386,7 @@ function populateProfileDropdown(dropdown, showDefault) {
     dropdown.textContent = '';
 
     for (let key of Object.keys(listOfProfiles)) {
-        if (key.split('_')[0]  == 'profile') {
+        if (key.split('_')[0] == 'profile') {
             const option = document.createElement('option');
             option.textContent = listOfProfiles[key];
             option.value = key.split('_')[1];
@@ -572,7 +572,7 @@ function firstLoad() {
     browser.storage.local.get((data) => {
         // Generate list of profiles
         for (let key of Object.keys(data)) {
-            if (key.split('_')[0]  == 'profile') {
+            if (key.split('_')[0] == 'profile') {
                 listOfProfiles[key] = data[key].name;
             }
         }
@@ -624,7 +624,9 @@ function checkTabsPermission() {
  * Prompt user to grant tabs permission
  */
 function askForTabsPermission() {
-    browser.permissions.request({ permissions: ['tabs'] }, (granted) => {
+    browser.permissions.request({
+        permissions: ['tabs']
+    }, (granted) => {
         if (granted) {
             console.warn('User has not granted "tabs" permission.');
         }
@@ -692,8 +694,12 @@ document.getElementById('rule-add').addEventListener('click', triggerAddNewRule)
 document.getElementById('saveChanges').addEventListener('click', saveRules);
 document.getElementById('ruleSorting').addEventListener('change', changeSorting);
 document.getElementById('ruleSearch').addEventListener('keyup', searchRules);
-document.getElementById('rule-select-all').addEventListener('click', () => { selectAll(true); });
-document.getElementById('rule-deselect-all').addEventListener('click', () => { selectAll(false); });
+document.getElementById('rule-select-all').addEventListener('click', () => {
+    selectAll(true);
+});
+document.getElementById('rule-deselect-all').addEventListener('click', () => {
+    selectAll(false);
+});
 document.getElementById('rule-delete-all').addEventListener('click', bulkDelete);
 document.getElementById('rule-change-all').addEventListener('click', bulkChangeProfile);
 document.getElementById('framesInheritGrantPermission').addEventListener('click', askForTabsPermission);

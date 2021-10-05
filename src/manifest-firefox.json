@@ -52,7 +52,7 @@
             "background.js"
         ]
     },
-    
+
     "content_scripts": [{
         "matches": ["<all_urls>"],
         "js": ["content.js"],
@@ -69,7 +69,7 @@
         "storage",
         "<all_urls>"
     ],
-    
+
     "optional_permissions": [
         "downloads",
         "tabs"

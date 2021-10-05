@@ -110,7 +110,7 @@ function getNewCSS() {
 /**
  * Create color picker utilities
  */
- function createColorPickers() {
+function createColorPickers() {
     colorPickerThumb = createColorPicker(
         document.getElementById('colorThumb'),
         getColorInputs('colorThumb'),
@@ -136,27 +136,37 @@ function getNewCSS() {
 function createColorPicker(container, inputs, preview, setTo) {
     let layout;
     if (CSS.supports('background', 'rgba(0, 0, 0, 0) conic-gradient(red, magenta, blue, aqua, lime, yellow, red) repeat scroll 0% 0%')) {
-        layout = [
-            { component: iro.ui.Wheel },
-            {
-                component: iro.ui.Slider,
-                options: { sliderType: 'value' }
+        layout = [{
+                component: iro.ui.Wheel
             },
             {
                 component: iro.ui.Slider,
-                options: { sliderType: 'alpha' }
+                options: {
+                    sliderType: 'value'
+                }
+            },
+            {
+                component: iro.ui.Slider,
+                options: {
+                    sliderType: 'alpha'
+                }
             }
         ];
     } else {
-        layout = [
-            { component: iro.ui.Box },
-            {
-                component: iro.ui.Slider,
-                options: { sliderType: 'hue' }
+        layout = [{
+                component: iro.ui.Box
             },
             {
                 component: iro.ui.Slider,
-                options: { sliderType: 'alpha' }
+                options: {
+                    sliderType: 'hue'
+                }
+            },
+            {
+                component: iro.ui.Slider,
+                options: {
+                    sliderType: 'alpha'
+                }
             }
         ];
     }
@@ -184,9 +194,15 @@ function createColorPicker(container, inputs, preview, setTo) {
         toggleChangesWarning(true);
     });
 
-    inputs.tabs.hex.addEventListener('click', () => { changeColorMode(inputs.tabs, inputs.tabs.hex, 'hex') });
-    inputs.tabs.rgb.addEventListener('click', () => { changeColorMode(inputs.tabs, inputs.tabs.rgb, 'rgb') });
-    inputs.tabs.hsv.addEventListener('click', () => { changeColorMode(inputs.tabs, inputs.tabs.hsv, 'hsv') });
+    inputs.tabs.hex.addEventListener('click', () => {
+        changeColorMode(inputs.tabs, inputs.tabs.hex, 'hex')
+    });
+    inputs.tabs.rgb.addEventListener('click', () => {
+        changeColorMode(inputs.tabs, inputs.tabs.rgb, 'rgb')
+    });
+    inputs.tabs.hsv.addEventListener('click', () => {
+        changeColorMode(inputs.tabs, inputs.tabs.hsv, 'hsv')
+    });
 
     inputs.hex.addEventListener('change', () => {
         picker.color.hex8String = inputs.hex.value.trim();
@@ -434,7 +450,7 @@ function removeProfile() {
 
                     const dropdownNoButton = document.getElementById('dropdown-no');
                     dropdownNoButton.classList.add('hide');
-                    
+
                     showDowndown(
                         browser.i18n.getMessage('profileMoveExistingRules'),
                         null,
@@ -482,7 +498,9 @@ function bulkUpdateRules(from, to, rules) {
  * Change the profile that's used as default
  */
 function updateDefaultProfile() {
-    browser.storage.local.set({defaultProfile: selectedProfile}, () => {
+    browser.storage.local.set({
+        defaultProfile: selectedProfile
+    }, () => {
         defaultProfile = selectedProfile;
         reloadProfileSelection(null, null);
     });
@@ -512,7 +530,7 @@ function reloadProfileSelection(selector, callback) {
         selector.textContent = '';
 
         for (let key of Object.keys(data)) {
-            if (key.split('_')[0]  == 'profile') {
+            if (key.split('_')[0] == 'profile') {
                 const option = document.createElement('option');
                 option.textContent = data[key].name;
                 option.value = key.split('_')[1];
@@ -548,7 +566,7 @@ function reloadProfileSelection(selector, callback) {
  * @param {number} id
  * @returns Unique Name
  */
- function generateUnconflictingProfileName(name, id) {
+function generateUnconflictingProfileName(name, id) {
     const selector = document.getElementById('profileSelection');
     const names = selector.getElementsByTagName('option');
     let finalName = name;
@@ -572,7 +590,7 @@ function reloadProfileSelection(selector, callback) {
 }
 
 let colorPickerThumb, colorPickerTrack, previousToggleValue;
-let defaultProfile, selectedProfile, selectedProfileName;
+let defaultProfile, selectedProfile, selectedProfileName, localFileProfile;
 const colorInputs = {};
 createColorPickers();
 browser.storage.local.get(['defaultProfile'], loadStorage);
@@ -581,15 +599,23 @@ document.getElementById('saveChanges').addEventListener('click', save);
 document.settings.addEventListener('change', toggleColors);
 document.settings.addEventListener('change', toggleCustomWidth);
 document.settings.thumbRadius.addEventListener('input', updateRadiusLabel);
-document.getElementById('customWidthValue').addEventListener('focus', () => { parseCustomWidthValue(true) });
-document.getElementById('customWidthValue').addEventListener('blur', () => { parseCustomWidthValue(false) });
+document.getElementById('customWidthValue').addEventListener('focus', () => {
+    parseCustomWidthValue(true)
+});
+document.getElementById('customWidthValue').addEventListener('blur', () => {
+    parseCustomWidthValue(false)
+});
 document.getElementById('profile-setDefault').addEventListener('click', updateDefaultProfile);
 
 document.settings.profile.addEventListener('change', () => {
     confirmAction(
         browser.i18n.getMessage('dialogChangesWillBeLost'),
-        function() { changeProfile(document.settings.profile.value) },
-        function() { document.settings.profile.value = selectedProfile },
+        function() {
+            changeProfile(document.settings.profile.value)
+        },
+        function() {
+            document.settings.profile.value = selectedProfile
+        },
         !pendingChanges
     );
 });
