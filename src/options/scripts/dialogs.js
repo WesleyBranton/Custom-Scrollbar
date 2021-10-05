@@ -148,48 +148,61 @@ function showRuleAdd(message, inputText, dropdownText, checkboxText, yesAction, 
     input.focus();
 }
 
-let actionYes = () => {};
-let actionNo = () => {};
-let validation = () => {};
-document.getElementById('prompt-yes').addEventListener('click', () => {
+/**
+ * Handle generic dialog yes button click
+ */
+function clickDialogYes() {
+    actionYes();
+    closeDialog();
+}
+
+/**
+ * Handle generic dialog no button click
+ */
+function clickDialogNo() {
+    actionNo();
+    closeDialog();
+}
+
+/**
+ * Handle prompt dialog yes button click
+ */
+function clickPromptDialogYes() {
     const text = document.getElementById('dialog-input').value.trim();
 
     if (text.length > 0) {
         actionYes(text);
         closeDialog();
     }
-});
-document.getElementById('prompt-no').addEventListener('click', () => {
-    actionNo();
-    closeDialog();
-});
-document.getElementById('confirmation-yes').addEventListener('click', () => {
-    actionYes();
-    closeDialog();
-});
-document.getElementById('confirmation-no').addEventListener('click', () => {
-    actionNo();
-    closeDialog();
-});
-document.getElementById('popup-yes').addEventListener('click', () => {
-    actionYes();
-    closeDialog();
-});
-document.getElementById('dropdown-yes').addEventListener('click', () => {
+}
+
+/**
+ * Handle drop-down dialog yes button click
+ */
+function clickDropdownDialogYes() {
     actionYes(document.getElementById('dialog-dropdown').value);
     closeDialog();
-});
-document.getElementById('dropdown-no').addEventListener('click', () => {
-    actionNo();
-    closeDialog();
-});
-document.getElementById('ruleadd-yes').addEventListener('click', () => {
+}
+
+/**
+ * Handle rule add dialog yes button click
+ */
+function clickRuleAddDialogYes() {
     if (validation(document.getElementById('dialog-input').value, document.getElementById('dialog-checkbox').checked, document.getElementById('dialog-error'))) {
         actionYes(document.getElementById('dialog-input').value, document.getElementById('dialog-dropdown').value, document.getElementById('dialog-checkbox').checked);
         closeDialog();
     }
-});
-document.getElementById('ruleadd-no').addEventListener('click', () => {
-    actionNo();
-    closeDialog();
-});
+}
+
+let actionYes = () => {};
+let actionNo = () => {};
+let validation = () => {};
+document.getElementById('prompt-yes').addEventListener('click', clickPromptDialogYes);
+document.getElementById('prompt-no').addEventListener('click', clickDialogNo);
+document.getElementById('confirmation-yes').addEventListener('click', clickDialogYes);
+document.getElementById('confirmation-no').addEventListener('click', clickDialogNo);
+document.getElementById('popup-yes').addEventListener('click', clickDialogYes);
+document.getElementById('dropdown-yes').addEventListener('click', clickDropdownDialogYes);
+document.getElementById('dropdown-no').addEventListener('click', clickDialogNo);
+document.getElementById('ruleadd-yes').addEventListener('click', clickRuleAddDialogYes);
+document.getElementById('ruleadd-no').addEventListener('click', clickDialogNo);
