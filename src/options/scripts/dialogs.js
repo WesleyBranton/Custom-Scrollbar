@@ -17,16 +17,20 @@ function openDialog(message, type, yesAction, noAction) {
     actionNo = (noAction) ? noAction : () => {};
 
     document.getElementById('dialog-overlay').classList.remove('hide');
+    setKeyboardNavigation(document.settings, false);
+    document.body.addEventListener('keyup', bodyKeyHandler);
 }
 
 /**
  * Hide dialog from screen
  */
 function closeDialog() {
+    document.body.removeEventListener('keyup', bodyKeyHandler);
     document.getElementById('dialog-overlay').classList.add('hide');
     document.getElementById('dialog-error').textContent = '';
     document.getElementById('dialog-input').value = '';
     document.getElementById('dialog-checkbox').checked = false;
+    setKeyboardNavigation(document.settings, true);
 }
 
 /**
@@ -194,6 +198,28 @@ function clickRuleAddDialogYes() {
     }
 }
 
+/**
+ * Handle keyup event when dialog is open
+ * @param {KeyboardEvent} event
+ */
+function bodyKeyHandler(event) {
+    if (event.key == 'Escape') {
+        event.preventDefault();
+        clickDialogNo();
+    }
+}
+
+/**
+ * Handle enter key on prompt dialog textbox
+ * @param {KeyboardEvent} event
+ */
+function handleEnterKey(event) {
+    if (event.key == 'Enter') {
+        event.preventDefault();
+        clickPromptDialogYes();
+    }
+}
+
 let actionYes = () => {};
 let actionNo = () => {};
 let validation = () => {};
@@ -206,3 +232,4 @@ document.getElementById('dropdown-yes').addEventListener('click', clickDropdownD
 document.getElementById('dropdown-no').addEventListener('click', clickDialogNo);
 document.getElementById('ruleadd-yes').addEventListener('click', clickRuleAddDialogYes);
 document.getElementById('ruleadd-no').addEventListener('click', clickDialogNo);
+document.getElementById('dialog-input').addEventListener('keyup', handleEnterKey);
