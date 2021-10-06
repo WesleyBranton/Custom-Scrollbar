@@ -5,7 +5,7 @@
 /**
  * Load i18n data
  */
- function parsei18n() {
+function parsei18n() {
     document.title = browser.i18n.getMessage('optionsTitle', browser.i18n.getMessage('extensionName'));
 
     i18nParse();
@@ -25,7 +25,7 @@
 /**
  * Update the Private Browsing name label
  */
- function updatePrivateBrowsingName() {
+function updatePrivateBrowsingName() {
     const label = document.getElementById('private-notice-message');
     let i18nKey;
 
@@ -52,7 +52,7 @@
 /**
  * Display Private Browsing access warning message, if required
  */
- function togglePrivateNotice(isAllowPrivateBrowsing) {
+function togglePrivateNotice(isAllowPrivateBrowsing) {
     if (!isAllowPrivateBrowsing) {
         document.getElementById('private-notice').classList.remove('hide');
     }
@@ -62,7 +62,7 @@
  * Change the unsaved changes warning banner
  * @param {boolean} show
  */
- function toggleChangesWarning(show) {
+function toggleChangesWarning(show) {
     document.getElementById('saveWarning').className = (show) ? 'unsaved' : 'saved';
     document.getElementById('saveChanges').disabled = !show;
     pendingChanges = show;
@@ -95,7 +95,7 @@ function changeTab(event) {
  * @param {HTMLSelectElement} dropdown
  * @param {Function} callback
  */
- function reloadProfileSelection(dropdown, callback) {
+function reloadProfileSelection(dropdown, callback) {
     browser.storage.local.get((data) => {
         let sortedOptions = [];
         dropdown.textContent = '';
@@ -233,14 +233,14 @@ function openWhatsNew() {
 /**
  * Allow/Disable keyboard navigation for all children of an element
  */
- function setKeyboardNavigation(parent, allow) {
+function setKeyboardNavigation(parent, allow) {
     if (allow) {
         const elements = parent.querySelectorAll('[data-restore-tabindex]');
 
         for (const element of elements) {
             element.removeAttribute('data-restore-tabindex');
             element.removeAttribute('tabindex');
-    
+
             if (element.hasAttribute('data-restore-tabindex-value')) {
                 element.tabIndex = element.getAttribute('data-restore-tabindex-value');
                 element.removeAttribute('data-restore-tabindex-value');
@@ -251,15 +251,15 @@ function openWhatsNew() {
 
         for (const element of elements) {
             element.setAttribute('data-restore-tabindex', true);
-    
+
             if (element.hasAttribute('tabindex')) {
                 element.setAttribute('data-restore-tabindex-value', element.tabIndex);
             }
-    
+
             element.tabIndex = -1;
         }
     }
-    
+
 }
 
 // Add browser tag to body class

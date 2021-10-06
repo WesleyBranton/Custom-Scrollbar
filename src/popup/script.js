@@ -8,7 +8,7 @@
  *   - Read information about current tab
  *   - Render popup based on tab information
  */
- function init() {
+function init() {
     browser.storage.local.get((data) => {
         document.manager.profile.value = data.defaultProfile;
         defaultProfile = data.defaultProfile;
@@ -52,7 +52,7 @@
  * @param {URL} url
  * @param {Object} rules
  */
- function renderForUrl(url, rules) {
+function renderForUrl(url, rules) {
     if (url.protocol == 'file:') {
         renderForLocalFile();
         return;
@@ -111,7 +111,7 @@
 /**
  * Preload data for local file setting
  */
- function renderForLocalFile() {
+function renderForLocalFile() {
     browser.storage.local.get('localFileProfile', (data) => {
         if (typeof data.localFileProfile == 'number' && data.localFileProfile != null) {
             currentRule = data.localFileProfile;
@@ -132,7 +132,7 @@
 /**
  * Disable website-specific edits
  */
- function renderForGeneral() {
+function renderForGeneral() {
     const useButton = document.getElementById('button-use');
     useButton.parentNode.removeChild(useButton);
 
@@ -146,7 +146,7 @@
  * Display rule inheritance details
  * @param {String} domain
  */
- function displayInheritanceDetails(domain) {
+function displayInheritanceDetails(domain) {
     const selector = document.getElementById('profile-selector-container');
     const bar = document.getElementById('profile-inherit');
 
@@ -167,7 +167,7 @@
  * Load list of profiles from Storage API
  * @param {Object} data
  */
- function loadProfileList(data) {
+function loadProfileList(data) {
     let sortedOptions = [];
     document.manager.profile.textContent = '';
 
@@ -200,10 +200,10 @@
  * Load profile from Storage API
  * @param {number} id
  */
- function loadProfile(id) {
+function loadProfile(id) {
     browser.storage.local.get(`profile_${id}`, (data) => {
         const profile = loadWithDefaults(data[Object.keys(data)[0]]);
-        
+
         const widthOutput = document.getElementById('detail-width');
         const buttonsOutput = document.getElementById('detail-buttons');
         const thumbRadiusOutput = document.getElementById('detail-thumbRadius');
@@ -249,8 +249,6 @@
             thumbRadiusOutput.textContent = '-';
         }
 
-            
-
         // Fill color information
         if (profile.colorThumb && profile.colorTrack && profile.width != 'none') {
             colorThumbOutput.style.background = profile.colorThumb;
@@ -291,7 +289,7 @@
 /**
  * Handle profile selection drop-down menu change
  */
- function changeSelectedProfile() {
+function changeSelectedProfile() {
     if (document.manager.profile.value == 'default') {
         loadProfile(defaultProfile);
     } else {
@@ -303,7 +301,7 @@
 /**
  * Toggle "Set as default" button
  */
- function refreshSetAsDefaultButton() {
+function refreshSetAsDefaultButton() {
     document.getElementById('button-setDefault').disabled = defaultProfile == document.manager.profile.value || document.manager.profile.value == 'default';
     if (document.getElementById('button-use')) document.getElementById('button-use').disabled = !ruleInherit && currentRule == document.manager.profile.value;
 }
@@ -387,7 +385,7 @@ function openWhatsNew() {
 /**
  * Prompt user to grant tabs permission
  */
- function askForTabsPermission() {
+function askForTabsPermission() {
     browser.permissions.request({
         permissions: ['tabs']
     }, (granted) => {
@@ -402,7 +400,7 @@ function openWhatsNew() {
 /**
  * Load i18n data
  */
- function parsei18n() {
+function parsei18n() {
     i18nParse();
 
     const whatsNewButton = document.getElementById('whatsnew');

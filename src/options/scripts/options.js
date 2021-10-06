@@ -53,7 +53,7 @@ function saveScrollbar() {
  * Load the selected profile
  * @param {number} id
  */
- function loadScrollbar(id) {
+function loadScrollbar(id) {
     selectedProfile = id;
     document.getElementById('profile-setDefault').disabled = selectedProfile == defaultProfile;
     browser.storage.local.get(`profile_${id}`, (scrollbar) => {
@@ -91,7 +91,7 @@ function saveScrollbar() {
 /**
  * Add new profile
  */
- function addProfile() {
+function addProfile() {
     const id = Date.now();
     const newProfile = {};
     newProfile[`profile_${id}`] = {
@@ -161,7 +161,7 @@ function removeProfile() {
  * @param {string} to
  * @param {Object} rules
  */
- function bulkUpdateRules(from, to, rules) {
+function bulkUpdateRules(from, to, rules) {
     for (const key of Object.keys(rules)) {
         if (rules[key] == from) {
             if (to == 'default') {
@@ -194,7 +194,7 @@ function updateDefaultProfile() {
  * Rename the profile that's currently selected
  * @param {String} input
  */
- function renameProfile(input) {
+function renameProfile(input) {
     input = generateUnconflictingProfileName(input, selectedProfile);
 
     browser.storage.local.get(`profile_${selectedProfile}`, (data) => {
@@ -211,7 +211,7 @@ function updateDefaultProfile() {
  * @param {number} id
  * @returns Unique Name
  */
- function generateUnconflictingProfileName(name, id) {
+function generateUnconflictingProfileName(name, id) {
     let finalName = name;
     let exists = false;
     let counter = 1;
@@ -237,7 +237,7 @@ function updateDefaultProfile() {
  * Generates new CSS code for scrollbars
  * @returns {string} css
  */
- function getNewCSS() {
+function getNewCSS() {
     const width = document.settings.width.value;
     const colThumb = (document.settings.customColors.value == 'yes') ? colorPickerThumb.color.hex8String : null;
     const colTrack = (document.settings.customColors.value == 'yes') ? colorPickerTrack.color.hex8String : null;
@@ -251,7 +251,7 @@ function updateDefaultProfile() {
 /**
  * Create color pickers for parts of scrollbar
  */
- function createColorPickers() {
+function createColorPickers() {
     colorPickerThumb = createColorPicker(
         document.getElementById('colorThumb'),
         getColorInputs('colorThumb'),
@@ -411,7 +411,7 @@ function createColorPicker(container, inputs, preview, setTo) {
  * @param {number} original
  * @param {boolean} percentage
  */
- function validateColor(input, max, original, percentage) {
+function validateColor(input, max, original, percentage) {
     const parsedValue = parseFloat(input.value.trim());
 
     if (isNaN(parsedValue)) {
@@ -461,7 +461,7 @@ function toggleHiddenSettings() {
  * @param {HTMLElement} selected 
  * @param {string} key 
  */
- function changeColorMode(tabs, selected, key) {
+function changeColorMode(tabs, selected, key) {
     tabs.hex.classList.remove('selected');
     tabs.rgb.classList.remove('selected');
     tabs.hsv.classList.remove('selected');
