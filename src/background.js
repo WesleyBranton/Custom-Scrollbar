@@ -30,7 +30,9 @@ function init() {
 function setUninstallPage() {
     const paramBrowser = (runningOn == browsers.FIREFOX) ? 'firefox' : 'chromium';
     const paramVersion = browser.runtime.getManifest().version;
-    browser.runtime.setUninstallURL(`${webBase}/uninstall/?browser=${paramBrowser}&version=${paramVersion}`);
+    browser.runtime.getPlatformInfo((platform) => {
+        browser.runtime.setUninstallURL(`${webBase}/uninstall/?browser=${paramBrowser}&os=${platform.os}&version=${paramVersion}`);
+    });
 }
 
 /**
