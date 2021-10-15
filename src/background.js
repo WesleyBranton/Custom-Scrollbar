@@ -32,6 +32,7 @@ function setUninstallPage() {
     const paramVersion = browser.runtime.getManifest().version;
     browser.runtime.getPlatformInfo((platform) => {
         browser.runtime.setUninstallURL(`${webBase}/uninstall/?browser=${paramBrowser}&os=${platform.os}&version=${paramVersion}`);
+        feedbackUrl += `?browser=${paramBrowser}&os=${platform.os}&version=${paramVersion}`;
     });
 }
 
@@ -146,6 +147,14 @@ function handleMessage(message, sender, sendResponse) {
             break;
         case 'openAddonOptions':
             browser.runtime.openOptionsPage();
+            break;
+        case 'openFeedback':
+            browser.windows.create({
+                height: 700,
+                width: 450,
+                type: browser.windows.CreateType.PANEL,
+                url: feedbackUrl
+            });
             break;
     }
 }
@@ -315,6 +324,7 @@ let showOptions = false;
 let rules = {};
 let framesInherit = true;
 let localFileProfile = null;
+let feedbackUrl = `${webBase}/feedback/`;
 
 browser.runtime.onConnect.addListener(registerPort);
 browser.storage.onChanged.addListener(cacheUserSettings);

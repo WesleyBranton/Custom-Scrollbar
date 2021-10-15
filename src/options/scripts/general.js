@@ -231,6 +231,15 @@ function openWhatsNew() {
 }
 
 /**
+ * Trigger background script to open feedback window
+ */
+function openFeedback() {
+    browser.runtime.sendMessage({
+        action: 'openFeedback'
+    });
+}
+
+/**
  * Allow/Disable keyboard navigation for all children of an element
  */
 function setKeyboardNavigation(parent, allow) {
@@ -274,6 +283,7 @@ browser.extension.isAllowedIncognitoAccess(togglePrivateNotice);
 document.getElementById('tab-bar').addEventListener('click', changeTab);
 document.getElementById('whatsnew').addEventListener('click', openWhatsNew);
 document.getElementById('whatsnewlink').addEventListener('click', openWhatsNew);
+document.getElementById('feedbacklink').addEventListener('click', openFeedback);
 parsei18n();
 showWhatsNew();
 

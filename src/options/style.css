@@ -333,6 +333,10 @@ button.default.icon > div > img {
     transition: max-height 0.2s ease;
 }
 
+#feedbacklink {
+    cursor: pointer;
+}
+
 #whatsnew,
 #whatsnewlink {
     cursor: pointer;
