@@ -153,6 +153,9 @@
     "linkCredits": {
         "message": "Credits"
     },
+    "linkFeedback": {
+        "message": "Feedback"
+    },
     "callToActionLearn": {
         "message": "Learn more..."
     },

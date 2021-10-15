@@ -406,6 +406,10 @@ function parsei18n() {
     const whatsNewButton = document.getElementById('whatsnew');
     whatsNewButton.title = browser.i18n.getMessage('whatsnew');
     whatsNewButton.getElementsByTagName('img')[0].alt = browser.i18n.getMessage('whatsnew');
+
+    const feedbackButton = document.getElementById('button-feedback');
+    feedbackButton.title = browser.i18n.getMessage('linkFeedback');
+    feedbackButton.getElementsByTagName('img')[0].alt = browser.i18n.getMessage('linkFeedback');
 }
 
 // Add browser tag to body class
@@ -427,6 +431,11 @@ document.manager.profile.addEventListener('change', changeSelectedProfile);
 document.getElementById('button-setDefault').addEventListener('click', setAsDefault);
 document.getElementById('button-options').addEventListener('click', () => {
     browser.runtime.openOptionsPage();
+});
+document.getElementById('button-feedback').addEventListener('click', () => {
+    browser.runtime.sendMessage({
+        action: 'openFeedback'
+    });
 });
 document.getElementById('button-use').addEventListener('click', updateRule);
 document.getElementById('grantPermission').addEventListener('click', askForTabsPermission);

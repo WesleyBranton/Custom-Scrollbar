@@ -90,6 +90,21 @@ body:not(.chromium) .chromium-only {
     display: none !important;
 }
 
+button.icon-only {
+    min-width: 0 !important;
+}
+
+button.icon-only img {
+    margin-right: 0 !important;
+}
+
+button.icon-only span {
+    width: 0 !important;
+    overflow: hidden !important;
+    visibility: hidden !important;
+    white-space: nowrap !important;
+}
+
 @media (prefers-color-scheme: dark) {
     button.secondary.icon > div > img,
     img.icon-text-color {
