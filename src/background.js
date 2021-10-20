@@ -54,15 +54,17 @@ function handleInstalled(details) {
     } else if (details.reason == 'update') {
         browser.storage.local.get("unsubscribedFromAllUpdateNotifications", (data) => {
             if (!data.unsubscribedFromAllUpdateNotifications) {
-                const previousVersion = parseFloat(details.previousVersion);
+                const currentVersionHasUpdateNotice = true;
+                const currentVersion = browser.runtime.getManifest().version;
                 let updatePage = null;
 
-                if (details.previousVersion == "3.1.1" && runningOn == browsers.FIREFOX) {
+                if (currentVersionHasUpdateNotice && compareVersionNumbers(details.previousVersion, currentVersion) == 2) {
+                    const version = parseVersion(currentVersion);
+                    updatePage = `v${version.major}_${version.minor}${(version.patch > 0) ? `_${version.patch}` : ''}`;
+                } else if (compareVersionNumbers(details.previousVersion, "3.1.1") == 0 && runningOn == browsers.FIREFOX) {
                     updatePage = 'v3_1_2';
-                } else if (previousVersion < 3) {
+                } else if (compareVersionNumbers(details.previousVersion, "3.0") == 2) {
                     updatePage = 'v3_0';
-                } else if (previousVersion < 2.2) {
-                    updatePage = 'v2_2';
                 }
 
                 if (updatePage != null) {
@@ -79,6 +81,55 @@ function handleInstalled(details) {
             });
         }
     }
+}
+
+/**
+ * Compare two version numbers
+ * @param {string} v1 Version number
+ * @param {string} v2 Version number
+ * @returns Same (0), v1 > v2 (1), v2 > v1 (2)
+ */
+function compareVersionNumbers(v1, v2) {
+    v1 = parseVersion(v1);
+    v2 = parseVersion(v2);
+
+    for (const key of ['major', 'minor', 'patch']) {
+        if (v1[key] > v2[key]) {
+            return 1;
+        } else if (v1[key] < v2[key]) {
+            return 2;
+        }
+    }
+
+    return 0;
+}
+
+/**
+ * Parse semantic version number to object
+ * @param {string|number} versionString Version number
+ * @returns Version object
+ */
+function parseVersion(versionString) {
+    versionString = versionString.toString().split('.');
+
+    const version = {};
+    let i = 0;
+
+    for (const key of ['major', 'minor', 'patch']) {
+        if (versionString.length > i) {
+            const number = parseInt(versionString[i]);
+            if (!isNaN(number)) {
+                version[key] = number;
+            } else {
+                version[key] = 0;
+            }
+        } else {
+            version[key] = 0;
+        }
+        ++i;
+    }
+
+    return version;
 }
 
 /**
