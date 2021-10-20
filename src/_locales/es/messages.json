@@ -254,13 +254,13 @@
         "message": "Añadir"
     },
     "ruleActionChangeProfile": {
-        "message": "Cambiar de barra de desplazamiento ..."
+        "message": "Cambiar de barra de desplazamiento..."
     },
     "profileMoveExistingRules": {
         "message": "Hay reglas para paginas web que usan este barra de desplazamiento. ¿Que barra de desplazamiento deberían usar estas reglas?"
     },
     "ruleNoProfileSet": {
-        "message": "FALTA BARRA DE DESPLAZAMIENTO "
+        "message": "FALTA BARRA DE DESPLAZAMIENTO"
     },
     "ruleInherit": {
         "message": "Heredado de $DOMAIN$",

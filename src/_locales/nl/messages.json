@@ -22,6 +22,12 @@
     "optionsSectionWidth": {
         "message": "Breedte"
     },
+    "optionsSectionButtons": {
+        "message": "Schuifbalkknoppen"
+    },
+    "optionsSectionThumbRadius": {
+        "message": "Schuifbalkstraal"
+    },
     "optionsSectionUseColors": {
         "message": "Aangepaste kleuren gebruiken"
     },
@@ -33,6 +39,12 @@
     },
     "optionsSectionOverride": {
         "message": "Websites toestaan om eigen schuifbalken te tonen"
+    },
+    "optionsFramesInherit": {
+        "message": "Ingesloten pagina's toestaan om ook de aangepaste schuifbalk te gebruiken?"
+    },
+    "optionsLocalFileProfile": {
+        "message": "Deze schuifbalk gebruiken bij het bekijken van lokale bestanden"
     },
     "sizeDefault": {
         "message": "Systeemstandaard"
@@ -48,6 +60,12 @@
     },
     "sizeOther": {
         "message": "Anders"
+    },
+    "optionLight": {
+        "message": "Licht"
+    },
+    "optionDark": {
+        "message": "Donker"
     },
     "optionYes": {
         "message": "Ja"
@@ -135,6 +153,9 @@
     "linkCredits": {
         "message": "Met dank aan"
     },
+    "linkFeedback": {
+        "message": "Feedback"
+    },
     "callToActionLearn": {
         "message": "Meer informatie…"
     },
@@ -157,7 +178,7 @@
         "message": "Deze actie kan niet ongedaan worden gemaakt. Weet je zeker dat je wilt doorgaan?"
     },
     "dialogCannotDeleteDefault": {
-        "message": "Het standaardschuifbalk kan pas worden verwijderd na het instellen van een nieuw standaardschuifbalk ."
+        "message": "De standaard schuifbalk kan pas worden verwijderd na het instellen van een nieuwe standaard schuifbalk."
     },
     "profileActionNew": {
         "message": "Nieuw"
@@ -172,7 +193,7 @@
         "message": "Instellen als standaard"
     },
     "defaultProfileName": {
-        "message": "Nieuw schuifbalk"
+        "message": "Nieuwe schuifbalk"
     },
     "migratedProfileName": {
         "message": "Algemeen"
@@ -211,7 +232,7 @@
         "message": "De back-up is hersteld!"
     },
     "changeProfileFor": {
-        "message": "Schuifbalk bewerken van $WEBSITE$",
+        "message": "Aanpassen van schuifbalk op $WEBSITE$",
         "placeholders": {
             "website": {
                 "content": "$1"
@@ -228,6 +249,9 @@
     },
     "profileActionUseOnWebsite": {
         "message": "Gebruiken op deze website"
+    },
+    "profileActionUseOnLocalFiles": {
+        "message": "Gebruiken bij lokale bestanden"
     },
     "errorInvalidDomain": {
         "message": "Ongeldige domeinnaam ingevoerd"
@@ -254,13 +278,13 @@
         "message": "Toevoegen"
     },
     "ruleActionChangeProfile": {
-        "message": "Schuifbalk wijzigen…"
+        "message": "Schuifbalk aanpassen…"
     },
     "profileMoveExistingRules": {
-        "message": "Er zijn website regels die gebruik maken van dit schuifbalk. Welk schuifbalk moeten zij in plaats daarvan gebruiken?"
+        "message": "Er zijn websiteregels die gebruikmaken van deze schuifbalk. Welke schuifbalk moeten zij in plaats daarvan gebruiken?"
     },
     "ruleNoProfileSet": {
-        "message": "SCHUIFBALK ONTBREEKT"
+        "message": "DE SCHUIFBALK ONTBREEKT"
     },
     "ruleInherit": {
         "message": "Overgenomen van $DOMAIN$",
@@ -289,9 +313,24 @@
         "message": "Selectie verwijderen"
     },
     "changeSelected": {
-        "message": "Schuifbalk van selectie wijzigen"
+        "message": "Schuifbalk van selectie aanpassen"
     },
     "selectedRules": {
         "message": "Alle geselecteerde regels"
+    },
+    "advancedHeader": {
+        "message": "Geavanceerde instellingen"
+    },
+    "featureRequiredAdditionalPermission": {
+        "message": "Voor het gebruik van deze functie is een extra bevoegheid benodigd."
+    },
+    "popupRequiresAdditionalPermission": {
+        "message": "Deze add-on heeft toegang nodig tot uw browsertabbladen. Voor deze functie dient toestemming te worden gegeven tot de huidige website-instellingen."
+    },
+    "grantPermissionButton": {
+        "message": "Toestemming geven"
+    },
+    "whatsNew": {
+        "message": "Wijzigingslog"
     }
 }
