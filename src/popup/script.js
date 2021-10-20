@@ -313,7 +313,7 @@ function setAsDefault() {
     browser.storage.local.set({
         defaultProfile: document.manager.profile.value
     }, () => {
-        browser.storage.local.get(loadStorage);
+        browser.storage.local.get(init);
     });
 }
 
@@ -327,7 +327,7 @@ function updateRule() {
             localFileProfile: (!isNaN(profile)) ? profile : null
         };
         browser.storage.local.set(data, () => {
-            browser.storage.local.get(loadStorage);
+            browser.storage.local.get(init);
         });
     } else {
         browser.storage.local.get('rules', (data) => {
@@ -346,7 +346,7 @@ function updateRule() {
             }
 
             browser.storage.local.set(data, () => {
-                browser.storage.local.get(loadStorage);
+                browser.storage.local.get(init);
             });
         });
     }
@@ -392,7 +392,7 @@ function askForTabsPermission() {
         if (granted) {
             console.warn('User has not granted "tabs" permission.');
             document.getElementById('grantPermissionError').classList.add('hide');
-            browser.storage.local.get(loadStorage);
+            browser.storage.local.get(init);
         }
     });
 }
