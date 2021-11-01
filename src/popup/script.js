@@ -66,9 +66,11 @@ function renderForUrl(url, rules) {
 
     ruleForDomain = url.hostname;
     let usingRule = null;
+    let selectedDomain;
 
     if (rules[url.hostname]) {
         usingRule = rules[url.hostname];
+        selectedDomain = url.hostname;
     } else {
         const subdomains = url.hostname.split('.');
         subdomains[subdomains.length - 2] += '.' + subdomains.pop();
@@ -79,6 +81,7 @@ function renderForUrl(url, rules) {
 
             if (rules[subdomain]) {
                 usingRule = rules[subdomain];
+                selectedDomain = subdomain;
                 break;
             }
 
@@ -152,7 +155,7 @@ function displayInheritanceDetails(domain) {
 
     if (domain.charAt(0) == '*') {
         ruleInherit = true;
-        bar.textContent = browser.i18n.getMessage('ruleInherit', domain);
+        bar.textContent = browser.i18n.getMessage('ruleInherit', domain.substring(2));
         bar.parentNode.classList.remove('hide');
         selector.classList.add('has-help');
     } else {

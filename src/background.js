@@ -168,7 +168,6 @@ function openOptionsPageIfRequired() {
  */
 function cacheUserSettings() {
     browser.storage.local.get(['defaultProfile', 'rules', 'framesInherit', 'localFileProfile'], (data) => {
-        defaultProfile = data.defaultProfile;
         rules = (data.rules) ? data.rules : {};
         framesInherit = (typeof data.framesInherit == 'boolean') ? data.framesInherit : true;
         localFileProfile = (typeof data.localFileProfile == 'number') ? `profile_${data.localFileProfile}` : null;
@@ -367,8 +366,6 @@ function loadCSSForProfile(profile, key, isDefault) {
 }
 
 let defaultCSS = null;
-let contentScript = null;
-let defaultProfile = null;
 let ports = {};
 let loaded = false;
 let showOptions = false;
