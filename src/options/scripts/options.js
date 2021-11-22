@@ -149,6 +149,8 @@ function removeProfile() {
                         },
                         null
                     );
+
+                    loadProfileDetailsIntoDialog(document.getElementById('dialog-dropdown').value);
                 });
             }
         });
@@ -559,6 +561,101 @@ function updateSelectedProfileInDropdown() {
     document.getElementById('profile-setDefault').disabled = selectedProfile == defaultProfile;
 }
 
+/**
+ * Load profile from Storage API
+ * @param {number} id
+ */
+ function loadProfileDetailsIntoDialog(id) {
+    if (id == 'default') {
+        loadProfileDetailsIntoDialog(defaultProfile);
+        return;
+    }
+
+    browser.storage.local.get(`profile_${id}`, (data) => {
+        const profile = loadWithDefaults(data[Object.keys(data)[0]]);
+
+        const widthOutput = document.getElementById('detail-width');
+        const buttonsOutput = document.getElementById('detail-buttons');
+        const thumbRadiusOutput = document.getElementById('detail-thumbRadius');
+        const colorThumbOutput = document.getElementById('detail-color-thumb');
+        const colorTrackOutput = document.getElementById('detail-color-track');
+        const overrideOutput = document.getElementById('detail-override');
+
+        // Fill width information
+        switch (profile.width) {
+            case 'auto':
+            case 'unset':
+                widthOutput.textContent = browser.i18n.getMessage('sizeWide');
+                break;
+            case 'thin':
+                widthOutput.textContent = browser.i18n.getMessage('sizeThin');
+                break;
+            case 'none':
+                widthOutput.textContent = browser.i18n.getMessage('sizeHidden');
+                break;
+            default:
+                widthOutput.textContent = profile.customWidthValue + profile.customWidthUnit;
+                break;
+        }
+
+        if (profile.width != 'none') {
+            // Fill buttons information
+            switch (profile.buttons) {
+                case 'light':
+                    buttonsOutput.textContent = browser.i18n.getMessage('optionLight');
+                    break;
+                case 'dark':
+                    buttonsOutput.textContent = browser.i18n.getMessage('optionDark');
+                    break;
+                default:
+                    buttonsOutput.textContent = browser.i18n.getMessage('overrideNone');
+                    break;
+            }
+
+            // Thumb radius information
+            thumbRadiusOutput.textContent = profile.thumbRadius + '%';
+        } else {
+            buttonsOutput.textContent = '-';
+            thumbRadiusOutput.textContent = '-';
+        }
+
+        // Fill color information
+        if (profile.colorThumb && profile.colorTrack && profile.width != 'none') {
+            colorThumbOutput.style.background = profile.colorThumb;
+            colorThumbOutput.textContent = '';
+            colorThumbOutput.classList.add('color-output');
+
+            colorTrackOutput.style.background = profile.colorTrack;
+            colorTrackOutput.textContent = '';
+            colorTrackOutput.classList.add('color-output');
+        } else {
+            colorThumbOutput.style.background = 'unset';
+            colorThumbOutput.textContent = '-';
+            colorThumbOutput.classList.remove('color-output');
+
+            colorTrackOutput.style.background = 'unset';
+            colorTrackOutput.textContent = '-';
+            colorTrackOutput.classList.remove('color-output');
+        }
+
+        // Fill override information
+        switch (profile.allowOverride) {
+            case 0:
+                overrideOutput.textContent = browser.i18n.getMessage('overrideNone');
+                break;
+            case 1:
+                overrideOutput.textContent = browser.i18n.getMessage('overrideColor');
+                break;
+            case 10:
+                overrideOutput.textContent = browser.i18n.getMessage('overrideWidth');
+                break;
+            case 11:
+                overrideOutput.textContent = browser.i18n.getMessage('overrideAll');
+                break;
+        }
+    });
+}
+
 let colorPickerThumb, colorPickerTrack, previousToggleValue;
 let defaultProfile, selectedProfile, selectedProfileName, localFileProfile;
 const colorInputs = {};
@@ -580,6 +677,9 @@ document.getElementById('customWidthValue').addEventListener('blur', () => {
     parseCustomWidthValue(false)
 });
 document.getElementById('profile-setDefault').addEventListener('click', updateDefaultProfile);
+document.getElementById('dialog-dropdown').addEventListener('change', () => {
+    loadProfileDetailsIntoDialog(document.getElementById('dialog-dropdown').value);
+});
 
 document.settings.profile.addEventListener('change', () => {
     confirmAction(
