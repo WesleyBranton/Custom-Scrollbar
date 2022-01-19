@@ -216,7 +216,15 @@ function bodyKeyHandler(event) {
 function handleEnterKey(event) {
     if (event.key == 'Enter') {
         event.preventDefault();
-        clickPromptDialogYes();
+        if (document.getElementById('dialog').classList.contains('ruleadd')) {
+            clickRuleAddDialogYes();
+        } else if (document.getElementById('dialog').classList.contains('dropdown')) {
+            clickDropdownDialogYes();
+        } else if (document.getElementById('dialog').classList.contains('prompt')) {
+            clickPromptDialogYes();
+        } else {
+            clickDialogYes();
+        }
     }
 }
 
