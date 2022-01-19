@@ -229,6 +229,25 @@ body::-webkit-scrollbar {
     display: flex !important;
 }
 
+.ruleadd #rule-preview,
+.dropdown #rule-preview {
+    display: block !important;
+    min-width: max-content;
+    width: 100%;
+}
+
+#dialog.ruleadd,
+#dialog.dropdown {
+    width: 100% !important;
+}
+
+.color-output {
+    border: 1px solid var(--border-color);
+    border-radius: 0.35rem;
+    height: 1em;
+    width: 5em;
+}
+
 .restore-section {
     text-align: right;
 }
