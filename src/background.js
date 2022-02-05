@@ -184,7 +184,7 @@ function migrateStorage(callback) {
         }
 
         migrated[`profile_${migrated.defaultProfile}`] = data;
-        migrated[`profile_${migrated.defaultProfile}`]['name'] = 'General';
+        migrated[`profile_${migrated.defaultProfile}`]['name'] = (typeof browser.i18n.getMessage != 'undefined') ? browser.i18n.getMessage('migratedProfileName') : 'General';
 
         browser.storage.local.clear(() => {
             browser.storage.local.set(migrated, callback);
