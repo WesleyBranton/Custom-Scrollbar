@@ -23,21 +23,21 @@ function init() {
             currentWindow: true
         }, (tabs) => {
             if (typeof tabs[0].url == 'undefined') {
-                renderForGeneral();
-                loadProfile(defaultProfile);
-
-                // Check if a content script is running on this tab
-                // If there is, then show the tab permission warning
-                if (runningOn == browsers.FIREFOX) {
-                    browser.runtime.sendMessage({
-                        action: 'isTabConnectedToPort',
-                        tabId: tabs[0].id
-                    }, (response) => {
-                        if (response) {
+                // Ask the tab for its URL
+                // Show permission error if it's still not accessible
+                browser.tabs.sendMessage(tabs[0].id, {
+                    action: 'getURL'
+                }, (response) => {
+                    if (typeof response == 'string' && response != null) {
+                        renderForUrl(new URL(response), data.rules);
+                    } else {
+                        renderForGeneral();
+                        loadProfile(defaultProfile);
+                        if (browser.runtime.lastError == 'undefined') {
                             document.getElementById('grantPermissionError').classList.remove('hide');
                         }
-                    });
-                }
+                    }
+                });
             } else {
                 renderForUrl(new URL(tabs[0].url), data.rules);
             }
@@ -109,6 +109,8 @@ function renderForUrl(url, rules) {
         currentRule = 'default';
         loadProfile(defaultProfile);
     }
+
+    refreshSetAsDefaultButton();
 }
 
 /**
@@ -143,6 +145,7 @@ function renderForGeneral() {
     document.manager.profile.value = defaultProfile;
 
     loadProfile(defaultProfile);
+    refreshSetAsDefaultButton();
 }
 
 /**

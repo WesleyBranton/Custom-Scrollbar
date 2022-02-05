@@ -6,21 +6,16 @@
  * Initialize add-on on start up
  *   - Verifies Storage API integrity
  *   - Migrates Storage API data (if required)
- *   - Trigger Storage API caching
  *   - Open options page (if required)
+ * @param {boolean} openOptions
  */
-function init() {
-    browser.storage.local.get(['schema', 'defaultProfile'], (data) => {
-        if (data.defaultProfile) {
-            cacheUserSettings();
-        } else {
-            if (typeof data.schema == 'undefined' || data.schema < 2) {
-                console.warn('Old storage schema detected. Migrating data.');
-                migrateStorage();
-            }
+function init(openOptions) {
+    setUninstallPage();
+    validateStorage(() => {
+        if (openOptions) {
+            browser.runtime.openOptionsPage();
         }
 
-        openOptionsPageIfRequired();
     });
 }
 
@@ -28,11 +23,8 @@ function init() {
  * Set up uninstall page
  */
 function setUninstallPage() {
-    const paramBrowser = (runningOn == browsers.FIREFOX) ? 'firefox' : 'chromium';
-    const paramVersion = browser.runtime.getManifest().version;
-    browser.runtime.getPlatformInfo((platform) => {
-        browser.runtime.setUninstallURL(`${webBase}/uninstall/?browser=${paramBrowser}&os=${platform.os}&version=${paramVersion}`);
-        feedbackUrl += `?browser=${paramBrowser}&os=${platform.os}&version=${paramVersion}`;
+    getSystemDetails((details) => {
+        browser.runtime.setUninstallURL(`${webBase}/uninstall/?browser=${details.browser}&os=${details.os}&version=${details.version}`);
     });
 }
 
@@ -48,11 +40,8 @@ function handleInstalled(details) {
             url: `${webBase}/welcome/1?locale=${browser.i18n.getUILanguage()}&browser=${getBrowserName().toLowerCase()}`,
             active: true
         });
-
-        showOptions = true;
-        openOptionsPageIfRequired();
     } else if (details.reason == 'update') {
-        browser.storage.local.get("unsubscribedFromAllUpdateNotifications", (data) => {
+        browser.storage.local.get(["unsubscribedFromAllUpdateNotifications"], (data) => {
             if (!data.unsubscribedFromAllUpdateNotifications) {
                 const currentVersionHasUpdateNotice = true;
                 const currentVersion = browser.runtime.getManifest().version;
@@ -81,6 +70,8 @@ function handleInstalled(details) {
             });
         }
     }
+
+    init(details.reason == 'install');
 }
 
 /**
@@ -133,11 +124,29 @@ function parseVersion(versionString) {
 }
 
 /**
+ * Check if user settings are valid
+ * @param {Function} callback
+ */
+function validateStorage(callback) {
+    browser.storage.local.get(['schema', 'defaultProfile'], (data) => {
+        if (typeof data.schema == 'undefined' || data.schema < 2) {
+            console.warn('Old storage schema detected. Settings will be migrated.');
+            migrateStorage(() => {
+                callback();
+            });
+        } else {
+            callback();
+        }
+    });
+}
+
+/**
  * Migrate old data to the profile model
  *   - Moves existing settings to new profile
  *   - Sets new profile as default
+ * @param {Function} callback
  */
-function migrateStorage() {
+function migrateStorage(callback) {
     browser.storage.local.get((data) => {
         const migrated = {
             schema: 2,
@@ -145,42 +154,39 @@ function migrateStorage() {
         }
 
         migrated[`profile_${migrated.defaultProfile}`] = data;
-        migrated[`profile_${migrated.defaultProfile}`]['name'] = browser.i18n.getMessage('migratedProfileName');
+        migrated[`profile_${migrated.defaultProfile}`]['name'] = 'General';
 
         browser.storage.local.clear(() => {
-            browser.storage.local.set(migrated, cacheUserSettings);
+            browser.storage.local.set(migrated, callback);
         });
     });
 }
 
 /**
- * Open add-on options page (if data is loaded)
+ * Open feedback page in popup window
  */
-function openOptionsPageIfRequired() {
-    if (showOptions && loaded) {
-        showOptions = false;
-        browser.runtime.openOptionsPage();
-    }
+function openFeedback() {
+    getSystemDetails((details) => {
+        browser.windows.create({
+            height: 700,
+            width: 450,
+            type: browser.windows.CreateType.PANEL,
+            url: `${webBase}/feedback/?browser=${details.browser}&os=${details.os}&version=${details.version}`
+        });
+    });
 }
 
 /**
- * Load and cache basic user settings from Storage API
+ * Send system details to callback
+ * @param {Function} callback
  */
-function cacheUserSettings() {
-    browser.storage.local.get(['defaultProfile', 'rules', 'framesInherit', 'localFileProfile'], (data) => {
-        rules = (data.rules) ? data.rules : {};
-        framesInherit = (typeof data.framesInherit == 'boolean') ? data.framesInherit : true;
-        localFileProfile = (typeof data.localFileProfile == 'number') ? `profile_${data.localFileProfile}` : null;
-
-        //Load and cache CSS of default profile
-        if (data.defaultProfile) {
-            browser.storage.local.get(`profile_${data.defaultProfile}`, (profile) => {
-                defaultCSS = loadCSSForProfile(profile, `profile_${data.defaultProfile}`, true);
-                loaded = true;
-                openOptionsPageIfRequired();
-                updateCSSOnAllPorts();
-            });
-        }
+function getSystemDetails(callback) {
+    browser.runtime.getPlatformInfo((platform) => {
+        callback({
+            browser: (getBrowserName() == 'firefox') ? 'firefox' : 'chromium',
+            version: browser.runtime.getManifest().version,
+            os: platform.os
+        });
     });
 }
 
@@ -192,191 +198,181 @@ function cacheUserSettings() {
  */
 function handleMessage(message, sender, sendResponse) {
     switch (message.action) {
-        case 'isTabConnectedToPort':
-            sendResponse(isTabConnectedToPort(message.tabId));
-            break;
         case 'openAddonOptions':
             browser.runtime.openOptionsPage();
             break;
         case 'openFeedback':
-            browser.windows.create({
-                height: 700,
-                width: 450,
-                type: browser.windows.CreateType.PANEL,
-                url: feedbackUrl
-            });
+            openFeedback();
+            break;
+        case 'updateCSS':
+            updateCSS(message, sender);
             break;
     }
 }
 
 /**
- * Checks if tab has a registered port
- * @param {number} tabId
- * @returns Has port
+ * Load CSS into frames
+ * @param {object} message
+ * @param {object} sender
  */
-function isTabConnectedToPort(tabId) {
-    for (const port of Object.values(ports)) {
-        if (port.sender.tab.id == tabId) {
-            return true;
-        }
+function updateCSS(message, sender) {
+    // Remove old CSS (if required)
+    if (message.css) {
+        browser.tabs.removeCSS(sender.tab.id, message.css);
     }
 
-    return false;
-}
+    getCSS(sender, (css) => {
+        const cssInjection = {
+            code: css,
+            frameId: sender.frameId,
+            runAt: "document_start"
+        };
 
-/**
- * Register a new port for content script
- * @param {Object} port
- */
-function registerPort(port) {
-    while (ports[port.name]) {
-        port.name = parseInt(port.name) + 1 + "";
-    }
-
-    ports[port.name] = port;
-    port.onDisconnect.addListener(unregisterPort);
-    port.onMessage.addListener(handleMessageFromPort);
-}
-
-/**
- * Unregister a port for content script
- * @param {Object} port
- */
-function unregisterPort(port) {
-    delete ports[port.name];
-}
-
-/**
- * Handle incoming messages from content script
- * @param {Object} message
- * @param {Object} port
- */
-function handleMessageFromPort(message, port) {
-    switch (message.action) {
-        case 'getCSS':
-            sendCSSToPort(port);
-            break;
-    }
-}
-
-/**
- * Tell all content scripts to ask again for CSS
- */
-function updateCSSOnAllPorts() {
-    for (const port of Object.values(ports)) {
-        port.postMessage({
-            action: 'queryCSS'
+        browser.tabs.insertCSS(sender.tab.id, cssInjection);
+        browser.tabs.sendMessage(sender.tab.id, {
+            action: 'cache',
+            data: cssInjection
+        }, {
+            frameId: sender.frameId
         });
-    }
+    });
 }
 
 /**
- * Send CSS to port based on user rules
- * @param {Object} port
+ * Generate CSS for scrollbar and send to callback
+ * @param {object} sender
+ * @param {Function} callback
  */
-function sendCSSToPort(port) {
-    // Abort if Storage API is still loading
-    if (!loaded) {
-        return;
-    }
+function getCSS(sender, callback) {
+    getScrollbar(sender, (scrollbar) => {
+        scrollbar = loadWithDefaults(scrollbar);
+        const css = generateCSS(
+            scrollbar.width,
+            scrollbar.colorTrack,
+            scrollbar.colorThumb,
+            scrollbar.allowOverride,
+            scrollbar.customWidthValue + scrollbar.customWidthUnit,
+            scrollbar.buttons,
+            scrollbar.thumbRadius
+        );
+        callback(css);
+    });
+}
 
-    let profileKey, url;
+/**
+ * Get scrollbar from storage and send to callback
+ * @param {object} sender
+ * @param {Function} callback
+ */
+function getScrollbar(sender, callback) {
+    getRule(sender, (scrollbarId) => {
+        browser.storage.local.get(scrollbarId, (scrollbar) => {
+            scrollbar = scrollbar[Object.keys(scrollbar)[0]];
 
-    // Load URL based on user settings and permissions
-    if (framesInherit && typeof port.sender.tab.url != 'undefined') {
-        url = new URL(port.sender.tab.url);
-    } else {
-        url = new URL(port.sender.url);
-    }
+            if (typeof scrollbar == 'undefined') {
+                if (scrollbarId == 'profile_' + data.defaultProfile) {
+                    console.error('Default scrollbar "%s" cannot be loaded from storage.', scrollbarId);
+                } else {
+                    console.error('Scrollbar "%s" cannot be loaded from storage. Using default scrollbar.', scrollbarId);
+                }
+            }
 
-    // Load profile ID based on user rules
-    if (url.protocol == 'file:') {
-        profileKey = localFileProfile;
-    } else {
-        profileKey = getRuleForDomain(url.hostname);
-    }
-
-    // Generate CSS and send to port
-    if (profileKey && profileKey != 'default') {
-        browser.storage.local.get(profileKey, (profile) => {
-            const css = loadCSSForProfile(profile, profileKey, false);
-            port.postMessage({
-                action: 'updateCSS',
-                css: (css == null) ? defaultCSS : css
-            });
+            callback(scrollbar);
         });
-    } else {
-        port.postMessage({
-            action: 'updateCSS',
-            css: defaultCSS
+    });
+}
+
+/**
+ * Get scrollbar ID of rule for domain and send to callback
+ * @param {object} sender
+ * @param {Function} callback
+ */
+function getRule(sender, callback) {
+    getURL(sender, (url) => {
+        browser.storage.local.get(['rules', 'localFileProfile', 'defaultProfile'], (data) => {
+            let scrollbarId = null;
+
+            if (url.protocol == 'file:') {
+                scrollbarId = data.localFileProfile;
+            } else if (typeof data.rules == 'object') {
+                if (data.rules[url.hostname]) {
+                    scrollbarId = data.rules[url.hostname];
+                } else {
+                    const subdomains = url.hostname.split('.');
+                    subdomains[subdomains.length - 2] += '.' + subdomains.pop();
+
+                    do {
+                        subdomains[0] = '*';
+                        const subdomain = subdomains.join('.');
+
+                        if (data.rules[subdomain]) {
+                            scrollbarId = data.rules[subdomain];
+                        }
+
+                        subdomains.shift();
+                    } while (subdomains.length > 1);
+                }
+            }
+
+            if (!scrollbarId || scrollbarId == 'default') {
+                scrollbarId = 'profile_' + data.defaultProfile;
+            } else if (typeof scrollbarId != 'string' || !scrollbarId.startsWith('profile_')) {
+                scrollbarId = 'profile_' + scrollbarId;
+            }
+
+            callback(scrollbarId);
         });
-    }
+    });
 }
 
 /**
- * Find rule that matches domain name
- *   - Returns null if no rule is found for the domain
- * @param {String} domain
- * @returns Profile ID
+ * Get URL of page/tab and send to callback
+ * @param {object} sender
+ * @param {Function} callback
  */
-function getRuleForDomain(domain) {
-    // Check for regular rule
-    if (rules[domain]) {
-        return rules[domain];
-    }
-
-    const subdomains = domain.split('.');
-    subdomains[subdomains.length - 2] += '.' + subdomains.pop();
-
-    // Check for subdomain rules
-    do {
-        subdomains[0] = '*';
-        const subdomain = subdomains.join('.');
-
-        if (rules[subdomain]) {
-            return rules[subdomain];
-        }
-
-        subdomains.shift();
-    } while (subdomains.length > 1);
-
-    return null;
-}
-
-/**
- * Generate CSS for profile
- * @param {Object} profile
- * @returns CSS
- */
-function loadCSSForProfile(profile, key, isDefault) {
-    profile = profile[Object.keys(profile)[0]];
-
-    if (typeof profile == 'undefined') {
-        if (isDefault) {
-            console.error('Default scrollbar "%s" cannot be loaded from storage.', key);
+function getURL(sender, callback) {
+    browser.storage.local.get(['framesInherit'], (data) => {
+        if (data.framesInherit && sender.tab.url != null && typeof sender.tab.url == 'string') {
+            callback(new URL(sender.tab.url));
         } else {
-            console.error('Scrollbar "%s" cannot be loaded from storage. Using default scrollbar.', key);
+            callback(new URL(sender.url));
         }
-        return null;
-    }
-
-    profile = loadWithDefaults(profile);
-    const customWidth = profile.customWidthValue + profile.customWidthUnit;
-    return generateCSS(profile.width, profile.colorTrack, profile.colorThumb, profile.allowOverride, customWidth, profile.buttons, profile.thumbRadius);
+    });
 }
 
-let defaultCSS = null;
-let ports = {};
-let loaded = false;
-let showOptions = false;
-let rules = {};
-let framesInherit = true;
-let localFileProfile = null;
-let feedbackUrl = `${webBase}/feedback/`;
+/**
+ * Convert Firefox formatted CSS injection information to Chromium format
+ * @param {number} tabId
+ * @param {object} cssInjection
+ * @returns cssInjection
+ */
+function convertCssInjectionIntoChrome(tabId, cssInjection) {
+    const result = {};
 
-browser.runtime.onConnect.addListener(registerPort);
-browser.storage.onChanged.addListener(cacheUserSettings);
+    result.css = cssInjection.code;
+    result.target = {};
+    result.target.frameIds = [cssInjection.frameId];
+    result.target.tabId = tabId;
+
+    return result;
+}
+
+// Run Chromium-specific tasks
+if (typeof browser != 'object') {
+    browser = chrome;
+    browser.tabs.insertCSS = (tabId, cssInjection) => {
+        cssInjection = convertCssInjectionIntoChrome(tabId, cssInjection);
+        browser.scripting.insertCSS(cssInjection);
+    };
+    browser.tabs.removeCSS = (tabId, cssInjection) => {
+        cssInjection = convertCssInjectionIntoChrome(tabId, cssInjection);
+        browser.scripting.removeCSS(cssInjection);
+    };
+    importScripts("crossbrowser.js", "defaults.js", "generateCSS.js");
+}
+
 browser.runtime.onInstalled.addListener(handleInstalled);
 browser.runtime.onMessage.addListener(handleMessage);
-init();
-setUninstallPage();
+browser.runtime.onStartup.addListener(() => {
+    init(false);
+});

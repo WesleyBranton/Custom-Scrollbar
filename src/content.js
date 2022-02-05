@@ -3,58 +3,35 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
 
 /**
- * Request the CSS code from background file
- * @param {Object} response 
+ * Ask service worker to update CSS
  */
-function injectCSS(css) {
-    if (!document.head) {
-        document.onreadystatechange = () => {
-            if (document.readyState == 'interactive') {
-                injectCSS(css);
-            }
-        }
-        return;
-    }
-
-    let sheet = document.getElementById('custom-scrollbar-css');
-
-    if (!sheet) {
-        sheet = document.createElement('style');
-        sheet.setAttribute('type', 'text/css');
-        sheet.id = 'custom-scrollbar-css';
-        document.head.appendChild(sheet);
-    }
-
-    sheet.textContent = css;
-}
-
-/**
- * Request CSS from background script
- */
-function refreshCSS() {
-    port.postMessage({
-        action: 'getCSS'
+function updateCSS() {
+    browser.runtime.sendMessage({
+        action: "updateCSS",
+        css: cssInjection
     });
 }
 
 /**
- * Handle incoming messages from background script
- * @param {Object} message
+ * Save information from the service worker about CSS injection
+ * @param {object} message
  */
-function handleMessages(message) {
+function saveCSSInfo(message, sender, sendResponse) {
     switch (message.action) {
-        case 'updateCSS':
-            injectCSS(message.css);
+        case 'cache':
+            cssInjection = message.data;
             break;
-        case 'queryCSS':
-            refreshCSS();
+        case 'getURL':
+            sendResponse(window.location.href);
             break;
     }
 }
 
-if (typeof browser != "object") browser = chrome;
-const port = browser.runtime.connect({
-    name: Date.now() + ""
-});
-port.onMessage.addListener(handleMessages);
-refreshCSS();
+let cssInjection = null;
+
+browser = (typeof browser == 'object') ? browser : chrome;
+
+browser.runtime.onMessage.addListener(saveCSSInfo);
+browser.storage.onChanged.addListener(updateCSS);
+
+updateCSS();
