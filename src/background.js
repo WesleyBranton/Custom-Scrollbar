@@ -16,7 +16,37 @@ function init(openOptions) {
             browser.runtime.openOptionsPage();
         }
 
+        loadContentScriptsOnDemand();
     });
+}
+
+/**
+ * Load the content scripts into existing tabs if they are not already loaded (only required for Chromium MV3)
+ */
+function loadContentScriptsOnDemand() {
+    if (typeof browser.storage.session == 'object') {
+        browser.storage.session.get(['firstRunComplete'], (data) => {
+            if (!data.firstRunComplete) {
+                browser.tabs.query({}, (tabs) => {
+                    for (const t of tabs) {
+                        if (t.url) {
+                            browser.scripting.executeScript({
+                                files: ["content.js"],
+                                target: {
+                                    allFrames: true,
+                                    tabId: t.id
+                                }
+                            });
+                        }
+                    }
+                });
+
+                browser.storage.session.set({
+                    firstRunComplete: true
+                })
+            }
+        });
+    }
 }
 
 /**
