@@ -77,8 +77,8 @@ function loadScrollbar(id) {
         previousToggleValue = document.settings.customColors.value;
         toggleColorSettings();
 
-        colorPickerThumb.color.hex8String = scrollbar.colorThumb;
-        colorPickerTrack.color.hex8String = scrollbar.colorTrack;
+        colorPickerThumb.color.hex8String = (scrollbar.colorThumb) ? scrollbar.colorThumb : defaults.colorThumb;
+        colorPickerTrack.color.hex8String = (scrollbar.colorTrack) ? scrollbar.colorTrack : defaults.colorTrack;
 
         toggleCustomWidth();
         toggleHiddenSettings();

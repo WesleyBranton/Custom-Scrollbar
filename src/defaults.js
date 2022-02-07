@@ -22,11 +22,20 @@ const webBase = 'https://addons.wesleybranton.com/addon/custom-scrollbars';
  * @returns Data with defaults 
  */
 function loadWithDefaults(settings) {
+    const includeColors = settings.colorThumb && settings.colorTrack;
+
     const keys = Object.keys(defaults);
     for (const key of keys) {
         if (typeof defaults[key] != typeof settings[key]) {
             settings[key] = defaults[key];
         }
     }
+
+    // Don't override colors
+    if (!includeColors) {
+        settings['colorThumb'] = null;
+        settings['colorTrack'] = null;
+    }
+
     return settings;
 }
