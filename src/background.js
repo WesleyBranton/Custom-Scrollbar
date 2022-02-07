@@ -401,6 +401,9 @@ if (typeof browser != 'object') {
     importScripts("crossbrowser.js", "defaults.js", "generateCSS.js");
 }
 
+if (typeof browser.storage.session == 'object') {
+    init(false);
+}
 browser.runtime.onInstalled.addListener(handleInstalled);
 browser.runtime.onMessage.addListener(handleMessage);
 browser.runtime.onStartup.addListener(() => {
