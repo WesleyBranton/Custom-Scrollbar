@@ -1,5 +1,5 @@
 {
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "__MSG_extensionName__",
     "version": "3.2",
     "description": "__MSG_extensionDescription__",
@@ -14,7 +14,7 @@
         "128": "icons/icon-128.png"
     },
 
-    "browser_action": {
+    "action": {
         "default_icon": {
             "32": "icons/icon-32.png",
             "48": "icons/icon-48.png",
@@ -33,37 +33,40 @@
     },
 
     "background": {
-        "scripts": [
-            "defaults.js",
-            "generateCSS.js",
-            "crossbrowser.js",
-            "background.js"
-        ]
+        "service_worker": "background.js"
     },
 
     "content_scripts": [{
-        "matches": ["<all_urls>"],
-        "js": ["content.js"],
-        "all_frames": true,
-        "run_at": "document_start"
-    }, {
-        "matches": ["*://addons.wesleybranton.com/addon/custom-scrollbars/*"],
-        "js": ["crossbrowser.js", "webservice/unsubscribeFromNotifications.js", "webservice/openOptions.js"],
-        "all_frames": false,
-        "run_at": "document_end"
-    }],
-
-    "web_accessible_resources": [
-        "images/components/light/*.svg",
-        "images/components/dark/*.svg"
+            "matches": ["<all_urls>"],
+            "js": ["content.js"],
+            "all_frames": true,
+            "run_at": "document_start"
+        },
+        {
+            "matches": ["*://addons.wesleybranton.com/addon/custom-scrollbars/*"],
+            "js": ["crossbrowser.js", "webservice/unsubscribeFromNotifications.js", "webservice/openOptions.js"],
+            "all_frames": false,
+            "run_at": "document_end"
+        }
     ],
+
+    "web_accessible_resources": [{
+        "resources": ["images/components/light/*.svg", "images/components/dark/*.svg"],
+        "matches": ["<all_urls>"],
+        "use_dynamic_url": true
+    }],
 
     "permissions": [
         "storage",
-        "<all_urls>"
+        "scripting"
     ],
 
     "optional_permissions": [
         "downloads"
+    ],
+
+    "host_permissions": [
+        "<all_urls>",
+        "*://addons.wesleybranton.com/addon/custom-scrollbars/*"
     ]
 }
