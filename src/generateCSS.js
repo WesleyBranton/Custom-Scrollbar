@@ -1,106 +1,137 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+
 /**
  * Generate CSS code
  * @param {string} width
  * @param {string} colorTrack
  * @param {string} colorThumb
- * @return {string} css
+ * @param {number} override
+ * @param {string} customWidth
+ * @param {string} buttons
+ * @param {number} thumbRadius
+ * @returns CSS
  */
 function generateCSS(width, colorTrack, colorThumb, override, customWidth, buttons, thumbRadius) {
-    let css, color, widthPx;
+    const css = [];
+    const overrideWidth = parseInt(override / 10) == 0;
+    const overrideColor = override % 10 == 0;
 
-    if (width == 'thin') {
-        widthPx = '7px';
-    } else if (width == 'none') {
-        widthPx = '0';
-    } else if (width == 'other') {
-        widthPx = customWidth;
-    } else {
-        widthPx = defaults.customWidthValue + defaults.customWidthUnit;
-    }
+    if (runningOn == browsers.FIREFOX) { // Firefox
+        const all = new CSSRule('*');
 
-    if (colorTrack && colorThumb) {
-        color = colorThumb + ' ' + colorTrack;
-    } else {
-        color = defaults.color;
-        colorThumb = defaults.colorThumb;
-        colorTrack = defaults.colorTrack;
-    }
+        if (width != 'unset') {
+            all.set('scrollbar-width', width, overrideWidth);
+        }
 
-    if (runningOn == browsers.FIREFOX) {
-        css = `* {
-    scrollbar-width: ${width} ${(parseInt(override / 10) == 0) ? '!important' : ''};
-    scrollbar-color: ${color} ${(override % 10 == 0) ? '!important' : ''};
-}`;
-    } else {
+        if (colorThumb && colorTrack) {
+            all.set('scrollbar-color', `${colorThumb} ${colorTrack}`, overrideColor);
+        }
+
+        css.push(all);
+    } else { // Chromium-based
+        // Load default colors (if not set)
+        if (!colorThumb || !colorTrack) {
+            colorThumb = defaults.colorThumb;
+            colorTrack = defaults.colorTrack;
+        }
+
+        // Convert width to unit value
+        switch (width) {
+            case 'thin':
+                width = '7px';
+                break;
+            case 'none':
+                width = '0';
+                break;
+            case 'other':
+                width = customWidth;
+                break;
+            default:
+                width = defaults.customWidthValue + defaults.customWidthUnit;
+                break;
+        }
+
         const brightFactor = (isLightColor(colorThumb)) ? 1 : -1;
-        let up, down, left, right;
+        const hoverFactor = 10;
+        const activeFactor = 30;
 
-        if (buttons != 'none') {
-            up = browser.runtime.getURL(`images/components/${buttons}/up.svg`);
-            down = browser.runtime.getURL(`images/components/${buttons}/down.svg`);
-            left = browser.runtime.getURL(`images/components/${buttons}/left.svg`);
-            right = browser.runtime.getURL(`images/components/${buttons}/right.svg`);
+        const main = new CSSRule('::-webkit-scrollbar');
+        main.set('width', width, overrideWidth);
+        main.set('height', width, overrideWidth);
+        css.push(main);
+
+        const thumb = new CSSRule('::-webkit-scrollbar-thumb');
+        thumb.set('background', colorThumb, overrideColor);
+
+        if (thumbRadius > 0) {
+            thumb.set('border-radius', `calc(${width} / 2 * (${thumbRadius} / 100))`, true);
         }
 
-        css = `::-webkit-scrollbar {
-    width: ${widthPx} ${(parseInt(override / 10) == 0) ? '!important' : ''};
-    height: ${widthPx} ${(parseInt(override / 10) == 0) ? '!important' : ''};
-}
+        css.push(thumb);
 
-::-webkit-scrollbar-thumb {
-    background: ${colorThumb} ${(override % 10 == 0) ? '!important' : ''};
-    border-radius: calc(${widthPx} / 2 * (${thumbRadius} / 100));
-}
+        const thumbHover = new CSSRule('::-webkit-scrollbar-thumb:hover');
+        thumbHover.set('background', changeBrightness(colorThumb, hoverFactor * brightFactor), overrideColor);
+        css.push(thumbHover);
 
-::-webkit-scrollbar-thumb:hover {
-    background: ${changeBrightness(colorThumb, 10 * brightFactor)} ${(override % 10 == 0) ? '!important' : ''};
-}
+        const thumbActive = new CSSRule('::-webkit-scrollbar-thumb:active');
+        thumbActive.set('background', changeBrightness(colorThumb, activeFactor * brightFactor), overrideColor);
+        css.push(thumbActive);
 
-::-webkit-scrollbar-thumb:active {
-    background: ${changeBrightness(colorThumb, 30 * brightFactor)} ${(override % 10 == 0) ? '!important' : ''};
-}
-
-::-webkit-scrollbar-track {
-    background: ${colorTrack} ${(override % 10 == 0) ? '!important' : ''};
-}`;
+        const track = new CSSRule('::-webkit-scrollbar-track');
+        track.set('background', colorTrack, overrideColor);
+        css.push(track);
 
         if (buttons != 'none') {
-            css += `
-    ::-webkit-scrollbar-button {
-        background-color: ${colorThumb} ${(override % 10 == 0) ? '!important' : ''};
-        width: ${widthPx} ${(parseInt(override / 10) == 0) ? '!important' : ''};
-        height: ${widthPx} ${(parseInt(override / 10) == 0) ? '!important' : ''};
-        background-size: contain;
-        background-position: center;
-    }
+            const images = {
+                up: browser.runtime.getURL(`images/components/${buttons}/up.svg`),
+                down: browser.runtime.getURL(`images/components/${buttons}/down.svg`),
+                left: browser.runtime.getURL(`images/components/${buttons}/left.svg`),
+                right: browser.runtime.getURL(`images/components/${buttons}/right.svg`)
+            }
 
-    ::-webkit-scrollbar-button:hover {
-        background-color: ${changeBrightness(colorThumb, 10 * brightFactor)} ${(override % 10 == 0) ? '!important' : ''};
-    }
+            const button = new CSSRule('::-webkit-scrollbar-button');
+            button.set('background-color', colorThumb, overrideColor);
+            button.set('background-size', 'contain', true);
+            button.set('background-position', 'center', true);
+            button.set('width', width, overrideWidth);
+            button.set('height', width, overrideWidth);
+            css.push(button);
 
-    ::-webkit-scrollbar-button:active {
-        background-color: ${changeBrightness(colorThumb, 30 * brightFactor)} ${(override % 10 == 0) ? '!important' : ''};
-    }
+            const buttonHover = new CSSRule('::-webkit-scrollbar-button:hover');
+            buttonHover.set('background-color', changeBrightness(colorThumb, 10 * brightFactor), overrideColor);
+            css.push(buttonHover);
 
-    ::-webkit-scrollbar-button:single-button:vertical:decrement {
-        background-image: url(${up});
-    }
+            const buttonActive = new CSSRule('::-webkit-scrollbar-button:active');
+            buttonActive.set('background-color', changeBrightness(colorThumb, 30 * brightFactor), overrideColor);
+            css.push(buttonActive);
 
-    ::-webkit-scrollbar-button:single-button:vertical:increment {
-        background-image: url(${down});
-    }
+            const buttonUp = new CSSRule('::-webkit-scrollbar-button:single-button:vertical:decrement');
+            buttonUp.set('background-image', `url(${images.up})`, true);
+            css.push(buttonUp);
 
-    ::-webkit-scrollbar-button:single-button:horizontal:decrement {
-        background-image: url(${left});
-    }
+            const buttonDown = new CSSRule('::-webkit-scrollbar-button:single-button:vertical:increment');
+            buttonDown.set('background-image', `url(${images.down})`, true);
+            css.push(buttonDown);
 
-    ::-webkit-scrollbar-button:single-button:horizontal:increment {
-        background-image: url(${right});
-    }`;
+            const buttonLeft = new CSSRule('::-webkit-scrollbar-button:single-button:horizontal:decrement');
+            buttonLeft.set('background-image', `url(${images.left})`, true);
+            css.push(buttonLeft);
+
+            const buttonRight = new CSSRule('::-webkit-scrollbar-button:single-button:horizontal:increment');
+            buttonRight.set('background-image', `url(${images.right})`, true);
+            css.push(buttonRight);
         }
     }
 
-    return css;
+    let output = '';
+
+    for (const rule of css) {
+        output += rule.toString();
+    }
+
+    return output;
 }
 
 /**
@@ -148,4 +179,60 @@ function isLightColor(color) {
     const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b;
 
     return luma < 40;
+}
+
+/**
+ * Class used to store and create CSS rules
+ */
+class CSSRule {
+
+    selector = null;
+    rules = {};
+
+    /**
+     * Create new CSS rule
+     * @param {string} selector
+     */
+    constructor(selector) {
+        this.selector = selector;
+    }
+
+    /**
+     * Set CSS rule property
+     * @param {string} property
+     * @param {string|number} value
+     * @param {boolean} important
+     */
+    set(property, value, important) {
+        this.rules[property] = {
+            value: value,
+            important: important
+        };
+    }
+
+    /**
+     * Convert to CSS string
+     * @returns CSS
+     */
+    toString() {
+        if (Object.keys(this.rules).length > 0) {
+            let css = this.selector + ' {\n';
+
+            for (const property of Object.keys(this.rules)) {
+                css += `\t${property}: ${this.rules[property].value}`;
+
+                if (this.rules[property].important) {
+                    css += ' !important';
+                }
+
+                css += ';\n';
+            }
+
+            css += '}\n';
+            return css;
+        } else {
+            return '';
+        }
+    }
+
 }
