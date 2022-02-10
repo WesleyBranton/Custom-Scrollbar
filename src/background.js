@@ -362,8 +362,22 @@ function getRule(sender, callback) {
  */
 function getURL(sender, callback) {
     browser.storage.local.get(['framesInherit'], (data) => {
-        if (data.framesInherit && sender.tab.url != null && typeof sender.tab.url == 'string') {
-            callback(new URL(sender.tab.url));
+        if (data.framesInherit) {
+            if (sender.tab.url != null && typeof sender.tab.url == 'string') {
+                callback(new URL(sender.tab.url));
+            } else {
+                browser.tabs.sendMessage(sender.tab.id, {
+                    action: 'getURL'
+                }, {
+                    frameId: 0
+                }, (url) => {
+                    if (url != null && typeof url == 'string') {
+                        callback(new URL(url));
+                    } else {
+                        callback(new URL(sender.url));
+                    }
+                });
+            }
         } else {
             callback(new URL(sender.url));
         }

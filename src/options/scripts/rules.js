@@ -93,12 +93,9 @@ function saveRules() {
     const localFileProfile = parseInt(settings.localFileProfile.value);
     const object = {
         localFileProfile: (!isNaN(localFileProfile)) ? localFileProfile : null,
+        framesInherit: settings.framesInherit.value == 'yes',
         rules: temp
     };
-
-    if (document.getElementById('framesInheritPermissionError').classList.contains('hide')) {
-        object['framesInherit'] = settings.framesInherit.value == 'yes';
-    }
 
     browser.storage.local.set(object);
     toggleChangesWarning(false);
@@ -544,10 +541,6 @@ function init() {
         data.framesInherit = (typeof data.framesInherit == 'boolean') ? data.framesInherit : true;
         settings.framesInherit.value = (data.framesInherit) ? 'yes' : 'no';
 
-        if (runningOn == browsers.FIREFOX) {
-            checkTabsPermission();
-        }
-
         if (typeof data.localFileProfile == 'number' && data.localFileProfile != null) {
             settings.localFileProfile.value = data.localFileProfile;
         }
@@ -557,58 +550,6 @@ function init() {
             parseRules(data.rules);
         }
     });
-}
-
-/**
- * Checks to see if the user needs to grant tab permission
- */
-function checkTabsPermission() {
-    if (settings.framesInherit.value != 'yes') {
-        toggleTabsPermissionWarning(false);
-        return;
-    }
-
-    browser.tabs.getCurrent((tab) => {
-        if (typeof tab.url == 'undefined') {
-            console.warn('User has not granted "tabs" permission.');
-            toggleTabsPermissionWarning(true);
-        } else {
-            toggleTabsPermissionWarning(false);
-        }
-    });
-}
-
-/**
- * Prompt user to grant tabs permission
- */
-function askForTabsPermission() {
-    browser.permissions.request({
-        permissions: ['tabs']
-    }, (granted) => {
-        if (granted) {
-            console.warn('User has not granted "tabs" permission.');
-        }
-        toggleTabsPermissionWarning(!granted);
-    });
-}
-
-/**
- * Show/Hide tabs permission warning message
- */
-function toggleTabsPermissionWarning(show) {
-    const error = document.getElementById('framesInheritPermissionError');
-    const options = document.getElementsByName('framesInherit');
-
-    for (const option of options) {
-        option.disabled = show;
-    }
-
-    if (show) {
-        error.classList.remove('hide');
-        document.settings.framesInherit.value = 'no';
-    } else {
-        error.classList.add('hide');
-    }
 }
 
 /**
@@ -734,7 +675,6 @@ toggleChangesWarning(false);
 checkIfListIsEmpty();
 updateBulkToolbar();
 document.getElementById('advanced-settings').addEventListener('change', () => {
-    checkTabsPermission();
     toggleChangesWarning(true);
 });
 document.getElementById('rule-list').addEventListener('click', handleListClick);
@@ -750,7 +690,6 @@ document.getElementById('rule-deselect-all').addEventListener('click', () => {
 });
 document.getElementById('rule-delete-all').addEventListener('click', bulkDelete);
 document.getElementById('rule-change-all').addEventListener('click', bulkChangeProfile);
-document.getElementById('framesInheritGrantPermission').addEventListener('click', askForTabsPermission);
 document.getElementById('dialog-dropdown').addEventListener('change', () => {
     loadProfileDetailsIntoDialog(document.getElementById('dialog-dropdown').value);
 });

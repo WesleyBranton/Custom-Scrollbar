@@ -71,7 +71,6 @@
     ],
 
     "optional_permissions": [
-        "downloads",
-        "tabs"
+        "downloads"
     ]
 }
