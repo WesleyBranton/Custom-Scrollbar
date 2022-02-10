@@ -264,7 +264,8 @@ function updateCSS(message, sender) {
             data: cssInjection
         }, {
             frameId: sender.frameId
-        });
+        }, () => {
+            if (browser.runtime.lastError == 'undefined') {} // Used to hide content access errors);
     });
 }
 
