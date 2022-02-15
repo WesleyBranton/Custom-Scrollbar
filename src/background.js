@@ -266,6 +266,7 @@ function updateCSS(message, sender) {
             frameId: sender.frameId
         }, () => {
             if (browser.runtime.lastError == 'undefined') {} // Used to hide content access errors);
+        });
     });
 }
 
