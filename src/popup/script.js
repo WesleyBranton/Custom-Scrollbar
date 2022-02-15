@@ -24,7 +24,6 @@ function init() {
         }, (tabs) => {
             if (typeof tabs[0].url == 'undefined') {
                 // Ask the tab for its URL
-                // Show permission error if it's still not accessible
                 browser.tabs.sendMessage(tabs[0].id, {
                     action: 'getURL'
                 }, (response) => {
@@ -33,9 +32,7 @@ function init() {
                     } else {
                         renderForGeneral();
                         loadProfile(defaultProfile);
-                        if (browser.runtime.lastError == 'undefined') {
-                            document.getElementById('grantPermissionError').classList.remove('hide');
-                        }
+                        if (browser.runtime.lastError == 'undefined') {}
                     }
                 });
             } else {
@@ -389,21 +386,6 @@ function openWhatsNew() {
 }
 
 /**
- * Prompt user to grant tabs permission
- */
-function askForTabsPermission() {
-    browser.permissions.request({
-        permissions: ['tabs']
-    }, (granted) => {
-        if (granted) {
-            console.warn('User has not granted "tabs" permission.');
-            document.getElementById('grantPermissionError').classList.add('hide');
-            browser.storage.local.get(init);
-        }
-    });
-}
-
-/**
  * Load i18n data
  */
 function parsei18n() {
@@ -444,4 +426,3 @@ document.getElementById('button-feedback').addEventListener('click', () => {
     });
 });
 document.getElementById('button-use').addEventListener('click', updateRule);
-document.getElementById('grantPermission').addEventListener('click', askForTabsPermission);
