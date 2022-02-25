@@ -30,6 +30,9 @@ function loadContentScriptsOnDemand() {
                 browser.tabs.query({}, (tabs) => {
                     for (const t of tabs) {
                         if (t.url) {
+                            const url = new URL(t.url);
+
+                            // Generic content scripts
                             browser.scripting.executeScript({
                                 files: ["content.js"],
                                 target: {
@@ -37,6 +40,16 @@ function loadContentScriptsOnDemand() {
                                     tabId: t.id
                                 }
                             });
+
+                            // Onboarding page scripts
+                            if (url.hostname == 'addons.wesleybranton.com' && url.pathname.startsWith('/addon/custom-scrollbars/')) {
+                                browser.scripting.executeScript({
+                                    files: ["crossbrowser.js", "webservice/unsubscribeFromNotifications.js", "webservice/openOptions.js"],
+                                    target: {
+                                        tabId: t.id
+                                    }
+                                });
+                            }
                         }
                     }
                 });
