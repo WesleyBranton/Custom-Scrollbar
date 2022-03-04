@@ -21,6 +21,8 @@ function init() {
  * Save scrollbar settings to Storage API
  */
 function saveScrollbar() {
+    showProgressBar(true);
+
     const colTrack = (document.settings.customColors.value == 'yes') ? colorPickerTrack.color.hex8String : null;
     const colThumb = (document.settings.customColors.value == 'yes') ? colorPickerThumb.color.hex8String : null;
     const profileName = document.getElementById('profileSelection').options[document.getElementById('profileSelection').selectedIndex].textContent.trim();
@@ -46,6 +48,8 @@ function saveScrollbar() {
     browser.storage.local.set(wrapper, () => {
         toggleChangesWarning(false);
         reloadProfileSelection(document.settings.profile, updateSelectedProfileInDropdown);
+    }, () => {
+        showProgressBar(false);
     });
 }
 
@@ -54,6 +58,7 @@ function saveScrollbar() {
  * @param {number} id
  */
 function loadScrollbar(id) {
+    showProgressBar(true);
     selectedProfile = id;
     document.getElementById('profile-setDefault').disabled = selectedProfile == defaultProfile;
     browser.storage.local.get(`profile_${id}`, (scrollbar) => {
@@ -85,6 +90,7 @@ function loadScrollbar(id) {
         toggleChangesWarning(false);
         parseCustomWidthValue(false);
         updateRadiusLabel();
+        showProgressBar(false);
     });
 }
 
@@ -92,6 +98,8 @@ function loadScrollbar(id) {
  * Add new profile
  */
 function addProfile() {
+    showProgressBar(true);
+
     const id = Date.now();
     const newProfile = {};
     newProfile[`profile_${id}`] = {
@@ -108,6 +116,8 @@ function addProfile() {
  * Remove selected profile
  */
 function removeProfile() {
+    showProgressBar(true);
+
     browser.storage.local.remove(`profile_${selectedProfile}`, () => {
         const removedProfile = `profile_${selectedProfile}`;
         reloadProfileSelection(document.settings.profile, null);
@@ -164,6 +174,8 @@ function removeProfile() {
  * @param {Object} rules
  */
 function bulkUpdateRules(from, to, rules) {
+    showProgressBar(true);
+
     for (const key of Object.keys(rules)) {
         if (rules[key] == from) {
             if (to == 'default') {
@@ -177,6 +189,8 @@ function bulkUpdateRules(from, to, rules) {
     browser.storage.local.set({
         rules: rules,
         localFileProfile: localFileProfile
+    }, () => {
+        showProgressBar(false);
     });
 }
 
@@ -184,6 +198,8 @@ function bulkUpdateRules(from, to, rules) {
  * Change the profile that's used as default
  */
 function updateDefaultProfile() {
+    showProgressBar(true);
+
     browser.storage.local.set({
         defaultProfile: selectedProfile
     }, () => {
@@ -197,6 +213,8 @@ function updateDefaultProfile() {
  * @param {String} input
  */
 function renameProfile(input) {
+    showProgressBar(true);
+
     input = generateUnconflictingProfileName(input, selectedProfile);
 
     browser.storage.local.get(`profile_${selectedProfile}`, (data) => {
@@ -571,6 +589,8 @@ function updateSelectedProfileInDropdown() {
         return;
     }
 
+    showProgressBar(true);
+
     browser.storage.local.get(`profile_${id}`, (data) => {
         const profile = loadWithDefaults(data[Object.keys(data)[0]]);
 
@@ -653,6 +673,8 @@ function updateSelectedProfileInDropdown() {
                 overrideOutput.textContent = browser.i18n.getMessage('overrideAll');
                 break;
         }
+
+        showProgressBar(false);
     });
 }
 

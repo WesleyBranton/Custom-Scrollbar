@@ -9,6 +9,8 @@
  *   - Render popup based on tab information
  */
 function init() {
+    showProgressBar(true);
+
     browser.storage.local.get((data) => {
         document.manager.profile.value = data.defaultProfile;
         defaultProfile = data.defaultProfile;
@@ -206,6 +208,8 @@ function loadProfileList(data) {
  * @param {number} id
  */
 function loadProfile(id) {
+    showProgressBar(true);
+
     browser.storage.local.get(`profile_${id}`, (data) => {
         const profile = loadWithDefaults(data[Object.keys(data)[0]]);
 
@@ -288,6 +292,8 @@ function loadProfile(id) {
                 overrideOutput.textContent = browser.i18n.getMessage('overrideAll');
                 break;
         }
+
+        showProgressBar(false);
     });
 }
 
@@ -315,6 +321,8 @@ function refreshSetAsDefaultButton() {
  * Update the default profile
  */
 function setAsDefault() {
+    showProgressBar(true);
+
     browser.storage.local.set({
         defaultProfile: document.manager.profile.value
     }, () => {
@@ -326,6 +334,8 @@ function setAsDefault() {
  * Save rule to Storage API
  */
 function updateRule() {
+    showProgressBar(true);
+    
     if (isLocalFile) {
         const profile = parseInt(document.manager.profile.value);
         const data = {
@@ -400,6 +410,22 @@ function parsei18n() {
     const feedbackButton = document.getElementById('button-feedback');
     feedbackButton.title = browser.i18n.getMessage('linkFeedback');
     feedbackButton.getElementsByTagName('img')[0].alt = browser.i18n.getMessage('linkFeedback');
+}
+
+/**
+ * Toggle progress bar
+ * @param {boolean} show
+ */
+ function showProgressBar(show) {
+    const progressBar = document.getElementById('main-progress-bar');
+
+    if (progressBar) {
+        if (show) {
+            progressBar.classList.remove('hide');
+        } else {
+            progressBar.classList.add('hide');
+        }
+    }
 }
 
 // Add browser tag to body class

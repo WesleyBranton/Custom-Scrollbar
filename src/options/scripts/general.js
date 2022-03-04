@@ -96,6 +96,7 @@ function changeTab(event) {
  * @param {Function} callback
  */
 function reloadProfileSelection(dropdown, callback) {
+    showProgressBar(true);
     browser.storage.local.get((data) => {
         let sortedOptions = [];
         dropdown.textContent = '';
@@ -118,6 +119,8 @@ function reloadProfileSelection(dropdown, callback) {
         }
 
         if (callback) callback();
+
+        showProgressBar(false);
     });
 }
 
@@ -142,6 +145,8 @@ function addDefaultProfileOption(dropdown) {
  * Use CSS for default scrollbars on page
  */
 function getDefaultScrollbar() {
+    showProgressBar(true);
+
     browser.storage.local.get('defaultProfile', (data) => {
         browser.storage.local.get(`profile_${data.defaultProfile}`, (profile) => {
             profile = Object.values(profile)[0];
@@ -156,6 +161,8 @@ function getDefaultScrollbar() {
                 profile.buttons,
                 profile.thumbRadius
             );
+
+            showProgressBar(false);
         });
     });
 }
@@ -268,7 +275,22 @@ function setKeyboardNavigation(parent, allow) {
             element.tabIndex = -1;
         }
     }
+}
 
+/**
+ * Toggle progress bar
+ * @param {boolean} show
+ */
+ function showProgressBar(show) {
+    const progressBar = document.getElementById('main-progress-bar');
+
+    if (progressBar) {
+        if (show) {
+            progressBar.classList.remove('hide');
+        } else {
+            progressBar.classList.add('hide');
+        }
+    }
 }
 
 // Add browser tag to body class

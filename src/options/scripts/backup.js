@@ -6,6 +6,8 @@
  * Save Storage API backup (requires permission)
  */
 function saveBackup() {
+    showProgressBar(true);
+
     browser.permissions.request({
         permissions: ['downloads']
     }, (granted) => {
@@ -20,11 +22,14 @@ function saveBackup() {
                     filename: `custom-scrollbars-backup-${Date.now()}.json`,
                     saveAs: true,
                     url: fileURL
+                }, () => {
+                    showProgressBar(false);
                 });
             });
         } else {
             console.error('Missing persmission to manage downloads');
             showAlert(browser.i18n.getMessage('dialogPermissionRequired'), null, null);
+            showProgressBar(false);
         }
     });
 }
@@ -61,12 +66,15 @@ function clearFile() {
  * Apply backup to Storage API
  */
 function loadBackup() {
+    showProgressBar(true);
     const fileInput = document.getElementById('restore-file');
 
     if (fileInput.files.length == 1) {
         const reader = new FileReader();
         reader.onload = processBackupFile;
         reader.readAsText(fileInput.files[0]);
+    } else {
+        showProgressBar(false);
     }
 }
 
@@ -87,6 +95,7 @@ function processBackupFile(event) {
             clearFile,
             null
         );
+        showProgressBar(false);
         return;
     }
 
@@ -101,6 +110,7 @@ function processBackupFile(event) {
             clearFile,
             null
         );
+        showProgressBar(false);
         return;
     }
 
@@ -114,6 +124,7 @@ function processBackupFile(event) {
                 },
                 null
             );
+            showProgressBar(false);
         });
     });
 }

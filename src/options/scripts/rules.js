@@ -84,6 +84,8 @@ function parseRules(raw) {
  * Save rules to Storage API
  */
 function saveRules() {
+    showProgressBar(true);
+
     let temp = {};
 
     for (const rule of Object.values(rules)) {
@@ -97,7 +99,9 @@ function saveRules() {
         rules: temp
     };
 
-    browser.storage.local.set(object);
+    browser.storage.local.set(object, () => {
+        showProgressBar(false);
+    });
     toggleChangesWarning(false);
 }
 
@@ -575,6 +579,8 @@ function clear() {
  * @param {number} id
  */
  function loadProfileDetailsIntoDialog(id) {
+    showProgressBar(true);
+
     browser.storage.local.get(`profile_${id}`, (data) => {
         const profile = loadWithDefaults(data[Object.keys(data)[0]]);
 
@@ -657,6 +663,8 @@ function clear() {
                 overrideOutput.textContent = browser.i18n.getMessage('overrideAll');
                 break;
         }
+
+        showProgressBar(false);
     });
 }
 
