@@ -136,7 +136,9 @@ function renderForLocalFile() {
  */
 function renderForGeneral() {
     const useButton = document.getElementById('button-use');
-    useButton.parentNode.removeChild(useButton);
+    if (useButton) {
+        useButton.parentNode.removeChild(useButton);
+    }
 
     document.manager.profile.removeChild(document.manager.profile.firstChild);
     document.manager.profile.value = defaultProfile;
