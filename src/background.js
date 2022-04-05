@@ -226,7 +226,7 @@ function openFeedback() {
 function getSystemDetails(callback) {
     browser.runtime.getPlatformInfo((platform) => {
         callback({
-            browser: (getBrowserName() == 'firefox') ? 'firefox' : 'chromium',
+            browser: getBrowserName().toLowerCase(),
             version: browser.runtime.getManifest().version,
             os: platform.os
         });
