@@ -457,7 +457,7 @@ function checkIfListIsEmpty() {
  * @returns Valid
  */
 function userInputDomainValidation(input, checkbox, error) {
-    const domainRegex = /^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9](?:\.[a-zA-Z]{2,})+$/;
+    const domainRegex = /^(?:(?![-])[a-zA-Z0-9-]+(?<!-)\.)+[a-zA-Z]{2,}$/;
     error.textContent = '';
     input = input.trim();
 
