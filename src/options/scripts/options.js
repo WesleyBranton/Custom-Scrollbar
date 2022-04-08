@@ -48,8 +48,6 @@ function saveScrollbar() {
     browser.storage.local.set(wrapper, () => {
         toggleChangesWarning(false);
         reloadProfileSelection(document.settings.profile, updateSelectedProfileInDropdown);
-    }, () => {
-        showProgressBar(false);
     });
 }
 
