@@ -35,6 +35,8 @@ function addListItem(rule) {
     const profileNameOutput = clone.getElementsByClassName('rule-profile')[0];
     if (rule.profile == 'default') {
         profileNameOutput.textContent = browser.i18n.getMessage('profileUsingDefault', listOfProfiles[`profile_${defaultProfile}`]);
+    } else if (rule.profile == 'profile_none') {
+        profileNameOutput.textContent = browser.i18n.getMessage('profileUsingNone');
     } else if (listOfProfiles[rule.profile]) {
         profileNameOutput.textContent = listOfProfiles[rule.profile];
     } else {
@@ -535,10 +537,14 @@ function init() {
 
         defaultProfile = data.defaultProfile;
 
-        reloadProfileSelection(document.getElementById('dialog-dropdown'), null);
+        const profileSelectionDropdownDialog = document.getElementById('dialog-dropdown');
+        reloadProfileSelection(profileSelectionDropdownDialog, () => {
+            addNoProfileOption(profileSelectionDropdownDialog);
+        });
         const localProfileSelectionDropdown = document.getElementById('profileSelectionForLocalFileProfile');
         reloadProfileSelection(localProfileSelectionDropdown, () => {
             addDefaultProfileOption(localProfileSelectionDropdown);
+            addNoProfileOption(localProfileSelectionDropdown);
         });
 
         // Load advanced setting
@@ -581,15 +587,39 @@ function clear() {
  function loadProfileDetailsIntoDialog(id) {
     showProgressBar(true);
 
+    const widthOutput = document.getElementById('detail-width');
+    const buttonsOutput = document.getElementById('detail-buttons');
+    const thumbRadiusOutput = document.getElementById('detail-thumbRadius');
+    const colorThumbOutput = document.getElementById('detail-color-thumb');
+    const colorTrackOutput = document.getElementById('detail-color-track');
+    const overrideOutput = document.getElementById('detail-override');
+    const detailsContainer = document.getElementById('rule-preview');
+
+    if (id == 'none') {
+        detailsContainer.classList.add('dim');
+
+        widthOutput.textContent = '-';
+        buttonsOutput.textContent = '-';
+        thumbRadiusOutput.textContent = '-';
+        overrideOutput.textContent = '-';
+
+        colorThumbOutput.style.background = 'unset';
+        colorThumbOutput.textContent = '-';
+        colorThumbOutput.classList.remove('color-output');
+
+        colorTrackOutput.style.background = 'unset';
+        colorTrackOutput.textContent = '-';
+        colorTrackOutput.classList.remove('color-output');
+
+        showProgressBar(false);
+
+        return;
+    }
+
     browser.storage.local.get(`profile_${id}`, (data) => {
         const profile = loadWithDefaults(data[Object.keys(data)[0]]);
 
-        const widthOutput = document.getElementById('detail-width');
-        const buttonsOutput = document.getElementById('detail-buttons');
-        const thumbRadiusOutput = document.getElementById('detail-thumbRadius');
-        const colorThumbOutput = document.getElementById('detail-color-thumb');
-        const colorTrackOutput = document.getElementById('detail-color-track');
-        const overrideOutput = document.getElementById('detail-override');
+        detailsContainer.classList.remove('dim');
 
         // Fill width information
         switch (profile.width) {

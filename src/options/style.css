@@ -379,6 +379,14 @@ button.default.icon > div > img {
     width: 1em;
 }
 
+.dim {
+    opacity: 0.5;
+}
+
+.fixed-option {
+    font-style: italic;
+}
+
 @media (prefers-reduced-motion) {
     *,
     .collapse-header::after {

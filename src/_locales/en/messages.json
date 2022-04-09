@@ -247,6 +247,9 @@
             }
         }
     },
+    "profileUsingNone": {
+        "message": "Don't customize scrollbar"
+    },
     "profileActionUseOnWebsite": {
         "message": "Use on this website"
     },
