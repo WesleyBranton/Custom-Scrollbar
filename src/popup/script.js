@@ -450,6 +450,10 @@ function parsei18n() {
     const feedbackButton = document.getElementById('button-feedback');
     feedbackButton.title = browser.i18n.getMessage('linkFeedback');
     feedbackButton.getElementsByTagName('img')[0].alt = browser.i18n.getMessage('linkFeedback');
+
+    const settingsButton = document.getElementById('button-options');
+    settingsButton.title = browser.i18n.getMessage('options');
+    settingsButton.getElementsByTagName('img')[0].alt = browser.i18n.getMessage('options');
 }
 
 /**
