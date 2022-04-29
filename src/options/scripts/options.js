@@ -111,6 +111,33 @@ function addProfile() {
 }
 
 /**
+ * Duplicate profile
+ */
+function duplicateProfile() {
+    showProgressBar(true);
+
+    browser.storage.local.get(`profile_${selectedProfile}`, (data) => {
+        const original = data[`profile_${selectedProfile}`];
+        const created = {};
+        const id = Date.now();
+
+        for (const key of Object.keys(original)) {
+            created[key] = original[key];
+        }
+
+        created.name = generateUnconflictingProfileName(created.name, id);
+
+        const newProfile = {};
+        newProfile[`profile_${id}`] = created;
+
+        browser.storage.local.set(newProfile, () => {
+            reloadProfileSelection(document.settings.profile, updateSelectedProfileInDropdown);
+            loadScrollbar(id);
+        });
+    });
+}
+
+/**
  * Remove selected profile
  */
 function removeProfile() {
@@ -735,6 +762,14 @@ document.settings.profile.addEventListener('change', () => {
         function() {
             document.settings.profile.value = selectedProfile
         },
+        !pendingChanges
+    );
+});
+document.getElementById('profile-duplicate').addEventListener('click', () => {
+    confirmAction(
+        browser.i18n.getMessage('dialogChangesWillBeLost'),
+        duplicateProfile,
+        null,
         !pendingChanges
     );
 });
