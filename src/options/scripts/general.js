@@ -124,6 +124,10 @@ function reloadProfileSelection(dropdown, callback) {
     });
 }
 
+/**
+ * Add default profile option to profile dropdown
+ * @param {HTMLSelectElement} dropdown
+ */
 function addDefaultProfileOption(dropdown) {
     const option = document.createElement('option');
     let profilename = '';
@@ -137,8 +141,22 @@ function addDefaultProfileOption(dropdown) {
 
     option.textContent = browser.i18n.getMessage('profileUsingDefault', profilename);
     option.value = 'default';
+    option.classList.add('fixed-option');
     dropdown.insertBefore(option, dropdown.firstChild);
     dropdown.value = 'default';
+}
+
+/**
+ * Add no profile option to profile dropdown
+ * @param {HTMLSelectElement} dropdown
+ */
+function addNoProfileOption(dropdown) {
+    const option = document.createElement('option');
+    option.textContent = browser.i18n.getMessage('profileUsingNone');
+    option.value = 'none';
+    option.classList.add('fixed-option');
+    
+    dropdown.insertBefore(option, dropdown.firstChild);
 }
 
 /**

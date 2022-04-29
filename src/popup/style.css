@@ -105,6 +105,14 @@ button.icon-only span {
     white-space: nowrap !important;
 }
 
+.dim {
+    opacity: 0.5;
+}
+
+.fixed-option {
+    font-style: italic;
+}
+
 @media (prefers-color-scheme: dark) {
     button.secondary.icon > div > img,
     img.icon-text-color {

@@ -143,6 +143,7 @@ function renderForGeneral() {
     }
 
     document.manager.profile.removeChild(document.manager.profile.firstChild);
+    document.manager.profile.removeChild(document.manager.profile.firstChild);
     document.manager.profile.value = defaultProfile;
 
     loadProfile(defaultProfile);
@@ -198,7 +199,14 @@ function loadProfileList(data) {
     const option = document.createElement('option');
     option.textContent = browser.i18n.getMessage('profileUsingDefault', data[`profile_${defaultProfile}`].name);
     option.value = 'default';
+    option.classList.add('fixed-option');
     document.manager.profile.insertBefore(option, document.manager.profile.firstChild);
+
+    const optionNone = document.createElement('option');
+    optionNone.textContent = browser.i18n.getMessage('profileUsingNone');
+    optionNone.value = 'none';
+    optionNone.classList.add('fixed-option');
+    document.manager.profile.insertBefore(optionNone, document.manager.profile.firstChild);
 
     document.manager.profile.value = 'default';
 }
@@ -210,15 +218,38 @@ function loadProfileList(data) {
 function loadProfile(id) {
     showProgressBar(true);
 
+    const widthOutput = document.getElementById('detail-width');
+    const buttonsOutput = document.getElementById('detail-buttons');
+    const thumbRadiusOutput = document.getElementById('detail-thumbRadius');
+    const colorThumbOutput = document.getElementById('detail-color-thumb');
+    const colorTrackOutput = document.getElementById('detail-color-track');
+    const overrideOutput = document.getElementById('detail-override');
+    const detailsContainer = document.getElementById('scrollbar-details-container');
+
+    if (id == 'none') {
+        detailsContainer.classList.add('dim');
+
+        widthOutput.textContent = '-';
+        buttonsOutput.textContent = '-';
+        thumbRadiusOutput.textContent = '-';
+        overrideOutput.textContent = '-';
+
+        colorThumbOutput.style.background = 'unset';
+        colorThumbOutput.textContent = '-';
+        colorThumbOutput.classList.remove('color-output');
+
+        colorTrackOutput.style.background = 'unset';
+        colorTrackOutput.textContent = '-';
+        colorTrackOutput.classList.remove('color-output');
+
+        showProgressBar(false);
+
+        return;
+    }
+
     browser.storage.local.get(`profile_${id}`, (data) => {
         const profile = loadWithDefaults(data[Object.keys(data)[0]]);
-
-        const widthOutput = document.getElementById('detail-width');
-        const buttonsOutput = document.getElementById('detail-buttons');
-        const thumbRadiusOutput = document.getElementById('detail-thumbRadius');
-        const colorThumbOutput = document.getElementById('detail-color-thumb');
-        const colorTrackOutput = document.getElementById('detail-color-track');
-        const overrideOutput = document.getElementById('detail-override');
+        detailsContainer.classList.remove('dim');
 
         // Fill width information
         switch (profile.width) {
@@ -313,8 +344,17 @@ function changeSelectedProfile() {
  * Toggle "Set as default" button
  */
 function refreshSetAsDefaultButton() {
-    document.getElementById('button-setDefault').disabled = defaultProfile == document.manager.profile.value || document.manager.profile.value == 'default';
-    if (document.getElementById('button-use')) document.getElementById('button-use').disabled = !ruleInherit && currentRule == document.manager.profile.value;
+    const defaultDisabled = (defaultProfile == document.manager.profile.value || document.manager.profile.value == 'default' || document.manager.profile.value == 'none');
+    const useDisabled = (!ruleInherit && currentRule == document.manager.profile.value);
+
+    const useButton = document.getElementById('button-use');
+    const defaultButton = document.getElementById('button-setDefault');
+    
+    defaultButton.disabled = defaultDisabled;
+
+    if (useButton) {
+        useButton.disabled = useDisabled;
+    }
 }
 
 /**
@@ -410,6 +450,10 @@ function parsei18n() {
     const feedbackButton = document.getElementById('button-feedback');
     feedbackButton.title = browser.i18n.getMessage('linkFeedback');
     feedbackButton.getElementsByTagName('img')[0].alt = browser.i18n.getMessage('linkFeedback');
+
+    const settingsButton = document.getElementById('button-options');
+    settingsButton.title = browser.i18n.getMessage('options');
+    settingsButton.getElementsByTagName('img')[0].alt = browser.i18n.getMessage('options');
 }
 
 /**

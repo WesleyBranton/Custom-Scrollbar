@@ -139,6 +139,7 @@ function removeProfile() {
                 reloadProfileSelection(document.getElementById('dialog-dropdown'), () => {
                     const dropdown = document.getElementById('dialog-dropdown');
                     addDefaultProfileOption(dropdown);
+                    addNoProfileOption(dropdown);
 
                     const dropdownNoButton = document.getElementById('dropdown-no');
                     dropdownNoButton.classList.add('hide');
@@ -589,15 +590,39 @@ function updateSelectedProfileInDropdown() {
 
     showProgressBar(true);
 
+    const widthOutput = document.getElementById('detail-width');
+    const buttonsOutput = document.getElementById('detail-buttons');
+    const thumbRadiusOutput = document.getElementById('detail-thumbRadius');
+    const colorThumbOutput = document.getElementById('detail-color-thumb');
+    const colorTrackOutput = document.getElementById('detail-color-track');
+    const overrideOutput = document.getElementById('detail-override');
+    const detailsContainer = document.getElementById('rule-preview');
+
+    if (id == 'none') {
+        detailsContainer.classList.add('dim');
+
+        widthOutput.textContent = '-';
+        buttonsOutput.textContent = '-';
+        thumbRadiusOutput.textContent = '-';
+        overrideOutput.textContent = '-';
+
+        colorThumbOutput.style.background = 'unset';
+        colorThumbOutput.textContent = '-';
+        colorThumbOutput.classList.remove('color-output');
+
+        colorTrackOutput.style.background = 'unset';
+        colorTrackOutput.textContent = '-';
+        colorTrackOutput.classList.remove('color-output');
+
+        showProgressBar(false);
+
+        return;
+    }
+
     browser.storage.local.get(`profile_${id}`, (data) => {
         const profile = loadWithDefaults(data[Object.keys(data)[0]]);
 
-        const widthOutput = document.getElementById('detail-width');
-        const buttonsOutput = document.getElementById('detail-buttons');
-        const thumbRadiusOutput = document.getElementById('detail-thumbRadius');
-        const colorThumbOutput = document.getElementById('detail-color-thumb');
-        const colorTrackOutput = document.getElementById('detail-color-track');
-        const overrideOutput = document.getElementById('detail-override');
+        detailsContainer.classList.remove('dim');
 
         // Fill width information
         switch (profile.width) {
