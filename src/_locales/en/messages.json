@@ -183,6 +183,9 @@
     "profileActionNew": {
         "message": "New"
     },
+    "profileActionDuplicate": {
+        "message": "Duplicate"
+    },
     "profileActionRename": {
         "message": "Rename"
     },
