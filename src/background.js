@@ -191,10 +191,10 @@ function validateStorage(callback) {
  */
 function migrateStorage(callback) {
     browser.storage.local.get((data) => {
-        const migrated = {
-            schema: 2,
-            defaultProfile: Date.now()
-        }
+        const migrated = (Object.keys(data).length > 0) ? {} : addDefaultScrollbars();
+
+        migrated.schema = 2;
+        migrated.defaultProfile = Date.now();
 
         migrated[`profile_${migrated.defaultProfile}`] = data;
         migrated[`profile_${migrated.defaultProfile}`]['name'] = (typeof browser.i18n.getMessage != 'undefined') ? browser.i18n.getMessage('migratedProfileName') : 'General';
@@ -203,6 +203,47 @@ function migrateStorage(callback) {
             browser.storage.local.set(migrated, callback);
         });
     });
+}
+
+/**
+ * Creates storage object with all default scrollbars
+ * @returns Storage object
+ */
+function addDefaultScrollbars() {
+    const storage = {};
+    let id = Date.now();
+
+    // Light
+    const light = {};
+    light.name = 'Light';
+    light.colorTrack = '#F0F0F0FF';
+    light.colorThumb = '#CDCDCDFF';
+    storage[`profile_${++id}`] = light;
+
+    // Light (Thin)
+    const lightThin = {};
+    lightThin.name = 'Light Thin';
+    lightThin.colorTrack = '#F0F0F0FF';
+    lightThin.colorThumb = '#CDCDCDFF';
+    lightThin.width = 'thin';
+    storage[`profile_${++id}`] = lightThin;
+
+    // Dark
+    const dark = {};
+    dark.name = 'Dark';
+    dark.colorTrack = '#2B2A33FF';
+    dark.colorThumb = '#737387FF';
+    storage[`profile_${++id}`] = dark;
+
+    // Dark (Thin)
+    const darkThin = {};
+    darkThin.name = 'Dark Thin';
+    darkThin.colorTrack = '#2B2A33FF';
+    darkThin.colorThumb = '#737387FF';
+    darkThin.width = 'thin';
+    storage[`profile_${++id}`] = darkThin;
+
+    return storage;
 }
 
 /**
