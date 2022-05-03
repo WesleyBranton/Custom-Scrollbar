@@ -40,6 +40,12 @@
     "optionsSectionOverride": {
         "message": "Allow websites to override"
     },
+    "optionsSectionAutoHide": {
+        "message": "Automatically hide scrollbar"
+    },
+    "optionsSectionAutoHideShort": {
+        "message": "Automatically hide"
+    },
     "optionsFramesInherit": {
         "message": "Allow embedded websites to inherit scrollbar appearance from the main content?"
     },

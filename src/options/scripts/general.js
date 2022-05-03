@@ -177,7 +177,8 @@ function getDefaultScrollbar() {
                 profile.allowOverride,
                 profile.customWidthValue + profile.customWidthUnit,
                 profile.buttons,
-                profile.thumbRadius
+                profile.thumbRadius,
+                profile.autoHide
             );
 
             showProgressBar(false);

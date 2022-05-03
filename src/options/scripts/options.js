@@ -34,7 +34,8 @@ function saveScrollbar() {
         colorThumb: colThumb,
         allowOverride: parseInt(document.settings.override.value),
         buttons: document.settings.buttons.value,
-        thumbRadius: parseInt(document.settings.thumbRadius.value)
+        thumbRadius: parseInt(document.settings.thumbRadius.value),
+        autoHide: parseInt(document.settings.autoHide.value)
     };
 
     if (profileData.width == 'other') {
@@ -46,6 +47,7 @@ function saveScrollbar() {
     wrapper[`profile_${selectedProfile}`] = profileData;
 
     browser.storage.local.set(wrapper, () => {
+        showProgressBar(false);
         toggleChangesWarning(false);
         reloadProfileSelection(document.settings.profile, updateSelectedProfileInDropdown);
     });
@@ -76,6 +78,7 @@ function loadScrollbar(id) {
         document.settings.customWidthUnit.value = scrollbar.customWidthUnit;
         document.settings.buttons.value = scrollbar.buttons;
         document.settings.thumbRadius.value = scrollbar.thumbRadius;
+        document.settings.autoHide.value = scrollbar.autoHide;
 
         previousToggleValue = document.settings.customColors.value;
         toggleColorSettings();
@@ -290,8 +293,9 @@ function getNewCSS() {
     const customWidth = (document.settings.width.value == 'other') ? document.settings.customWidthValue.value + document.settings.customWidthUnit.value : null;
     const buttons = document.settings.buttons.value;
     const thumbRadius = parseInt(document.settings.thumbRadius.value);
+    const autoHide = parseInt(document.settings.autoHide.value);
 
-    return generateCSS(width, colTrack, colThumb, 0, customWidth, buttons, thumbRadius);
+    return generateCSS(width, colTrack, colThumb, 0, customWidth, buttons, thumbRadius, autoHide);
 }
 
 /**

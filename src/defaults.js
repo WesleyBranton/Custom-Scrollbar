@@ -11,7 +11,8 @@ const defaults = {
     customWidthValue: 17,
     customWidthUnit: 'px',
     buttons: 'none',
-    thumbRadius: 0
+    thumbRadius: 0,
+    autoHide: 0
 }
 const webBase = 'https://addons.wesleybranton.com/addon/custom-scrollbars';
 
