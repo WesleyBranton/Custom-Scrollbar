@@ -298,7 +298,8 @@ function getCSS(sender, callback) {
             scrollbar.allowOverride,
             scrollbar.customWidthValue + scrollbar.customWidthUnit,
             scrollbar.buttons,
-            scrollbar.thumbRadius
+            scrollbar.thumbRadius,
+            scrollbar.autoHide
         );
         callback(css);
     });

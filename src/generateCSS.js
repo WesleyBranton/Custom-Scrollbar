@@ -11,12 +11,14 @@
  * @param {string} customWidth
  * @param {string} buttons
  * @param {number} thumbRadius
+ * @param {number} autoHide
  * @returns CSS
  */
-function generateCSS(width, colorTrack, colorThumb, override, customWidth, buttons, thumbRadius) {
+function generateCSS(width, colorTrack, colorThumb, override, customWidth, buttons, thumbRadius, autoHide) {
     const css = [];
     const overrideWidth = parseInt(override / 10) == 0;
     const overrideColor = override % 10 == 0;
+    autoHide = autoHide == 1;
 
     if (runningOn == browsers.FIREFOX) { // Firefox
         const all = new CSSRule('*');
@@ -27,6 +29,14 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth, butto
 
         if (colorThumb && colorTrack) {
             all.set('scrollbar-color', `${colorThumb} ${colorTrack}`, overrideColor);
+        }
+
+        if (autoHide) {
+            const allNoHover = new CSSRule(':not(:hover):not(:focus)');
+            allNoHover.set('scrollbar-color', 'transparent transparent', true);
+            css.push(allNoHover);
+
+            all.set('transition', 'ease 0.3s scrollbar-color', false);
         }
 
         css.push(all);
@@ -65,6 +75,14 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth, butto
         const thumb = new CSSRule('::-webkit-scrollbar-thumb');
         thumb.set('background', colorThumb, overrideColor);
 
+        if (autoHide) {
+            const thumbNoHover = new CSSRule(':not(body):not(:hover):not(focus)::-webkit-scrollbar-thumb');
+            thumbNoHover.set('background', 'transparent', true);
+            css.push(thumbNoHover);
+
+            thumb.set('transition', 'ease 0.3s background', false);
+        }
+
         if (thumbRadius > 0) {
             thumb.set('border-radius', `calc(${width} / 2 * (${thumbRadius} / 100))`, true);
         }
@@ -81,6 +99,15 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth, butto
 
         const track = new CSSRule('::-webkit-scrollbar-track');
         track.set('background', colorTrack, overrideColor);
+
+        if (autoHide) {
+            const trackNoHover = new CSSRule(':not(body):not(:hover):not(focus)::-webkit-scrollbar-track');
+            trackNoHover.set('background', 'transparent', true);
+            css.push(trackNoHover);
+
+            track.set('transition', 'ease 0.3s background', false);
+        }
+
         css.push(track);
 
         if (buttons != 'none') {
