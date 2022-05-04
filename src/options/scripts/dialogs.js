@@ -10,8 +10,7 @@
  * @param {Function} noAction
  */
 function openDialog(message, type, yesAction, noAction) {
-    document.getElementById('dialog-text').textContent = message;
-    document.getElementById('dialog').className = type;
+    const dialog = document.getElementById('dialog');
     const text = document.getElementById('dialog-text');
 
     if (typeof message != 'string') {
@@ -29,10 +28,12 @@ function openDialog(message, type, yesAction, noAction) {
         text.textContent = message;
     }
 
+    dialog.className = 'dialog ' + type;
+
     actionYes = (yesAction) ? yesAction : () => {};
     actionNo = (noAction) ? noAction : () => {};
 
-    document.getElementById('dialog-overlay').classList.remove('hide');
+    dialog.dataset.state = 'open';
     setKeyboardNavigation(document.settings, false);
     document.body.addEventListener('keyup', bodyKeyHandler);
 }
@@ -42,7 +43,7 @@ function openDialog(message, type, yesAction, noAction) {
  */
 function closeDialog() {
     document.body.removeEventListener('keyup', bodyKeyHandler);
-    document.getElementById('dialog-overlay').classList.add('hide');
+    document.getElementById('dialog').dataset.state = 'close';
     document.getElementById('dialog-error').textContent = '';
     document.getElementById('dialog-input').value = '';
     document.getElementById('dialog-checkbox').checked = false;

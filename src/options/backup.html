@@ -15,9 +15,8 @@
 </head>
 
 <body class="browser-style browser-style-page">
-    <div id="main-progress-bar" class="progress-bar">
-        <div class="progress-bar-line inc"></div>
-        <div class="progress-bar-line dec"></div>
+    <div id="main-progress-bar" class="progress-bar infinite fixed-top">
+        <div class="progress-bar-percentage"></div>
     </div>
     <div class="browser-style-container">
         <form name="settings">
@@ -120,35 +119,69 @@
 
     <input id="restore-file" type="file" multiple="false" accept=".json" style="display: none !important;">
 
-    <div id="dialog-overlay" class="hide">
-        <div id="dialog" class="confirmation">
-            <span id="dialog-text" class="confirmation-only popup-only"></span>
+    <div id="dialog" class="dialog confirmation" data-state="close">
+        <div class="dialog-container">
+            <section class="dialog-content">
+                <span id="dialog-text" class="confirmation-only popup-only"></span>
 
-            <div id="dialog-input-container" class="prompt-only ruleadd-only">
-                <label id="dialog-input-label" for="dialog-input"></label>
-                <input type="text" id="dialog-input">
-            </div>
+                <div id="dialog-input-container" class="prompt-only ruleadd-only">
+                    <label id="dialog-input-label" for="dialog-input"></label>
+                    <input type="text" id="dialog-input">
+                </div>
 
-            <div id="dialog-checkbox-container" class="ruleadd-only">
-                <label id="dialog-checkbox-label" for="dialog-checkbox"></label>
-                <input id="dialog-checkbox" type="checkbox">
-            </div>
+                <div id="dialog-checkbox-container" class="ruleadd-only">
+                    <label id="dialog-checkbox-label" for="dialog-checkbox"></label>
+                    <input id="dialog-checkbox" type="checkbox">
+                </div>
 
-            <div id="dialog-dropdown-container" class="dropdown-only ruleadd-only">
-                <label id="dialog-dropdown-label" for="dialog-dropdown"></label>
-                <select id="dialog-dropdown"></select>
-            </div>
+                <div id="dialog-dropdown-container" class="dropdown-only ruleadd-only">
+                    <label id="dialog-dropdown-label" for="dialog-dropdown"></label>
+                    <select id="dialog-dropdown"></select>
+                </div>
 
-            <div id="dialog-error"></div>
+                <div id="rule-preview">
+                    <div class="panel-section-separator"></div>
+                    <section class="panel-section has-help">
+                        <label data-i18n="optionsSectionWidth"></label>
+                        <span id="detail-width"></span>
+                    </section>
+            
+                    <section class="panel-section has-help help-row chromium-only">
+                        <label data-i18n="optionsSectionButtons"></label>
+                        <span id="detail-buttons"></span>
+                    </section>
+            
+                    <section class="panel-section has-help help-row chromium-only">
+                        <label data-i18n="optionsSectionThumbRadius"></label>
+                        <span id="detail-thumbRadius"></span>
+                    </section>
+            
+                    <section class="panel-section has-help help-row">
+                        <label data-i18n="optionsSectionThumb"></label>
+                        <span id="detail-color-thumb" class="color-output"></span>
+                    </section>
+            
+                    <section class="panel-section has-help help-row">
+                        <label data-i18n="optionsSectionTrack"></label>
+                        <span id="detail-color-track" class="color-output"></span>
+                    </section>
+            
+                    <section class="panel-section help-row">
+                        <label data-i18n="optionsSectionOverride"></label>
+                        <span id="detail-override"></span>
+                    </section>
+                    <div class="panel-section-separator"></div>
+                </div>
 
-            <div id="confirmation-buttons" class="confirmation-only">
+                <div id="dialog-error"></div>
+            </section>
+            <div id="confirmation-buttons" class="dialog-footer confirmation-only">
                 <button id="confirmation-yes" type="button" class="default icon">
                     <div>
                         <img src="../images/check.svg" alt="">
                         <span data-i18n="optionYes"></span>
                     </div>
                 </button>
-
                 <button id="confirmation-no" type="button" class="secondary icon">
                     <div>
                         <img src="../images/cancel.svg" alt="">
@@ -157,14 +190,13 @@
                 </button>
             </div>
 
-            <div id="dropdown-buttons" class="dropdown-only">
+            <div id="dropdown-buttons" class="dialog-footer dropdown-only">
                 <button id="dropdown-yes" type="button" class="default icon">
                     <div>
                         <img src="../images/save.svg" alt="">
                         <span data-i18n="buttonSave"></span>
                     </div>
                 </button>
-
                 <button id="dropdown-no" type="button" class="secondary icon">
                     <div>
                         <img src="../images/cancel.svg" alt="">
@@ -173,14 +205,13 @@
                 </button>
             </div>
 
-            <div id="prompt-buttons" class="prompt-only">
+            <div id="prompt-buttons" class="dialog-footer prompt-only">
                 <button id="prompt-yes" type="button" class="default icon">
                     <div>
                         <img src="../images/save.svg" alt="">
                         <span data-i18n="buttonSave"></span>
                     </div>
                 </button>
-
                 <button id="prompt-no" type="button" class="secondary icon">
                     <div>
                         <img src="../images/cancel.svg" alt="">
@@ -189,14 +220,13 @@
                 </button>
             </div>
 
-            <div id="ruleadd-buttons" class="ruleadd-only">
+            <div id="ruleadd-buttons" class="dialog-footer ruleadd-only">
                 <button id="ruleadd-yes" type="button" class="default icon">
                     <div>
                         <img src="../images/save.svg" alt="">
                         <span data-i18n="buttonSave"></span>
                     </div>
                 </button>
-
                 <button id="ruleadd-no" type="button" class="secondary icon">
                     <div>
                         <img src="../images/cancel.svg" alt="">
@@ -205,7 +235,7 @@
                 </button>
             </div>
 
-            <div id="popup-buttons" class="popup-only">
+            <div id="popup-buttons" class="dialog-footer popup-only">
                 <button id="popup-yes" type="button" class="default icon">
                     <div>
                         <img src="../images/check.svg" alt="">
