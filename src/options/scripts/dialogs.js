@@ -13,7 +13,7 @@ function openDialog(message, type, yesAction, noAction) {
     const dialog = document.getElementById('dialog');
     const text = document.getElementById('dialog-text');
 
-    if (typeof message != 'string') {
+    if (message != null && typeof message != 'string') {
         text.textContent = '';
         let lastLineBreak = null;
 
