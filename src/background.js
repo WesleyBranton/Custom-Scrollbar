@@ -39,6 +39,8 @@ function loadContentScriptsOnDemand() {
                                     allFrames: true,
                                     tabId: t.id
                                 }
+                            }, () => {
+                                if (browser.runtime.lastError == 'undefined') {} // Used to hide content access errors);
                             });
 
                             // Onboarding page scripts
@@ -428,6 +430,8 @@ function getURL(sender, callback) {
                 }, {
                     frameId: 0
                 }, (url) => {
+                    if (browser.runtime.lastError == 'undefined') {} // Used to hide content access errors);
+
                     if (url != null && typeof url == 'string') {
                         callback(new URL(url));
                     } else {
