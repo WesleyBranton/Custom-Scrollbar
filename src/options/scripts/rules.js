@@ -86,25 +86,34 @@ function parseRules(raw) {
  * Save rules to Storage API
  */
 function saveRules() {
-    showProgressBar(true);
+    confirmAction(
+        browser.i18n.getMessage('dialogOverwriteUnloadedChanges'),
+        () => {
+            showProgressBar(true);
 
-    let temp = {};
-
-    for (const rule of Object.values(rules)) {
-        temp[rule.fullDomain()] = rule.profile;
-    }
-
-    const localFileProfile = parseInt(settings.localFileProfile.value);
-    const object = {
-        localFileProfile: (!isNaN(localFileProfile)) ? localFileProfile : null,
-        framesInherit: settings.framesInherit.value == 'yes',
-        rules: temp
-    };
-
-    browser.storage.local.set(object, () => {
-        showProgressBar(false);
-    });
-    toggleChangesWarning(false);
+            let temp = {};
+        
+            for (const rule of Object.values(rules)) {
+                temp[rule.fullDomain()] = rule.profile;
+            }
+        
+            const localFileProfile = parseInt(settings.localFileProfile.value);
+            const object = {
+                localFileProfile: (!isNaN(localFileProfile)) ? localFileProfile : null,
+                framesInherit: settings.framesInherit.value == 'yes',
+                rules: temp
+            };
+        
+            browser.storage.local.set(object, () => {
+                showProgressBar(false);
+                ignoreNextChange = true;
+                unloadedChanges = false;
+            });
+            toggleChangesWarning(false);
+        },
+        null,
+        !unloadedChanges
+    );
 }
 
 /**
@@ -556,6 +565,9 @@ function init() {
         }
 
         // Load rules
+        document.getElementById('rule-list').textContent = '';
+        rules = {};
+
         if (data.rules) {
             parseRules(data.rules);
         }
@@ -730,4 +742,13 @@ document.getElementById('rule-delete-all').addEventListener('click', bulkDelete)
 document.getElementById('rule-change-all').addEventListener('click', bulkChangeProfile);
 document.getElementById('dialog-dropdown').addEventListener('change', () => {
     loadProfileDetailsIntoDialog(document.getElementById('dialog-dropdown').value);
+});
+browser.storage.onChanged.addListener((changes, area) => {
+    if (!pendingChanges) {
+        init();
+        return;
+    }
+
+    const list = ['rules', 'framesInherit', 'localFileProfile'];
+    checkForStorageChanges(list, changes, area);
 });

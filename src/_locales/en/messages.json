@@ -240,6 +240,15 @@
     "dialogBackupRestored": {
         "message": "Backup has been successfully restored!"
     },
+    "dialogChangesDetected": {
+        "message": "Your settings have changed. Do you want to refresh this page to load the lastest settings?"
+    },
+    "dialogChangesDetectedWarning": {
+        "message": "Your unsaved changes will be lost."
+    },
+    "dialogOverwriteUnloadedChanges": {
+        "message": "Your settings changed after this page was loaded. Saving your changes may overwrite previous changes. Are you sure you want to continue?"
+    },
     "changeProfileFor": {
         "message": "Editing scrollbar for: $WEBSITE$",
         "placeholders": {

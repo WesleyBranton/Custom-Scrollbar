@@ -312,6 +312,35 @@ function setKeyboardNavigation(parent, allow) {
     }
 }
 
+/**
+ * Check if Storage API has changed since page was loaded
+ * @param {Array} keys Keys to monitor
+ * @param {Object} changes List of changes
+ * @param {String} area Storage area
+ */
+function checkForStorageChanges(keys, changes, area) {
+    if (ignoreNextChange) {
+        ignoreNextChange = false;
+        return;
+    } else if (!unloadedChanges) {
+        for (const c of Object.keys(changes)) {
+            if (keys.includes(c)) {
+                unloadedChanges = true;
+                break;
+            }
+        }
+    }
+
+    if (unloadedChanges) {
+        confirmAction(
+            [browser.i18n.getMessage('dialogChangesDetected'), browser.i18n.getMessage('dialogChangesDetectedWarning')],
+            init,
+            null,
+            false
+        );
+    }
+}
+
 // Add browser tag to body class
 if (runningOn == browsers.FIREFOX) {
     document.body.classList.add('firefox');
@@ -320,6 +349,8 @@ if (runningOn == browsers.FIREFOX) {
 }
 
 let pendingChanges = false;
+let unloadedChanges = false;
+let ignoreNextChange = false;
 browser.extension.isAllowedIncognitoAccess(togglePrivateNotice);
 document.getElementById('tab-bar').addEventListener('click', changeTab);
 document.getElementById('whatsnew').addEventListener('click', openWhatsNew);

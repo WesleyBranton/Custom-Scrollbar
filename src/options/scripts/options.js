@@ -21,36 +21,45 @@ function init() {
  * Save scrollbar settings to Storage API
  */
 function saveScrollbar() {
-    showProgressBar(true);
+    confirmAction(
+        browser.i18n.getMessage('dialogOverwriteUnloadedChanges'),
+        () => {
+            showProgressBar(true);
 
-    const colTrack = (document.settings.customColors.value == 'yes') ? colorPickerTrack.color.hex8String : null;
-    const colThumb = (document.settings.customColors.value == 'yes') ? colorPickerThumb.color.hex8String : null;
-    const profileName = document.getElementById('profileSelection').options[document.getElementById('profileSelection').selectedIndex].textContent.trim();
-
-    const profileData = {
-        name: profileName,
-        width: document.settings.width.value,
-        colorTrack: colTrack,
-        colorThumb: colThumb,
-        allowOverride: parseInt(document.settings.override.value),
-        buttons: document.settings.buttons.value,
-        thumbRadius: parseInt(document.settings.thumbRadius.value),
-        autoHide: parseInt(document.settings.autoHide.value)
-    };
-
-    if (profileData.width == 'other') {
-        profileData['customWidthValue'] = parseInt(document.settings.customWidthValue.value);
-        profileData['customWidthUnit'] = document.settings.customWidthUnit.value;
-    }
-
-    const wrapper = {};
-    wrapper[`profile_${selectedProfile}`] = profileData;
-
-    browser.storage.local.set(wrapper, () => {
-        showProgressBar(false);
-        toggleChangesWarning(false);
-        reloadProfileSelection(document.settings.profile, updateSelectedProfileInDropdown);
-    });
+            const colTrack = (document.settings.customColors.value == 'yes') ? colorPickerTrack.color.hex8String : null;
+            const colThumb = (document.settings.customColors.value == 'yes') ? colorPickerThumb.color.hex8String : null;
+            const profileName = document.getElementById('profileSelection').options[document.getElementById('profileSelection').selectedIndex].textContent.trim();
+        
+            const profileData = {
+                name: profileName,
+                width: document.settings.width.value,
+                colorTrack: colTrack,
+                colorThumb: colThumb,
+                allowOverride: parseInt(document.settings.override.value),
+                buttons: document.settings.buttons.value,
+                thumbRadius: parseInt(document.settings.thumbRadius.value),
+                autoHide: parseInt(document.settings.autoHide.value)
+            };
+        
+            if (profileData.width == 'other') {
+                profileData['customWidthValue'] = parseInt(document.settings.customWidthValue.value);
+                profileData['customWidthUnit'] = document.settings.customWidthUnit.value;
+            }
+        
+            const wrapper = {};
+            wrapper[`profile_${selectedProfile}`] = profileData;
+        
+            browser.storage.local.set(wrapper, () => {
+                showProgressBar(false);
+                toggleChangesWarning(false);
+                reloadProfileSelection(document.settings.profile, updateSelectedProfileInDropdown);
+                ignoreNextChange = true;
+                unloadedChanges = false;
+            });
+        },
+        null,
+        !unloadedChanges
+    );
 }
 
 /**
@@ -732,6 +741,33 @@ function updateSelectedProfileInDropdown() {
     });
 }
 
+function handleStorageChanges(changes, area) {
+    const list = [`profile_${selectedProfile}`];
+
+    // Reload changes without prompting user, where possible
+    for (const key of Object.keys(changes)) {
+        switch (key) {
+            case 'defaultProfile':
+                defaultProfile = changes[key].newValue;
+                updateSelectedProfileInDropdown();
+                break;
+            case `profile_${selectedProfile}`:
+                if (!pendingChanges && typeof changes[key].newValue == 'object') {
+                    loadScrollbar(selectedProfile);
+                    ignoreNextChange = true;
+                }
+                break;
+        }
+
+        // Reload profile selection, if required
+        if (key.startsWith('profile_') && key != `profile_${selectedProfile}`) {
+            reloadProfileSelection(document.settings.profile, updateSelectedProfileInDropdown);
+        }
+    }
+
+    checkForStorageChanges(list, changes, area);
+}
+
 let colorPickerThumb, colorPickerTrack, previousToggleValue;
 let defaultProfile, selectedProfile, selectedProfileName, localFileProfile;
 const colorInputs = {};
@@ -811,3 +847,4 @@ document.getElementById('profile-remove').addEventListener('click', () => {
         false
     );
 });
+browser.storage.onChanged.addListener(handleStorageChanges);
