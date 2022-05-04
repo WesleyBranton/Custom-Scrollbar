@@ -600,6 +600,7 @@ function clear() {
     showProgressBar(true);
 
     const widthOutput = document.getElementById('detail-width');
+    const autoHideOutput = document.getElementById('detail-autoHide');
     const buttonsOutput = document.getElementById('detail-buttons');
     const thumbRadiusOutput = document.getElementById('detail-thumbRadius');
     const colorThumbOutput = document.getElementById('detail-color-thumb');
@@ -611,6 +612,7 @@ function clear() {
         detailsContainer.classList.add('dim');
 
         widthOutput.textContent = '-';
+        autoHideOutput.textContent = '-';
         buttonsOutput.textContent = '-';
         thumbRadiusOutput.textContent = '-';
         overrideOutput.textContent = '-';
@@ -666,7 +668,19 @@ function clear() {
 
             // Thumb radius information
             thumbRadiusOutput.textContent = profile.thumbRadius + '%';
+
+            // Fill auto hide information
+            switch (profile.autoHide) {
+                case 1:
+                    autoHideOutput.textContent = browser.i18n.getMessage('optionYes');
+                    break;
+                case 0:
+                default:
+                    autoHideOutput.textContent = browser.i18n.getMessage('optionNo');
+                    break;
+            }
         } else {
+            autoHideOutput.textContent = '-';
             buttonsOutput.textContent = '-';
             thumbRadiusOutput.textContent = '-';
         }
