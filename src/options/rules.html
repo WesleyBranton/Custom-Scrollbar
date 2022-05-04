@@ -14,10 +14,9 @@
     <style type="text/css" id="preview-css"></style>
 </head>
 
-<body class="browser-style browser-style-page">
-    <div id="main-progress-bar" class="progress-bar">
-        <div class="progress-bar-line inc"></div>
-        <div class="progress-bar-line dec"></div>
+<body class="browser-style clickable-labels browser-style-page">
+    <div id="main-progress-bar" class="progress-bar infinite fixed-top">
+        <div class="progress-bar-percentage"></div>
     </div>
     <div class="browser-style-container">
         <form name="settings">
@@ -115,7 +114,7 @@
             <template id="template-rule">
                 <div class="panel-list-item">
                     <div class="text">
-                        <input type="checkbox" class="rule-select-checkbox">
+                        <input type="checkbox" class="rule-select-checkbox checkbox">
                         <span class="rule-domain"></span>
                     </div>
                     <div class="text-shortcut">
@@ -145,24 +144,22 @@
             <div id="advanced-settings" class="collapse-panel">
                 <section class="panel-section help-row">
                     <div>
-                        <label for="framesInherit" data-i18n="optionsFramesInherit"></label><br>
+                        <label data-i18n="optionsFramesInherit"></label><br>
                         <a href="https://github.com/WesleyBranton/Custom-Scrollbar/wiki/Embedded-websites" target="_blank" tabindex="-1" data-restore-tabindex="true" data-i18n="callToActionLearn"></a><br>
                     </div>
                     <div>
-                        <label class="clickable">
-                            <input type="radio" name="framesInherit" value="yes" tabindex="-1" data-restore-tabindex="true">
-                            <span data-i18n="optionYes"></span>
-                        </label><br>
-                        <label class="clickable">
-                            <input type="radio" name="framesInherit" value="no" tabindex="-1" data-restore-tabindex="true">
-                            <span data-i18n="optionNo"></span>
-                        </label>
+                        <input id="framesInherit-yes" type="radio" name="framesInherit" value="yes" tabindex="-1" data-restore-tabindex="true">
+                        <label for="framesInherit-yes" data-i18n="optionYes"></label>
+                        <br>
+
+                        <input id="framesInherit-no" type="radio" name="framesInherit" value="no" tabindex="-1" data-restore-tabindex="true">
+                        <label for="framesInherit-no" data-i18n="optionNo"></label>
                     </div>
                 </section>
 
                 <div class="panel-section-separator"></div>
                 <section class="panel-section">
-                    <label for="localFileProfile" data-i18n="optionsLocalFileProfile"></label>
+                    <label for="profileSelectionForLocalFileProfile" data-i18n="optionsLocalFileProfile"></label>
                     <select id="profileSelectionForLocalFileProfile" name="localFileProfile" tabindex="-1" data-restore-tabindex="true"></select>
                 </section>
             </div>
@@ -215,62 +212,63 @@
         </form>
     </div>
 
-    <div id="dialog-overlay" class="hide">
-        <div id="dialog" class="confirmation">
-            <span id="dialog-text" class="confirmation-only popup-only"></span>
+    <div id="dialog" class="dialog confirmation" data-state="close">
+        <div class="dialog-container">
+            <section class="dialog-content">
+                <span id="dialog-text" class="confirmation-only popup-only"></span>
 
-            <div id="dialog-input-container" class="prompt-only ruleadd-only">
-                <label id="dialog-input-label" for="dialog-input"></label>
-                <input type="text" id="dialog-input">
-            </div>
+                <div id="dialog-input-container" class="prompt-only ruleadd-only">
+                    <label id="dialog-input-label" for="dialog-input"></label>
+                    <input type="text" id="dialog-input">
+                </div>
 
-            <div id="dialog-checkbox-container" class="ruleadd-only">
-                <label id="dialog-checkbox-label" for="dialog-checkbox"></label>
-                <input id="dialog-checkbox" type="checkbox">
-            </div>
+                <div id="dialog-checkbox-container" class="ruleadd-only">
+                    <label id="dialog-checkbox-label" for="dialog-checkbox"></label>
+                    <input id="dialog-checkbox" type="checkbox">
+                </div>
 
-            <div id="dialog-dropdown-container" class="dropdown-only ruleadd-only">
-                <label id="dialog-dropdown-label" for="dialog-dropdown"></label>
-                <select id="dialog-dropdown"></select>
-            </div>
+                <div id="dialog-dropdown-container" class="dropdown-only ruleadd-only">
+                    <label id="dialog-dropdown-label" for="dialog-dropdown"></label>
+                    <select id="dialog-dropdown"></select>
+                </div>
 
-            <div id="rule-preview">
-                <div class="panel-section-separator"></div>
-                <section class="panel-section has-help">
-                    <label data-i18n="optionsSectionWidth"></label>
-                    <span id="detail-width"></span>
-                </section>
-        
-                <section class="panel-section has-help help-row chromium-only">
-                    <label data-i18n="optionsSectionButtons"></label>
-                    <span id="detail-buttons"></span>
-                </section>
-        
-                <section class="panel-section has-help help-row chromium-only">
-                    <label data-i18n="optionsSectionThumbRadius"></label>
-                    <span id="detail-thumbRadius"></span>
-                </section>
-        
-                <section class="panel-section has-help help-row">
-                    <label data-i18n="optionsSectionThumb"></label>
-                    <span id="detail-color-thumb" class="color-output"></span>
-                </section>
-        
-                <section class="panel-section has-help help-row">
-                    <label data-i18n="optionsSectionTrack"></label>
-                    <span id="detail-color-track" class="color-output"></span>
-                </section>
-        
-                <section class="panel-section help-row">
-                    <label data-i18n="optionsSectionOverride"></label>
-                    <span id="detail-override"></span>
-                </section>
-                <div class="panel-section-separator"></div>
-            </div>
+                <div id="rule-preview">
+                    <div class="panel-section-separator"></div>
+                    <section class="panel-section has-help">
+                        <label data-i18n="optionsSectionWidth"></label>
+                        <span id="detail-width"></span>
+                    </section>
+            
+                    <section class="panel-section has-help help-row chromium-only">
+                        <label data-i18n="optionsSectionButtons"></label>
+                        <span id="detail-buttons"></span>
+                    </section>
+            
+                    <section class="panel-section has-help help-row chromium-only">
+                        <label data-i18n="optionsSectionThumbRadius"></label>
+                        <span id="detail-thumbRadius"></span>
+                    </section>
+            
+                    <section class="panel-section has-help help-row">
+                        <label data-i18n="optionsSectionThumb"></label>
+                        <span id="detail-color-thumb" class="color-output"></span>
+                    </section>
+            
+                    <section class="panel-section has-help help-row">
+                        <label data-i18n="optionsSectionTrack"></label>
+                        <span id="detail-color-track" class="color-output"></span>
+                    </section>
+            
+                    <section class="panel-section help-row">
+                        <label data-i18n="optionsSectionOverride"></label>
+                        <span id="detail-override"></span>
+                    </section>
+                    <div class="panel-section-separator"></div>
+                </div>
 
-            <div id="dialog-error"></div>
-
-            <div id="confirmation-buttons" class="confirmation-only">
+                <div id="dialog-error"></div>
+            </section>
+            <div id="confirmation-buttons" class="dialog-footer confirmation-only">
                 <button id="confirmation-yes" type="button" class="default icon">
                     <div>
                         <img src="../images/check.svg" alt="">
@@ -285,7 +283,7 @@
                 </button>
             </div>
 
-            <div id="dropdown-buttons" class="dropdown-only">
+            <div id="dropdown-buttons" class="dialog-footer dropdown-only">
                 <button id="dropdown-yes" type="button" class="default icon">
                     <div>
                         <img src="../images/save.svg" alt="">
@@ -300,7 +298,7 @@
                 </button>
             </div>
 
-            <div id="prompt-buttons" class="prompt-only">
+            <div id="prompt-buttons" class="dialog-footer prompt-only">
                 <button id="prompt-yes" type="button" class="default icon">
                     <div>
                         <img src="../images/save.svg" alt="">
@@ -315,7 +313,7 @@
                 </button>
             </div>
 
-            <div id="ruleadd-buttons" class="ruleadd-only">
+            <div id="ruleadd-buttons" class="dialog-footer ruleadd-only">
                 <button id="ruleadd-yes" type="button" class="default icon">
                     <div>
                         <img src="../images/save.svg" alt="">
@@ -330,7 +328,7 @@
                 </button>
             </div>
 
-            <div id="popup-buttons" class="popup-only">
+            <div id="popup-buttons" class="dialog-footer popup-only">
                 <button id="popup-yes" type="button" class="default icon">
                     <div>
                         <img src="../images/check.svg" alt="">
