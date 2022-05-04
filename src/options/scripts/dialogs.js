@@ -12,6 +12,22 @@
 function openDialog(message, type, yesAction, noAction) {
     document.getElementById('dialog-text').textContent = message;
     document.getElementById('dialog').className = type;
+    const text = document.getElementById('dialog-text');
+
+    if (typeof message != 'string') {
+        text.textContent = '';
+        let lastLineBreak = null;
+
+        for (const m of message) {
+            lastLineBreak = document.createElement('br');
+            text.appendChild(document.createTextNode(m));
+            text.appendChild(lastLineBreak);
+        }
+
+        text.removeChild(lastLineBreak);
+    } else {
+        text.textContent = message;
+    }
 
     actionYes = (yesAction) ? yesAction : () => {};
     actionNo = (noAction) ? noAction : () => {};
