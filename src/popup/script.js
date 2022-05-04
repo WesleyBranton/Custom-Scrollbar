@@ -57,7 +57,7 @@ function renderForUrl(url, rules) {
         return;
     }
 
-    const domainRegex = /^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9](?:\.[a-zA-Z]{2,})+$/;
+    const domainRegex = /^(?:(?![-])[a-zA-Z0-9-]+(?<!-)\.)+[a-zA-Z]{2,}$/;
     if (!domainRegex.test(url.hostname)) {
         renderForGeneral();
         return;
