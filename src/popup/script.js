@@ -231,6 +231,7 @@ function loadProfile(id) {
         detailsContainer.classList.add('dim');
 
         widthOutput.textContent = '-';
+        autoHideOutput.textContent = '-';
         buttonsOutput.textContent = '-';
         thumbRadiusOutput.textContent = '-';
         overrideOutput.textContent = '-';
