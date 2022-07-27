@@ -79,8 +79,6 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth, butto
             const thumbNoHover = new CSSRule(':not(body):not(:hover):not(focus)::-webkit-scrollbar-thumb');
             thumbNoHover.set('background', 'transparent', true);
             css.push(thumbNoHover);
-
-            thumb.set('transition', 'ease 0.3s background', false);
         }
 
         if (thumbRadius > 0) {
@@ -104,8 +102,6 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth, butto
             const trackNoHover = new CSSRule(':not(body):not(:hover):not(focus)::-webkit-scrollbar-track');
             trackNoHover.set('background', 'transparent', true);
             css.push(trackNoHover);
-
-            track.set('transition', 'ease 0.3s background', false);
         }
 
         css.push(track);
@@ -125,6 +121,12 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth, butto
             button.set('width', width, overrideWidth);
             button.set('height', width, overrideWidth);
             css.push(button);
+
+            if (autoHide) {
+                const buttonNoHover = new CSSRule(':not(body):not(:hover):not(focus)::-webkit-scrollbar-button');
+                buttonNoHover.set('display', 'none', true);
+                css.push(buttonNoHover);
+            }
 
             const buttonHover = new CSSRule('::-webkit-scrollbar-button:hover');
             buttonHover.set('background-color', changeBrightness(colorThumb, 10 * brightFactor), overrideColor);
