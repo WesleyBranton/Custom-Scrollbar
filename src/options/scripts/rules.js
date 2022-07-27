@@ -104,9 +104,9 @@ function saveRules() {
                 rules: temp
             };
         
+            ignoreNextChange = true;
             browser.storage.local.set(object, () => {
                 showProgressBar(false);
-                ignoreNextChange = true;
                 unloadedChanges = false;
             });
             toggleChangesWarning(false);
