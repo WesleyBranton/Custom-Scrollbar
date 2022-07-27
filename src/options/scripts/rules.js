@@ -104,9 +104,9 @@ function saveRules() {
                 rules: temp
             };
         
+            ignoreNextChange = true;
             browser.storage.local.set(object, () => {
                 showProgressBar(false);
-                ignoreNextChange = true;
                 unloadedChanges = false;
             });
             toggleChangesWarning(false);
@@ -376,7 +376,10 @@ function triggerChangeProfile(item) {
             const profileNameOutput = item.getElementsByClassName('rule-profile')[0];
             rule.profile = `profile_${value}`;
 
-            if (listOfProfiles[rule.profile]) {
+            if (rule.profile == 'profile_none') {
+                profileNameOutput.textContent = browser.i18n.getMessage('profileUsingNone');
+                profileNameOutput.classList.remove('profile-missing');
+            } else if (listOfProfiles[rule.profile]) {
                 profileNameOutput.textContent = listOfProfiles[rule.profile];
                 profileNameOutput.classList.remove('profile-missing');
             } else {
@@ -639,7 +642,8 @@ function clear() {
         switch (profile.width) {
             case 'auto':
             case 'unset':
-                widthOutput.textContent = browser.i18n.getMessage('sizeWide');
+                const key = (runningOn == browsers.FIREFOX) ? 'sizeDefault' : 'sizeWide';
+                widthOutput.textContent = browser.i18n.getMessage(key);
                 break;
             case 'thin':
                 widthOutput.textContent = browser.i18n.getMessage('sizeThin');

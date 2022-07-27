@@ -88,17 +88,13 @@ function handleInstalled(details) {
     } else if (details.reason == 'update') {
         browser.storage.local.get(["unsubscribedFromAllUpdateNotifications"], (data) => {
             if (!data.unsubscribedFromAllUpdateNotifications) {
-                const currentVersionHasUpdateNotice = false;
+                const currentVersionHasUpdateNotice = true;
                 const currentVersion = browser.runtime.getManifest().version;
                 let updatePage = null;
 
                 if (currentVersionHasUpdateNotice && compareVersionNumbers(details.previousVersion, currentVersion) == 2) {
                     const version = parseVersion(currentVersion);
                     updatePage = `v${version.major}_${version.minor}${(version.patch > 0) ? `_${version.patch}` : ''}`;
-                } else if (compareVersionNumbers(details.previousVersion, "3.1.1") == 0 && runningOn == browsers.FIREFOX) {
-                    updatePage = 'v3_1_2';
-                } else if (compareVersionNumbers(details.previousVersion, "3.0") == 2) {
-                    updatePage = 'v3_0';
                 }
 
                 if (updatePage != null) {

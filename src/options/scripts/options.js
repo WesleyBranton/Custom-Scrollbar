@@ -48,12 +48,12 @@ function saveScrollbar() {
         
             const wrapper = {};
             wrapper[`profile_${selectedProfile}`] = profileData;
+            ignoreNextChange = true;
         
             browser.storage.local.set(wrapper, () => {
                 showProgressBar(false);
                 toggleChangesWarning(false);
                 reloadProfileSelection(document.settings.profile, updateSelectedProfileInDropdown);
-                ignoreNextChange = true;
                 unloadedChanges = false;
             });
         },
@@ -670,7 +670,8 @@ function updateSelectedProfileInDropdown() {
         switch (profile.width) {
             case 'auto':
             case 'unset':
-                widthOutput.textContent = browser.i18n.getMessage('sizeWide');
+                const key = (runningOn == browsers.FIREFOX) ? 'sizeDefault' : 'sizeWide';
+                widthOutput.textContent = browser.i18n.getMessage(key);
                 break;
             case 'thin':
                 widthOutput.textContent = browser.i18n.getMessage('sizeThin');
