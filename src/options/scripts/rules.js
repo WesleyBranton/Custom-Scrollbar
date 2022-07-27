@@ -376,7 +376,10 @@ function triggerChangeProfile(item) {
             const profileNameOutput = item.getElementsByClassName('rule-profile')[0];
             rule.profile = `profile_${value}`;
 
-            if (listOfProfiles[rule.profile]) {
+            if (rule.profile == 'profile_none') {
+                profileNameOutput.textContent = browser.i18n.getMessage('profileUsingNone');
+                profileNameOutput.classList.remove('profile-missing');
+            } else if (listOfProfiles[rule.profile]) {
                 profileNameOutput.textContent = listOfProfiles[rule.profile];
                 profileNameOutput.classList.remove('profile-missing');
             } else {
