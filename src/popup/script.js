@@ -257,7 +257,8 @@ function loadProfile(id) {
         switch (profile.width) {
             case 'auto':
             case 'unset':
-                widthOutput.textContent = browser.i18n.getMessage('sizeWide');
+                const key = (runningOn == browsers.FIREFOX) ? 'sizeDefault' : 'sizeWide';
+                widthOutput.textContent = browser.i18n.getMessage(key);
                 break;
             case 'thin':
                 widthOutput.textContent = browser.i18n.getMessage('sizeThin');
