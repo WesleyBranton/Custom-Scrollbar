@@ -40,6 +40,12 @@
     "optionsSectionOverride": {
         "message": "Websites toestaan om eigen schuifbalken te tonen"
     },
+    "optionsSectionAutoHide": {
+        "message": "Schuifbalk automatisch verbergen"
+    },
+    "optionsSectionAutoHideShort": {
+        "message": "Automatisch verbergen"
+    },
     "optionsFramesInherit": {
         "message": "Ingesloten pagina's toestaan om ook de aangepaste schuifbalk te gebruiken?"
     },
@@ -183,6 +189,9 @@
     "profileActionNew": {
         "message": "Nieuw"
     },
+    "profileActionDuplicate": {
+        "message": "Klonen"
+    },
     "profileActionRename": {
         "message": "Naam wijzigen"
     },
@@ -231,6 +240,15 @@
     "dialogBackupRestored": {
         "message": "De back-up is hersteld!"
     },
+    "dialogChangesDetected": {
+        "message": "De instellingen zijn aanpgepast. Wil je deze pagina vernieuwen om de nieuwe instellingen te laden?"
+    },
+    "dialogChangesDetectedWarning": {
+        "message": "Alle niet-opgeslagen wijzigingen zullen verloren gaan."
+    },
+    "dialogOverwriteUnloadedChanges": {
+        "message": "De instellingen zijn na het laden van deze pagina gewijzigd. Door de wijzigingen op te slaan, worden eerdere wijzigingen mogelijk overschreven. Weet je zeker dat je wilt doorgaan?"
+    },
     "changeProfileFor": {
         "message": "Aanpassen van schuifbalk op $WEBSITE$",
         "placeholders": {
@@ -246,6 +264,9 @@
                 "content": "$1"
             }
         }
+    },
+    "profileUsingNone": {
+        "message": "Schuifbalk niet aanpassen"
     },
     "profileActionUseOnWebsite": {
         "message": "Gebruiken op deze website"
