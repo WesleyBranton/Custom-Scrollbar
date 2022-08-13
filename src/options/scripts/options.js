@@ -155,6 +155,7 @@ function duplicateProfile() {
 function removeProfile() {
     showProgressBar(true);
 
+    ignoreNextChange = true;
     browser.storage.local.remove(`profile_${selectedProfile}`, () => {
         const removedProfile = `profile_${selectedProfile}`;
         reloadProfileSelection(document.settings.profile, null);
