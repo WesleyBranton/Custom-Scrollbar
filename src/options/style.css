@@ -146,6 +146,7 @@ body:not(.chromium) .chromium-only {
 /* Fail safe for settings page */
 body::-webkit-scrollbar {
     max-width: 50vw !important;
+    max-height: 50vh !important;
 }
 
 #profileSelection {
