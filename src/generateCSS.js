@@ -75,15 +75,12 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth, butto
 
         const thumb = new CSSRule('::-webkit-scrollbar-thumb');
         thumb.set('background', colorThumb, overrideColor);
+        thumb.set('border-radius', `calc(${width} / 2 * (${thumbRadius} / 100))`, true);
 
         if (autoHide) {
             const thumbNoHover = new CSSRule(':not(body):not(:hover):not(focus)::-webkit-scrollbar-thumb');
             thumbNoHover.set('background', 'transparent', true);
             css.push(thumbNoHover);
-        }
-
-        if (thumbRadius > 0) {
-            thumb.set('border-radius', `calc(${width} / 2 * (${thumbRadius} / 100))`, true);
         }
 
         css.push(thumb);
