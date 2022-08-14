@@ -365,10 +365,10 @@ button.default.icon > div > img {
     top: -0.2em;
 }
 
-#whatsnew > img,
-#whatsnewlink > img {
+#whatsnew > img {
     height: 1em;
     width: 1em;
+    animation: bounce 2s infinite;
 }
 
 .header-button-container {
@@ -384,10 +384,30 @@ button.default.icon > div > img {
     font-style: italic;
 }
 
+@keyframes bounce {
+    0%,
+    25%,
+    50%,
+    75%,
+    100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-0.5em);
+    }
+    60% {
+        transform: translateY(-0.3em);
+    }
+}
+
 @media (prefers-reduced-motion) {
     *,
     .collapse-header::after {
         transition: none !important;
+    }
+
+    #whatsnew > img {
+        animation: none !important;
     }
 }
 

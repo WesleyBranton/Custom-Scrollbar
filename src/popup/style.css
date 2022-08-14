@@ -59,6 +59,7 @@ body {
 #whatsnew > img {
     height: 1em;
     width: 1em;
+    animation: bounce 2s infinite;
 }
 
 button.icon > div > img {
@@ -111,6 +112,33 @@ button.icon-only span {
 
 .fixed-option {
     font-style: italic;
+}
+
+@keyframes bounce {
+    0%,
+    25%,
+    50%,
+    75%,
+    100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-0.5em);
+    }
+    60% {
+        transform: translateY(-0.3em);
+    }
+}
+
+@media (prefers-reduced-motion) {
+    *,
+    .collapse-header::after {
+        transition: none !important;
+    }
+
+    #whatsnew > img {
+        animation: none !important;
+    }
 }
 
 @media (prefers-color-scheme: dark) {
