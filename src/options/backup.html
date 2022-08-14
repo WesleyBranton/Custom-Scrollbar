@@ -23,14 +23,19 @@
             <header class="panel-section panel-section-header">
                 <img class="icon-section-header" src="../icons/icon-128.png" alt="CS">
                 <h1 class="text-section-header" data-i18n="optionsTitle" data-i18n-placeholders="extensionName"></h1>
-                <div id="whatsnew" class="hide">
-                    <div></div>
-                    <img class="icon-text-color" src="../images/gift.svg" alt="What's New?">
+                <div class="header-button-container">
+                    <div id="whatsnew" class="hide">
+                        <div></div>
+                        <img class="icon-text-color" src="../images/gift.svg" alt="What's New">
+                    </div>
+                    <button type="button" id="tabselect-extra" class="ghost">
+                        <img class="icon-text-color" src="../images/preferences.svg" alt="Options">
+                    </button>
                 </div>
             </header>
 
             <section id="tab-bar" class="panel-section-tabs">
-                <button id="tabselect-options" type="button" class="panel-section-tabs-button" data-i18n="options"></button>
+                <button id="tabselect-options" type="button" class="panel-section-tabs-button" data-i18n="scrollbars"></button>
                 <div class="panel-section-tabs-separator"></div>
                 <button id="tabselect-rules" type="button" class="panel-section-tabs-button" data-i18n="websiteRules"></button>
                 <div class="panel-section-tabs-separator"></div>

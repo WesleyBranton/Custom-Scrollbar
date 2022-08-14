@@ -363,6 +363,15 @@ button.default.icon > div > img {
     width: 1em;
 }
 
+.header-button-container {
+    display: flex;
+    align-items: center;
+}
+
+.header-button-container > *:not(:last-child) {
+    margin-right: 0.5em;
+}
+
 .dim {
     opacity: 0.5;
 }
