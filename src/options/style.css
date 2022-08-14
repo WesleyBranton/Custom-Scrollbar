@@ -352,9 +352,17 @@ button.default.icon > div > img {
     border-radius: 1em;
     height: 0.35em;
     position: absolute;
+    width: 0.35em;
+}
+
+#whatsnew > div {
+    right: 0.1em;
+    top: 0.1em;
+}
+
+#whatsnewlink > div {
     right: -0.2em;
     top: -0.2em;
-    width: 0.35em;
 }
 
 #whatsnew > img,
@@ -366,10 +374,6 @@ button.default.icon > div > img {
 .header-button-container {
     display: flex;
     align-items: center;
-}
-
-.header-button-container > *:not(:last-child) {
-    margin-right: 0.5em;
 }
 
 .dim {
