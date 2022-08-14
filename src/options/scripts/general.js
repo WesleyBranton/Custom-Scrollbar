@@ -20,7 +20,7 @@ function parsei18n() {
     whatsNewButton.getElementsByTagName('img')[0].alt = browser.i18n.getMessage('whatsnew');
 
     // Set tooltip for options button
-    const optionsButton = document.getElementById('tabselect-extra');
+    const optionsButton = document.getElementById('tabselect-options');
     optionsButton.title = browser.i18n.getMessage('options');
     optionsButton.getElementsByTagName('img')[0].alt = browser.i18n.getMessage('options');
 
@@ -362,7 +362,7 @@ let unloadedChanges = false;
 let ignoreNextChange = false;
 browser.extension.isAllowedIncognitoAccess(togglePrivateNotice);
 document.getElementById('tab-bar').addEventListener('click', changeTab);
-document.getElementById('tabselect-extra').addEventListener('click', changeTab);
+document.getElementById('tabselect-options').addEventListener('click', changeTab);
 document.getElementById('whatsnew').addEventListener('click', openWhatsNew);
 document.getElementById('whatsnewlink').addEventListener('click', openWhatsNew);
 document.getElementById('feedbacklink').addEventListener('click', openFeedback);
