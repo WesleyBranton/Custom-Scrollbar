@@ -52,6 +52,9 @@
     "optionsLocalFileProfile": {
         "message": "Use this scrollbar when viewing local files"
     },
+    "optionsUnsubscribedFromAllUpdateNotifications": {
+        "message": "Show important changes and new features in a new tab after update?"
+    },
     "sizeDefault": {
         "message": "Platform Default"
     },
@@ -206,6 +209,9 @@
     },
     "migratedProfileName": {
         "message": "General"
+    },
+    "scrollbars": {
+        "message": "Scrollbars"
     },
     "options": {
         "message": "Options"

@@ -11,7 +11,6 @@
     <link rel="icon" href="../icons/icon-32.png">
     <link rel="stylesheet" href="../lib/new_browser_style.css" />
     <link rel="stylesheet" href="style.css" />
-    <style type="text/css" id="preview-css"></style>
 </head>
 
 <body class="browser-style clickable-labels browser-style-page">
@@ -23,14 +22,19 @@
             <header class="panel-section panel-section-header">
                 <img class="icon-section-header" src="../icons/icon-128.png" alt="CS">
                 <h1 class="text-section-header" data-i18n="optionsTitle" data-i18n-placeholders="extensionName"></h1>
-                <div id="whatsnew" class="hide">
-                    <div></div>
-                    <img class="icon-text-color" src="../images/gift.svg" alt="What's New">
+                <div class="header-button-container">
+                    <div id="whatsnew" class="hide">
+                        <div></div>
+                        <img class="icon-text-color" src="../images/gift.svg" alt="What's New">
+                    </div>
+                    <button type="button" id="tabselect-options" class="ghost">
+                        <img class="icon-text-color" src="../images/preferences.svg" alt="Options">
+                    </button>
                 </div>
             </header>
 
             <section id="tab-bar" class="panel-section-tabs">
-                <button id="tabselect-options" type="button" class="panel-section-tabs-button selected" data-i18n="options"></button>
+                <button id="tabselect-scrollbars" type="button" class="panel-section-tabs-button" data-i18n="scrollbars"></button>
                 <div class="panel-section-tabs-separator"></div>
                 <button id="tabselect-rules" type="button" class="panel-section-tabs-button" data-i18n="websiteRules"></button>
                 <div class="panel-section-tabs-separator"></div>
@@ -46,306 +50,18 @@
                 </div>
             </section>
 
-            <section class="panel-section help-row">
-                <label data-i18n="optionsSectionPreview"></label>
-                <textarea id="preview" readonly disabled>Lorem ipsum dolor sit amet, in porttitor congue taciti velit, ut ipsum integer et proin, a eget, ut dolores, sed nec ante. Aenean ipsum ultricies neque suscipit fusce eu, rutrum mauris, posuere nulla. Arcu nonummy amet nibh et eu leo, risus non, wisi vitae. Mauris erat, nulla a neque arcu etiam, eget metus rhoncus, rhoncus phasellus, ut suspendisse hendrerit imperdiet urna suspendisse. In est ut sollicitudin orci tristique, porta sed cum id nonummy aliquam, ullamcorper pretium. Pellentesque nullam nam quisque sit ultricies, in nec nonummy ante mauris, neque nec montes in, eleifend posuere lacus diam magna scelerisque. Luctus elementum donec leo, lectus integer in justo elit quam. Id amet a. Pellentesque quae a maecenas eget, urna nibh amet eros, placerat ante pellentesque duis suspendisse etiam tempus, nunc proin maecenas interdum quisque cum penatibus, fusce nullam inceptos commodo ut. Arcu lorem purus eu vitae aliquet, dolor nullam nisl varius, vestibulum lacus velit rutrum morbi, nec et.</textarea>
-            </section>
-
-            <div class="panel-section-separator"></div>
-
             <section class="panel-section">
-                <label data-i18n="optionsSectionProfile"></label>
-                <div id="profile-selection-container">
-                    <select id="profileSelection" name="profile"></select>
-
-                    <br>
-
-                    <button id="profile-add" type="button" class="secondary icon">
-                        <div>
-                            <img src="../images/new.svg" alt="">
-                            <span data-i18n="profileActionNew"></span>
-                        </div>
-                    </button>
-
-                    <button id="profile-duplicate" type="button" class="secondary icon">
-                        <div>
-                            <img src="../images/copy.svg" alt="">
-                            <span data-i18n="profileActionDuplicate"></span>
-                        </div>
-                    </button>
-
-                    <button id="profile-rename" type="button" class="secondary icon">
-                        <div>
-                            <img src="../images/edit.svg" alt="">
-                            <span data-i18n="profileActionRename"></span>
-                        </div>
-                    </button>
-
-                    <button id="profile-remove" type="button" class="secondary icon">
-                        <div>
-                            <img src="../images/delete.svg" alt="">
-                            <span data-i18n="profileActionRemove"></span>
-                        </div>
-                    </button>
-
-                    <button id="profile-setDefault" type="button" class="secondary icon" disabled>
-                        <div>
-                            <img src="../images/check.svg" alt="">
-                            <span data-i18n="profileActionChangeDefault"></span>
-                        </div>
-                    </button>
-                </div>
-            </section>
-
-            <div class="panel-section-separator"></div>
-
-            <section class="panel-section">
-                <label data-i18n="optionsSectionWidth"></label>
                 <div>
-                    <input id="width-auto" type="radio" name="width" value="auto">
-                    <label for="width-auto" class="chromium-only" data-i18n="sizeWide"></label>
-                    <label for="width-auto" class="firefox-only" data-i18n="sizeDefault"></label>
-                    <span class="firefox-only">(<a href="https://github.com/WesleyBranton/Custom-Scrollbar/wiki/What-is-the-platform-default-width" target="_blank" class="internal">?</a>)</span>
-                    <br>
-
-                    <input id="width-thin" type="radio" name="width" value="thin">
-                    <label for="width-thin" data-i18n="sizeThin"></label>
-                    <br>
-
-                    <input id="width-none" type="radio" name="width" value="none">
-                    <label for="width-none" data-i18n="sizeHidden"></label>
-                    <br>
-
-                    <span class="chromium-only">
-                        <input id="width-other" type="radio" name="width" value="other">
-                        <label for="width-other" data-i18n="sizeOther"></label>
-                        <input id="customWidthValue" name="customWidthValue" type="text" min="1" value="17" disabled>
-                        <select id="customWidthUnit" name="customWidthUnit">
-                            <option value="cm">cm</option>
-                            <option value="em">em</option>
-                            <option value="in">in</option>
-                            <option value="mm">mm</option>
-                            <option value="pt">pt</option>
-                            <option value="px">px</option>
-                            <option value="rem">rem</option>
-                            <option value="vw">vw</option>
-                            <option value="vh">vh</option>
-                            <option value="vmax">vmax</option>
-                            <option value="vmin">vmin</option>
-                        </select>
-                        (<a href="https://github.com/WesleyBranton/Custom-Scrollbar/wiki/Custom-scrollbar-width" target="_blank" class="internal" id="customWidthHelp">?</a>)
-                    </span>
+                    <label data-i18n="optionsUnsubscribedFromAllUpdateNotifications"></label><br>
+                    <a href="https://github.com/WesleyBranton/Custom-Scrollbar/wiki/Unsubscribe-from-feature-announcements-after-update" target="_blank" data-restore-tabindex="true" data-i18n="callToActionLearn"></a><br>
                 </div>
-            </section>
-
-            <div id="only-not-hidden">
-                <div class="panel-section-separator"></div>
-
-                <section class="panel-section">
-                    <label data-i18n="optionsSectionAutoHide"></label>
-                    <div>
-                        <input id="autoHide-1" type="radio" name="autoHide" value="1">
-                        <label for="autoHide-1" data-i18n="optionYes"></label>
-                        <br>
-
-                        <input id="autoHide-0" type="radio" name="autoHide" value="0">
-                        <label for="autoHide-0" data-i18n="optionNo"></label>
-                    </div>
-                </section>
-
-                <div class="panel-section-separator chromium-only"></div>
-
-                <section class="panel-section chromium-only">
-                    <label data-i18n="optionsSectionButtons"></label>
-                    <div>
-                        <input id="buttons-none" type="radio" name="buttons" value="none">
-                        <label for="buttons-none" data-i18n="overrideNone"></label>
-                        <br>
-
-                        <input id="buttons-light" type="radio" name="buttons" value="light">
-                        <label for="buttons-light" data-i18n="optionLight"></label>
-                        <br>
-
-                        <input id="buttons-dark" type="radio" name="buttons" value="dark">
-                        <label for="buttons-dark" data-i18n="optionDark"></label>
-                    </div>
-                </section>
-
-                <div class="panel-section-separator chromium-only"></div>
-
-                <section class="panel-section chromium-only">
-                    <label data-i18n="optionsSectionThumbRadius"></label>
-                    <div id="thumbRadius-container">
-                        <span id="thumbRadius-label">0%</span>
-                        <input type="range" min="0" max="100" step="1" name="thumbRadius" list="thumbRadius-list" size="200">
-                        <datalist id="thumbRadius-list">
-                            <option value="0" label="0%"></option>
-                            <option value="50" label="50%"></option>
-                            <option value="100" label="100%"></option>
-                        </datalist>
-                    </div>
-                </section>
-
-                <div class="panel-section-separator"></div>
-
-                <section class="panel-section">
-                    <label data-i18n="optionsSectionUseColors"></label>
-                    <div>
-                        <input id="customColors-yes" type="radio" name="customColors" value="yes">
-                        <label for="customColors-yes" data-i18n="optionYes"></label>
-                        <br>
-
-                        <input id="customColors-no" type="radio" name="customColors" value="no">
-                        <label for="customColors-no" data-i18n="optionNo"></label>
-                    </div>
-                </section>
-
-                <div id="only-colors" class="hide">
-                    <div class="panel-section-separator"></div>
-
-                    <section class="panel-section">
-                        <div class="image-helper">
-                            <img src="thumb.svg">
-                            <label data-i18n="optionsSectionThumb"></label>
-                        </div>
-                        <div class="showHEX">
-                            <div id="colorThumb"></div>
-                            <div id="colorThumbTabs" class="panel-section-tabs">
-                                <button type="button" class="panel-section-tabs-button selected" data-i18n="colorFormatHEX"></button>
-                                <div class="panel-section-tabs-separator"></div>
-                                <button type="button" class="panel-section-tabs-button" data-i18n="colorFormatRGB"></button>
-                                <div class="panel-section-tabs-separator"></div>
-                                <button type="button" class="panel-section-tabs-button" data-i18n="colorFormatHSV"></button>
-                            </div>
-                            <div class="colorPickerPreviewContainer">
-                                <div class="colorPickerPreview">
-                                    <div id="colorThumbPreview"></div>
-                                </div>
-                                <input type="text" maxlength="9" size="9" id="colorThumbHEX" class="hex" name="colorThumb">
-                                <table id="colorThumbRGB" class="colorPickerValues rgb">
-                                    <tr>
-                                        <td><label for="colorThumbRed" data-i18n="colorRed"></label></td>
-                                        <td><input name="colorThumbRed" type="number" maxlength="3" size="3" min="0" max="255"></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label for="colorThumbGreen" data-i18n="colorGreen"></label></td>
-                                        <td><input name="colorThumbGreen" type="number" maxlength="3" size="3" min="0" max="255"></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label for="colorThumbBlue" data-i18n="colorBlue"></label></td>
-                                        <td><input name="colorThumbBlue" type="number" maxlength="3" size="3" min="0" max="255"></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label for="colorThumbRGBAlpha" data-i18n="colorAlpha"></label></td>
-                                        <td><input name="colorThumbRGBAlpha" type="number" maxlength="3" size="3" min="0" max="255"></td>
-                                    </tr>
-                                </table>
-                                <table id="colorThumbHSV" class="colorPickerValues hsv">
-                                    <tr>
-                                        <td><label for="colorThumbHue" data-i18n="colorHue"></label></td>
-                                        <td><input name="colorThumbHue" type="number" maxlength="3" size="3" min="0" max="360"></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label for="colorThumbSaturation" data-i18n="colorSaturation"></label></td>
-                                        <td><input name="colorThumbSaturation" type="number" maxlength="3" size="3" min="0" max="100"></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label for="colorThumbValue" data-i18n="colorValue"></label></td>
-                                        <td><input name="colorThumbValue" type="number" maxlength="3" size="3" min="0" max="100"></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label for="colorThumbHSVAlpha" data-i18n="colorAlpha"></label></td>
-                                        <td><input name="colorThumbHSVAlpha" type="number" maxlength="3" size="3" min="0" max="255"></td>
-                                    </tr>
-                                </table>
-                            </div>
-                    </section>
-
-                    <div class="panel-section-separator"></div>
-
-                    <section class="panel-section">
-                        <div class="image-helper">
-                            <img src="track.svg">
-                            <label data-i18n="optionsSectionTrack"></label>
-                        </div>
-                        <div class="showHEX">
-                            <div id="colorTrack"></div>
-                            <div id="colorTrackTabs" class="panel-section-tabs">
-                                <button type="button" class="panel-section-tabs-button selected" data-i18n="colorFormatHEX"></button>
-                                <div class="panel-section-tabs-separator"></div>
-                                <button type="button" class="panel-section-tabs-button" data-i18n="colorFormatRGB"></button>
-                                <div class="panel-section-tabs-separator"></div>
-                                <button type="button" class="panel-section-tabs-button" data-i18n="colorFormatHSV"></button>
-                            </div>
-                            <div class="colorPickerPreviewContainer">
-                                <div class="colorPickerPreview">
-                                    <div id="colorTrackPreview"></div>
-                                </div>
-                                <input type="text" maxlength="9" size="9" id="colorTrackHEX" class="hex" name="colorTrack">
-                                <table id="colorTrackRGB" class="colorPickerValues rgb">
-                                    <tr>
-                                        <td><label for="colorTrackRed" data-i18n="colorRed"></label></td>
-                                        <td><input name="colorTrackRed" type="number" maxlength="3" size="3" min="0" max="255"></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label for="colorTrackGreen" data-i18n="colorGreen"></label></td>
-                                        <td><input name="colorTrackGreen" type="number" maxlength="3" size="3" min="0" max="255"></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label for="colorTrackBlue" data-i18n="colorBlue"></label></td>
-                                        <td><input name="colorTrackBlue" type="number" maxlength="3" size="3" min="0" max="255"></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label for="colorTrackRGBAlpha" data-i18n="colorAlpha"></label></td>
-                                        <td><input name="colorTrackRGBAlpha" type="number" maxlength="3" size="3" min="0" max="255"></td>
-                                    </tr>
-                                </table>
-                                <table id="colorTrackHSV" class="colorPickerValues hsv">
-                                    <tr>
-                                        <td><label for="colorTrackHue" data-i18n="colorHue"></label></td>
-                                        <td><input name="colorTrackHue" type="number" maxlength="3" size="3" min="0" max="360"></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label for="colorTrackSaturation" data-i18n="colorSaturation"></label></td>
-                                        <td><input name="colorTrackSaturation" type="number" maxlength="3" size="3" min="0" max="100"></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label for="colorTrackValue" data-i18n="colorValue"></label></td>
-                                        <td><input name="colorTrackValue" type="number" maxlength="3" size="3" min="0" max="100"></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label for="colorTrackHSVAlpha" data-i18n="colorAlpha"></label></td>
-                                        <td><input name="colorTrackHSVAlpha" type="number" maxlength="3" size="3" min="0" max="255"></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-            </div>
-
-            <div class="panel-section-separator"></div>
-
-            <section class="panel-section">
-                <label data-i18n="optionsSectionOverride"></label>
                 <div>
-                    <!-- Set using bit-style setting 
-              1 is true and 0 is false
-              digits are: width, color -->
-                    <input id="override-1" type="radio" name="override" value="1">
-                    <label for="override-1" data-i18n="overrideColor"></label>
+                    <input id="unsubscribe-no" type="radio" name="unsubscribedFromAllUpdateNotifications" value="false">
+                    <label for="unsubscribe-no" data-i18n="optionYes"></label>
                     <br>
 
-                    <input id="override-10" type="radio" name="override" value="10">
-                    <label for="override-10" data-i18n="overrideWidth"></label>
-                    <br>
-
-                    <input id="override-11" type="radio" name="override" value="11">
-                    <label for="override-11" data-i18n="overrideAll"></label>
-                    <br>
-
-                    <input id="override-0" type="radio" name="override" value="0">
-                    <label for="override-0" data-i18n="overrideNone"></label>
+                    <input id="unsubscribe-yes" type="radio" name="unsubscribedFromAllUpdateNotifications" value="true">
+                    <label for="unsubscribe-yes" data-i18n="optionNo"></label>
                 </div>
             </section>
 
@@ -397,144 +113,9 @@
         </form>
     </div>
 
-    <div id="dialog" class="dialog confirmation" data-state="close">
-        <div class="dialog-container">
-            <section class="dialog-content">
-                <span id="dialog-text" class="confirmation-only popup-only"></span>
-
-                <div id="dialog-input-container" class="prompt-only ruleadd-only">
-                    <label id="dialog-input-label" for="dialog-input"></label>
-                    <input type="text" id="dialog-input">
-                </div>
-
-                <div id="dialog-checkbox-container" class="ruleadd-only">
-                    <label id="dialog-checkbox-label" for="dialog-checkbox"></label>
-                    <input id="dialog-checkbox" type="checkbox">
-                </div>
-
-                <div id="dialog-dropdown-container" class="dropdown-only ruleadd-only">
-                    <label id="dialog-dropdown-label" for="dialog-dropdown"></label>
-                    <select id="dialog-dropdown"></select>
-                </div>
-
-                <div id="rule-preview">
-                    <div class="panel-section-separator"></div>
-                    <section class="panel-section has-help">
-                        <label data-i18n="optionsSectionWidth"></label>
-                        <span id="detail-width"></span>
-                    </section>
-
-                    <section class="panel-section has-help help-row">
-                        <label data-i18n="optionsSectionAutoHideShort"></label>
-                        <span id="detail-autoHide"></span>
-                    </section>
-            
-                    <section class="panel-section has-help help-row chromium-only">
-                        <label data-i18n="optionsSectionButtons"></label>
-                        <span id="detail-buttons"></span>
-                    </section>
-            
-                    <section class="panel-section has-help help-row chromium-only">
-                        <label data-i18n="optionsSectionThumbRadius"></label>
-                        <span id="detail-thumbRadius"></span>
-                    </section>
-            
-                    <section class="panel-section has-help help-row">
-                        <label data-i18n="optionsSectionThumb"></label>
-                        <span id="detail-color-thumb" class="color-output"></span>
-                    </section>
-            
-                    <section class="panel-section has-help help-row">
-                        <label data-i18n="optionsSectionTrack"></label>
-                        <span id="detail-color-track" class="color-output"></span>
-                    </section>
-            
-                    <section class="panel-section help-row">
-                        <label data-i18n="optionsSectionOverride"></label>
-                        <span id="detail-override"></span>
-                    </section>
-                    <div class="panel-section-separator"></div>
-                </div>
-
-                <div id="dialog-error"></div>
-            </section>
-            <div id="confirmation-buttons" class="dialog-footer confirmation-only">
-                <button id="confirmation-yes" type="button" class="default icon">
-                    <div>
-                        <img src="../images/check.svg" alt="">
-                        <span data-i18n="optionYes"></span>
-                    </div>
-                </button>
-                <button id="confirmation-no" type="button" class="secondary icon">
-                    <div>
-                        <img src="../images/cancel.svg" alt="">
-                        <span data-i18n="optionNo"></span>
-                    </div>
-                </button>
-            </div>
-
-            <div id="dropdown-buttons" class="dialog-footer dropdown-only">
-                <button id="dropdown-yes" type="button" class="default icon">
-                    <div>
-                        <img src="../images/save.svg" alt="">
-                        <span data-i18n="buttonSave"></span>
-                    </div>
-                </button>
-                <button id="dropdown-no" type="button" class="secondary icon">
-                    <div>
-                        <img src="../images/cancel.svg" alt="">
-                        <span data-i18n="optionCancel"></span>
-                    </div>
-                </button>
-            </div>
-
-            <div id="prompt-buttons" class="dialog-footer prompt-only">
-                <button id="prompt-yes" type="button" class="default icon">
-                    <div>
-                        <img src="../images/save.svg" alt="">
-                        <span data-i18n="buttonSave"></span>
-                    </div>
-                </button>
-                <button id="prompt-no" type="button" class="secondary icon">
-                    <div>
-                        <img src="../images/cancel.svg" alt="">
-                        <span data-i18n="optionCancel"></span>
-                    </div>
-                </button>
-            </div>
-
-            <div id="ruleadd-buttons" class="dialog-footer ruleadd-only">
-                <button id="ruleadd-yes" type="button" class="default icon">
-                    <div>
-                        <img src="../images/save.svg" alt="">
-                        <span data-i18n="buttonSave"></span>
-                    </div>
-                </button>
-                <button id="ruleadd-no" type="button" class="secondary icon">
-                    <div>
-                        <img src="../images/cancel.svg" alt="">
-                        <span data-i18n="optionCancel"></span>
-                    </div>
-                </button>
-            </div>
-
-            <div id="popup-buttons" class="dialog-footer popup-only">
-                <button id="popup-yes" type="button" class="default icon">
-                    <div>
-                        <img src="../images/check.svg" alt="">
-                        <span data-i18n="optionOk"></span>
-                    </div>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <script src="../lib/iro.min.js"></script>
     <script src="../lib/i18n_helper.js"></script>
     <script src="../defaults.js"></script>
-    <script src="../generateCSS.js"></script>
     <script src="../crossbrowser.js"></script>
-    <script src="scripts/dialogs.js"></script>
     <script src="scripts/general.js"></script>
     <script src="scripts/options.js"></script>
 </body>

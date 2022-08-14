@@ -19,6 +19,11 @@ function parsei18n() {
     whatsNewButton.title = browser.i18n.getMessage('whatsnew');
     whatsNewButton.getElementsByTagName('img')[0].alt = browser.i18n.getMessage('whatsnew');
 
+    // Set tooltip for options button
+    const optionsButton = document.getElementById('tabselect-options');
+    optionsButton.title = browser.i18n.getMessage('options');
+    optionsButton.getElementsByTagName('img')[0].alt = browser.i18n.getMessage('options');
+
     updatePrivateBrowsingName();
 }
 
@@ -74,7 +79,11 @@ function toggleChangesWarning(show) {
  * Updates the live preview textarea style
  */
 function updatePreview() {
-    document.getElementById('preview-css').textContent = getNewCSS();
+    const preview = document.getElementById('preview-css');
+
+    if (preview) {
+        preview.textContent = getNewCSS();
+    }
 }
 
 /**
@@ -353,6 +362,7 @@ let unloadedChanges = false;
 let ignoreNextChange = false;
 browser.extension.isAllowedIncognitoAccess(togglePrivateNotice);
 document.getElementById('tab-bar').addEventListener('click', changeTab);
+document.getElementById('tabselect-options').addEventListener('click', changeTab);
 document.getElementById('whatsnew').addEventListener('click', openWhatsNew);
 document.getElementById('whatsnewlink').addEventListener('click', openWhatsNew);
 document.getElementById('feedbacklink').addEventListener('click', openFeedback);

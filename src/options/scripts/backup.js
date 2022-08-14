@@ -120,7 +120,7 @@ function processBackupFile(event) {
             showAlert(
                 browser.i18n.getMessage('dialogBackupRestored'),
                 () => {
-                    window.location.replace('options.html');
+                    window.location.replace('scrollbars.html');
                 },
                 null
             );
