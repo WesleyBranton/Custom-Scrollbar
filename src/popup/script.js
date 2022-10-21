@@ -142,8 +142,7 @@ function renderForGeneral() {
         useButton.parentNode.removeChild(useButton);
     }
 
-    document.manager.profile.removeChild(document.manager.profile.firstChild);
-    document.manager.profile.removeChild(document.manager.profile.firstChild);
+    document.manager.profile.removeChild(document.manager.profile.children[1]);
     document.manager.profile.value = defaultProfile;
 
     loadProfile(defaultProfile);
@@ -196,8 +195,9 @@ function loadProfileList(data) {
         document.manager.profile.appendChild(option);
     }
 
+    const defaultProfileName = (defaultProfile != 'none') ? data[`profile_${defaultProfile}`].name : browser.i18n.getMessage('profileUsingNone');
     const option = document.createElement('option');
-    option.textContent = browser.i18n.getMessage('profileUsingDefault', data[`profile_${defaultProfile}`].name);
+    option.textContent = browser.i18n.getMessage('profileUsingDefault', defaultProfileName);
     option.value = 'default';
     option.classList.add('fixed-option');
     document.manager.profile.insertBefore(option, document.manager.profile.firstChild);
@@ -359,7 +359,7 @@ function changeSelectedProfile() {
  * Toggle "Set as default" button
  */
 function refreshSetAsDefaultButton() {
-    const defaultDisabled = (defaultProfile == document.manager.profile.value || document.manager.profile.value == 'default' || document.manager.profile.value == 'none');
+    const defaultDisabled = (defaultProfile == document.manager.profile.value || document.manager.profile.value == 'default');
     const useDisabled = (!ruleInherit && currentRule == document.manager.profile.value);
 
     const useButton = document.getElementById('button-use');

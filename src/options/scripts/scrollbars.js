@@ -13,7 +13,11 @@ function init() {
             loadScrollbar(selectedProfile);
         }
 
-        reloadProfileSelection(document.settings.profile, updateSelectedProfileInDropdown);
+        reloadProfileSelection(document.settings.profile, () => {
+            addNoProfileOption(document.settings.profile);
+            document.settings.profile.firstChild.textContent = '';
+            updateSelectedProfileInDropdown();
+        });
     });
 }
 
@@ -53,7 +57,11 @@ function saveScrollbar() {
             browser.storage.local.set(wrapper, () => {
                 showProgressBar(false);
                 toggleChangesWarning(false);
-                reloadProfileSelection(document.settings.profile, updateSelectedProfileInDropdown);
+                reloadProfileSelection(document.settings.profile, () => {
+                    addNoProfileOption(document.settings.profile);
+                    document.settings.profile.firstChild.textContent = '';
+                    updateSelectedProfileInDropdown();
+                });
                 unloadedChanges = false;
             });
         },
@@ -70,38 +78,56 @@ function loadScrollbar(id) {
     showProgressBar(true);
     selectedProfile = id;
     document.getElementById('profile-setDefault').disabled = selectedProfile == defaultProfile;
-    browser.storage.local.get(`profile_${id}`, (scrollbar) => {
-        scrollbar = scrollbar[Object.keys(scrollbar)[0]];
 
-        if (typeof scrollbar == 'undefined') {
-            return;
-        }
+    document.getElementById('profile-duplicate').disabled = id == 'none';
+    document.getElementById('profile-rename').disabled = id == 'none';
+    document.getElementById('profile-remove').disabled = id == 'none';
 
-        document.settings.customColors.value = (!scrollbar.colorThumb || !scrollbar.colorTrack) ? 'no' : 'yes';
+    const settingsContainer = document.getElementById('only-scrollbar');
+    const settingsWarningContainer = document.getElementById('only-not-scrollbar');
 
-        scrollbar = loadWithDefaults(scrollbar);
-        if (scrollbar.width == 'unset') scrollbar.width = 'auto';
-        document.settings.width.value = scrollbar.width;
-        document.settings.override.value = scrollbar.allowOverride;
-        document.settings.customWidthValue.value = scrollbar.customWidthValue;
-        document.settings.customWidthUnit.value = scrollbar.customWidthUnit;
-        document.settings.buttons.value = scrollbar.buttons;
-        document.settings.thumbRadius.value = scrollbar.thumbRadius;
-        document.settings.autoHide.value = scrollbar.autoHide;
-
-        previousToggleValue = document.settings.customColors.value;
-        toggleColorSettings();
-
-        colorPickerThumb.color.hex8String = (scrollbar.colorThumb) ? scrollbar.colorThumb : defaults.colorThumb;
-        colorPickerTrack.color.hex8String = (scrollbar.colorTrack) ? scrollbar.colorTrack : defaults.colorTrack;
-
-        toggleCustomWidth();
-        toggleHiddenSettings();
+    if (id == 'none') {
+        settingsContainer.classList.add('hide');
+        settingsWarningContainer.classList.remove('hide');
+        updateSelectedProfileInDropdown();
         toggleChangesWarning(false);
-        parseCustomWidthValue(false);
-        updateRadiusLabel();
         showProgressBar(false);
-    });
+    } else {
+        browser.storage.local.get(`profile_${id}`, (scrollbar) => {
+            scrollbar = scrollbar[Object.keys(scrollbar)[0]];
+
+            if (typeof scrollbar == 'undefined') {
+                return;
+            }
+
+            document.settings.customColors.value = (!scrollbar.colorThumb || !scrollbar.colorTrack) ? 'no' : 'yes';
+
+            scrollbar = loadWithDefaults(scrollbar);
+            if (scrollbar.width == 'unset') scrollbar.width = 'auto';
+            document.settings.width.value = scrollbar.width;
+            document.settings.override.value = scrollbar.allowOverride;
+            document.settings.customWidthValue.value = scrollbar.customWidthValue;
+            document.settings.customWidthUnit.value = scrollbar.customWidthUnit;
+            document.settings.buttons.value = scrollbar.buttons;
+            document.settings.thumbRadius.value = scrollbar.thumbRadius;
+            document.settings.autoHide.value = scrollbar.autoHide;
+
+            previousToggleValue = document.settings.customColors.value;
+            toggleColorSettings();
+
+            colorPickerThumb.color.hex8String = (scrollbar.colorThumb) ? scrollbar.colorThumb : defaults.colorThumb;
+            colorPickerTrack.color.hex8String = (scrollbar.colorTrack) ? scrollbar.colorTrack : defaults.colorTrack;
+
+            toggleCustomWidth();
+            toggleHiddenSettings();
+            toggleChangesWarning(false);
+            parseCustomWidthValue(false);
+            updateRadiusLabel();
+            settingsContainer.classList.remove('hide');
+            settingsWarningContainer.classList.add('hide');
+            showProgressBar(false);
+        });
+    }
 }
 
 /**
@@ -117,7 +143,11 @@ function addProfile() {
     };
 
     browser.storage.local.set(newProfile, () => {
-        reloadProfileSelection(document.settings.profile, updateSelectedProfileInDropdown);
+        reloadProfileSelection(document.settings.profile, () => {
+            addNoProfileOption(document.settings.profile);
+            document.settings.profile.firstChild.textContent = '';
+            updateSelectedProfileInDropdown();
+        });
         loadScrollbar(id);
     });
 }
@@ -143,7 +173,11 @@ function duplicateProfile() {
         newProfile[`profile_${id}`] = created;
 
         browser.storage.local.set(newProfile, () => {
-            reloadProfileSelection(document.settings.profile, updateSelectedProfileInDropdown);
+            reloadProfileSelection(document.settings.profile, () => {
+                addNoProfileOption(document.settings.profile);
+                document.settings.profile.firstChild.textContent = '';
+                updateSelectedProfileInDropdown();
+            });
             loadScrollbar(id);
         });
     });
@@ -158,7 +192,10 @@ function removeProfile() {
     ignoreNextChange = true;
     browser.storage.local.remove(`profile_${selectedProfile}`, () => {
         const removedProfile = `profile_${selectedProfile}`;
-        reloadProfileSelection(document.settings.profile, null);
+        reloadProfileSelection(document.settings.profile, () => {
+            addNoProfileOption(document.settings.profile);
+            document.settings.profile.firstChild.textContent = '';
+        });
         loadScrollbar(defaultProfile);
 
         browser.storage.local.get(['rules', 'localFileProfile'], (storage) => {
@@ -177,6 +214,9 @@ function removeProfile() {
 
             if (hasRules || hasLocalFileRule) {
                 reloadProfileSelection(document.getElementById('dialog-dropdown'), () => {
+                    addNoProfileOption(document.settings.profile);
+                    document.settings.profile.firstChild.textContent = '';
+
                     const dropdown = document.getElementById('dialog-dropdown');
                     addDefaultProfileOption(dropdown);
                     addNoProfileOption(dropdown);
@@ -243,7 +283,11 @@ function updateDefaultProfile() {
         defaultProfile: selectedProfile
     }, () => {
         defaultProfile = selectedProfile;
-        reloadProfileSelection(document.settings.profile, updateSelectedProfileInDropdown);
+        reloadProfileSelection(document.settings.profile, () => {
+            addNoProfileOption(document.settings.profile);
+            document.settings.profile.firstChild.textContent = '';
+            updateSelectedProfileInDropdown();
+        });
     });
 }
 
@@ -259,7 +303,11 @@ function renameProfile(input) {
     browser.storage.local.get(`profile_${selectedProfile}`, (data) => {
         data[`profile_${selectedProfile}`].name = input;
         browser.storage.local.set(data, () => {
-            reloadProfileSelection(document.settings.profile, updateSelectedProfileInDropdown);
+            reloadProfileSelection(document.settings.profile, () => {
+                addNoProfileOption(document.settings.profile);
+                document.settings.profile.firstChild.textContent = '';
+                updateSelectedProfileInDropdown();
+            });
         });
     })
 }
@@ -297,15 +345,19 @@ function generateUnconflictingProfileName(name, id) {
  * @returns {string} css
  */
 function getNewCSS() {
-    const width = document.settings.width.value;
-    const colThumb = (document.settings.customColors.value == 'yes') ? colorPickerThumb.color.hex8String : null;
-    const colTrack = (document.settings.customColors.value == 'yes') ? colorPickerTrack.color.hex8String : null;
-    const customWidth = (document.settings.width.value == 'other') ? document.settings.customWidthValue.value + document.settings.customWidthUnit.value : null;
-    const buttons = document.settings.buttons.value;
-    const thumbRadius = parseInt(document.settings.thumbRadius.value);
-    const autoHide = parseInt(document.settings.autoHide.value);
+    if (document.settings.profile.value != 'none') {
+        const width = document.settings.width.value;
+        const colThumb = (document.settings.customColors.value == 'yes') ? colorPickerThumb.color.hex8String : null;
+        const colTrack = (document.settings.customColors.value == 'yes') ? colorPickerTrack.color.hex8String : null;
+        const customWidth = (document.settings.width.value == 'other') ? document.settings.customWidthValue.value + document.settings.customWidthUnit.value : null;
+        const buttons = document.settings.buttons.value;
+        const thumbRadius = parseInt(document.settings.thumbRadius.value);
+        const autoHide = parseInt(document.settings.autoHide.value);
 
-    return generateCSS(width, colTrack, colThumb, 0, customWidth, buttons, thumbRadius, autoHide);
+        return generateCSS(width, colTrack, colThumb, 0, customWidth, buttons, thumbRadius, autoHide);
+    } else {
+        return '';
+    }
 }
 
 /**
@@ -617,6 +669,13 @@ function parseCustomWidthValue(showNumber) {
 function updateSelectedProfileInDropdown() {
     document.settings.profile.value = selectedProfile;
     document.getElementById('profile-setDefault').disabled = selectedProfile == defaultProfile;
+
+    const noScrollbarMsg2 = document.getElementById('messageNoScrollbarSelectedMessage2');
+    if (selectedProfile == defaultProfile) {
+        noScrollbarMsg2.classList.add('hide');
+    } else {
+        noScrollbarMsg2.classList.remove('hide');
+    }
 }
 
 /**
@@ -777,7 +836,11 @@ function handleStorageChanges(changes, area) {
 
         // Reload profile selection, if required
         if (key.startsWith('profile_') && key != `profile_${selectedProfile}`) {
-            reloadProfileSelection(document.settings.profile, updateSelectedProfileInDropdown);
+            reloadProfileSelection(document.settings.profile, () => {
+                addNoProfileOption(document.settings.profile);
+                document.settings.profile.firstChild.textContent = '';
+                updateSelectedProfileInDropdown();
+            });
         }
     }
 
@@ -791,11 +854,13 @@ createColorPickers();
 init();
 
 document.getElementById('saveChanges').addEventListener('click', saveScrollbar);
-document.settings.addEventListener('change', () => {
-    toggleColorSettings();
-    toggleCustomWidth();
-    toggleHiddenSettings();
-    toggleChangesWarning(true);
+document.settings.addEventListener('change', (e) => {
+    if (e.target != document.settings.profile) {
+        toggleColorSettings();
+        toggleCustomWidth();
+        toggleHiddenSettings();
+        toggleChangesWarning(true);
+    }
 });
 document.settings.thumbRadius.addEventListener('input', updateRadiusLabel);
 document.getElementById('customWidthValue').addEventListener('focus', () => {

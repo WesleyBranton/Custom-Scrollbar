@@ -336,6 +336,21 @@ button.default.icon > div > img {
     transition: max-height 0.2s ease;
 }
 
+#only-not-scrollbar {
+    text-align: center;
+    font-size: 90%;
+}
+
+#only-not-scrollbar .panel-section {
+    width: 80%;
+    opacity: 0.7;
+}
+
+#only-not-scrollbar .panel-section p:first-of-type {
+    font-weight: bold;
+    font-size: 120%;
+}
+
 #feedbacklink {
     cursor: pointer;
 }
