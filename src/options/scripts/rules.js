@@ -649,6 +649,17 @@ function clear() {
     }
 
     browser.storage.local.get(`profile_${id}`, (data) => {
+        if (Object.keys(data).length < 1) {
+            if (id != defaultProfile) {
+                document.getElementById('dialog-dropdown').value = defaultProfile;
+                loadProfileDetailsIntoDialog(defaultProfile);
+            } else {
+                document.getElementById('dialog-dropdown').value = 'none';
+                loadProfileDetailsIntoDialog('none');
+            }
+            return;
+        }
+
         const profile = loadWithDefaults(data[Object.keys(data)[0]]);
 
         detailsContainer.classList.remove('dim');
