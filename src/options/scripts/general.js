@@ -141,11 +141,15 @@ function addDefaultProfileOption(dropdown) {
     const option = document.createElement('option');
     let profilename = '';
 
-    for (const o of dropdown.options) {
-        if (o.value == defaultProfile) {
-            profilename = o.textContent;
-            break;
+    if (defaultProfile != 'none') {
+        for (const o of dropdown.options) {
+            if (o.value == defaultProfile) {
+                profilename = o.textContent;
+                break;
+            }
         }
+    } else {
+        profilename = browser.i18n.getMessage('profileUsingNone');
     }
 
     option.textContent = browser.i18n.getMessage('profileUsingDefault', profilename);

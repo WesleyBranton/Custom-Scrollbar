@@ -359,5 +359,27 @@
     },
     "whatsNew": {
         "message": "What's New"
+    },
+    "messageNoScrollbarSelectedHeader": {
+        "message": "No scrollbar selected"
+    },
+    "messageNoScrollbarSelectedMessage1": {
+        "message": "Please select a scrollbar from the drop-down box above or press the '$NEWBUTTONLABEL$' button to add a new scrollbar.",
+        "placeholders": {
+            "newbuttonlabel": {
+                "content": "$1"
+            }
+        }
+    },
+    "messageNoScrollbarSelectedMessage2": {
+        "message": "If you do not want $EXTENSIONNAME$ to customize your scrollbars by default, press the '$SETASDEFAULTBUTTONLABEL$' button.",
+        "placeholders": {
+            "extensionname": {
+                "content": "$1"
+            },
+            "setasdefaultbuttonlabel": {
+                "content": "$2"
+            }
+        }
     }
 }
