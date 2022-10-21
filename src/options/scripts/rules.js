@@ -97,9 +97,23 @@ function saveRules() {
                 temp[rule.fullDomain()] = rule.profile;
             }
         
-            const localFileProfile = parseInt(settings.localFileProfile.value);
+            let localFileProfile = settings.localFileProfile.value;
+            switch (localFileProfile) {
+                case 'default':
+                    localFileProfile = null;
+                    break;
+                case 'none':
+                    break;
+                default:
+                    localFileProfile = parseInt(localFileProfile);
+                    if (isNaN(localFileProfile)) {
+                        localFileProfile = null;
+                    }
+                    break;
+            }
+
             const object = {
-                localFileProfile: (!isNaN(localFileProfile)) ? localFileProfile : null,
+                localFileProfile: localFileProfile,
                 framesInherit: settings.framesInherit.value == 'yes',
                 rules: temp
             };
@@ -553,19 +567,20 @@ function init() {
         reloadProfileSelection(profileSelectionDropdownDialog, () => {
             addNoProfileOption(profileSelectionDropdownDialog);
         });
-        const localProfileSelectionDropdown = document.getElementById('profileSelectionForLocalFileProfile');
-        reloadProfileSelection(localProfileSelectionDropdown, () => {
-            addDefaultProfileOption(localProfileSelectionDropdown);
-            addNoProfileOption(localProfileSelectionDropdown);
-        });
 
         // Load advanced setting
         data.framesInherit = (typeof data.framesInherit == 'boolean') ? data.framesInherit : true;
         settings.framesInherit.value = (data.framesInherit) ? 'yes' : 'no';
 
-        if (typeof data.localFileProfile == 'number' && data.localFileProfile != null) {
-            settings.localFileProfile.value = data.localFileProfile;
-        }
+        const localProfileSelectionDropdown = document.getElementById('profileSelectionForLocalFileProfile');
+        reloadProfileSelection(localProfileSelectionDropdown, () => {
+            addDefaultProfileOption(localProfileSelectionDropdown);
+            addNoProfileOption(localProfileSelectionDropdown);
+
+            if (typeof data.localFileProfile != 'undefined' && data.localFileProfile != null) {
+                settings.localFileProfile.value = data.localFileProfile;
+            }
+        });
 
         // Load rules
         document.getElementById('rule-list').textContent = '';
