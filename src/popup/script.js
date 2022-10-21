@@ -120,6 +120,9 @@ function renderForLocalFile() {
         if (typeof data.localFileProfile == 'number' && data.localFileProfile != null) {
             currentRule = data.localFileProfile;
             loadProfile(data.localFileProfile);
+        } else if (data.localFileProfile == 'none') {
+            currentRule = 'none';
+            loadProfile('none');
         } else {
             currentRule = 'default';
             loadProfile(defaultProfile);
@@ -392,9 +395,22 @@ function updateRule() {
     showProgressBar(true);
     
     if (isLocalFile) {
-        const profile = parseInt(document.manager.profile.value);
+        let profile = document.manager.profile.value;
+            switch (profile) {
+                case 'default':
+                    profile = null;
+                    break;
+                case 'none':
+                    break;
+                default:
+                    profile = parseInt(profile);
+                    if (isNaN(profile)) {
+                        profile = null;
+                    }
+                    break;
+            }
         const data = {
-            localFileProfile: (!isNaN(profile)) ? profile : null
+            localFileProfile: profile
         };
         browser.storage.local.set(data, () => {
             browser.storage.local.get(init);
