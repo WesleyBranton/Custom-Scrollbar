@@ -91,11 +91,18 @@ function updatePreview() {
  * @param {Event} event
  */
 function changeTab(event) {
-    if (!event.target.id.includes('tabselect')) {
-        return;
+    let target = event.target;
+
+    while (!target.id.startsWith('tabselect-')) {
+        target = target.parentNode;
+
+        if (target == document.body) {
+            console.error('Invalid tab button');
+            return;
+        }
     }
 
-    const selected = event.target.id.split('-')[1];
+    const selected = target.id.split('-')[1];
     window.location.replace(selected + '.html');
 }
 

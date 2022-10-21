@@ -44,7 +44,7 @@ function loadContentScriptsOnDemand() {
                             });
 
                             // Onboarding page scripts
-                            if (url.hostname == 'addons.wesleybranton.com' && url.pathname.startsWith('/addon/custom-scrollbars/')) {
+                            if (url.hostname == 'customscrollbars.com' || (url.hostname == 'addons.wesleybranton.com' && url.pathname.startsWith('/addon/custom-scrollbars/'))) {
                                 browser.scripting.executeScript({
                                     files: ["crossbrowser.js", "webservice/unsubscribeFromNotifications.js", "webservice/openOptions.js"],
                                     target: {
