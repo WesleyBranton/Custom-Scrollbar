@@ -88,7 +88,7 @@ function handleInstalled(details) {
     } else if (details.reason == 'update') {
         browser.storage.local.get(["unsubscribedFromAllUpdateNotifications"], (data) => {
             if (!data.unsubscribedFromAllUpdateNotifications) {
-                const currentVersionHasUpdateNotice = true;
+                const currentVersionHasUpdateNotice = false;
                 const currentVersion = browser.runtime.getManifest().version;
                 let updatePage = null;
 
