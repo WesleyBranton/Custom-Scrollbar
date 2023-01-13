@@ -1,7 +1,4 @@
 {
-    "extensionName": {
-        "message": "Custom Scrollbars"
-    },
     "extensionDescription": {
         "message": "¡Dale a tu navegador un toque personal con barras de desplazamiento personalizadas!"
     },
@@ -22,6 +19,12 @@
     "optionsSectionWidth": {
         "message": "Ancho de la barra"
     },
+    "optionsSectionButtons": {
+        "message": "Botones de barra de desplazamiento"
+    },
+    "optionsSectionThumbRadius": {
+        "message": "Redondeo de la barra de desplazamiento"
+    },
     "optionsSectionUseColors": {
         "message": "Usar colores personalizados"
     },
@@ -33,6 +36,18 @@
     },
     "optionsSectionOverride": {
         "message": "Permitir a las paginas web sobrescribir el estilo"
+    },
+    "optionsSectionAutoHide": {
+        "message": "Ocultar automáticamente la barra de desplazamiento"
+    },
+    "optionsSectionAutoHideShort": {
+        "message": "Ocultar automáticamente"
+    },
+    "optionsFramesInherit": {
+        "message": "¿Permitir a los sitios web embebidos heredar la apariencia de la barra de desplazamiento del contenido principal?"
+    },
+    "optionsLocalFileProfile": {
+        "message": "Usar esta barra de desplazamiento para ver archivos locales"
     },
     "sizeDefault": {
         "message": "Plataforma Predeterminada"
@@ -48,6 +63,12 @@
     },
     "sizeOther": {
         "message": "Otro"
+    },
+    "optionLight": {
+        "message": "Claro"
+    },
+    "optionDark": {
+        "message": "Oscuro"
     },
     "optionYes": {
         "message": "Sí"
@@ -135,6 +156,9 @@
     "linkCredits": {
         "message": "Créditos"
     },
+    "linkFeedback": {
+        "message": "Comentarios"
+    },
     "callToActionLearn": {
         "message": "Aprender más..."
     },
@@ -161,6 +185,9 @@
     },
     "profileActionNew": {
         "message": "Nuevo"
+    },
+    "profileActionDuplicate": {
+        "message": "Duplicate"
     },
     "profileActionRename": {
         "message": "Renombrar"
@@ -210,6 +237,15 @@
     "dialogBackupRestored": {
         "message": "¡El respaldo se ha restablecido correctamente!"
     },
+    "dialogChangesDetected": {
+        "message": "Su configuración ha cambiado. ¿Desea actualizar esta página para cargar la última configuración?"
+    },
+    "dialogChangesDetectedWarning": {
+        "message": "Los cambios no guardados se perderán."
+    },
+    "dialogOverwriteUnloadedChanges": {
+        "message": "La configuración cambió después de que se cargó esta página. Guardar los cambios puede sobrescribir los cambios anteriores. ¿Está seguro de que desea continuar?"
+    },
     "changeProfileFor": {
         "message": "Editando barra de desplazamiento para: $WEBSITE$",
         "placeholders": {
@@ -226,8 +262,14 @@
             }
         }
     },
+    "profileUsingNone": {
+        "message": "No personalizar la barra de desplazamiento"
+    },
     "profileActionUseOnWebsite": {
         "message": "Usar en esta pagina"
+    },
+    "profileActionUseOnLocalFiles": {
+        "message": "Usar para archivos locales"
     },
     "errorInvalidDomain": {
         "message": "Nombre de dominio invalido"
@@ -293,5 +335,20 @@
     },
     "selectedRules": {
         "message": "Todas las reglas seleccionadas"
+    },
+    "advancedHeader": {
+        "message": "Configuración Avanzada"
+    },
+    "featureRequiredAdditionalPermission": {
+        "message": "Esta característica requiere un permiso adicional antes de poder usarla."
+    },
+    "popupRequiresAdditionalPermission": {
+        "message": "Para ver información sobre la configuración que se utiliza en el sitio web, el complemento necesita permiso para acceder a las pestañas de su navegador."
+    },
+    "grantPermissionButton": {
+        "message": "Otorgar permiso"
+    },
+    "whatsNew": {
+        "message": "Novedades"
     }
 }

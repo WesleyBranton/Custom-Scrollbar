@@ -1,7 +1,4 @@
 {
-    "extensionName": {
-        "message": "Custom Scrollbars"
-    },
     "extensionDescription": {
         "message": "Nadaj swojej przeglądarce indywidualny charakter dzięki spersonalizowanym paskom przewijania!"
     },
@@ -22,6 +19,12 @@
     "optionsSectionWidth": {
         "message": "Szerokość paska przewijania"
     },
+    "optionsSectionButtons": {
+        "message": "Przyciski paska przewijania"
+    },
+    "optionsSectionThumbRadius": {
+        "message": "Zaokrąglenie paska przewijania"
+    },
     "optionsSectionUseColors": {
         "message": "Użyj kolorów niestandardowych"
     },
@@ -33,6 +36,18 @@
     },
     "optionsSectionOverride": {
         "message": "Zezwalaj stronom internetowym na zastępowanie"
+    },
+    "optionsSectionAutoHide": {
+        "message": "Automatycznie ukrywaj pasek przewijania"
+    },
+    "optionsSectionAutoHideShort": {
+        "message": "Automatycznie ukrywaj"
+    },
+    "optionsFramesInherit": {
+        "message": "Zezwolić osadzonym stronom internetowym na wczytywanie wyglądu paska przewijania z głównej zawartości?"
+    },
+    "optionsLocalFileProfile": {
+        "message": "Użyj tego paska przewijania podczas przeglądania plików lokalnych"
     },
     "sizeDefault": {
         "message": "Domyślny"
@@ -48,6 +63,12 @@
     },
     "sizeOther": {
         "message": "Inne"
+    },
+    "optionLight": {
+        "message": "Jasny"
+    },
+    "optionDark": {
+        "message": "Ciemny"
     },
     "optionYes": {
         "message": "Tak"
@@ -135,6 +156,9 @@
     "linkCredits": {
         "message": "Twórcy"
     },
+    "linkFeedback": {
+        "message": "Opinia"
+    },
     "callToActionLearn": {
         "message": "Dowiedz się więcej..."
     },
@@ -157,10 +181,13 @@
         "message": "Tej czynności nie można cofnąć. Czy na pewno chcesz kontynuować?"
     },
     "dialogCannotDeleteDefault": {
-        "message": "Nie można usunąć pasek przewijania domyślnego. Proszę ustawić nowy pasek przewijania domyślny przed usunięciem."
+        "message": "Nie można usunąć domyślnego paska przewijania. Ustaw nowy pasek przewijania przed usunięciem."
     },
     "profileActionNew": {
         "message": "Nowy"
+    },
+    "profileActionDuplicate": {
+        "message": "Duplikuj"
     },
     "profileActionRename": {
         "message": "Zmień nazwę"
@@ -172,7 +199,7 @@
         "message": "Ustaw jako domyślny"
     },
     "defaultProfileName": {
-        "message": "Nowy Pasek Przewijania"
+        "message": "Nowy pasek przewijania"
     },
     "migratedProfileName": {
         "message": "Ogólny"
@@ -210,8 +237,17 @@
     "dialogBackupRestored": {
         "message": "Kopia zapasowa została pomyślnie przywrócona!"
     },
+    "dialogChangesDetected": {
+        "message": "Twoje ustawienia uległy zmianie. Czy chcesz odświeżyć tę stronę, aby wczytać najnowsze ustawienia?"
+    },
+    "dialogChangesDetectedWarning": {
+        "message": "Niezapisane zmiany zostaną utracone."
+    },
+    "dialogOverwriteUnloadedChanges": {
+        "message": "Twoje ustawienia uległy zmianie po wczytaniu tej strony. Zapisanie ustawień może zastąpić poprzednie zmiany. Czy na pewno chcesz kontynuować?"
+    },
     "changeProfileFor": {
-        "message": "Edycja pasek przewijania dla: $WEBSITE$",
+        "message": "Edytowanie paska przewijania dla: $WEBSITE$",
         "placeholders": {
             "website": {
                 "content": "$1"
@@ -226,8 +262,14 @@
             }
         }
     },
+    "profileUsingNone": {
+        "message": "Nie zmieniaj paska przewijania"
+    },
     "profileActionUseOnWebsite": {
         "message": "Użyj na tej stronie"
+    },
+    "profileActionUseOnLocalFiles": {
+        "message": "Użyj dla plików lokalnych"
     },
     "errorInvalidDomain": {
         "message": "Wprowadzono nieprawidłową nazwę domeny"
@@ -260,7 +302,7 @@
         "message": "Istnieją reguły witryny, które używają tego pasek przewijania. Który pasek przewijania powinien używać tych reguły?"
     },
     "ruleNoProfileSet": {
-        "message": "BRAK PASEK PRZEWIJANIA"
+        "message": "BRAKUJĄCY PASEK PRZEWIJANIA"
     },
     "ruleInherit": {
         "message": "Dziedziczone z $DOMAIN$",
@@ -293,5 +335,20 @@
     },
     "selectedRules": {
         "message": "Wszystkie wybrane reguły"
+    },
+    "advancedHeader": {
+        "message": "Ustawienia zaawansowane"
+    },
+    "featureRequiredAdditionalPermission": {
+        "message": "Przed użyciem tej funkcji należy udzielić dodatkowych uprawnień."
+    },
+    "popupRequiresAdditionalPermission": {
+        "message": "Aby zobaczyć informacje o ustawieniach używanych na stronie internetowej, należy udzielić rozszerzeniu uprawnienia dostępu do kart przeglądarki."
+    },
+    "grantPermissionButton": {
+        "message": "Zezwól"
+    },
+    "whatsNew": {
+        "message": "Co nowego"
     }
 }

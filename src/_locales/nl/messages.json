@@ -1,7 +1,4 @@
 {
-    "extensionName": {
-        "message": "Custom Scrollbars"
-    },
     "extensionDescription": {
         "message": "Personaliseer je browser met aangepaste schuifbalken!"
     },
@@ -51,6 +48,9 @@
     },
     "optionsLocalFileProfile": {
         "message": "Deze schuifbalk gebruiken bij het bekijken van lokale bestanden"
+    },
+    "optionsUnsubscribedFromAllUpdateNotifications": {
+        "message": "Belangrijke wijzigingen en nieuwe functies op een nieuw tabblad tonen na update?"
     },
     "sizeDefault": {
         "message": "Systeemstandaard"
@@ -207,6 +207,9 @@
     "migratedProfileName": {
         "message": "Algemeen"
     },
+    "scrollbars": {
+        "message": "Schuifbalken"
+    },
     "options": {
         "message": "Instellingen"
     },
@@ -353,5 +356,27 @@
     },
     "whatsNew": {
         "message": "Wijzigingslog"
+    },
+    "messageNoScrollbarSelectedHeader": {
+        "message": "Geen schuifbalk gekozen"
+    },
+    "messageNoScrollbarSelectedMessage1": {
+        "message": "Kies een schuifbalk bovenstaand keuzemenu of klik op ‘$NEWBUTTONLABEL$’ om een schuifbalk toe te voegen.",
+        "placeholders": {
+            "newbuttonlabel": {
+                "content": "$1"
+            }
+        }
+    },
+    "messageNoScrollbarSelectedMessage2": {
+        "message": "Als je niet wilt dat $EXTENSIONNAME$ je schuifbalken bij voorbaat aanpast, klik dan op de knop ‘$SETASDEFAULTBUTTONLABEL$’.",
+        "placeholders": {
+            "extensionname": {
+                "content": "$1"
+            },
+            "setasdefaultbuttonlabel": {
+                "content": "$2"
+            }
+        }
     }
 }

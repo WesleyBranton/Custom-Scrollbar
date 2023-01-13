@@ -1,0 +1,382 @@
+{
+    "extensionDescription": {
+        "message": "Donnez un aspect original à votre navigateur avec des barres de défilement personnalisées !"
+    },
+    "optionsTitle": {
+        "message": "Options de $EXTENSIONNAME$",
+        "placeholders": {
+            "extensionname": {
+                "content": "$1"
+            }
+        }
+    },
+    "optionsSectionProfile": {
+        "message": "Barre de défilement"
+    },
+    "optionsSectionPreview": {
+        "message": "Aperçu en direct"
+    },
+    "optionsSectionWidth": {
+        "message": "Taille de la barre de défilement"
+    },
+    "optionsSectionButtons": {
+        "message": "Boutons de la barre de défilement"
+    },
+    "optionsSectionThumbRadius": {
+        "message": "Arrondi de la barre de défilement"
+    },
+    "optionsSectionUseColors": {
+        "message": "Utiliser des couleurs personnalisées"
+    },
+    "optionsSectionThumb": {
+        "message": "Couleur de l'onglet de la barre de défilement"
+    },
+    "optionsSectionTrack": {
+        "message": "Couleur de la piste de la barre de défilement"
+    },
+    "optionsSectionOverride": {
+        "message": "Autoriser les sites web d'ignorer ce mode"
+    },
+    "optionsSectionAutoHide": {
+        "message": "Masquer automatiquement la barre de défilement"
+    },
+    "optionsSectionAutoHideShort": {
+        "message": "Masquer automatiquement"
+    },
+    "optionsFramesInherit": {
+        "message": "Autoriser les sites Web intégrés à adopter l'apparence de la barre de défilement du contenu principal ?"
+    },
+    "optionsLocalFileProfile": {
+        "message": "Utiliser cette barre de défilement lors de l'affichage des fichiers locaux"
+    },
+    "optionsUnsubscribedFromAllUpdateNotifications": {
+        "message": "Afficher les changements importants et les nouvelles fonctionnalités dans un nouvel onglet après mise à jour ?"
+    },
+    "sizeDefault": {
+        "message": "Plateforme par défaut"
+    },
+    "sizeWide": {
+        "message": "Large"
+    },
+    "sizeThin": {
+        "message": "Mince"
+    },
+    "sizeHidden": {
+        "message": "Caché"
+    },
+    "sizeOther": {
+        "message": "Autre"
+    },
+    "optionLight": {
+        "message": "Clair"
+    },
+    "optionDark": {
+        "message": "Sombre"
+    },
+    "optionYes": {
+        "message": "Oui"
+    },
+    "optionNo": {
+        "message": "Non"
+    },
+    "optionOk": {
+        "message": "Ok"
+    },
+    "optionCancel": {
+        "message": "Annuler"
+    },
+    "colorFormatRGB": {
+        "message": "RVB"
+    },
+    "colorFormatHSV": {
+        "message": "TSV"
+    },
+    "colorFormatHEX": {
+        "message": "HEX"
+    },
+    "colorRed": {
+        "message": "Rouge"
+    },
+    "colorGreen": {
+        "message": "Vert"
+    },
+    "colorBlue": {
+        "message": "Bleu"
+    },
+    "colorHue": {
+        "message": "Teinte"
+    },
+    "colorSaturation": {
+        "message": "Saturation"
+    },
+    "colorValue": {
+        "message": "Valeur"
+    },
+    "colorAlpha": {
+        "message": "Alpha"
+    },
+    "overrideColor": {
+        "message": "Couleur seulement"
+    },
+    "overrideWidth": {
+        "message": "Largeur seulement"
+    },
+    "overrideAll": {
+        "message": "Couleur et largeur"
+    },
+    "overrideNone": {
+        "message": "Rien"
+    },
+    "buttonSave": {
+        "message": "Enregistrer"
+    },
+    "messageSaved": {
+        "message": "Toutes les modifications ont été enregistrées !"
+    },
+    "messageUnsaved": {
+        "message": "Vous avez des modifications non enregistrées !"
+    },
+    "promptPrivateBrowsing": {
+        "message": "Les barres de défilement personnalisées ne seront pas visibles dans les fenêtres de $PRIVATEBROWSING$, sauf si vous donnez à l'extension la permission de fonctionner en mode $PRIVATEBROWSING$.",
+        "placeholders": {
+            "privatebrowsing": {
+                "content": "$1"
+            }
+        }
+    },
+    "linkHelp": {
+        "message": "Aide"
+    },
+    "linkContribute": {
+        "message": "Participer"
+    },
+    "linkDonate": {
+        "message": "Faire un don"
+    },
+    "linkTranslate": {
+        "message": "Traduire"
+    },
+    "linkCredits": {
+        "message": "Remerciements"
+    },
+    "linkFeedback": {
+        "message": "Commentaire"
+    },
+    "callToActionLearn": {
+        "message": "En apprendre plus..."
+    },
+    "privateBrowsingFirefox": {
+        "message": "Navigation Privée"
+    },
+    "privateBrowsingChrome": {
+        "message": "Incognito"
+    },
+    "privateBrowsingEdge": {
+        "message": "InPrivé"
+    },
+    "privateBrowsingOpera": {
+        "message": "Incognito"
+    },
+    "dialogChangesWillBeLost": {
+        "message": "Les modifications non enregistrées seront perdues. Êtes-vous sûr de vouloir continuer ?"
+    },
+    "dialogCannotBeUndone": {
+        "message": "Cette action ne peut être annulée. Êtes-vous sûr de vouloir continuer ?"
+    },
+    "dialogCannotDeleteDefault": {
+        "message": "Impossible de supprimer la barre de défilement par défaut. Définissez une nouvelle barre de défilement par défaut avant de la supprimer."
+    },
+    "profileActionNew": {
+        "message": "Nouveau"
+    },
+    "profileActionDuplicate": {
+        "message": "Dupliquer"
+    },
+    "profileActionRename": {
+        "message": "Renommer"
+    },
+    "profileActionRemove": {
+        "message": "Retirer"
+    },
+    "profileActionChangeDefault": {
+        "message": "Définir par défaut"
+    },
+    "defaultProfileName": {
+        "message": "Nouvelle barre de défilement"
+    },
+    "migratedProfileName": {
+        "message": "Général"
+    },
+    "scrollbars": {
+        "message": "Barres de défilement"
+    },
+    "options": {
+        "message": "Options"
+    },
+    "backupAndRestore": {
+        "message": "Sauvegarder / Restaurer"
+    },
+    "backupSection": {
+        "message": "Télécharger la sauvegarde"
+    },
+    "restoreSection": {
+        "message": "Restaurer depuis une sauvegarde"
+    },
+    "buttonSelectFile": {
+        "message": "Sélectionnez un fichier..."
+    },
+    "buttonRestore": {
+        "message": "Restaurer"
+    },
+    "noFileSelected": {
+        "message": "Aucun fichier sélectionné"
+    },
+    "dialogInvalidBackup": {
+        "message": "Fichier de sauvegarde invalide"
+    },
+    "dialogPermissionRequired": {
+        "message": "L'autorisation exigée est manquante. Veuillez réessayer."
+    },
+    "dialogDataOverwrite": {
+        "message": "La restauration de cette sauvegarde remplacera les paramètres actuels. Cela ne peut pas être annulé. Êtes-vous sûr de vouloir continuer ?"
+    },
+    "dialogBackupRestored": {
+        "message": "La sauvegarde a été restaurée avec succès !"
+    },
+    "dialogChangesDetected": {
+        "message": "Vos paramètres ont changé. Voulez-vous actualiser la page pour charger les nouveaux paramètres ?"
+    },
+    "dialogChangesDetectedWarning": {
+        "message": "Vos modifications non enregistrées seront perdues."
+    },
+    "dialogOverwriteUnloadedChanges": {
+        "message": "Vos paramètres ont été modifiés après le chargement de cette page. L'enregistrement de vos modifications peut écraser les modifications précédentes. Êtes-vous sûr de vouloir continuer ?"
+    },
+    "changeProfileFor": {
+        "message": "Édition de la barre de défilement pour : $WEBSITE$",
+        "placeholders": {
+            "website": {
+                "content": "$1"
+            }
+        }
+    },
+    "profileUsingDefault": {
+        "message": "Utiliser par défaut ($PROFILENAME$)",
+        "placeholders": {
+            "profilename": {
+                "content": "$1"
+            }
+        }
+    },
+    "profileUsingNone": {
+        "message": "Ne pas personnaliser la barre de défilement"
+    },
+    "profileActionUseOnWebsite": {
+        "message": "Utiliser sur ce site"
+    },
+    "profileActionUseOnLocalFiles": {
+        "message": "Utiliser pour les fichiers locaux"
+    },
+    "errorInvalidDomain": {
+        "message": "Nom de domaine invalide"
+    },
+    "errorRuleAlreadyExists": {
+        "message": "La règle pour ce domaine existe déjà"
+    },
+    "domain": {
+        "message": "Domaine"
+    },
+    "subdomainsOnly": {
+        "message": "Sous-domaines uniquement"
+    },
+    "noRulesSet": {
+        "message": "Aucune règle de site web définie"
+    },
+    "noRulesFound": {
+        "message": "Aucune règle de site web trouvée dans la recherche"
+    },
+    "websiteRules": {
+        "message": "Règles du site web"
+    },
+    "add": {
+        "message": "Ajouter"
+    },
+    "ruleActionChangeProfile": {
+        "message": "Changer la barre de défilement..."
+    },
+    "profileMoveExistingRules": {
+        "message": "Certaines règles du site Web utilisent cette barre de défilement. Quelle barre de défilement les règles du site doivent-elles utiliser à la place ?"
+    },
+    "ruleNoProfileSet": {
+        "message": "BARRE DE DÉFILEMENT ABSENTE"
+    },
+    "ruleInherit": {
+        "message": "Hérité de $DOMAIN$",
+        "placeholders": {
+            "domain": {
+                "content": "$1"
+            }
+        }
+    },
+    "ruleSort": {
+        "message": "Trier par"
+    },
+    "sortDomain": {
+        "message": "Domaine"
+    },
+    "search": {
+        "message": "Chercher"
+    },
+    "selectAll": {
+        "message": "Tout sélectionner"
+    },
+    "deselectAll": {
+        "message": "Rien sélectionner"
+    },
+    "deleteSelected": {
+        "message": "Supprimer la sélection"
+    },
+    "changeSelected": {
+        "message": "Changer la barre de défilement de la sélection"
+    },
+    "selectedRules": {
+        "message": "Toutes les règles sélectionnées"
+    },
+    "advancedHeader": {
+        "message": "Paramètres avancés"
+    },
+    "featureRequiredAdditionalPermission": {
+        "message": "Cette fonction requiert une autorisation supplémentaire avant de pouvoir être utilisée."
+    },
+    "popupRequiresAdditionalPermission": {
+        "message": "Pour voir les informations sur les paramètres utilisés sur le site web, ce module a besoin de l'autorisation d'accéder aux onglets du navigateur."
+    },
+    "grantPermissionButton": {
+        "message": "Accorder la permission"
+    },
+    "whatsNew": {
+        "message": "Quoi de neuf"
+    },
+    "messageNoScrollbarSelectedHeader": {
+        "message": "Pas de barre de défilement sélectionnée"
+    },
+    "messageNoScrollbarSelectedMessage1": {
+        "message": "Sélectionnez une barre de défilement dans la liste déroulante ci-dessus ou cliquez sur le bouton '$NEWBUTTONLABEL$' pour ajouter une nouvelle barre de défilement.",
+        "placeholders": {
+            "newbuttonlabel": {
+                "content": "$1"
+            }
+        }
+    },
+    "messageNoScrollbarSelectedMessage2": {
+        "message": "Si vous refusez que $EXTENSIONNAME$ modifie vos barres de défilement par défaut, cliquez sur le bouton \"$SETASDEFAULTBUTTONLABEL$\".",
+        "placeholders": {
+            "extensionname": {
+                "content": "$1"
+            },
+            "setasdefaultbuttonlabel": {
+                "content": "$2"
+            }
+        }
+    }
+}

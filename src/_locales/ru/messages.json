@@ -1,0 +1,354 @@
+{
+    "extensionDescription": {
+        "message": "Предоставьте вашему браузеру личный контакт с настраиваемыми полосами прокрутки!"
+    },
+    "optionsTitle": {
+        "message": "$EXTENSIONNAME$ Опции",
+        "placeholders": {
+            "extensionname": {
+                "content": "$1"
+            }
+        }
+    },
+    "optionsSectionProfile": {
+        "message": "Scrollbar"
+    },
+    "optionsSectionPreview": {
+        "message": "Прямой предпросмотр"
+    },
+    "optionsSectionWidth": {
+        "message": "Scrollbar width"
+    },
+    "optionsSectionButtons": {
+        "message": "Панель прокрутки"
+    },
+    "optionsSectionThumbRadius": {
+        "message": "Закругление полосы прокрутки"
+    },
+    "optionsSectionUseColors": {
+        "message": "Использовать пользовательские цвета"
+    },
+    "optionsSectionThumb": {
+        "message": "Цвет полосы прокрутки"
+    },
+    "optionsSectionTrack": {
+        "message": "Цвет полосы прокрутки"
+    },
+    "optionsSectionOverride": {
+        "message": "Разрешить веб-сайтам переопределять"
+    },
+    "optionsSectionAutoHide": {
+        "message": "Автоматически скрывать полосу прокрутки"
+    },
+    "optionsSectionAutoHideShort": {
+        "message": "Автоматически скрывать"
+    },
+    "optionsFramesInherit": {
+        "message": "Разрешить веб-сайтам наследовать внешний вид полосы прокрутки из основного содержимого?"
+    },
+    "optionsLocalFileProfile": {
+        "message": "Использовать эту панель прокрутки при просмотре локальных файлов"
+    },
+    "sizeDefault": {
+        "message": "Платформа по умолчанию"
+    },
+    "sizeWide": {
+        "message": "Широкий"
+    },
+    "sizeThin": {
+        "message": "Тонкий"
+    },
+    "sizeHidden": {
+        "message": "Hidden"
+    },
+    "sizeOther": {
+        "message": "Прочие вопросы"
+    },
+    "optionLight": {
+        "message": "Светлая"
+    },
+    "optionDark": {
+        "message": "Тёмная"
+    },
+    "optionYes": {
+        "message": "Да"
+    },
+    "optionNo": {
+        "message": "Нет"
+    },
+    "optionOk": {
+        "message": "Ок"
+    },
+    "optionCancel": {
+        "message": "Отмена"
+    },
+    "colorFormatRGB": {
+        "message": "RGB"
+    },
+    "colorFormatHSV": {
+        "message": "HSV"
+    },
+    "colorFormatHEX": {
+        "message": "HEX"
+    },
+    "colorRed": {
+        "message": "Красный"
+    },
+    "colorGreen": {
+        "message": "Зелёный"
+    },
+    "colorBlue": {
+        "message": "Синий"
+    },
+    "colorHue": {
+        "message": "Оттенок"
+    },
+    "colorSaturation": {
+        "message": "Насыщенность"
+    },
+    "colorValue": {
+        "message": "Значение"
+    },
+    "colorAlpha": {
+        "message": "Альфа"
+    },
+    "overrideColor": {
+        "message": "Только цвет"
+    },
+    "overrideWidth": {
+        "message": "Только ширина"
+    },
+    "overrideAll": {
+        "message": "Цвет и ширина"
+    },
+    "overrideNone": {
+        "message": "Нет"
+    },
+    "buttonSave": {
+        "message": "Сохранить"
+    },
+    "messageSaved": {
+        "message": "Все изменения были сохранены!"
+    },
+    "messageUnsaved": {
+        "message": "У вас есть несохраненные изменения!"
+    },
+    "promptPrivateBrowsing": {
+        "message": "Пользовательские полосы прокрутки не будут отображаться в $PRIVATEBROWSING$ окнах, если вы не дадите этому расширению разрешение на запуск в режиме $PRIVATEBROWSING$.",
+        "placeholders": {
+            "privatebrowsing": {
+                "content": "$1"
+            }
+        }
+    },
+    "linkHelp": {
+        "message": "Справка"
+    },
+    "linkContribute": {
+        "message": "Внести вклад"
+    },
+    "linkDonate": {
+        "message": "Пожертвовать"
+    },
+    "linkTranslate": {
+        "message": "Перевести"
+    },
+    "linkCredits": {
+        "message": "Кредиты"
+    },
+    "linkFeedback": {
+        "message": "Отзыв"
+    },
+    "callToActionLearn": {
+        "message": "Подробнее..."
+    },
+    "privateBrowsingFirefox": {
+        "message": "Приватный просмотр"
+    },
+    "privateBrowsingChrome": {
+        "message": "Incognito"
+    },
+    "privateBrowsingEdge": {
+        "message": "Приватный"
+    },
+    "privateBrowsingOpera": {
+        "message": "Incognito"
+    },
+    "dialogChangesWillBeLost": {
+        "message": "Ваши несохраненные изменения будут потеряны. Вы уверены, что хотите продолжить?"
+    },
+    "dialogCannotBeUndone": {
+        "message": "Это действие нельзя отменить. Вы уверены, что хотите продолжить?"
+    },
+    "dialogCannotDeleteDefault": {
+        "message": "Не удается удалить полосу прокрутки по умолчанию. Пожалуйста, установите новую полосу прокрутки по умолчанию перед удалением."
+    },
+    "profileActionNew": {
+        "message": "Новый"
+    },
+    "profileActionDuplicate": {
+        "message": "Duplicate"
+    },
+    "profileActionRename": {
+        "message": "Переименовать"
+    },
+    "profileActionRemove": {
+        "message": "Удалить"
+    },
+    "profileActionChangeDefault": {
+        "message": "Установить по умолчанию"
+    },
+    "defaultProfileName": {
+        "message": "Новая полоса прокрутки"
+    },
+    "migratedProfileName": {
+        "message": "Общие положения"
+    },
+    "options": {
+        "message": "Варианты"
+    },
+    "backupAndRestore": {
+        "message": "Резервное копирование / восстановление"
+    },
+    "backupSection": {
+        "message": "Скачать резервную копию"
+    },
+    "restoreSection": {
+        "message": "Восстановить из резервной копии"
+    },
+    "buttonSelectFile": {
+        "message": "Выберите файл..."
+    },
+    "buttonRestore": {
+        "message": "Восстановить"
+    },
+    "noFileSelected": {
+        "message": "Файл не выбран"
+    },
+    "dialogInvalidBackup": {
+        "message": "Неверный файл резервной копии"
+    },
+    "dialogPermissionRequired": {
+        "message": "Отсутствует требуемое разрешение. Пожалуйста, попробуйте еще раз."
+    },
+    "dialogDataOverwrite": {
+        "message": "Восстановление этой резервной копии заменит ваши существующие настройки. Это не может быть отменено. Вы уверены, что хотите продолжить?"
+    },
+    "dialogBackupRestored": {
+        "message": "Резервная копия успешно восстановлена!"
+    },
+    "dialogChangesDetected": {
+        "message": "Ваши настройки были изменены. Вы хотите обновить эту страницу, чтобы загрузить последние настройки?"
+    },
+    "dialogChangesDetectedWarning": {
+        "message": "Ваши несохраненные изменения будут потеряны."
+    },
+    "dialogOverwriteUnloadedChanges": {
+        "message": "Ваши настройки были изменены после загрузки этой страницы. Сохранение ваших изменений может перезаписать предыдущие изменения. Вы уверены, что хотите продолжить?"
+    },
+    "changeProfileFor": {
+        "message": "Редактирование полосы прокрутки для: $WEBSITE$",
+        "placeholders": {
+            "website": {
+                "content": "$1"
+            }
+        }
+    },
+    "profileUsingDefault": {
+        "message": "По умолчанию ($PROFILENAME$)",
+        "placeholders": {
+            "profilename": {
+                "content": "$1"
+            }
+        }
+    },
+    "profileUsingNone": {
+        "message": "Не настраивать панель прокрутки"
+    },
+    "profileActionUseOnWebsite": {
+        "message": "Использовать на этом сайте"
+    },
+    "profileActionUseOnLocalFiles": {
+        "message": "Использовать для локальных файлов"
+    },
+    "errorInvalidDomain": {
+        "message": "Введено неверное имя домена"
+    },
+    "errorRuleAlreadyExists": {
+        "message": "Правило для этого домена уже существует"
+    },
+    "domain": {
+        "message": "Домен"
+    },
+    "subdomainsOnly": {
+        "message": "Только поддомены"
+    },
+    "noRulesSet": {
+        "message": "Правила сайта не установлены"
+    },
+    "noRulesFound": {
+        "message": "В поиске не найдено правил сайта"
+    },
+    "websiteRules": {
+        "message": "Правила Сайта"
+    },
+    "add": {
+        "message": "Добавить"
+    },
+    "ruleActionChangeProfile": {
+        "message": "Изменить полосу прокрутки..."
+    },
+    "profileMoveExistingRules": {
+        "message": "Существуют правила веб-сайта, которые использовали эту прокрутку. Какая полоса прокрутки должна использовать эти правила веб-сайта?"
+    },
+    "ruleNoProfileSet": {
+        "message": "МИССИЯ КРОЛБАР"
+    },
+    "ruleInherit": {
+        "message": "Унаследовано от $DOMAIN$",
+        "placeholders": {
+            "domain": {
+                "content": "$1"
+            }
+        }
+    },
+    "ruleSort": {
+        "message": "Сортировать по"
+    },
+    "sortDomain": {
+        "message": "Домен"
+    },
+    "search": {
+        "message": "Искать"
+    },
+    "selectAll": {
+        "message": "Выделить все"
+    },
+    "deselectAll": {
+        "message": "Отменить выбор"
+    },
+    "deleteSelected": {
+        "message": "Удалить выбранные"
+    },
+    "changeSelected": {
+        "message": "Изменить полосу прокрутки выбранных"
+    },
+    "selectedRules": {
+        "message": "Все выбранные правила"
+    },
+    "advancedHeader": {
+        "message": "Расширенные настройки"
+    },
+    "featureRequiredAdditionalPermission": {
+        "message": "Эта функция требует дополнительных разрешений, прежде чем она будет использована."
+    },
+    "popupRequiresAdditionalPermission": {
+        "message": "Чтобы увидеть информацию о настройках, используемых на сайте, дополнению требуется разрешение на доступ к вкладкам вашего браузера."
+    },
+    "grantPermissionButton": {
+        "message": "Предоставить разрешение"
+    },
+    "whatsNew": {
+        "message": "Что нового"
+    }
+}

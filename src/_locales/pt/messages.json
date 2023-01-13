@@ -1,0 +1,354 @@
+{
+    "extensionDescription": {
+        "message": "Dê ao seu navegador um toque personalizado com barras de rolagem customizadas!"
+    },
+    "optionsTitle": {
+        "message": "Opções",
+        "placeholders": {
+            "extensionname": {
+                "content": "$1"
+            }
+        }
+    },
+    "optionsSectionProfile": {
+        "message": "Tema"
+    },
+    "optionsSectionPreview": {
+        "message": "Pré-visualização"
+    },
+    "optionsSectionWidth": {
+        "message": "Largura da barra de rolagem"
+    },
+    "optionsSectionButtons": {
+        "message": "Botões de rolagem"
+    },
+    "optionsSectionThumbRadius": {
+        "message": "Raio da barra de rolagem"
+    },
+    "optionsSectionUseColors": {
+        "message": "Usar cores customizadas"
+    },
+    "optionsSectionThumb": {
+        "message": "Cor da barra de rolagem"
+    },
+    "optionsSectionTrack": {
+        "message": "Cor do trilho de rolagem"
+    },
+    "optionsSectionOverride": {
+        "message": "Permitir sobreposição por parte dos sites"
+    },
+    "optionsSectionAutoHide": {
+        "message": "Esconder barra de rolagem automaticamente"
+    },
+    "optionsSectionAutoHideShort": {
+        "message": "Esconder automaticamente"
+    },
+    "optionsFramesInherit": {
+        "message": "Permitir sites inbutidos herdarem a aparência da barra de rolagem do conteúdo principal?"
+    },
+    "optionsLocalFileProfile": {
+        "message": "Usar esta barra de rolagem ao visualizar arquivos locais"
+    },
+    "sizeDefault": {
+        "message": "Padrão da plataforma"
+    },
+    "sizeWide": {
+        "message": "Largo"
+    },
+    "sizeThin": {
+        "message": "Fino"
+    },
+    "sizeHidden": {
+        "message": "Oculto"
+    },
+    "sizeOther": {
+        "message": "Outro"
+    },
+    "optionLight": {
+        "message": "Claro"
+    },
+    "optionDark": {
+        "message": "Escuro"
+    },
+    "optionYes": {
+        "message": "Sim"
+    },
+    "optionNo": {
+        "message": "Não"
+    },
+    "optionOk": {
+        "message": "Ok"
+    },
+    "optionCancel": {
+        "message": "Cancelar"
+    },
+    "colorFormatRGB": {
+        "message": "RGB"
+    },
+    "colorFormatHSV": {
+        "message": "HSV"
+    },
+    "colorFormatHEX": {
+        "message": "HEX"
+    },
+    "colorRed": {
+        "message": "Vermelho"
+    },
+    "colorGreen": {
+        "message": "Verde"
+    },
+    "colorBlue": {
+        "message": "Azul"
+    },
+    "colorHue": {
+        "message": "Hue"
+    },
+    "colorSaturation": {
+        "message": "Saturação"
+    },
+    "colorValue": {
+        "message": "Valor"
+    },
+    "colorAlpha": {
+        "message": "Alfa"
+    },
+    "overrideColor": {
+        "message": "Apenas cor"
+    },
+    "overrideWidth": {
+        "message": "Apenas largura"
+    },
+    "overrideAll": {
+        "message": "Cor e largura"
+    },
+    "overrideNone": {
+        "message": "Nenhum"
+    },
+    "buttonSave": {
+        "message": "Salvar"
+    },
+    "messageSaved": {
+        "message": "Todas as alterações foram salvas!"
+    },
+    "messageUnsaved": {
+        "message": "Você têm alterações não salvas!"
+    },
+    "promptPrivateBrowsing": {
+        "message": "Barras de rolagem customizadas não serão visíveis nas abas em $PRIVATEBROWSING$ a não ser que você dê permissão para essa extensão ser executada em modo $PRIVATEBROWSING$.",
+        "placeholders": {
+            "privatebrowsing": {
+                "content": "$1"
+            }
+        }
+    },
+    "linkHelp": {
+        "message": "Ajuda"
+    },
+    "linkContribute": {
+        "message": "Contribuir"
+    },
+    "linkDonate": {
+        "message": "Doar"
+    },
+    "linkTranslate": {
+        "message": "Traduzir"
+    },
+    "linkCredits": {
+        "message": "Créditos"
+    },
+    "linkFeedback": {
+        "message": "Avaliar"
+    },
+    "callToActionLearn": {
+        "message": "Ver mais..."
+    },
+    "privateBrowsingFirefox": {
+        "message": "Navegação Anônima"
+    },
+    "privateBrowsingChrome": {
+        "message": "Anônimo"
+    },
+    "privateBrowsingEdge": {
+        "message": "Privado"
+    },
+    "privateBrowsingOpera": {
+        "message": "Anônimo"
+    },
+    "dialogChangesWillBeLost": {
+        "message": "As alterações não salvas serão perdidas. Tem certeza que deseja continuar?"
+    },
+    "dialogCannotBeUndone": {
+        "message": "Essa ação não pode ser desfeita. Tem certeza que deseja continuar?"
+    },
+    "dialogCannotDeleteDefault": {
+        "message": "Não é possível excluir a barra de rolagem padrão. Por favor, defina uma nova barra de rolagem padrão antes de excluir."
+    },
+    "profileActionNew": {
+        "message": "Novo"
+    },
+    "profileActionDuplicate": {
+        "message": "Duplicar"
+    },
+    "profileActionRename": {
+        "message": "Renomear"
+    },
+    "profileActionRemove": {
+        "message": "Remover"
+    },
+    "profileActionChangeDefault": {
+        "message": "Definir como padrão"
+    },
+    "defaultProfileName": {
+        "message": "Nova barra de rolagem"
+    },
+    "migratedProfileName": {
+        "message": "Geral"
+    },
+    "options": {
+        "message": "Opções"
+    },
+    "backupAndRestore": {
+        "message": "Backup / Restaurar"
+    },
+    "backupSection": {
+        "message": "Baixar backup"
+    },
+    "restoreSection": {
+        "message": "Restaurar do backup"
+    },
+    "buttonSelectFile": {
+        "message": "Selecionar arquivo..."
+    },
+    "buttonRestore": {
+        "message": "Restaurar"
+    },
+    "noFileSelected": {
+        "message": "Nenhum arquivo selecionado"
+    },
+    "dialogInvalidBackup": {
+        "message": "Arquivo de backup inválido"
+    },
+    "dialogPermissionRequired": {
+        "message": "Permissões necessárias faltando. Por favor, tente novamente."
+    },
+    "dialogDataOverwrite": {
+        "message": "Restaurar esse backup irá substituir as configurações existentes. Isso não poderá ser desfeito. Tem certeza que deseja continuar?"
+    },
+    "dialogBackupRestored": {
+        "message": "O backup foi restaurado com sucesso!"
+    },
+    "dialogChangesDetected": {
+        "message": "As suas configurações foram alteradas. Deseja atualizar a página para carregar as últimas configurações?"
+    },
+    "dialogChangesDetectedWarning": {
+        "message": "Suas configurações não salvas serão perdidas."
+    },
+    "dialogOverwriteUnloadedChanges": {
+        "message": "Suas configurações mudaram depois que essa página foi carregada. Salvar as novas alterações talvez substitua as anteriores. Tem certeza que deseja continuar?"
+    },
+    "changeProfileFor": {
+        "message": "Editando barra de rolagem para: $WEBSITE$",
+        "placeholders": {
+            "website": {
+                "content": "$1"
+            }
+        }
+    },
+    "profileUsingDefault": {
+        "message": "Usar padrão ($PROFILENAME$)",
+        "placeholders": {
+            "profilename": {
+                "content": "$1"
+            }
+        }
+    },
+    "profileUsingNone": {
+        "message": "Não customizar barra de rolagem"
+    },
+    "profileActionUseOnWebsite": {
+        "message": "Usar nesse website"
+    },
+    "profileActionUseOnLocalFiles": {
+        "message": "Usar para arquivos locais"
+    },
+    "errorInvalidDomain": {
+        "message": "Nome do domínio inválido"
+    },
+    "errorRuleAlreadyExists": {
+        "message": "Já existe uma regra para esse domínio"
+    },
+    "domain": {
+        "message": "Domínio"
+    },
+    "subdomainsOnly": {
+        "message": "Apenas subdomínios"
+    },
+    "noRulesSet": {
+        "message": "Nenhuma regra de website definida"
+    },
+    "noRulesFound": {
+        "message": "Nenhuma regra de website encontrada na pesquisa"
+    },
+    "websiteRules": {
+        "message": "Regras de Website"
+    },
+    "add": {
+        "message": "Adicionar"
+    },
+    "ruleActionChangeProfile": {
+        "message": "Mudar Barra de Rolagem..."
+    },
+    "profileMoveExistingRules": {
+        "message": "Existem regras de website usando essa barra de rolagem. Qual barra de rolagem esses websites devem usar ao invés dessa?"
+    },
+    "ruleNoProfileSet": {
+        "message": "BARRA DE ROLAGEM FALTANDO"
+    },
+    "ruleInherit": {
+        "message": "Herdar do $DOMAIN$",
+        "placeholders": {
+            "domain": {
+                "content": "$1"
+            }
+        }
+    },
+    "ruleSort": {
+        "message": "Ordenar por"
+    },
+    "sortDomain": {
+        "message": "Domínio"
+    },
+    "search": {
+        "message": "Pesquisar"
+    },
+    "selectAll": {
+        "message": "Selecionar Todos"
+    },
+    "deselectAll": {
+        "message": "Desselecionar"
+    },
+    "deleteSelected": {
+        "message": "Excluir Selecionados"
+    },
+    "changeSelected": {
+        "message": "Mudar barra de rolagem dos selecionados"
+    },
+    "selectedRules": {
+        "message": "Todas as regras selecionadas"
+    },
+    "advancedHeader": {
+        "message": "Configurações avançadas"
+    },
+    "featureRequiredAdditionalPermission": {
+        "message": "Essa opção precisa de permissões adicionais para poder ser usada."
+    },
+    "popupRequiresAdditionalPermission": {
+        "message": "Para ver informações sobre as configurações sendo utilizadas no website, a extensão precisa de permissão para acessar as abas do navegador."
+    },
+    "grantPermissionButton": {
+        "message": "Conceder Permissão"
+    },
+    "whatsNew": {
+        "message": "Novidades"
+    }
+}

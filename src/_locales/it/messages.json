@@ -1,7 +1,4 @@
 {
-    "extensionName": {
-        "message": "Custom Scrollbars"
-    },
     "extensionDescription": {
         "message": "Dai al tuo browser un tocco personale con barre di scorrimento personalizzate!"
     },
@@ -22,6 +19,12 @@
     "optionsSectionWidth": {
         "message": "Ampiezza barra di scorrimento"
     },
+    "optionsSectionButtons": {
+        "message": "Pulsanti barra di scorrimento"
+    },
+    "optionsSectionThumbRadius": {
+        "message": "Morbidezza barra di scorrimento"
+    },
     "optionsSectionUseColors": {
         "message": "Utilizza colori personalizzati"
     },
@@ -33,6 +36,18 @@
     },
     "optionsSectionOverride": {
         "message": "Consenti ai siti web di sovrascrivere"
+    },
+    "optionsSectionAutoHide": {
+        "message": "Nascondi automaticamente la barra di scorrimento"
+    },
+    "optionsSectionAutoHideShort": {
+        "message": "Nascondi automaticamente"
+    },
+    "optionsFramesInherit": {
+        "message": "Consenti ai siti Web incorporati di ereditare l'aspetto della barra di scorrimento dal contenuto principale?"
+    },
+    "optionsLocalFileProfile": {
+        "message": "Usa questa barra di scorrimento quando si visualizzano i file locali"
     },
     "sizeDefault": {
         "message": "Piattaforma Predefinita"
@@ -48,6 +63,12 @@
     },
     "sizeOther": {
         "message": "Altro"
+    },
+    "optionLight": {
+        "message": "Chiaro"
+    },
+    "optionDark": {
+        "message": "Scuro"
     },
     "optionYes": {
         "message": "Sì"
@@ -132,6 +153,12 @@
     "linkTranslate": {
         "message": "Traduci"
     },
+    "linkCredits": {
+        "message": "Riconoscimenti"
+    },
+    "linkFeedback": {
+        "message": "Feedback"
+    },
     "callToActionLearn": {
         "message": "Per saperne di più..."
     },
@@ -158,6 +185,9 @@
     },
     "profileActionNew": {
         "message": "Nuovo"
+    },
+    "profileActionDuplicate": {
+        "message": "Duplicate"
     },
     "profileActionRename": {
         "message": "Rinomina"
@@ -206,5 +236,119 @@
     },
     "dialogBackupRestored": {
         "message": "Backup recuperato correttamente!"
+    },
+    "dialogChangesDetected": {
+        "message": "Le tue impostazioni sono cambiate. Vuoi aggiornare questa pagina per caricare le ultime impostazioni?"
+    },
+    "dialogChangesDetectedWarning": {
+        "message": "Le modifiche non salvate andranno perse."
+    },
+    "dialogOverwriteUnloadedChanges": {
+        "message": "Le impostazioni cambiate dopo che questa pagina è stata caricata. Salvare le modifiche apportate potrebbe sovrascrivere le modifiche precedenti. Sei sicuro di voler continuare?"
+    },
+    "changeProfileFor": {
+        "message": "Modifica barra di scorrimento per: $WEBSITE$",
+        "placeholders": {
+            "website": {
+                "content": "$1"
+            }
+        }
+    },
+    "profileUsingDefault": {
+        "message": "Usa predefinito ($PROFILENAME$)",
+        "placeholders": {
+            "profilename": {
+                "content": "$1"
+            }
+        }
+    },
+    "profileUsingNone": {
+        "message": "Non personalizzare la barra di scorrimento"
+    },
+    "profileActionUseOnWebsite": {
+        "message": "Usa su questo sito"
+    },
+    "profileActionUseOnLocalFiles": {
+        "message": "Usa per file locali"
+    },
+    "errorInvalidDomain": {
+        "message": "Nome di dominio non valido inserito"
+    },
+    "errorRuleAlreadyExists": {
+        "message": "Regola per questo dominio esiste già"
+    },
+    "domain": {
+        "message": "Dominio"
+    },
+    "subdomainsOnly": {
+        "message": "Solo Sottodomini"
+    },
+    "noRulesSet": {
+        "message": "Nessuna regola del sito web impostata"
+    },
+    "noRulesFound": {
+        "message": "Nessuna regola del sito trovata nella ricerca"
+    },
+    "websiteRules": {
+        "message": "Regole Del Sito"
+    },
+    "add": {
+        "message": "Aggiungi"
+    },
+    "ruleActionChangeProfile": {
+        "message": "Cambia Barra Di Scorrimento..."
+    },
+    "profileMoveExistingRules": {
+        "message": "Ci sono regole del sito web che usano questa barra di scorrimento. Quali dovrebbero usare queste regole del sito web?"
+    },
+    "ruleNoProfileSet": {
+        "message": "MISSIONE SCROLLBARE"
+    },
+    "ruleInherit": {
+        "message": "Ereditato da $DOMAIN$",
+        "placeholders": {
+            "domain": {
+                "content": "$1"
+            }
+        }
+    },
+    "ruleSort": {
+        "message": "Ordina Per"
+    },
+    "sortDomain": {
+        "message": "Dominio"
+    },
+    "search": {
+        "message": "Cerca"
+    },
+    "selectAll": {
+        "message": "Seleziona Tutto"
+    },
+    "deselectAll": {
+        "message": "Deseleziona Tutto"
+    },
+    "deleteSelected": {
+        "message": "Elimina Selezionati"
+    },
+    "changeSelected": {
+        "message": "Cambia barra di scorrimento dei selezionati"
+    },
+    "selectedRules": {
+        "message": "Tutte le regole selezionate"
+    },
+    "advancedHeader": {
+        "message": "Impostazioni Avanzate"
+    },
+    "featureRequiredAdditionalPermission": {
+        "message": "Questa funzione richiede un'autorizzazione aggiuntiva prima di poter essere utilizzata."
+    },
+    "popupRequiresAdditionalPermission": {
+        "message": "Per visualizzare informazioni sulle impostazioni utilizzate sul sito web, l'add-on ha bisogno dell'autorizzazione per accedere alle schede del browser."
+    },
+    "grantPermissionButton": {
+        "message": "Concedi Il Permesso"
+    },
+    "whatsNew": {
+        "message": "Novità"
     }
 }

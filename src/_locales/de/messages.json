@@ -1,0 +1,354 @@
+{
+    "extensionDescription": {
+        "message": "Geben Sie Ihrem Browser eine persönliche Note mit angepassten Scrollbars!"
+    },
+    "optionsTitle": {
+        "message": "$EXTENSIONNAME$ Optionen",
+        "placeholders": {
+            "extensionname": {
+                "content": "$1"
+            }
+        }
+    },
+    "optionsSectionProfile": {
+        "message": "Scrollbar"
+    },
+    "optionsSectionPreview": {
+        "message": "Live-Vorschau"
+    },
+    "optionsSectionWidth": {
+        "message": "Scrollbar width"
+    },
+    "optionsSectionButtons": {
+        "message": "Scrollbar Tasten"
+    },
+    "optionsSectionThumbRadius": {
+        "message": "Scrollbar-Runde"
+    },
+    "optionsSectionUseColors": {
+        "message": "Eigene Farben verwenden"
+    },
+    "optionsSectionThumb": {
+        "message": "Scrollbar Daumen Farbe"
+    },
+    "optionsSectionTrack": {
+        "message": "Scrollbar Spurfarbe"
+    },
+    "optionsSectionOverride": {
+        "message": "Webseiten erlauben zu überschreiben"
+    },
+    "optionsSectionAutoHide": {
+        "message": "Scrollbar automatisch ausblenden"
+    },
+    "optionsSectionAutoHideShort": {
+        "message": "Automatisch ausblenden"
+    },
+    "optionsFramesInherit": {
+        "message": "Embedded-Websites erlauben, die Bildlaufleiste aus dem Hauptinhalt zu vererben?"
+    },
+    "optionsLocalFileProfile": {
+        "message": "Diese Scrollbar beim Anzeigen lokaler Dateien verwenden"
+    },
+    "sizeDefault": {
+        "message": "Plattformstandard"
+    },
+    "sizeWide": {
+        "message": "Breit"
+    },
+    "sizeThin": {
+        "message": "Dünn"
+    },
+    "sizeHidden": {
+        "message": "Hidden"
+    },
+    "sizeOther": {
+        "message": "Andere"
+    },
+    "optionLight": {
+        "message": "Hell"
+    },
+    "optionDark": {
+        "message": "Dunkel"
+    },
+    "optionYes": {
+        "message": "Ja"
+    },
+    "optionNo": {
+        "message": "Nein"
+    },
+    "optionOk": {
+        "message": "Ok"
+    },
+    "optionCancel": {
+        "message": "Abbrechen"
+    },
+    "colorFormatRGB": {
+        "message": "RGB"
+    },
+    "colorFormatHSV": {
+        "message": "HSV"
+    },
+    "colorFormatHEX": {
+        "message": "HEX"
+    },
+    "colorRed": {
+        "message": "Rot"
+    },
+    "colorGreen": {
+        "message": "Grün"
+    },
+    "colorBlue": {
+        "message": "Blau"
+    },
+    "colorHue": {
+        "message": "Hut"
+    },
+    "colorSaturation": {
+        "message": "Sättigung"
+    },
+    "colorValue": {
+        "message": "Wert"
+    },
+    "colorAlpha": {
+        "message": "Alpha"
+    },
+    "overrideColor": {
+        "message": "Nur Farbe"
+    },
+    "overrideWidth": {
+        "message": "Nur Breite"
+    },
+    "overrideAll": {
+        "message": "Farbe & Breite"
+    },
+    "overrideNone": {
+        "message": "Keine"
+    },
+    "buttonSave": {
+        "message": "Speichern"
+    },
+    "messageSaved": {
+        "message": "Alle Änderungen wurden gespeichert!"
+    },
+    "messageUnsaved": {
+        "message": "Sie haben ungespeicherte Änderungen!"
+    },
+    "promptPrivateBrowsing": {
+        "message": "Benutzerdefinierte Scrollbars werden in $PRIVATEBROWSING$ -Fenstern nicht sichtbar sein, es sei denn, Sie geben dieser Erweiterung die Berechtigung zum Ausführen im $PRIVATEBROWSING$ -Modus.",
+        "placeholders": {
+            "privatebrowsing": {
+                "content": "$1"
+            }
+        }
+    },
+    "linkHelp": {
+        "message": "Hilfe"
+    },
+    "linkContribute": {
+        "message": "Mitwirken"
+    },
+    "linkDonate": {
+        "message": "Spenden"
+    },
+    "linkTranslate": {
+        "message": "Übersetzen"
+    },
+    "linkCredits": {
+        "message": "Credits"
+    },
+    "linkFeedback": {
+        "message": "Feedback"
+    },
+    "callToActionLearn": {
+        "message": "Lerne mehr..."
+    },
+    "privateBrowsingFirefox": {
+        "message": "Privates Surfen"
+    },
+    "privateBrowsingChrome": {
+        "message": "Incognito"
+    },
+    "privateBrowsingEdge": {
+        "message": "InPrivat"
+    },
+    "privateBrowsingOpera": {
+        "message": "Incognito"
+    },
+    "dialogChangesWillBeLost": {
+        "message": "Ihre ungespeicherten Änderungen gehen verloren. Sind Sie sicher, dass Sie fortfahren möchten?"
+    },
+    "dialogCannotBeUndone": {
+        "message": "Diese Aktion kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie fortfahren möchten?"
+    },
+    "dialogCannotDeleteDefault": {
+        "message": "Standard-Scrollbar kann nicht gelöscht werden. Bitte setzen Sie vor dem Löschen eine neue Standard-Scrollbar."
+    },
+    "profileActionNew": {
+        "message": "Neu"
+    },
+    "profileActionDuplicate": {
+        "message": "Duplicate"
+    },
+    "profileActionRename": {
+        "message": "Umbenennen"
+    },
+    "profileActionRemove": {
+        "message": "Entfernen"
+    },
+    "profileActionChangeDefault": {
+        "message": "Als Standard festlegen"
+    },
+    "defaultProfileName": {
+        "message": "Neue Scrollbar"
+    },
+    "migratedProfileName": {
+        "message": "Allgemein"
+    },
+    "options": {
+        "message": "Optionen"
+    },
+    "backupAndRestore": {
+        "message": "Sichern / Wiederherstellen"
+    },
+    "backupSection": {
+        "message": "Backup herunterladen"
+    },
+    "restoreSection": {
+        "message": "Aus Backup wiederherstellen"
+    },
+    "buttonSelectFile": {
+        "message": "Datei auswählen..."
+    },
+    "buttonRestore": {
+        "message": "Wiederherstellen"
+    },
+    "noFileSelected": {
+        "message": "Keine Datei ausgewählt"
+    },
+    "dialogInvalidBackup": {
+        "message": "Ungültige Sicherungsdatei"
+    },
+    "dialogPermissionRequired": {
+        "message": "Erforderliche Berechtigung fehlt. Bitte versuchen Sie es erneut."
+    },
+    "dialogDataOverwrite": {
+        "message": "Das Wiederherstellen dieser Sicherung wird Ihre bestehenden Einstellungen ersetzen. Dies kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie fortfahren möchten?"
+    },
+    "dialogBackupRestored": {
+        "message": "Sicherung wurde erfolgreich wiederhergestellt!"
+    },
+    "dialogChangesDetected": {
+        "message": "Ihre Einstellungen haben sich geändert. Möchten Sie diese Seite aktualisieren, um die neuesten Einstellungen zu laden?"
+    },
+    "dialogChangesDetectedWarning": {
+        "message": "Ihre ungespeicherten Änderungen gehen verloren."
+    },
+    "dialogOverwriteUnloadedChanges": {
+        "message": "Ihre Einstellungen wurden nach dem Laden dieser Seite geändert. Speichern Ihrer Änderungen kann vorherige Änderungen überschreiben. Sind Sie sicher, dass Sie fortfahren möchten?"
+    },
+    "changeProfileFor": {
+        "message": "Scrollbar bearbeiten für: $WEBSITE$",
+        "placeholders": {
+            "website": {
+                "content": "$1"
+            }
+        }
+    },
+    "profileUsingDefault": {
+        "message": "Standard verwenden ($PROFILENAME$)",
+        "placeholders": {
+            "profilename": {
+                "content": "$1"
+            }
+        }
+    },
+    "profileUsingNone": {
+        "message": "Scrollbar nicht anpassen"
+    },
+    "profileActionUseOnWebsite": {
+        "message": "Auf dieser Website verwenden"
+    },
+    "profileActionUseOnLocalFiles": {
+        "message": "Für lokale Dateien verwenden"
+    },
+    "errorInvalidDomain": {
+        "message": "Ungültiger Domainname eingegeben"
+    },
+    "errorRuleAlreadyExists": {
+        "message": "Regel für diese Domain existiert bereits"
+    },
+    "domain": {
+        "message": "Domäne"
+    },
+    "subdomainsOnly": {
+        "message": "Nur Subdomains"
+    },
+    "noRulesSet": {
+        "message": "Keine Website-Regeln festgelegt"
+    },
+    "noRulesFound": {
+        "message": "Keine Website-Regeln in der Suche gefunden"
+    },
+    "websiteRules": {
+        "message": "Website-Regeln"
+    },
+    "add": {
+        "message": "Neu"
+    },
+    "ruleActionChangeProfile": {
+        "message": "Scrollbar ändern..."
+    },
+    "profileMoveExistingRules": {
+        "message": "Es gibt Website-Regeln, die diese Scrollleiste verwenden. Welche Scrollbar sollen stattdessen diese Website-Regeln verwenden?"
+    },
+    "ruleNoProfileSet": {
+        "message": "SCROLLBAR MISSING"
+    },
+    "ruleInherit": {
+        "message": "Geerbt von $DOMAIN$",
+        "placeholders": {
+            "domain": {
+                "content": "$1"
+            }
+        }
+    },
+    "ruleSort": {
+        "message": "Sortieren nach"
+    },
+    "sortDomain": {
+        "message": "Domäne"
+    },
+    "search": {
+        "message": "Suchen"
+    },
+    "selectAll": {
+        "message": "Alle auswählen"
+    },
+    "deselectAll": {
+        "message": "Alle abwählen"
+    },
+    "deleteSelected": {
+        "message": "Ausgewählte löschen"
+    },
+    "changeSelected": {
+        "message": "Scrollleiste der ausgewählten Auswahl ändern"
+    },
+    "selectedRules": {
+        "message": "Alle ausgewählten Regeln"
+    },
+    "advancedHeader": {
+        "message": "Erweiterte Einstellungen"
+    },
+    "featureRequiredAdditionalPermission": {
+        "message": "Diese Funktion benötigt eine zusätzliche Berechtigung, bevor sie verwendet werden kann."
+    },
+    "popupRequiresAdditionalPermission": {
+        "message": "Um Informationen über die Einstellungen zu sehen, die auf der Website verwendet werden, benötigt das Add-on die Berechtigung zum Zugriff auf die Tabs Ihres Browsers."
+    },
+    "grantPermissionButton": {
+        "message": "Berechtigung erteilen"
+    },
+    "whatsNew": {
+        "message": "Was ist neu"
+    }
+}

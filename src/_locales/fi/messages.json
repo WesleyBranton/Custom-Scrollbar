@@ -1,0 +1,354 @@
+{
+    "extensionDescription": {
+        "message": "Anna selaimellesi henkilökohtainen kosketus räätälöityihin vierityspalkkeihin!"
+    },
+    "optionsTitle": {
+        "message": "$EXTENSIONNAME$ Asetukset",
+        "placeholders": {
+            "extensionname": {
+                "content": "$1"
+            }
+        }
+    },
+    "optionsSectionProfile": {
+        "message": "Scrollbar"
+    },
+    "optionsSectionPreview": {
+        "message": "Live esikatselu"
+    },
+    "optionsSectionWidth": {
+        "message": "Scrollbar width"
+    },
+    "optionsSectionButtons": {
+        "message": "Vierityspalkin painikkeet"
+    },
+    "optionsSectionThumbRadius": {
+        "message": "Vierityspalkin pyöreys"
+    },
+    "optionsSectionUseColors": {
+        "message": "Käytä omia värejä"
+    },
+    "optionsSectionThumb": {
+        "message": "Vierityspalkin peukalon väri"
+    },
+    "optionsSectionTrack": {
+        "message": "Vierityspalkin radan väri"
+    },
+    "optionsSectionOverride": {
+        "message": "Salli sivustojen ohittaa"
+    },
+    "optionsSectionAutoHide": {
+        "message": "Piilota vierityspalkki automaattisesti"
+    },
+    "optionsSectionAutoHideShort": {
+        "message": "Piilota automaattisesti"
+    },
+    "optionsFramesInherit": {
+        "message": "Sallitaanko upotettujen sivustojen periä vierityspalkin ulkonäkö pääsisällöstä?"
+    },
+    "optionsLocalFileProfile": {
+        "message": "Käytä tätä vierityspalkkia paikallisia tiedostoja katseltaessa"
+    },
+    "sizeDefault": {
+        "message": "Alustan Oletus"
+    },
+    "sizeWide": {
+        "message": "Laaja"
+    },
+    "sizeThin": {
+        "message": "Ohut"
+    },
+    "sizeHidden": {
+        "message": "Piilotettu"
+    },
+    "sizeOther": {
+        "message": "Jokin muu"
+    },
+    "optionLight": {
+        "message": "Vaalea"
+    },
+    "optionDark": {
+        "message": "Tumma"
+    },
+    "optionYes": {
+        "message": "Kyllä"
+    },
+    "optionNo": {
+        "message": "Ei"
+    },
+    "optionOk": {
+        "message": "Ok"
+    },
+    "optionCancel": {
+        "message": "Peruuta"
+    },
+    "colorFormatRGB": {
+        "message": "RGB"
+    },
+    "colorFormatHSV": {
+        "message": "HSV"
+    },
+    "colorFormatHEX": {
+        "message": "HEX"
+    },
+    "colorRed": {
+        "message": "Punainen"
+    },
+    "colorGreen": {
+        "message": "Vihreä"
+    },
+    "colorBlue": {
+        "message": "Sininen"
+    },
+    "colorHue": {
+        "message": "Värisävy"
+    },
+    "colorSaturation": {
+        "message": "Kylläisyys"
+    },
+    "colorValue": {
+        "message": "Arvo"
+    },
+    "colorAlpha": {
+        "message": "Alpha"
+    },
+    "overrideColor": {
+        "message": "Vain väri"
+    },
+    "overrideWidth": {
+        "message": "Vain leveys"
+    },
+    "overrideAll": {
+        "message": "Värin leveys"
+    },
+    "overrideNone": {
+        "message": "Ei mikään"
+    },
+    "buttonSave": {
+        "message": "Tallenna"
+    },
+    "messageSaved": {
+        "message": "Kaikki muutokset tallennettu!"
+    },
+    "messageUnsaved": {
+        "message": "Sinulla on tallentamattomia muutoksia!"
+    },
+    "promptPrivateBrowsing": {
+        "message": "Mukautetut vierityspalkit eivät näy $PRIVATEBROWSING$ ikkunassa, ellet anna tätä laajennusta käyttöoikeutta $PRIVATEBROWSING$ -tilassa.",
+        "placeholders": {
+            "privatebrowsing": {
+                "content": "$1"
+            }
+        }
+    },
+    "linkHelp": {
+        "message": "Ohje"
+    },
+    "linkContribute": {
+        "message": "Osallistu"
+    },
+    "linkDonate": {
+        "message": "Lahjoita"
+    },
+    "linkTranslate": {
+        "message": "Käännä"
+    },
+    "linkCredits": {
+        "message": "Tekijät"
+    },
+    "linkFeedback": {
+        "message": "Palaute"
+    },
+    "callToActionLearn": {
+        "message": "Lisätietoja..."
+    },
+    "privateBrowsingFirefox": {
+        "message": "Yksityinen Selaus"
+    },
+    "privateBrowsingChrome": {
+        "message": "Incognito"
+    },
+    "privateBrowsingEdge": {
+        "message": "Yksityinen"
+    },
+    "privateBrowsingOpera": {
+        "message": "Incognito"
+    },
+    "dialogChangesWillBeLost": {
+        "message": "Tallentamattomat muutokset menetetään. Oletko varma, että haluat jatkaa?"
+    },
+    "dialogCannotBeUndone": {
+        "message": "Tätä toimintoa ei voi peruuttaa. Oletko varma, että haluat jatkaa?"
+    },
+    "dialogCannotDeleteDefault": {
+        "message": "Oletusvierityspalkkia ei voi poistaa. Aseta uusi oletusvierityspalkki ennen poistamista."
+    },
+    "profileActionNew": {
+        "message": "Uusi"
+    },
+    "profileActionDuplicate": {
+        "message": "Duplicate"
+    },
+    "profileActionRename": {
+        "message": "Uudelleennimeä"
+    },
+    "profileActionRemove": {
+        "message": "Poista"
+    },
+    "profileActionChangeDefault": {
+        "message": "Aseta Oletukseksi"
+    },
+    "defaultProfileName": {
+        "message": "Uusi Vierityspalkki"
+    },
+    "migratedProfileName": {
+        "message": "Yleiset"
+    },
+    "options": {
+        "message": "Valinnat"
+    },
+    "backupAndRestore": {
+        "message": "Varmuuskopioi / Palauta"
+    },
+    "backupSection": {
+        "message": "Lataa varmuuskopio"
+    },
+    "restoreSection": {
+        "message": "Palauta varmuuskopiosta"
+    },
+    "buttonSelectFile": {
+        "message": "Valitse Tiedosto..."
+    },
+    "buttonRestore": {
+        "message": "Palauta"
+    },
+    "noFileSelected": {
+        "message": "Ei valittua tiedostoa"
+    },
+    "dialogInvalidBackup": {
+        "message": "Virheellinen varmuuskopiotiedosto"
+    },
+    "dialogPermissionRequired": {
+        "message": "Vaadittu käyttöoikeus puuttuu. Yritä uudelleen."
+    },
+    "dialogDataOverwrite": {
+        "message": "Tämän varmuuskopion palauttaminen korvaa nykyiset asetukset. Tätä ei voi perua. Oletko varma, että haluat jatkaa?"
+    },
+    "dialogBackupRestored": {
+        "message": "Varmuuskopiointi on onnistuneesti palautettu!"
+    },
+    "dialogChangesDetected": {
+        "message": "Asetuksesi ovat muuttuneet. Haluatko päivittää tämän sivun ladataksesi viimeisimmät asetukset?"
+    },
+    "dialogChangesDetectedWarning": {
+        "message": "Tallentamattomat muutokset menetetään."
+    },
+    "dialogOverwriteUnloadedChanges": {
+        "message": "Asetuksesi muuttuivat tämän sivun latauksen jälkeen. Muutosten tallentaminen saattaa korvata aiemmat muutokset. Oletko varma, että haluat jatkaa?"
+    },
+    "changeProfileFor": {
+        "message": "Vierityspalkin muokkaus: $WEBSITE$",
+        "placeholders": {
+            "website": {
+                "content": "$1"
+            }
+        }
+    },
+    "profileUsingDefault": {
+        "message": "Käytä oletusta ($PROFILENAME$)",
+        "placeholders": {
+            "profilename": {
+                "content": "$1"
+            }
+        }
+    },
+    "profileUsingNone": {
+        "message": "Älä mukauta vierityspalkkia"
+    },
+    "profileActionUseOnWebsite": {
+        "message": "Käytä tällä sivustolla"
+    },
+    "profileActionUseOnLocalFiles": {
+        "message": "Käytä paikallisille tiedostoille"
+    },
+    "errorInvalidDomain": {
+        "message": "Virheellinen verkkotunnus syötetty"
+    },
+    "errorRuleAlreadyExists": {
+        "message": "Tätä verkkotunnusta koskeva sääntö on jo olemassa"
+    },
+    "domain": {
+        "message": "Verkkotunnus"
+    },
+    "subdomainsOnly": {
+        "message": "Vain Aliverkkotunnukset"
+    },
+    "noRulesSet": {
+        "message": "Sivuston sääntöjä ei ole asetettu"
+    },
+    "noRulesFound": {
+        "message": "Sivuston sääntöjä ei löytynyt hausta"
+    },
+    "websiteRules": {
+        "message": "Sivuston Säännöt"
+    },
+    "add": {
+        "message": "Lisää"
+    },
+    "ruleActionChangeProfile": {
+        "message": "Vaihda Vierityspalkkia..."
+    },
+    "profileMoveExistingRules": {
+        "message": "On olemassa sääntöjä, jotka käyttivät tätä vierityspalkkia. Mikä vierityspalkki pitäisi käyttää näitä sivuston sääntöjä sen sijaan?"
+    },
+    "ruleNoProfileSet": {
+        "message": "KASVUSSAAJAN ASENTO"
+    },
+    "ruleInherit": {
+        "message": "Peritty $DOMAIN$",
+        "placeholders": {
+            "domain": {
+                "content": "$1"
+            }
+        }
+    },
+    "ruleSort": {
+        "message": "Järjestä Mukaan"
+    },
+    "sortDomain": {
+        "message": "Verkkotunnus"
+    },
+    "search": {
+        "message": "Etsi"
+    },
+    "selectAll": {
+        "message": "Valitse Kaikki"
+    },
+    "deselectAll": {
+        "message": "Poista Kaikki Valinnat"
+    },
+    "deleteSelected": {
+        "message": "Poista Valitut"
+    },
+    "changeSelected": {
+        "message": "Vaihda Valitun vierityspalkki"
+    },
+    "selectedRules": {
+        "message": "Kaikki valitut säännöt"
+    },
+    "advancedHeader": {
+        "message": "Edistyneet Asetukset"
+    },
+    "featureRequiredAdditionalPermission": {
+        "message": "Tämä ominaisuus vaatii lisäluvan, ennen kuin sitä voidaan käyttää."
+    },
+    "popupRequiresAdditionalPermission": {
+        "message": "Jos haluat nähdä tietoja sivuilla käytetyistä asetuksista, lisäosa tarvitsee luvan käyttää selaimesi välilehtejä."
+    },
+    "grantPermissionButton": {
+        "message": "Myönnä Käyttöoikeus"
+    },
+    "whatsNew": {
+        "message": "Mitä Uutta"
+    }
+}
