@@ -1,4 +1,7 @@
 {
+    "extensionName": {
+        "message": "Custom Scrollbars"
+    },
     "extensionDescription": {
         "message": "Nadaj swojej przeglądarce indywidualny charakter dzięki spersonalizowanym paskom przewijania!"
     },

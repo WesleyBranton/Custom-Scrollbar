@@ -1,4 +1,7 @@
 {
+    "extensionName": {
+        "message": "Custom Scrollbars"
+    },
     "extensionDescription": {
         "message": "Anna selaimellesi henkilökohtainen kosketus räätälöityihin vierityspalkkeihin!"
     },

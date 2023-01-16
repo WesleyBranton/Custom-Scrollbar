@@ -1,4 +1,7 @@
 {
+    "extensionName": {
+        "message": "Custom Scrollbars"
+    },
     "extensionDescription": {
         "message": "¡Dale a tu navegador un toque personal con barras de desplazamiento personalizadas!"
     },

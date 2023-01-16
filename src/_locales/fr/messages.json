@@ -1,4 +1,7 @@
 {
+    "extensionName": {
+        "message": "Custom Scrollbars"
+    },
     "extensionDescription": {
         "message": "Donnez un aspect original à votre navigateur avec des barres de défilement personnalisées !"
     },

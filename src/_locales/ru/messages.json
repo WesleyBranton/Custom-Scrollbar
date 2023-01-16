@@ -1,4 +1,7 @@
 {
+    "extensionName": {
+        "message": "Custom Scrollbars"
+    },
     "extensionDescription": {
         "message": "Предоставьте вашему браузеру личный контакт с настраиваемыми полосами прокрутки!"
     },

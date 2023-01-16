@@ -1,4 +1,7 @@
 {
+    "extensionName": {
+        "message": "Custom Scrollbars"
+    },
     "extensionDescription": {
         "message": "Geben Sie Ihrem Browser eine persönliche Note mit angepassten Scrollbars!"
     },
