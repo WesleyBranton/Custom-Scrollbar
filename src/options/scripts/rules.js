@@ -486,10 +486,11 @@ function checkIfListIsEmpty() {
  */
 function userInputDomainValidation(input, checkbox, error) {
     const domainRegex = /^(?:(?![-])[a-zA-Z0-9-]+(?<!-)\.)+[a-zA-Z]{2,}$/;
+    const ipv4Regex = /^(\b25[0-5]|\b2[0-4][0-9]|\b[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/;
     error.textContent = '';
     input = input.trim();
 
-    if (!domainRegex.test(input)) {
+    if (!domainRegex.test(input) && !ipv4Regex.test(input) && input != 'localhost') {
         error.textContent = browser.i18n.getMessage('errorInvalidDomain');
         return false;
     }
