@@ -70,7 +70,6 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth, butto
         const main = new CSSRule('::-webkit-scrollbar');
         main.set('width', width, overrideWidth);
         main.set('height', width, overrideWidth);
-        main.set('display', 'block', true);
         css.push(main);
 
         const thumb = new CSSRule('::-webkit-scrollbar-thumb');
