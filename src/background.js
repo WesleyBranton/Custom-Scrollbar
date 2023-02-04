@@ -329,6 +329,11 @@ function updateCSS(message, sender) {
  */
 function getCSS(sender, callback) {
     getScrollbar(sender, (scrollbar) => {
+        if (scrollbar == null) {
+            callback('');
+            return;
+        }
+
         scrollbar = loadWithDefaults(scrollbar);
         const css = generateCSS(
             scrollbar.width,
@@ -351,15 +356,43 @@ function getCSS(sender, callback) {
  */
 function getScrollbar(sender, callback) {
     getRule(sender, (scrollbarId) => {
+        if (scrollbarId == 'profile_none') {
+            callback(null);
+            return;
+        }
+
         browser.storage.local.get(scrollbarId, (scrollbar) => {
             scrollbar = scrollbar[Object.keys(scrollbar)[0]];
 
             if (typeof scrollbar == 'undefined') {
-                if (scrollbarId == 'profile_' + data.defaultProfile) {
-                    console.error('Default scrollbar "%s" cannot be loaded from storage.', scrollbarId);
-                } else {
-                    console.error('Scrollbar "%s" cannot be loaded from storage. Using default scrollbar.', scrollbarId);
-                }
+                console.error('Scrollbar "%s" cannot be loaded from storage. Using default scrollbar.', scrollbarId);
+                getDefaultScrollbar(callback);
+                return;
+            }
+
+            callback(scrollbar);
+        });
+    });
+}
+
+/**
+ * Get default scrollbar from storage and send to callback
+ * @param {Function} callback
+ */
+function getDefaultScrollbar(callback) {
+    browser.storage.local.get('defaultProfile', (scrollbarId) => {
+        scrollbarId = `profile_${scrollbarId.defaultProfile}`;
+
+        if (scrollbarId == 'profile_none') {
+            callback(null);
+            return;
+        }
+
+        browser.storage.local.get(scrollbarId, (scrollbar) => {
+            scrollbar = scrollbar[Object.keys(scrollbar)[0]];
+
+            if (typeof scrollbar == 'undefined') {
+                console.error('Scrollbar "%s" cannot be loaded from storage.', scrollbarId);
             }
 
             callback(scrollbar);
