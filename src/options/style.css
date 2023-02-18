@@ -246,6 +246,16 @@ body::-webkit-scrollbar {
     overflow-y: auto;
 }
 
+#rule-list .text {
+    display: flex;
+    align-items: center;
+}
+
+#rule-list .text .rule-domain {
+    flex: 1;
+    margin-left: 0.5em;
+}
+
 #rule-list .text-shortcut > label {
     color: var(--text-color);
     margin-right: 1em;
