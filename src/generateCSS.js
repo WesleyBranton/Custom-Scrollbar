@@ -63,7 +63,7 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth, butto
                 break;
         }
 
-        const brightFactor = (isLightColor(colorThumb)) ? 1 : -1;
+        const brightFactor = (isLightColor(colorThumb)) ? -1 : 1;
         const hoverFactor = 10;
         const activeFactor = 30;
 
@@ -197,21 +197,51 @@ function changeBrightness(color, percentage) {
 }
 
 /**
+ * Convert HEX color to RGB color
+ * @param {String} hex
+ * @returns RGB object
+ */
+function hexToRgb(hex) {
+    if (hex.charAt(0) == '#') {
+        hex = hex.substring(1);
+    }
+
+    return {
+        red: parseInt(hex.substring(0, 2), 16),
+        green: parseInt(hex.substring(2, 4), 16),
+        blue: parseInt(hex.substring(4, 6), 16)
+    };
+}
+
+/**
+ * Get relative luminance
+ *    As defined by: https://www.w3.org/TR/WCAG20/#relativeluminancedef
+ * @param {String} hex Color (HEX format)
+ * @returns Luminance Value (0 = light, 1 = dark)
+ */
+function getRelativeLuminance(hex) {
+    const color = hexToRgb(hex);
+
+    for (const rgb of Object.keys(color)) {
+        color[rgb] /= 255;
+
+        if (color[rgb] <= 0.03928) {
+            color[rgb] /= 12.92;
+        } else {
+            color[rgb] = Math.pow((color[rgb] + 0.055) / 1.055, 2.4);
+        }
+    }
+
+    return 0.2126 * color.red + 0.7152 * color.green + 0.0722 * color.blue;
+}
+
+/**
  * Determine if the color is light or dark
- * @param {String} color
+ * @param {String} color Color (HEX format)
  * @returns Is light
  */
 function isLightColor(color) {
-    if (color.charAt(0) == '#') {
-        color = color.substring(1);
-    }
-
-    const r = parseInt(color.substring(0, 2), 16);
-    const g = parseInt(color.substring(2, 4), 16);
-    const b = parseInt(color.substring(4, 6), 16);
-    const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-
-    return luma < 40;
+    return Math.pow(getRelativeLuminance(color), 0.425) > 0.5;
 }
 
 /**
