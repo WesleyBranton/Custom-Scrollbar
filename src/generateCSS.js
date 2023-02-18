@@ -63,9 +63,7 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth, butto
                 break;
         }
 
-        const brightFactor = (isLightColor(colorThumb)) ? -1 : 1;
-        const hoverFactor = 10;
-        const activeFactor = 30;
+        const brightFactor = getBestBrightnessFactor(colorThumb, colorTrack);
 
         const main = new CSSRule('::-webkit-scrollbar');
         main.set('width', width, overrideWidth);
@@ -85,11 +83,11 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth, butto
         css.push(thumb);
 
         const thumbHover = new CSSRule('::-webkit-scrollbar-thumb:hover');
-        thumbHover.set('background', changeBrightness(colorThumb, hoverFactor * brightFactor), overrideColor);
+        thumbHover.set('background', changeBrightness(colorThumb, HOVER_FACTOR * brightFactor), overrideColor);
         css.push(thumbHover);
 
         const thumbActive = new CSSRule('::-webkit-scrollbar-thumb:active');
-        thumbActive.set('background', changeBrightness(colorThumb, activeFactor * brightFactor), overrideColor);
+        thumbActive.set('background', changeBrightness(colorThumb, ACTIVE_FACTOR * brightFactor), overrideColor);
         css.push(thumbActive);
 
         const track = new CSSRule('::-webkit-scrollbar-track');
@@ -245,6 +243,49 @@ function isLightColor(color) {
 }
 
 /**
+ * Get contrast between two colors
+ * @param {String} hex1 Color (HEX format)
+ * @param {String} hex2 Color (HEX format)
+ * @returns Contrast ratio
+ */
+function getColorContrast(hex1, hex2) {
+    const luma1 = getRelativeLuminance(hex1);
+    const luma2 = getRelativeLuminance(hex2);
+    return (Math.max(luma1, luma2) + 0.05) / (Math.min(luma1, luma2) + 0.05);
+}
+
+/**
+ * Determine if thumb should be brighter or darker when hovered or clicked
+ * @param {String} thumb  Color (HEX format)
+ * @param {String} track  Color (HEX format)
+ * @returns 1 = Brighten, -1 = Darken
+ */
+function getBestBrightnessFactor(thumb, track) {
+    const suggestedFactor = (isLightColor(thumb)) ? -1 : 1;
+
+    const suggestedHover = changeBrightness(thumb, HOVER_FACTOR * suggestedFactor);
+    const otherHover = changeBrightness(thumb, HOVER_FACTOR * suggestedFactor * -1);
+    const suggestedHoverContrast = getColorContrast(suggestedHover, track);
+    const otherHoverContrast = getColorContrast(otherHover, track);
+
+    if (suggestedHoverContrast >= 4 || suggestedHoverContrast > otherHoverContrast) {
+        console.log('Hover ok:', suggestedHoverContrast, otherHoverContrast);
+        return suggestedFactor;
+    }
+
+    const suggestedActive = changeBrightness(thumb, ACTIVE_FACTOR * suggestedFactor);
+    const otherActive = changeBrightness(thumb, ACTIVE_FACTOR * suggestedFactor * -1);
+    const suggestedActiveContrast = getColorContrast(suggestedActive, track);
+    const otherActiveContrast = getColorContrast(otherActive, track);
+
+    if (suggestedActiveContrast >= 4 || suggestedActiveContrast > otherActiveContrast) {
+        return suggestedFactor;
+    }
+
+    return suggestedFactor * -1;
+}
+
+/**
  * Class used to store and create CSS rules
  */
 class CSSRule {
@@ -299,3 +340,6 @@ class CSSRule {
     }
 
 }
+
+const HOVER_FACTOR = 10;
+const ACTIVE_FACTOR = 30;
