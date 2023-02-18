@@ -96,12 +96,19 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth, butto
         track.set('background', colorTrack, overrideColor);
         css.push(track);
 
+        const corner = new CSSRule('::-webkit-scrollbar-corner');
+        corner.set('background', colorTrack, overrideColor);
+        css.push(corner);
+
         if (autoHide) {
             const trackNoHover = new CSSRule(':not(body):not(:hover):not(:focus)::-webkit-scrollbar-track');
             trackNoHover.set('background', 'transparent', true);
             css.push(trackNoHover);
-        }
 
+            const cornerNoHover = new CSSRule(':not(body):not(:hover):not(:focus)::-webkit-scrollbar-corner');
+            cornerNoHover.set('backbround', 'transparent', true);
+            css.push(cornerNoHover);
+        }
 
         if (buttons != 'none') {
             const images = {
