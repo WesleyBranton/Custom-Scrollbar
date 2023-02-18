@@ -77,7 +77,7 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth, butto
         thumb.set('border-radius', `calc(${width} / 2 * (${thumbRadius} / 100))`, true);
 
         if (autoHide) {
-            const thumbNoHover = new CSSRule(':not(body):not(:hover):not(focus)::-webkit-scrollbar-thumb');
+            const thumbNoHover = new CSSRule(':not(body):not(:hover):not(:focus)::-webkit-scrollbar-thumb');
             thumbNoHover.set('background', 'transparent', true);
             css.push(thumbNoHover);
         }
@@ -94,14 +94,14 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth, butto
 
         const track = new CSSRule('::-webkit-scrollbar-track');
         track.set('background', colorTrack, overrideColor);
+        css.push(track);
 
         if (autoHide) {
-            const trackNoHover = new CSSRule(':not(body):not(:hover):not(focus)::-webkit-scrollbar-track');
+            const trackNoHover = new CSSRule(':not(body):not(:hover):not(:focus)::-webkit-scrollbar-track');
             trackNoHover.set('background', 'transparent', true);
             css.push(trackNoHover);
         }
 
-        css.push(track);
 
         if (buttons != 'none') {
             const images = {
@@ -120,7 +120,7 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth, butto
             css.push(button);
 
             if (autoHide) {
-                const buttonNoHover = new CSSRule(':not(body):not(:hover):not(focus)::-webkit-scrollbar-button');
+                const buttonNoHover = new CSSRule(':not(body):not(:hover):not(:focus)::-webkit-scrollbar-button');
                 buttonNoHover.set('display', 'none', true);
                 css.push(buttonNoHover);
             }
