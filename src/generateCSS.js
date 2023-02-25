@@ -109,11 +109,13 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth, butto
         }
 
         if (buttons != 'none') {
+            arrows = (isLightColor(colorThumb)) ? 'dark' : 'light';
+
             const images = {
-                up: browser.runtime.getURL(`images/components/${buttons}/up.svg`),
-                down: browser.runtime.getURL(`images/components/${buttons}/down.svg`),
-                left: browser.runtime.getURL(`images/components/${buttons}/left.svg`),
-                right: browser.runtime.getURL(`images/components/${buttons}/right.svg`)
+                up: browser.runtime.getURL(`images/components/${arrows}/up.svg`),
+                down: browser.runtime.getURL(`images/components/${arrows}/down.svg`),
+                left: browser.runtime.getURL(`images/components/${arrows}/left.svg`),
+                right: browser.runtime.getURL(`images/components/${arrows}/right.svg`)
             }
 
             const button = new CSSRule('::-webkit-scrollbar-button');

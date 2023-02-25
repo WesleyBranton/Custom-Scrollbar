@@ -108,6 +108,7 @@ function loadScrollbar(id) {
             document.settings.override.value = scrollbar.allowOverride;
             document.settings.customWidthValue.value = scrollbar.customWidthValue;
             document.settings.customWidthUnit.value = scrollbar.customWidthUnit;
+            if (scrollbar.buttons == 'light' || scrollbar.buttons == 'dark') scrollbar.buttons = 'auto';
             document.settings.buttons.value = scrollbar.buttons;
             document.settings.thumbRadius.value = scrollbar.thumbRadius;
             document.settings.autoHide.value = scrollbar.autoHide;
@@ -748,13 +749,12 @@ function updateSelectedProfileInDropdown() {
             // Fill buttons information
             switch (profile.buttons) {
                 case 'light':
-                    buttonsOutput.textContent = browser.i18n.getMessage('optionLight');
-                    break;
                 case 'dark':
-                    buttonsOutput.textContent = browser.i18n.getMessage('optionDark');
+                case 'auto':
+                    buttonsOutput.textContent = browser.i18n.getMessage('optionYes');
                     break;
                 default:
-                    buttonsOutput.textContent = browser.i18n.getMessage('overrideNone');
+                    buttonsOutput.textContent = browser.i18n.getMessage('optionNo');
                     break;
             }
 

@@ -687,13 +687,12 @@ function clear() {
             // Fill buttons information
             switch (profile.buttons) {
                 case 'light':
-                    buttonsOutput.textContent = browser.i18n.getMessage('optionLight');
-                    break;
                 case 'dark':
-                    buttonsOutput.textContent = browser.i18n.getMessage('optionDark');
+                case 'auto':
+                    buttonsOutput.textContent = browser.i18n.getMessage('optionYes');
                     break;
                 default:
-                    buttonsOutput.textContent = browser.i18n.getMessage('overrideNone');
+                    buttonsOutput.textContent = browser.i18n.getMessage('optionNo');
                     break;
             }
 
