@@ -114,7 +114,7 @@ function saveRules() {
 
             const object = {
                 localFileProfile: localFileProfile,
-                framesInherit: settings.framesInherit.value == 'yes',
+                framesInherit: settings.framesInherit.checked,
                 rules: temp
             };
         
@@ -571,7 +571,7 @@ function init() {
 
         // Load advanced setting
         data.framesInherit = (typeof data.framesInherit == 'boolean') ? data.framesInherit : true;
-        settings.framesInherit.value = (data.framesInherit) ? 'yes' : 'no';
+        settings.framesInherit.checked = data.framesInherit;
 
         const localProfileSelectionDropdown = document.getElementById('profileSelectionForLocalFileProfile');
         reloadProfileSelection(localProfileSelectionDropdown, () => {

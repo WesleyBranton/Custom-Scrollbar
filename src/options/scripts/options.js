@@ -8,7 +8,7 @@
 function load() {
     showProgressBar(true);
     browser.storage.local.get(['unsubscribedFromAllUpdateNotifications'], (data) => {
-        document.settings.unsubscribedFromAllUpdateNotifications.value = (data.unsubscribedFromAllUpdateNotifications) ? true : false;
+        document.settings.unsubscribedFromAllUpdateNotifications.checked = !data.unsubscribedFromAllUpdateNotifications;
         showProgressBar(false);
     });
 }
@@ -20,7 +20,7 @@ function save() {
     showProgressBar(true);
     
     const storage = {
-        unsubscribedFromAllUpdateNotifications: document.settings.unsubscribedFromAllUpdateNotifications.value == 'true'
+        unsubscribedFromAllUpdateNotifications: !document.settings.unsubscribedFromAllUpdateNotifications.checked
     };
 
     browser.storage.local.set(storage, () => {

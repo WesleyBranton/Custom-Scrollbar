@@ -30,8 +30,8 @@ function saveScrollbar() {
         () => {
             showProgressBar(true);
 
-            const colTrack = (document.settings.customColors.value == 'yes') ? colorPickerTrack.color.hex8String : null;
-            const colThumb = (document.settings.customColors.value == 'yes') ? colorPickerThumb.color.hex8String : null;
+            const colTrack = (document.settings.customColors.checked) ? colorPickerTrack.color.hex8String : null;
+            const colThumb = (document.settings.customColors.checked) ? colorPickerThumb.color.hex8String : null;
             const profileName = document.getElementById('profileSelection').options[document.getElementById('profileSelection').selectedIndex].textContent.trim();
         
             const profileData = {
@@ -40,9 +40,9 @@ function saveScrollbar() {
                 colorTrack: colTrack,
                 colorThumb: colThumb,
                 allowOverride: parseInt(document.settings.override.value),
-                buttons: document.settings.buttons.value,
+                buttons: (document.settings.buttons.checked) ? 'auto' : 'none',
                 thumbRadius: parseInt(document.settings.thumbRadius.value),
-                autoHide: parseInt(document.settings.autoHide.value)
+                autoHide: (document.settings.autoHide.checked) ? 1 : 0
             };
         
             if (profileData.width == 'other') {
@@ -100,7 +100,7 @@ function loadScrollbar(id) {
                 return;
             }
 
-            document.settings.customColors.value = (!scrollbar.colorThumb || !scrollbar.colorTrack) ? 'no' : 'yes';
+            document.settings.customColors.checked = !(!scrollbar.colorThumb || !scrollbar.colorTrack);
 
             scrollbar = loadWithDefaults(scrollbar);
             if (scrollbar.width == 'unset') scrollbar.width = 'auto';
@@ -109,11 +109,11 @@ function loadScrollbar(id) {
             document.settings.customWidthValue.value = scrollbar.customWidthValue;
             document.settings.customWidthUnit.value = scrollbar.customWidthUnit;
             if (scrollbar.buttons == 'light' || scrollbar.buttons == 'dark') scrollbar.buttons = 'auto';
-            document.settings.buttons.value = scrollbar.buttons;
+            document.settings.buttons.checked = scrollbar.buttons == 'auto';
             document.settings.thumbRadius.value = scrollbar.thumbRadius;
-            document.settings.autoHide.value = scrollbar.autoHide;
+            document.settings.autoHide.checked = scrollbar.autoHide == 1;
 
-            previousToggleValue = document.settings.customColors.value;
+            previousToggleValue = document.settings.customColors.checked;
             toggleColorSettings();
 
             colorPickerThumb.color.hex8String = (scrollbar.colorThumb) ? scrollbar.colorThumb : defaults.colorThumb;
@@ -348,12 +348,12 @@ function generateUnconflictingProfileName(name, id) {
 function getNewCSS() {
     if (document.settings.profile.value != 'none') {
         const width = document.settings.width.value;
-        const colThumb = (document.settings.customColors.value == 'yes') ? colorPickerThumb.color.hex8String : null;
-        const colTrack = (document.settings.customColors.value == 'yes') ? colorPickerTrack.color.hex8String : null;
+        const colThumb = (document.settings.customColors.checked) ? colorPickerThumb.color.hex8String : null;
+        const colTrack = (document.settings.customColors.checked) ? colorPickerTrack.color.hex8String : null;
         const customWidth = (document.settings.width.value == 'other') ? document.settings.customWidthValue.value + document.settings.customWidthUnit.value : null;
-        const buttons = document.settings.buttons.value;
+        const buttons = (document.settings.buttons.checked) ? 'auto' : 'none';
         const thumbRadius = parseInt(document.settings.thumbRadius.value);
-        const autoHide = parseInt(document.settings.autoHide.value);
+        const autoHide = (document.settings.autoHide.checked) ? 1 : 0;
 
         return generateCSS(width, colTrack, colThumb, 0, customWidth, buttons, thumbRadius, autoHide);
     } else {
@@ -544,8 +544,8 @@ function validateColor(input, max, original, percentage) {
  * Show/hide custom colors section
  */
 function toggleColorSettings() {
-    if (document.settings.customColors.value == 'yes') {
-        if (previousToggleValue != 'yes') {
+    if (document.settings.customColors.checked) {
+        if (!previousToggleValue) {
             colorPickerThumb.color.hex8String = defaults.colorThumb;
             colorPickerTrack.color.hex8String = defaults.colorTrack;
         }
@@ -554,7 +554,7 @@ function toggleColorSettings() {
         document.getElementById('only-colors').classList.add('hide');
     }
 
-    previousToggleValue = document.settings.customColors.value;
+    previousToggleValue = document.settings.customColors.checked;
 }
 
 /**
