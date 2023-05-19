@@ -340,28 +340,32 @@
 
                 <div class="panel-section-separator"></div>
 
-                <section class="panel-section">
-                    <label data-i18n="optionsSectionOverride"></label>
-                    <div>
-                        <!-- Set using bit-style setting 
-                1 is true and 0 is false
-                digits are: width, color -->
-                        <input id="override-1" type="radio" name="override" value="1">
-                        <label for="override-1" data-i18n="overrideColor"></label>
-                        <br>
-
-                        <input id="override-10" type="radio" name="override" value="10">
-                        <label for="override-10" data-i18n="overrideWidth"></label>
-                        <br>
-
-                        <input id="override-11" type="radio" name="override" value="11">
-                        <label for="override-11" data-i18n="overrideAll"></label>
-                        <br>
-
-                        <input id="override-0" type="radio" name="override" value="0">
-                        <label for="override-0" data-i18n="overrideNone"></label>
-                    </div>
+                <section id="advanced-settings-button" class="panel-section has-help help-row collapse-header" data-collapsible-state="close" data-collapse-id="advanced-settings" tabindex="0">
+                    <h4 data-i18n="advancedHeader"></h4>
                 </section>
+
+                <div id="advanced-settings" class="collapse-panel">
+                    <section class="panel-section">
+                        <label data-i18n="optionsSectionOverride"></label>
+                        <div>
+                            <!-- Set using bit-style setting 1 is true and 0 is false digits are: width, color -->
+                            <input id="override-1" type="radio" name="override" value="1">
+                            <label for="override-1" data-i18n="overrideColor"></label>
+                            <br>
+    
+                            <input id="override-10" type="radio" name="override" value="10">
+                            <label for="override-10" data-i18n="overrideWidth"></label>
+                            <br>
+    
+                            <input id="override-11" type="radio" name="override" value="11">
+                            <label for="override-11" data-i18n="overrideAll"></label>
+                            <br>
+    
+                            <input id="override-0" type="radio" name="override" value="0">
+                            <label for="override-0" data-i18n="overrideNone"></label>
+                        </div>
+                    </section>
+                </div>
 
                 <div class="panel-section-separator"></div>
 
