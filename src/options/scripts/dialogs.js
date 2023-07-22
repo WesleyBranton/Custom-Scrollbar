@@ -4,14 +4,17 @@
 
 /**
  * Show dialog on screen
+ * @param {String} title
  * @param {String} message
  * @param {String} type
  * @param {Function} yesAction
  * @param {Function} noAction
  */
-function openDialog(message, type, yesAction, noAction) {
+function openDialog(title, message, type, yesAction, noAction) {
     const dialog = document.getElementById('dialog');
     const text = document.getElementById('dialog-text');
+
+    document.getElementById('dialog-header-text').textContent = title;
 
     if (message != null && typeof message != 'string') {
         text.textContent = '';
@@ -52,42 +55,46 @@ function closeDialog() {
 
 /**
  * Show user action confirmation dialog
+ * @param {String} title
  * @param {String} message
  * @param {Function} yesAction
  * @param {Function} noAction
  * @param {boolean} skip
  */
-function confirmAction(message, yesAction, noAction, skip) {
+function confirmAction(title, message, yesAction, noAction, skip) {
     if (skip) {
         yesAction();
     } else {
-        openDialog(message, 'confirmation', yesAction, noAction);
+        openDialog(title, message, 'confirmation', yesAction, noAction);
         document.getElementById('confirmation-no').focus();
     }
 }
 
 /**
  * Show user general alert
+ * @param {String} title
  * @param {String} message
  * @param {Function} yesAction
  * @param {boolean} skip
  */
-function showAlert(message, yesAction, skip) {
+function showAlert(title, message, yesAction, skip) {
     if (skip) {
         yesAction();
     } else {
-        openDialog(message, 'popup', yesAction, null);
+        openDialog(title, message, 'popup', yesAction, null);
         document.getElementById('popup-yes').focus();
     }
 }
 
 /**
  * Prompt user for text input
+ * @param {String} title
+ * @param {String} message
  * @param {Function} yesAction
  * @param {Function} noAction
  * @param {String} prefill
  */
-function showPrompt(label, yesAction, noAction, prefill) {
+function showPrompt(title, label, yesAction, noAction, prefill) {
     const text = document.getElementById('dialog-input-label');
     if (label == null) {
         text.classList.add('hide');
@@ -98,7 +105,7 @@ function showPrompt(label, yesAction, noAction, prefill) {
 
     const input = document.getElementById('dialog-input');
     input.value = prefill.trim();
-    openDialog('', 'prompt', yesAction, noAction);
+    openDialog(title, '', 'prompt', yesAction, noAction);
     input.focus();
     input.selectionStart = prefill.trim().length;
     input.selectionEnd = prefill.trim().length;
@@ -106,12 +113,13 @@ function showPrompt(label, yesAction, noAction, prefill) {
 
 /**
  * Prompt user for dropdown input
+ * @param {String} title
  * @param {String} message
  * @param {String} label
  * @param {Function} yesAction
  * @param {Function} noAction
  */
-function showDowndown(message, label, yesAction, noAction) {
+function showDowndown(title, message, label, yesAction, noAction) {
     const text = document.getElementById('dialog-dropdown-label');
     const input = document.getElementById('dialog-dropdown');
 
@@ -122,12 +130,13 @@ function showDowndown(message, label, yesAction, noAction) {
         text.textContent = label + ':';
     }
 
-    openDialog(message, 'dropdown', yesAction, noAction);
+    openDialog(title, message, 'dropdown', yesAction, noAction);
     input.focus();
 }
 
 /**
  * Prompt user for new website rule
+ * @param {String} title
  * @param {String} message
  * @param {String} inputText
  * @param {String} dropdownText
@@ -136,7 +145,7 @@ function showDowndown(message, label, yesAction, noAction) {
  * @param {Function} noAction
  * @param {Function} validate
  */
-function showRuleAdd(message, inputText, dropdownText, checkboxText, yesAction, noAction, validate) {
+function showRuleAdd(title, message, inputText, dropdownText, checkboxText, yesAction, noAction, validate) {
     const input = document.getElementById('dialog-input');
     const inputLabel = document.getElementById('dialog-input-label');
     const dropdownLabel = document.getElementById('dialog-dropdown-label');
@@ -165,7 +174,7 @@ function showRuleAdd(message, inputText, dropdownText, checkboxText, yesAction, 
 
     validation = (validate) ? validate : () => {};
 
-    openDialog(message, 'ruleadd', yesAction, noAction);
+    openDialog(title, message, 'ruleadd', yesAction, noAction);
     input.focus();
 }
 

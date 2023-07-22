@@ -353,6 +353,7 @@ function checkForStorageChanges(keys, changes, area) {
 
     if (unloadedChanges) {
         confirmAction(
+            browser.i18n.getMessage('dialogChangesDetectedTitle'),
             [browser.i18n.getMessage('dialogChangesDetected'), browser.i18n.getMessage('dialogChangesDetectedWarning')],
             init,
             null,

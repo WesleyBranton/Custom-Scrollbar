@@ -162,7 +162,6 @@ body::-webkit-scrollbar {
 
 #dialog .dialog-footer {
     display: none;
-    text-align: right;
 }
 
 #dialog .dialog-footer > button:first-of-type {
@@ -198,6 +197,7 @@ body::-webkit-scrollbar {
     color: red;
     display: block;
     margin-bottom: 1em;
+    text-align: left;
 }
 
 #dialog #dialog-checkbox-container {

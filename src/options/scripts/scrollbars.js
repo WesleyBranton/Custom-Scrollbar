@@ -26,6 +26,7 @@ function init() {
  */
 function saveScrollbar() {
     confirmAction(
+        browser.i18n.getMessage('dialogSaveProfileTitle'),
         browser.i18n.getMessage('dialogOverwriteUnloadedChanges'),
         () => {
             showProgressBar(true);
@@ -226,6 +227,7 @@ function removeProfile() {
                     dropdownNoButton.classList.add('hide');
 
                     showDowndown(
+                        browser.i18n.getMessage('dialogChangeProfileTitle'),
                         browser.i18n.getMessage('profileMoveExistingRules'),
                         null,
                         (to) => {
@@ -876,6 +878,7 @@ document.getElementById('dialog-dropdown').addEventListener('change', () => {
 
 document.settings.profile.addEventListener('change', () => {
     confirmAction(
+        browser.i18n.getMessage('dialogChangesWillBeLostTitle'),
         browser.i18n.getMessage('dialogChangesWillBeLost'),
         function() {
             loadScrollbar(document.settings.profile.value)
@@ -888,6 +891,7 @@ document.settings.profile.addEventListener('change', () => {
 });
 document.getElementById('profile-duplicate').addEventListener('click', () => {
     confirmAction(
+        browser.i18n.getMessage('dialogChangesWillBeLostTitle'),
         browser.i18n.getMessage('dialogChangesWillBeLost'),
         duplicateProfile,
         null,
@@ -896,6 +900,7 @@ document.getElementById('profile-duplicate').addEventListener('click', () => {
 });
 document.getElementById('profile-add').addEventListener('click', () => {
     confirmAction(
+        browser.i18n.getMessage('dialogChangesWillBeLostTitle'),
         browser.i18n.getMessage('dialogChangesWillBeLost'),
         addProfile,
         null,
@@ -905,6 +910,7 @@ document.getElementById('profile-add').addEventListener('click', () => {
 document.getElementById('profile-rename').addEventListener('click', () => {
     const selector = document.getElementById('profileSelection');
     showPrompt(
+        browser.i18n.getMessage('dialogRenameProfileTitle'),
         null,
         renameProfile,
         null,
@@ -914,6 +920,7 @@ document.getElementById('profile-rename').addEventListener('click', () => {
 document.getElementById('profile-remove').addEventListener('click', () => {
     if (selectedProfile == defaultProfile) {
         showAlert(
+            browser.i18n.getMessage('dialogRemoveProfileTitle'),
             browser.i18n.getMessage('dialogCannotDeleteDefault'),
             null,
             false
@@ -922,6 +929,7 @@ document.getElementById('profile-remove').addEventListener('click', () => {
     }
 
     confirmAction(
+        browser.i18n.getMessage('dialogRemoveProfileTitle'),
         browser.i18n.getMessage('dialogCannotBeUndone'),
         removeProfile,
         null,
