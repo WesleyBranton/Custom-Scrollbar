@@ -87,6 +87,7 @@ function parseRules(raw) {
  */
 function saveRules() {
     confirmAction(
+        browser.i18n.getMessage('dialogSaveRulesTitle'),
         browser.i18n.getMessage('dialogOverwriteUnloadedChanges'),
         () => {
             showProgressBar(true);
@@ -303,6 +304,7 @@ function getSelected() {
  */
 function bulkDelete() {
     confirmAction(
+        browser.i18n.getMessage('dialogDeleteRulesTitle'),
         browser.i18n.getMessage('dialogCannotBeUndone'),
         () => {
             for (const item of getSelected()) {
@@ -325,6 +327,7 @@ function bulkDelete() {
  */
 function bulkChangeProfile() {
     showDowndown(
+        browser.i18n.getMessage('dialogChangeProfileTitle'),
         browser.i18n.getMessage('changeProfileFor', browser.i18n.getMessage('selectedRules')),
         null,
         (value) => {
@@ -384,6 +387,7 @@ function triggerChangeProfile(item) {
     document.getElementById('dialog-dropdown').value = rule.profile.split('_')[1];
 
     showDowndown(
+        browser.i18n.getMessage('dialogChangeProfileTitle'),
         browser.i18n.getMessage('changeProfileFor', rule.displayDomain()),
         null,
         (value) => {
@@ -416,6 +420,7 @@ function triggerChangeProfile(item) {
  */
 function triggerRemoveProfile(item) {
     confirmAction(
+        browser.i18n.getMessage('dialogRemoveProfileTitle'),
         browser.i18n.getMessage('dialogCannotBeUndone'),
         () => {
             const rule = getRuleFromListItem(item);
@@ -435,6 +440,7 @@ function triggerRemoveProfile(item) {
  */
 function triggerAddNewRule() {
     showRuleAdd(
+        browser.i18n.getMessage('dialogAddRuleTitle'),
         null,
         browser.i18n.getMessage('domain'),
         browser.i18n.getMessage('optionsSectionProfile'),

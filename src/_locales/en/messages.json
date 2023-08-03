@@ -189,6 +189,39 @@
     "dialogCannotDeleteDefault": {
         "message": "Cannot delete default scrollbar. Please set a new default scrollbar before deleting."
     },
+    "dialogSaveRulesTitle": {
+        "message": "Save Website Rule"
+    },
+    "dialogDeleteRulesTitle": {
+        "message": "Delete Website Rule"
+    },
+    "dialogChangesDetectedTitle": {
+        "message": "Changes Detected"
+    },
+    "dialogRestoreFromFileTitle": {
+        "message": "Restore From Backup"
+    },
+    "dialogRemoveProfileTitle": {
+        "message": "Remove Scrollbar"
+    },
+    "dialogSaveProfileTitle": {
+        "message": "Save Scrollbar"
+    },
+    "dialogChangesWillBeLostTitle": {
+        "message": "Unsaved Changes"
+    },
+    "dialogPermissionRequiredTitle": {
+        "message": "Permission Required"
+    },
+    "dialogRenameProfileTitle": {
+        "message": "Rename Scrollbar"
+    },
+    "dialogChangeProfileTitle": {
+        "message": "Change Scrollbar"
+    },
+    "dialogAddRuleTitle": {
+        "message": "Add Website Rule"
+    },
     "profileActionNew": {
         "message": "New"
     },

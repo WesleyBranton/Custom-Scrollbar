@@ -28,7 +28,7 @@ function saveBackup() {
             });
         } else {
             console.error('Missing persmission to manage downloads');
-            showAlert(browser.i18n.getMessage('dialogPermissionRequired'), null, null);
+            showAlert(browser.i18n.getMessage('dialogPermissionRequiredTitle'), browser.i18n.getMessage('dialogPermissionRequired'), null, null);
             showProgressBar(false);
         }
     });
@@ -91,6 +91,7 @@ function processBackupFile(event) {
     } catch (error) {
         console.error('File is not in JSON format');
         showAlert(
+            browser.i18n.getMessage('dialogRestoreFromFileTitle'),
             browser.i18n.getMessage('dialogInvalidBackup'),
             clearFile,
             null
@@ -106,6 +107,7 @@ function processBackupFile(event) {
         else if (!data[`profile_${data.defaultProfile}`]) console.error('File missing default scrollbar');
 
         showAlert(
+            browser.i18n.getMessage('dialogRestoreFromFileTitle'),
             browser.i18n.getMessage('dialogInvalidBackup'),
             clearFile,
             null
@@ -118,6 +120,7 @@ function processBackupFile(event) {
     browser.storage.local.clear(() => {
         browser.storage.local.set(data, () => {
             showAlert(
+                browser.i18n.getMessage('dialogRestoreFromFileTitle'),
                 browser.i18n.getMessage('dialogBackupRestored'),
                 () => {
                     window.location.replace('scrollbars.html');
@@ -139,6 +142,7 @@ document.getElementById('button-changeFile').addEventListener('click', () => {
 });
 document.getElementById('button-restore').addEventListener('click', () => {
     confirmAction(
+        browser.i18n.getMessage('dialogRestoreFromFileTitle'),
         browser.i18n.getMessage('dialogDataOverwrite'),
         loadBackup,
         null,

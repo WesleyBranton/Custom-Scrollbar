@@ -44,10 +44,8 @@
 
             <section class="panel-section">
                 <div class="message-bar private hide" id="private-notice">
-                    <div>
-                        <span id="private-notice-message"></span>
-                        <a href="https://github.com/WesleyBranton/Custom-Scrollbar/wiki/No-customizations-in-Private-Browsing-mode" target="_blank" class="internal" data-i18n="callToActionLearn"></a>
-                    </div>
+                    <span id="private-notice-message"></span>
+                    <a href="https://github.com/WesleyBranton/Custom-Scrollbar/wiki/No-customizations-in-Private-Browsing-mode" target="_blank" class="internal" data-i18n="callToActionLearn"></a>
                 </div>
             </section>
 
@@ -212,8 +210,12 @@
         </form>
     </div>
 
-    <div id="dialog" class="dialog confirmation" data-state="close">
+    <div id="dialog" class="dialog" data-state="close">
         <div class="dialog-container">
+            <section class="dialog-header">
+                <span id="dialog-header-text"></span>
+            </section>
+
             <section class="dialog-content">
                 <span id="dialog-text" class="confirmation-only popup-only"></span>
 
@@ -273,7 +275,8 @@
 
                 <div id="dialog-error"></div>
             </section>
-            <div id="confirmation-buttons" class="dialog-footer confirmation-only">
+
+            <section class="dialog-footer confirmation-only">
                 <button id="confirmation-yes" type="button" class="default icon">
                     <div>
                         <img src="../images/check.svg" alt="">
@@ -286,9 +289,9 @@
                         <span data-i18n="optionNo"></span>
                     </div>
                 </button>
-            </div>
-
-            <div id="dropdown-buttons" class="dialog-footer dropdown-only">
+            </section>
+    
+            <section class="dialog-footer dropdown-only">
                 <button id="dropdown-yes" type="button" class="default icon">
                     <div>
                         <img src="../images/save.svg" alt="">
@@ -301,9 +304,9 @@
                         <span data-i18n="optionCancel"></span>
                     </div>
                 </button>
-            </div>
-
-            <div id="prompt-buttons" class="dialog-footer prompt-only">
+            </section>
+    
+            <section class="dialog-footer prompt-only">
                 <button id="prompt-yes" type="button" class="default icon">
                     <div>
                         <img src="../images/save.svg" alt="">
@@ -316,9 +319,9 @@
                         <span data-i18n="optionCancel"></span>
                     </div>
                 </button>
-            </div>
-
-            <div id="ruleadd-buttons" class="dialog-footer ruleadd-only">
+            </section>
+    
+            <section class="dialog-footer ruleadd-only">
                 <button id="ruleadd-yes" type="button" class="default icon">
                     <div>
                         <img src="../images/save.svg" alt="">
@@ -331,16 +334,16 @@
                         <span data-i18n="optionCancel"></span>
                     </div>
                 </button>
-            </div>
-
-            <div id="popup-buttons" class="dialog-footer popup-only">
+            </section>
+    
+            <section class="dialog-footer popup-only">
                 <button id="popup-yes" type="button" class="default icon">
                     <div>
                         <img src="../images/check.svg" alt="">
                         <span data-i18n="optionOk"></span>
                     </div>
                 </button>
-            </div>
+            </section>
         </div>
     </div>
 
