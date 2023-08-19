@@ -464,6 +464,12 @@ button.default.icon > div > img {
     font-style: italic;
 }
 
+.panel-section-tabs-button:disabled,
+#tabselect-options:disabled {
+    opacity: 1 !important;
+    cursor: default !important;
+}
+
 @keyframes bounce {
     0%,
     25%,
