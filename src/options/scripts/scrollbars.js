@@ -31,8 +31,8 @@ function saveScrollbar() {
         () => {
             showProgressBar(true);
 
-            const colTrack = (document.settings.customColors.checked) ? colorPickerTrack.color.hex8String : null;
-            const colThumb = (document.settings.customColors.checked) ? colorPickerThumb.color.hex8String : null;
+            const colTrack = (document.settings.customColors.checked) ? btnColorTrack.dataset.color : null;
+            const colThumb = (document.settings.customColors.checked) ? btnColorThumb.dataset.color : null;
             const profileName = document.getElementById('profileSelection').options[document.getElementById('profileSelection').selectedIndex].textContent.trim();
         
             const profileData = {
@@ -117,8 +117,8 @@ function loadScrollbar(id) {
             previousToggleValue = document.settings.customColors.checked;
             toggleColorSettings();
 
-            colorPickerThumb.color.hex8String = (scrollbar.colorThumb) ? scrollbar.colorThumb : defaults.colorThumb;
-            colorPickerTrack.color.hex8String = (scrollbar.colorTrack) ? scrollbar.colorTrack : defaults.colorTrack;
+            updateColorEditButton(btnColorThumb, (scrollbar.colorThumb) ? scrollbar.colorThumb : defaults.colorThumb);
+            updateColorEditButton(btnColorTrack, (scrollbar.colorTrack) ? scrollbar.colorTrack : defaults.colorTrack);
 
             toggleCustomWidth();
             toggleHiddenSettings();
@@ -350,8 +350,8 @@ function generateUnconflictingProfileName(name, id) {
 function getNewCSS() {
     if (document.settings.profile.value != 'none') {
         const width = document.settings.width.value;
-        const colThumb = (document.settings.customColors.checked) ? colorPickerThumb.color.hex8String : null;
-        const colTrack = (document.settings.customColors.checked) ? colorPickerTrack.color.hex8String : null;
+        const colThumb = (document.settings.customColors.checked) ? btnColorThumb.dataset.color : null;
+        const colTrack = (document.settings.customColors.checked) ? btnColorTrack.dataset.color : null;
         const customWidth = (document.settings.width.value == 'other') ? document.settings.customWidthValue.value + document.settings.customWidthUnit.value : null;
         const buttons = (document.settings.buttons.checked) ? 'auto' : 'none';
         const thumbRadius = parseInt(document.settings.thumbRadius.value);
@@ -361,24 +361,6 @@ function getNewCSS() {
     } else {
         return '';
     }
-}
-
-/**
- * Create color pickers for parts of scrollbar
- */
-function createColorPickers() {
-    colorPickerThumb = createColorPicker(
-        document.getElementById('colorThumb'),
-        getColorInputs('colorThumb'),
-        document.getElementById('colorThumbPreview'),
-        defaults.colorThumb
-    );
-    colorPickerTrack = createColorPicker(
-        document.getElementById('colorTrack'),
-        getColorInputs('colorTrack'),
-        document.getElementById('colorTrackPreview'),
-        defaults.colorThumb
-    );
 }
 
 /**
@@ -447,6 +429,11 @@ function createColorPicker(container, inputs, preview, setTo) {
         inputs.hsv.alpha.value = Math.round(color.alpha * 100);
 
         preview.style.backgroundColor = color.hex8String;
+
+        if (selectedColor != null) {
+            updateColorEditButton(selectedColor, color.hex8String);
+        }
+
         toggleChangesWarning(true);
     });
 
@@ -520,6 +507,24 @@ function createColorPicker(container, inputs, preview, setTo) {
 }
 
 /**
+ * Update color button UI
+ * @param {HTMLButtonElement} button
+ * @param {String} color HEX color
+ */
+function updateColorEditButton(button, color) {
+    button.style.background = color;
+    button.dataset.color = color;
+
+    if (isLightColor(color)) {
+        button.classList.add('light');
+        button.classList.remove('dark');
+    } else {
+        button.classList.add('dark');
+        button.classList.remove('light');
+    }
+}
+
+/**
  * Make sure that the color entered is valid
  * @param {HTMLElement} input
  * @param {number} max
@@ -548,8 +553,8 @@ function validateColor(input, max, original, percentage) {
 function toggleColorSettings() {
     if (document.settings.customColors.checked) {
         if (!previousToggleValue) {
-            colorPickerThumb.color.hex8String = defaults.colorThumb;
-            colorPickerTrack.color.hex8String = defaults.colorTrack;
+            updateColorEditButton(btnColorThumb, defaults.colorThumb);
+            updateColorEditButton(btnColorTrack, defaults.colorTrack);
         }
         document.getElementById('only-colors').classList.remove('hide');
     } else {
@@ -622,6 +627,57 @@ function getColorInputs(parentId) {
             hsv: tabs.getElementsByTagName('button')[2],
         }
     };
+}
+
+/**
+ * Open color picker in dialog next to clicked button
+ * @param {Event} event
+ */
+function openColorPickerDialog(event) {
+    const dialog = document.getElementById('color-picker-dialog');
+    const dialogPosition = dialog.getBoundingClientRect();
+
+    selectedColor = event.currentTarget;
+    colorPicker.setColors([selectedColor.style.background]);
+
+    const targetPosition = selectedColor.getBoundingClientRect();
+
+    dialog.style.top = `${targetPosition.top + targetPosition.height + window.scrollY - dialogPosition.height}px`;
+    dialog.style.left = `${targetPosition.left + window.scrollX - dialogPosition.width}px`;
+    dialog.style.visibility = 'visible';
+
+    event.stopPropagation();
+    document.body.addEventListener('click', closeColorPickerListener);
+}
+
+/**
+ * Close color picker dialog
+ */
+function closeColorPickerDialog() {
+    document.body.removeEventListener('click', closeColorPickerListener);
+    selectedColor = null;
+
+    const dialog = document.getElementById('color-picker-dialog');
+    dialog.style.visibility = 'hidden';
+    dialog.style.top = '0';
+    dialog.style.left = '0';
+}
+
+/**
+ * 
+ * @param {Event} event
+ */
+function closeColorPickerListener(event) {
+    let target = event.target;
+
+    while (target != document.body) {
+        if (target.id == 'color-picker-dialog') {
+            return;
+        }
+        target = target.parentElement;
+    }
+    
+    closeColorPickerDialog();
 }
 
 /**
@@ -849,10 +905,18 @@ function handleStorageChanges(changes, area) {
     checkForStorageChanges(list, changes, area);
 }
 
-let colorPickerThumb, colorPickerTrack, previousToggleValue;
-let defaultProfile, selectedProfile, selectedProfileName, localFileProfile;
-const colorInputs = {};
-createColorPickers();
+let defaultProfile, selectedProfile, selectedProfileName, localFileProfile, previousToggleValue;
+let selectedColor = null;
+
+const btnColorThumb = document.getElementById('colorThumb');
+const btnColorTrack = document.getElementById('colorTrack');
+const colorPicker = createColorPicker(
+    document.getElementById('colorPicker'),
+    getColorInputs('colorPicker'),
+    document.getElementById('colorPickerPreview'),
+    defaults.colorThumb
+);
+
 init();
 
 document.getElementById('saveChanges').addEventListener('click', saveScrollbar);
@@ -936,4 +1000,6 @@ document.getElementById('profile-remove').addEventListener('click', () => {
         false
     );
 });
+btnColorThumb.addEventListener('click', openColorPickerDialog);
+btnColorTrack.addEventListener('click', openColorPickerDialog);
 browser.storage.onChanged.addListener(handleStorageChanges);

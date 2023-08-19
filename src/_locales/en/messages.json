@@ -130,6 +130,9 @@
     "overrideNone": {
         "message": "None"
     },
+    "buttonEdit": {
+        "message": "Edit"
+    },
     "buttonSave": {
         "message": "Save"
     },
