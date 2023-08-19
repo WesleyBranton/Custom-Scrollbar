@@ -82,6 +82,46 @@
     cursor: ns-resize !important;
 }
 
+.colorButton {
+    border: 1px solid var(--border-color) !important;
+}
+
+.colorButton.dark > div {
+    filter: invert();
+}
+
+.colorButton > div {
+    opacity: 0;
+    transition: ease opacity 0.25s;
+}
+
+.colorButton:hover > div,
+.colorButton:focus > div {
+    opacity: 1;
+}
+
+#color-picker-dialog {
+    border: 1px solid var(--border-color);
+    background: var(--container-background);
+    border-radius: 0.25rem;
+    box-shadow: 0 0.05rem 0.25rem var(--container-shadow);
+    padding: 0.5em 1em;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    visibility: hidden;
+}
+
+#color-picker-dialog .IroColorPicker {
+    text-align: center;
+}
+
+#colorPickerPreview {
+    width: 100%;
+}
+
 .colorPickerPreview {
     background: rgba(0, 0, 0, 0) conic-gradient(rgb(204, 204, 204) 25%, rgb(255, 255, 255) 0deg, rgb(255, 255, 255) 50%, rgb(204, 204, 204) 0deg, rgb(204, 204, 204) 75%, rgb(255, 255, 255) 0deg) repeat scroll 0% 0% / 8px 8px;
     display: flex;
