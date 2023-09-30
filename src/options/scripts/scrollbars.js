@@ -416,19 +416,7 @@ function createColorPicker(container, inputs, preview, setTo) {
     });
 
     picker.on('color:change', (color) => {
-        inputs.hex.value = color.hex8String;
-
-        inputs.rgb.red.value = Math.round(color.red);
-        inputs.rgb.green.value = Math.round(color.green);
-        inputs.rgb.blue.value = Math.round(color.blue);
-        inputs.rgb.alpha.value = Math.round(color.alpha * 100);
-
-        inputs.hsv.hue.value = Math.round(color.hue);
-        inputs.hsv.saturation.value = Math.round(color.saturation);
-        inputs.hsv.value.value = Math.round(color.value);
-        inputs.hsv.alpha.value = Math.round(color.alpha * 100);
-
-        preview.style.backgroundColor = color.hex8String;
+        updatePickerNumericValues(picker, inputs, preview);
 
         if (selectedColor != null) {
             updateColorEditButton(selectedColor, color.hex8String);
@@ -489,19 +477,7 @@ function createColorPicker(container, inputs, preview, setTo) {
         picker.color.alpha = inputs.hsv.alpha.value.trim();
     });
 
-    inputs.hex.value = picker.color.hex8String;
-
-    inputs.rgb.red.value = Math.round(picker.color.red);
-    inputs.rgb.green.value = Math.round(picker.color.green);
-    inputs.rgb.blue.value = Math.round(picker.color.blue);
-    inputs.rgb.alpha.value = Math.round(picker.color.alpha * 100);
-
-    inputs.hsv.hue.value = Math.round(picker.color.hue);
-    inputs.hsv.saturation.value = Math.round(picker.color.saturation);
-    inputs.hsv.value.value = Math.round(picker.color.value);
-    inputs.hsv.alpha.value = Math.round(picker.color.alpha * 100);
-
-    preview.style.backgroundColor = picker.color.hex8String;
+    updatePickerNumericValues(picker, inputs, preview);
 
     return picker;
 }
@@ -522,6 +498,22 @@ function updateColorEditButton(button, color) {
         button.classList.add('dark');
         button.classList.remove('light');
     }
+}
+
+function updatePickerNumericValues(picker, inputs, preview) {
+    inputs.hex.value = picker.color.hex8String;
+
+    inputs.rgb.red.value = Math.round(picker.color.red);
+    inputs.rgb.green.value = Math.round(picker.color.green);
+    inputs.rgb.blue.value = Math.round(picker.color.blue);
+    inputs.rgb.alpha.value = Math.round(picker.color.alpha * 100);
+
+    inputs.hsv.hue.value = Math.round(picker.color.hue);
+    inputs.hsv.saturation.value = Math.round(picker.color.saturation);
+    inputs.hsv.value.value = Math.round(picker.color.value);
+    inputs.hsv.alpha.value = Math.round(picker.color.alpha * 100);
+
+    preview.style.backgroundColor = picker.color.hex8String;
 }
 
 /**
@@ -639,6 +631,7 @@ function openColorPickerDialog(event) {
 
     selectedColor = event.currentTarget;
     colorPicker.setColors([selectedColor.style.background]);
+    updatePickerNumericValues(colorPicker, getColorInputs('colorPicker'), document.getElementById('colorPickerPreview'));
 
     const targetPosition = selectedColor.getBoundingClientRect();
 
