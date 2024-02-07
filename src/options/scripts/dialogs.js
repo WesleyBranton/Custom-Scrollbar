@@ -218,7 +218,7 @@ function clickDropdownDialogYes() {
  * Handle rule add dialog yes button click
  */
 function clickRuleAddDialogYes() {
-    if (validation(document.getElementById('dialog-input').value, document.getElementById('dialog-checkbox').checked, document.getElementById('dialog-error'))) {
+    if (validation(document.getElementById('dialog-input'), document.getElementById('dialog-checkbox').checked, document.getElementById('dialog-error'))) {
         actionYes(document.getElementById('dialog-input').value, document.getElementById('dialog-dropdown').value, document.getElementById('dialog-checkbox').checked);
         closeDialog();
     }

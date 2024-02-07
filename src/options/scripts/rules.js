@@ -485,7 +485,7 @@ function checkIfListIsEmpty() {
 
 /**
  * Check if user input fits valid new rule criteria
- * @param {String} input
+ * @param {HTMLElement} input
  * @param {Boolean} checkbox
  * @param {HTMLElement} error
  * @returns Valid
@@ -494,18 +494,33 @@ function userInputDomainValidation(input, checkbox, error) {
     const domainRegex = /^(?:(?![-])[a-zA-Z0-9-]+(?<!-)\.)+[a-zA-Z]{2,}$/;
     const ipv4Regex = /^(\b25[0-5]|\b2[0-4][0-9]|\b[01]?[0-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/;
     error.textContent = '';
-    input = input.trim();
+    input.value = input.value.trim();
 
-    if (!domainRegex.test(input) && !ipv4Regex.test(input) && input != 'localhost') {
+    // Try to extract domain name from URL
+    if (input.value.includes('/')) {
+        let inputTemp = input.value;
+        if (!inputTemp.includes('://')) {
+            inputTemp = 'http://' + inputTemp;
+        }
+
+        try {
+            input.value = new URL(inputTemp).hostname;
+        } catch (error) {
+            // URL is not a valid format
+            // No further action required because it will be caught by regex
+        }
+    }
+
+    if (!domainRegex.test(input.value) && !ipv4Regex.test(input.value) && input.value != 'localhost') {
         error.textContent = browser.i18n.getMessage('errorInvalidDomain');
         return false;
     }
 
     if (checkbox) {
-        input = '*.' + input;
+        input.value = '*.' + input.value;
     }
 
-    if (rules[input]) {
+    if (rules[input.value]) {
         error.textContent = browser.i18n.getMessage('errorRuleAlreadyExists');
         return false;
     }
