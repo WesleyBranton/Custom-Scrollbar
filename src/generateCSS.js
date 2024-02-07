@@ -64,6 +64,11 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth, butto
         }
 
         const brightFactor = getBestBrightnessFactor(colorThumb, colorTrack);
+        
+        const all = new CSSRule('*');
+        all.set('scrollbar-color', 'unset', overrideColor);
+        all.set('scrollbar-width', 'unset', overrideWidth);
+        css.push(all);
 
         const main = new CSSRule('::-webkit-scrollbar');
         main.set('width', width, overrideWidth);
