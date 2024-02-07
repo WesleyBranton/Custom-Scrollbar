@@ -1,4 +1,7 @@
 {
+    "extensionName": {
+        "message": "Custom Scrollbars"
+    },
     "extensionDescription": {
         "message": "按照您的个性，为浏览器的滚动条设置精美的样式。"
     },
