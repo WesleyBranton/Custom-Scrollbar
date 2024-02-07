@@ -3,10 +3,10 @@
         "message": "Custom Scrollbars"
     },
     "extensionDescription": {
-        "message": "Предоставьте вашему браузеру личный контакт с настраиваемыми полосами прокрутки!"
+        "message": "Придайте вашему браузеру индивидуальности с помощью настраиваемых полос прокрутки!"
     },
     "optionsTitle": {
-        "message": "$EXTENSIONNAME$ Опции",
+        "message": "Настройки $EXTENSIONNAME$",
         "placeholders": {
             "extensionname": {
                 "content": "$1"
@@ -14,31 +14,31 @@
         }
     },
     "optionsSectionProfile": {
-        "message": "Scrollbar"
+        "message": "Полоса прокрутки"
     },
     "optionsSectionPreview": {
-        "message": "Прямой предпросмотр"
+        "message": "Быстрый предпросмотр"
     },
     "optionsSectionWidth": {
-        "message": "Scrollbar width"
+        "message": "Ширина полосы прокрутки"
     },
     "optionsSectionButtons": {
-        "message": "Панель прокрутки"
+        "message": "Кнопки строки прокрутки"
     },
     "optionsSectionThumbRadius": {
         "message": "Закругление полосы прокрутки"
     },
     "optionsSectionUseColors": {
-        "message": "Использовать пользовательские цвета"
+        "message": "Настроить свои цвета"
     },
     "optionsSectionThumb": {
-        "message": "Цвет полосы прокрутки"
+        "message": "Цвет бегунка"
     },
     "optionsSectionTrack": {
         "message": "Цвет полосы прокрутки"
     },
     "optionsSectionOverride": {
-        "message": "Разрешить веб-сайтам переопределять"
+        "message": "Разрешить переопределять веб-сайтам"
     },
     "optionsSectionAutoHide": {
         "message": "Автоматически скрывать полосу прокрутки"
@@ -52,20 +52,23 @@
     "optionsLocalFileProfile": {
         "message": "Использовать эту панель прокрутки при просмотре локальных файлов"
     },
+    "optionsUnsubscribedFromAllUpdateNotifications": {
+        "message": "Показывать важные изменения и новые возможности в новой вкладке после обновления?"
+    },
     "sizeDefault": {
-        "message": "Платформа по умолчанию"
+        "message": "По умолчанию"
     },
     "sizeWide": {
-        "message": "Широкий"
+        "message": "Широкая"
     },
     "sizeThin": {
-        "message": "Тонкий"
+        "message": "Тонкая"
     },
     "sizeHidden": {
-        "message": "Hidden"
+        "message": "Скрытая"
     },
     "sizeOther": {
-        "message": "Прочие вопросы"
+        "message": "Другая"
     },
     "optionLight": {
         "message": "Светлая"
@@ -113,7 +116,7 @@
         "message": "Значение"
     },
     "colorAlpha": {
-        "message": "Альфа"
+        "message": "Прозрачность"
     },
     "overrideColor": {
         "message": "Только цвет"
@@ -127,6 +130,9 @@
     "overrideNone": {
         "message": "Нет"
     },
+    "buttonEdit": {
+        "message": "Редактировать"
+    },
     "buttonSave": {
         "message": "Сохранить"
     },
@@ -137,7 +143,7 @@
         "message": "У вас есть несохраненные изменения!"
     },
     "promptPrivateBrowsing": {
-        "message": "Пользовательские полосы прокрутки не будут отображаться в $PRIVATEBROWSING$ окнах, если вы не дадите этому расширению разрешение на запуск в режиме $PRIVATEBROWSING$.",
+        "message": "Пользовательские полосы прокрутки не будут отображаться в окнах с $PRIVATEBROWSING$, если вы не дадите этому расширению разрешение на запуск в режиме $PRIVATEBROWSING$.",
         "placeholders": {
             "privatebrowsing": {
                 "content": "$1"
@@ -157,10 +163,10 @@
         "message": "Перевести"
     },
     "linkCredits": {
-        "message": "Кредиты"
+        "message": "Авторы"
     },
     "linkFeedback": {
-        "message": "Отзыв"
+        "message": "Обратная связь"
     },
     "callToActionLearn": {
         "message": "Подробнее..."
@@ -169,13 +175,13 @@
         "message": "Приватный просмотр"
     },
     "privateBrowsingChrome": {
-        "message": "Incognito"
+        "message": "Инкогнито"
     },
     "privateBrowsingEdge": {
         "message": "Приватный"
     },
     "privateBrowsingOpera": {
-        "message": "Incognito"
+        "message": "Инкогнито"
     },
     "dialogChangesWillBeLost": {
         "message": "Ваши несохраненные изменения будут потеряны. Вы уверены, что хотите продолжить?"
@@ -184,13 +190,46 @@
         "message": "Это действие нельзя отменить. Вы уверены, что хотите продолжить?"
     },
     "dialogCannotDeleteDefault": {
-        "message": "Не удается удалить полосу прокрутки по умолчанию. Пожалуйста, установите новую полосу прокрутки по умолчанию перед удалением."
+        "message": "Не удаётся удалить полосу прокрутки по умолчанию. Пожалуйста, установите новую полосу прокрутки по умолчанию перед удалением."
+    },
+    "dialogSaveRulesTitle": {
+        "message": "Сохранить правило для веб-сайта"
+    },
+    "dialogDeleteRulesTitle": {
+        "message": "Удалить правило для веб-сайта"
+    },
+    "dialogChangesDetectedTitle": {
+        "message": "Обнаружены изменения"
+    },
+    "dialogRestoreFromFileTitle": {
+        "message": "Восстановить из резервной копии"
+    },
+    "dialogRemoveProfileTitle": {
+        "message": "Удалить полосу прокрутки"
+    },
+    "dialogSaveProfileTitle": {
+        "message": "Сохранить полосу прокрутки"
+    },
+    "dialogChangesWillBeLostTitle": {
+        "message": "Несохранённые изменения"
+    },
+    "dialogPermissionRequiredTitle": {
+        "message": "Требуется разрешение"
+    },
+    "dialogRenameProfileTitle": {
+        "message": "Переименовать полосу прокрутки"
+    },
+    "dialogChangeProfileTitle": {
+        "message": "Изменить полосу прокрутки"
+    },
+    "dialogAddRuleTitle": {
+        "message": "Добавить правило для веб-сайта"
     },
     "profileActionNew": {
         "message": "Новый"
     },
     "profileActionDuplicate": {
-        "message": "Duplicate"
+        "message": "Дублировать"
     },
     "profileActionRename": {
         "message": "Переименовать"
@@ -199,19 +238,22 @@
         "message": "Удалить"
     },
     "profileActionChangeDefault": {
-        "message": "Установить по умолчанию"
+        "message": "По умолчанию"
     },
     "defaultProfileName": {
         "message": "Новая полоса прокрутки"
     },
     "migratedProfileName": {
-        "message": "Общие положения"
+        "message": "Общий"
+    },
+    "scrollbars": {
+        "message": "Полосы прокрутки"
     },
     "options": {
-        "message": "Варианты"
+        "message": "Настройки"
     },
     "backupAndRestore": {
-        "message": "Резервное копирование / восстановление"
+        "message": "Рез. копия / восстановление"
     },
     "backupSection": {
         "message": "Скачать резервную копию"
@@ -229,10 +271,10 @@
         "message": "Файл не выбран"
     },
     "dialogInvalidBackup": {
-        "message": "Неверный файл резервной копии"
+        "message": "Недопустимый файл резервной копии"
     },
     "dialogPermissionRequired": {
-        "message": "Отсутствует требуемое разрешение. Пожалуйста, попробуйте еще раз."
+        "message": "Отсутствует требуемое разрешение. Пожалуйста, попробуйте ещё раз."
     },
     "dialogDataOverwrite": {
         "message": "Восстановление этой резервной копии заменит ваши существующие настройки. Это не может быть отменено. Вы уверены, что хотите продолжить?"
@@ -244,7 +286,7 @@
         "message": "Ваши настройки были изменены. Вы хотите обновить эту страницу, чтобы загрузить последние настройки?"
     },
     "dialogChangesDetectedWarning": {
-        "message": "Ваши несохраненные изменения будут потеряны."
+        "message": "Ваши несохранённые изменения будут потеряны."
     },
     "dialogOverwriteUnloadedChanges": {
         "message": "Ваши настройки были изменены после загрузки этой страницы. Сохранение ваших изменений может перезаписать предыдущие изменения. Вы уверены, что хотите продолжить?"
@@ -266,10 +308,10 @@
         }
     },
     "profileUsingNone": {
-        "message": "Не настраивать панель прокрутки"
+        "message": "Ненастроенная полоса прокрутки"
     },
     "profileActionUseOnWebsite": {
-        "message": "Использовать на этом сайте"
+        "message": "Установить для сайта"
     },
     "profileActionUseOnLocalFiles": {
         "message": "Использовать для локальных файлов"
@@ -287,13 +329,13 @@
         "message": "Только поддомены"
     },
     "noRulesSet": {
-        "message": "Правила сайта не установлены"
+        "message": "Правила для сайта не установлены"
     },
     "noRulesFound": {
         "message": "В поиске не найдено правил сайта"
     },
     "websiteRules": {
-        "message": "Правила Сайта"
+        "message": "Правила для сайтов"
     },
     "add": {
         "message": "Добавить"
@@ -305,7 +347,7 @@
         "message": "Существуют правила веб-сайта, которые использовали эту прокрутку. Какая полоса прокрутки должна использовать эти правила веб-сайта?"
     },
     "ruleNoProfileSet": {
-        "message": "МИССИЯ КРОЛБАР"
+        "message": "ПОЛОСА ПРОКРУТКИ ОТСУТСТВУЕТ"
     },
     "ruleInherit": {
         "message": "Унаследовано от $DOMAIN$",
@@ -322,10 +364,10 @@
         "message": "Домен"
     },
     "search": {
-        "message": "Искать"
+        "message": "Поиск"
     },
     "selectAll": {
-        "message": "Выделить все"
+        "message": "Выбрать все"
     },
     "deselectAll": {
         "message": "Отменить выбор"
@@ -353,5 +395,27 @@
     },
     "whatsNew": {
         "message": "Что нового"
+    },
+    "messageNoScrollbarSelectedHeader": {
+        "message": "Полоса прокрутки не выбрана"
+    },
+    "messageNoScrollbarSelectedMessage1": {
+        "message": "Пожалуйста, выберите полосу прокрутки из выпадающего списка выше или нажмите кнопку '$NEWBUTTONLABEL$, чтобы добавить новую полосу прокрутки.",
+        "placeholders": {
+            "newbuttonlabel": {
+                "content": "$1"
+            }
+        }
+    },
+    "messageNoScrollbarSelectedMessage2": {
+        "message": "Если вы не хотите, чтобы $EXTENSIONNAME$ настраивал полосы прокрутки по умолчанию, нажмите кнопку «$SETASDEFAULTBUTTONLABEL$».",
+        "placeholders": {
+            "extensionname": {
+                "content": "$1"
+            },
+            "setasdefaultbuttonlabel": {
+                "content": "$2"
+            }
+        }
     }
 }

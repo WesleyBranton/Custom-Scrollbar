@@ -1,0 +1,418 @@
+{
+    "extensionDescription": {
+        "message": "按照您的个性，为浏览器的滚动条设置精美的样式。"
+    },
+    "optionsTitle": {
+        "message": "$EXTENSIONNAME$ 选项",
+        "placeholders": {
+            "extensionname": {
+                "content": "$1"
+            }
+        }
+    },
+    "optionsSectionProfile": {
+        "message": "滚动条"
+    },
+    "optionsSectionPreview": {
+        "message": "实时预览"
+    },
+    "optionsSectionWidth": {
+        "message": "滚动条宽度"
+    },
+    "optionsSectionButtons": {
+        "message": "滚动条按钮"
+    },
+    "optionsSectionThumbRadius": {
+        "message": "滚动条圆角"
+    },
+    "optionsSectionUseColors": {
+        "message": "使用自定义配色"
+    },
+    "optionsSectionThumb": {
+        "message": "滚动条颜色"
+    },
+    "optionsSectionTrack": {
+        "message": "滚动条轨道颜色"
+    },
+    "optionsSectionOverride": {
+        "message": "允许网站覆盖"
+    },
+    "optionsSectionAutoHide": {
+        "message": "自动隐藏滚动条"
+    },
+    "optionsSectionAutoHideShort": {
+        "message": "自动隐藏"
+    },
+    "optionsFramesInherit": {
+        "message": "要允许嵌入的网站（iframe）继承主网站的滚动条外观吗？"
+    },
+    "optionsLocalFileProfile": {
+        "message": "浏览本地文件时使用的滚动条"
+    },
+    "optionsUnsubscribedFromAllUpdateNotifications": {
+        "message": "是否在更新后打开新标签页显示重要更改和新特性？"
+    },
+    "sizeDefault": {
+        "message": "平台默认"
+    },
+    "sizeWide": {
+        "message": "宽"
+    },
+    "sizeThin": {
+        "message": "窄"
+    },
+    "sizeHidden": {
+        "message": "隐藏"
+    },
+    "sizeOther": {
+        "message": "其他"
+    },
+    "optionLight": {
+        "message": "浅色"
+    },
+    "optionDark": {
+        "message": "深色"
+    },
+    "optionYes": {
+        "message": "是"
+    },
+    "optionNo": {
+        "message": "否"
+    },
+    "optionOk": {
+        "message": "确定"
+    },
+    "optionCancel": {
+        "message": "取消"
+    },
+    "colorFormatRGB": {
+        "message": "RGB"
+    },
+    "colorFormatHSV": {
+        "message": "HSV"
+    },
+    "colorFormatHEX": {
+        "message": "HEX"
+    },
+    "colorRed": {
+        "message": "红"
+    },
+    "colorGreen": {
+        "message": "绿"
+    },
+    "colorBlue": {
+        "message": "蓝"
+    },
+    "colorHue": {
+        "message": "色相"
+    },
+    "colorSaturation": {
+        "message": "饱和度"
+    },
+    "colorValue": {
+        "message": "明度"
+    },
+    "colorAlpha": {
+        "message": "透明度"
+    },
+    "overrideColor": {
+        "message": "仅颜色"
+    },
+    "overrideWidth": {
+        "message": "仅宽度"
+    },
+    "overrideAll": {
+        "message": "颜色与宽度"
+    },
+    "overrideNone": {
+        "message": "无"
+    },
+    "buttonEdit": {
+        "message": "编辑"
+    },
+    "buttonSave": {
+        "message": "保存"
+    },
+    "messageSaved": {
+        "message": "已保存的所有更改。"
+    },
+    "messageUnsaved": {
+        "message": "你有未保存的更改 ！"
+    },
+    "promptPrivateBrowsing": {
+        "message": "此扩展在$PRIVATEBROWSING$模式下不会工作，除非您允许拓展运行在$PRIVATEBROWSING$模式下。",
+        "placeholders": {
+            "privatebrowsing": {
+                "content": "$1"
+            }
+        }
+    },
+    "linkHelp": {
+        "message": "帮助"
+    },
+    "linkContribute": {
+        "message": "贡献"
+    },
+    "linkDonate": {
+        "message": "捐赠"
+    },
+    "linkTranslate": {
+        "message": "翻译"
+    },
+    "linkCredits": {
+        "message": "致谢"
+    },
+    "linkFeedback": {
+        "message": "反馈"
+    },
+    "callToActionLearn": {
+        "message": "详情..."
+    },
+    "privateBrowsingFirefox": {
+        "message": "隐私浏览"
+    },
+    "privateBrowsingChrome": {
+        "message": "隐身"
+    },
+    "privateBrowsingEdge": {
+        "message": "InPrivate"
+    },
+    "privateBrowsingOpera": {
+        "message": "隐身"
+    },
+    "dialogChangesWillBeLost": {
+        "message": "您的更改将会丢失。您确定继续吗？"
+    },
+    "dialogCannotBeUndone": {
+        "message": "此操作不能撤消。确实要继续吗?"
+    },
+    "dialogCannotDeleteDefault": {
+        "message": "无法删除默认滚动条。在删除之前请指定其他滚动条为默认。"
+    },
+    "dialogSaveRulesTitle": {
+        "message": "保存网站规则"
+    },
+    "dialogDeleteRulesTitle": {
+        "message": "删除网站规则"
+    },
+    "dialogChangesDetectedTitle": {
+        "message": "检测到更改"
+    },
+    "dialogRestoreFromFileTitle": {
+        "message": "从备份恢复"
+    },
+    "dialogRemoveProfileTitle": {
+        "message": "删除滚动条"
+    },
+    "dialogSaveProfileTitle": {
+        "message": "保存滚动条"
+    },
+    "dialogChangesWillBeLostTitle": {
+        "message": "未保存的更改"
+    },
+    "dialogPermissionRequiredTitle": {
+        "message": "需要授权"
+    },
+    "dialogRenameProfileTitle": {
+        "message": "重命名滚动条"
+    },
+    "dialogChangeProfileTitle": {
+        "message": "更改滚动条"
+    },
+    "dialogAddRuleTitle": {
+        "message": "新建网站规则"
+    },
+    "profileActionNew": {
+        "message": "新建"
+    },
+    "profileActionDuplicate": {
+        "message": "创建副本"
+    },
+    "profileActionRename": {
+        "message": "重命名"
+    },
+    "profileActionRemove": {
+        "message": "删除"
+    },
+    "profileActionChangeDefault": {
+        "message": "设为默认"
+    },
+    "defaultProfileName": {
+        "message": "新建滚动条"
+    },
+    "migratedProfileName": {
+        "message": "常规"
+    },
+    "scrollbars": {
+        "message": "滚动条"
+    },
+    "options": {
+        "message": "选项"
+    },
+    "backupAndRestore": {
+        "message": "备份 / 恢复"
+    },
+    "backupSection": {
+        "message": "下载备份"
+    },
+    "restoreSection": {
+        "message": "从备份还原"
+    },
+    "buttonSelectFile": {
+        "message": "浏览..."
+    },
+    "buttonRestore": {
+        "message": "还原"
+    },
+    "noFileSelected": {
+        "message": "未选择文件"
+    },
+    "dialogInvalidBackup": {
+        "message": "无效的备份文件"
+    },
+    "dialogPermissionRequired": {
+        "message": "缺少所需的权限。请重试。"
+    },
+    "dialogDataOverwrite": {
+        "message": "还原此备份将替代您现有的设置。此操作无法撤销。您确定要继续吗？"
+    },
+    "dialogBackupRestored": {
+        "message": "备份已成功还原！"
+    },
+    "dialogChangesDetected": {
+        "message": "您的设置已更改。您想要刷新此页面以加载最新的设置吗？"
+    },
+    "dialogChangesDetectedWarning": {
+        "message": "您的未保存的更改将丢失。"
+    },
+    "dialogOverwriteUnloadedChanges": {
+        "message": "此页面加载后您的设置已更改。保存您的更改可能会覆盖以前的更改。您确定要继续吗？"
+    },
+    "changeProfileFor": {
+        "message": "编辑 $WEBSITE$ 的滚动条",
+        "placeholders": {
+            "website": {
+                "content": "$1"
+            }
+        }
+    },
+    "profileUsingDefault": {
+        "message": "使用默认 ($PROFILENAME$)",
+        "placeholders": {
+            "profilename": {
+                "content": "$1"
+            }
+        }
+    },
+    "profileUsingNone": {
+        "message": "不自定义滚动条"
+    },
+    "profileActionUseOnWebsite": {
+        "message": "在此网站上使用"
+    },
+    "profileActionUseOnLocalFiles": {
+        "message": "用于本地文件"
+    },
+    "errorInvalidDomain": {
+        "message": "该域名无效"
+    },
+    "errorRuleAlreadyExists": {
+        "message": "该域名的规则已经存在"
+    },
+    "domain": {
+        "message": "域名"
+    },
+    "subdomainsOnly": {
+        "message": "仅子域"
+    },
+    "noRulesSet": {
+        "message": "未设置网站规则"
+    },
+    "noRulesFound": {
+        "message": "没有匹配的网站规则"
+    },
+    "websiteRules": {
+        "message": "网站规则"
+    },
+    "add": {
+        "message": "新建"
+    },
+    "ruleActionChangeProfile": {
+        "message": "更改滚动条..."
+    },
+    "profileMoveExistingRules": {
+        "message": "有网站规则正在使用这个滚动条。您要选择哪个滚动条代替被删除的？"
+    },
+    "ruleNoProfileSet": {
+        "message": "未指定"
+    },
+    "ruleInherit": {
+        "message": "从$DOMAIN$继承",
+        "placeholders": {
+            "domain": {
+                "content": "$1"
+            }
+        }
+    },
+    "ruleSort": {
+        "message": "排序依据"
+    },
+    "sortDomain": {
+        "message": "域名"
+    },
+    "search": {
+        "message": "搜索"
+    },
+    "selectAll": {
+        "message": "选择所有"
+    },
+    "deselectAll": {
+        "message": "反选所有"
+    },
+    "deleteSelected": {
+        "message": "删除所选项"
+    },
+    "changeSelected": {
+        "message": "更改选择项的滚动条"
+    },
+    "selectedRules": {
+        "message": "所有选择的规则"
+    },
+    "advancedHeader": {
+        "message": "高级设置"
+    },
+    "featureRequiredAdditionalPermission": {
+        "message": "使用此功能需要额外的权限。"
+    },
+    "popupRequiresAdditionalPermission": {
+        "message": "要查看网站上使用的设置信息，扩展需要需要权限访问您的浏览器标签。"
+    },
+    "grantPermissionButton": {
+        "message": "授权"
+    },
+    "whatsNew": {
+        "message": "新特性"
+    },
+    "messageNoScrollbarSelectedHeader": {
+        "message": "未选择滚动条"
+    },
+    "messageNoScrollbarSelectedMessage1": {
+        "message": "请从下拉选项选择滚动条或者点击$NEWBUTTONLABEL$按钮新建一个滚动条。",
+        "placeholders": {
+            "newbuttonlabel": {
+                "content": "$1"
+            }
+        }
+    },
+    "messageNoScrollbarSelectedMessage2": {
+        "message": "如果你不想 $EXTENSIONNAME$ 自动管理滚动条，请点击$SETASDEFAULTBUTTONLABEL$按钮。",
+        "placeholders": {
+            "extensionname": {
+                "content": "$1"
+            },
+            "setasdefaultbuttonlabel": {
+                "content": "$2"
+            }
+        }
+    }
+}

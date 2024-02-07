@@ -130,6 +130,9 @@
     "overrideNone": {
         "message": "Niet"
     },
+    "buttonEdit": {
+        "message": "Bewerken"
+    },
     "buttonSave": {
         "message": "Opslaan"
     },
@@ -188,6 +191,39 @@
     },
     "dialogCannotDeleteDefault": {
         "message": "De standaard schuifbalk kan pas worden verwijderd na het instellen van een nieuwe standaard schuifbalk."
+    },
+    "dialogSaveRulesTitle": {
+        "message": "Websiteregel opslaan"
+    },
+    "dialogDeleteRulesTitle": {
+        "message": "Websiteregel verwijderen"
+    },
+    "dialogChangesDetectedTitle": {
+        "message": "Wijzigingen ontdekt"
+    },
+    "dialogRestoreFromFileTitle": {
+        "message": "Back-up terugzetten"
+    },
+    "dialogRemoveProfileTitle": {
+        "message": "Schuifbalk verwijderen"
+    },
+    "dialogSaveProfileTitle": {
+        "message": "Schuifbalk opslaan"
+    },
+    "dialogChangesWillBeLostTitle": {
+        "message": "Niet-opgeslagen wijzigingen"
+    },
+    "dialogPermissionRequiredTitle": {
+        "message": "Toestemming vereist"
+    },
+    "dialogRenameProfileTitle": {
+        "message": "Schuifbalknaam wĳzigen"
+    },
+    "dialogChangeProfileTitle": {
+        "message": "Schuifbalk aanpassen"
+    },
+    "dialogAddRuleTitle": {
+        "message": "Websiteregel toevoegen"
     },
     "profileActionNew": {
         "message": "Nieuw"

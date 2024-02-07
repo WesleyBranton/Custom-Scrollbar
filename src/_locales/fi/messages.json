@@ -52,6 +52,9 @@
     "optionsLocalFileProfile": {
         "message": "Käytä tätä vierityspalkkia paikallisia tiedostoja katseltaessa"
     },
+    "optionsUnsubscribedFromAllUpdateNotifications": {
+        "message": "Näytä tärkeät muutokset ja uudet ominaisuudet uudessa välilehdessä päivityksen jälkeen?"
+    },
     "sizeDefault": {
         "message": "Alustan Oletus"
     },
@@ -127,6 +130,9 @@
     "overrideNone": {
         "message": "Ei mikään"
     },
+    "buttonEdit": {
+        "message": "Muokkaa"
+    },
     "buttonSave": {
         "message": "Tallenna"
     },
@@ -186,6 +192,39 @@
     "dialogCannotDeleteDefault": {
         "message": "Oletusvierityspalkkia ei voi poistaa. Aseta uusi oletusvierityspalkki ennen poistamista."
     },
+    "dialogSaveRulesTitle": {
+        "message": "Tallenna Sivuston Sääntö"
+    },
+    "dialogDeleteRulesTitle": {
+        "message": "Poista Sivuston Sääntö"
+    },
+    "dialogChangesDetectedTitle": {
+        "message": "Muutoksia havaittu"
+    },
+    "dialogRestoreFromFileTitle": {
+        "message": "Palauta varmuuskopio"
+    },
+    "dialogRemoveProfileTitle": {
+        "message": "Poista Vierityspalkki"
+    },
+    "dialogSaveProfileTitle": {
+        "message": "Tallenna Vierityspalkki"
+    },
+    "dialogChangesWillBeLostTitle": {
+        "message": "Tallentamattomia muutoksia"
+    },
+    "dialogPermissionRequiredTitle": {
+        "message": "Käyttöoikeus vaaditaan"
+    },
+    "dialogRenameProfileTitle": {
+        "message": "Uudelleennimeä Vierityspalkki"
+    },
+    "dialogChangeProfileTitle": {
+        "message": "Vaihda Vierityspalkkia"
+    },
+    "dialogAddRuleTitle": {
+        "message": "Lisää Sivuston Sääntö"
+    },
     "profileActionNew": {
         "message": "Uusi"
     },
@@ -206,6 +245,9 @@
     },
     "migratedProfileName": {
         "message": "Yleiset"
+    },
+    "scrollbars": {
+        "message": "Vierityspalkit"
     },
     "options": {
         "message": "Valinnat"
@@ -353,5 +395,27 @@
     },
     "whatsNew": {
         "message": "Mitä Uutta"
+    },
+    "messageNoScrollbarSelectedHeader": {
+        "message": "Vierityspalkkia ei ole valittu"
+    },
+    "messageNoScrollbarSelectedMessage1": {
+        "message": "Valitse vierityspalkki yläpuolella olevasta avattavasta laatikosta tai paina '$NEWBUTTONLABEL$' -painiketta lisätäksesi uuden vierityspalkin.",
+        "placeholders": {
+            "newbuttonlabel": {
+                "content": "$1"
+            }
+        }
+    },
+    "messageNoScrollbarSelectedMessage2": {
+        "message": "Jos et halua $EXTENSIONNAME$ mukauttaaksesi vierityspalkkejasi oletuksena, paina '$SETASDEFAULTBUTTONLABEL$' painiketta.",
+        "placeholders": {
+            "extensionname": {
+                "content": "$1"
+            },
+            "setasdefaultbuttonlabel": {
+                "content": "$2"
+            }
+        }
     }
 }

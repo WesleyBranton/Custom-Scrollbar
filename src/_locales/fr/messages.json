@@ -1,7 +1,4 @@
 {
-    "extensionName": {
-        "message": "Custom Scrollbars"
-    },
     "extensionDescription": {
         "message": "Donnez un aspect original à votre navigateur avec des barres de défilement personnalisées !"
     },
@@ -130,6 +127,9 @@
     "overrideNone": {
         "message": "Rien"
     },
+    "buttonEdit": {
+        "message": "Modifier"
+    },
     "buttonSave": {
         "message": "Enregistrer"
     },
@@ -188,6 +188,39 @@
     },
     "dialogCannotDeleteDefault": {
         "message": "Impossible de supprimer la barre de défilement par défaut. Définissez une nouvelle barre de défilement par défaut avant de la supprimer."
+    },
+    "dialogSaveRulesTitle": {
+        "message": "Enregistrer la règle du site web"
+    },
+    "dialogDeleteRulesTitle": {
+        "message": "Supprimer la règle du site web"
+    },
+    "dialogChangesDetectedTitle": {
+        "message": "Modifications détectées"
+    },
+    "dialogRestoreFromFileTitle": {
+        "message": "Restaurer à partir d'une sauvegarde"
+    },
+    "dialogRemoveProfileTitle": {
+        "message": "Supprimer la barre de défilement"
+    },
+    "dialogSaveProfileTitle": {
+        "message": "Enregistre la barre de défilement"
+    },
+    "dialogChangesWillBeLostTitle": {
+        "message": "Modifications non enregistrées"
+    },
+    "dialogPermissionRequiredTitle": {
+        "message": "Permission requise"
+    },
+    "dialogRenameProfileTitle": {
+        "message": "Rename la barre de défilement"
+    },
+    "dialogChangeProfileTitle": {
+        "message": "Changer la barre de défilement"
+    },
+    "dialogAddRuleTitle": {
+        "message": "Ajouter la règle du site web"
     },
     "profileActionNew": {
         "message": "Nouveau"
