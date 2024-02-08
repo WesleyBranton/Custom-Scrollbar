@@ -160,6 +160,10 @@ function generateCSS(width, colorTrack, colorThumb, override, customWidth, butto
             const buttonRight = new CSSRule('::-webkit-scrollbar-button:single-button:horizontal:increment');
             buttonRight.set('background-image', `url(${images.right})`, true);
             css.push(buttonRight);
+
+            const unwantedButtons = new CSSRule('::-webkit-scrollbar-button:vertical:start:increment, ::-webkit-scrollbar-button:vertical:end:decrement, ::-webkit-scrollbar-button:horizontal:start:increment, ::-webkit-scrollbar-button:horizontal:end:decrement');
+            unwantedButtons.set('display', 'none', true);
+            css.push(unwantedButtons);
         }
     }
 
