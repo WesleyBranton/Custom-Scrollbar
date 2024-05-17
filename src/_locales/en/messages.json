@@ -291,6 +291,9 @@
     "dialogOverwriteUnloadedChanges": {
         "message": "Your settings changed after this page was loaded. Saving your changes may overwrite previous changes. Are you sure you want to continue?"
     },
+    "dialogBackupMismatch": {
+        "message": "The selected backup file was created on a different browser or operating system. It may contain settings that are not compatible with your computer. Are you sure you want to continue?"
+    },
     "changeProfileFor": {
         "message": "Editing scrollbar for: $WEBSITE$",
         "placeholders": {

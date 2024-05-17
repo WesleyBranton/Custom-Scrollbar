@@ -13,17 +13,23 @@ function saveBackup() {
     }, (granted) => {
         if (granted) {
             browser.storage.local.get((data) => {
-                const file = new Blob([JSON.stringify(data)], {
-                    type: 'application/json'
-                });
-                const fileURL = URL.createObjectURL(file);
+                browser.runtime.getPlatformInfo((platform) => {
+                    data['browser'] = getBrowserName();
+                    data['os'] = platform.os;
+                    data['version'] = browser.runtime.getManifest().version;
 
-                browser.downloads.download({
-                    filename: `custom-scrollbars-backup-${Date.now()}.json`,
-                    saveAs: true,
-                    url: fileURL
-                }, () => {
-                    showProgressBar(false);
+                    const file = new Blob([JSON.stringify(data)], {
+                        type: 'application/json'
+                    });
+                    const fileURL = URL.createObjectURL(file);
+
+                    browser.downloads.download({
+                        filename: `custom-scrollbars-backup-${Date.now()}.json`,
+                        saveAs: true,
+                        url: fileURL
+                    }, () => {
+                        showProgressBar(false);
+                    });
                 });
             });
         } else {
@@ -116,19 +122,44 @@ function processBackupFile(event) {
         return;
     }
 
-    // Overwrite Storage API with data from file
-    browser.storage.local.clear(() => {
-        browser.storage.local.set(data, () => {
-            showAlert(
-                browser.i18n.getMessage('dialogRestoreFromFileTitle'),
-                browser.i18n.getMessage('dialogBackupRestored'),
-                () => {
-                    window.location.replace('scrollbars.html');
-                },
-                null
-            );
-            showProgressBar(false);
-        });
+    const fileBrowser = data.browser;
+    const fileOs = data.os;
+    const fileVersion = data.version;
+
+    delete data['browser'];
+    delete data['os'];
+    delete data['version'];
+
+    browser.runtime.getPlatformInfo((platform) => {
+        const currentBrowser = getBrowserName();
+        const currentOs = platform.os;
+        const currentVersion = browser.runtime.getManifest().version;
+
+        confirmAction(
+            browser.i18n.getMessage('dialogRestoreFromFileTitle'),
+            browser.i18n.getMessage('dialogBackupMismatch'),
+            () => {
+                // Overwrite Storage API with data from file
+                browser.storage.local.clear(() => {
+                    browser.storage.local.set(data, () => {
+                        showAlert(
+                            browser.i18n.getMessage('dialogRestoreFromFileTitle'),
+                            browser.i18n.getMessage('dialogBackupRestored'),
+                            () => {
+                                window.location.replace('scrollbars.html');
+                            },
+                            null
+                        );
+                        showProgressBar(false);
+                    });
+                });
+            },
+            () => {
+                clearFile();
+                showProgressBar(false);
+            },
+            (typeof fileBrowser != 'string' || fileBrowser === currentBrowser) && (typeof fileOs != 'string' || fileOs === currentOs)
+        );
     });
 }
 
