@@ -7,7 +7,7 @@ const defaults = {
     color: 'unset',
     colorThumb: '#CDCDCDFF',
     colorTrack: '#F0F0F0FF',
-    allowOverride: 0,
+    allowOverride: 10,
     customWidthValue: 17,
     customWidthUnit: 'px',
     buttons: 'none',
