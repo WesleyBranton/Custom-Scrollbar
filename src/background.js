@@ -92,7 +92,7 @@ function handleInstalled(details) {
                 const currentVersion = browser.runtime.getManifest().version;
                 let updatePage = null;
 
-                if (currentVersionHasUpdateNotice && compareVersionNumbers(details.previousVersion, currentVersion) == 2) {
+                if (currentVersionHasUpdateNotice && compareVersionNumbers(details.previousVersion, currentVersion) < 0) {
                     const version = parseVersion(currentVersion);
                     updatePage = `v${version.major}_${version.minor}${(version.patch > 0) ? `_${version.patch}` : ''}`;
                 }
@@ -110,6 +110,28 @@ function handleInstalled(details) {
                 showWhatsNew: true
             });
         }
+
+        // Change override value to "Only Width"
+        if (compareVersionNumbers(details.previousVersion, '4.3') <= 0) {
+            browser.storage.local.get((data) => {
+                const update = {};
+
+                for (const key of Object.keys(data)) {
+                    if (!key.startsWith('profile_')) {
+                        continue;
+                    }
+
+                    const scrollbar = data[key];
+
+                    if (typeof scrollbar.allowOverride == 'number' && scrollbar.allowOverride == 0) {
+                        scrollbar.allowOverride = 10;
+                        update[key] = scrollbar;
+                    }
+                }
+
+                browser.storage.local.set(update);
+            });
+        }
     }
 
     init(details.reason == 'install');
@@ -119,7 +141,7 @@ function handleInstalled(details) {
  * Compare two version numbers
  * @param {string} v1 Version number
  * @param {string} v2 Version number
- * @returns Same (0), v1 > v2 (1), v2 > v1 (2)
+ * @returns Same (0), v1 < v2 (-1), v1 > v2 (1)
  */
 function compareVersionNumbers(v1, v2) {
     v1 = parseVersion(v1);
@@ -129,7 +151,7 @@ function compareVersionNumbers(v1, v2) {
         if (v1[key] > v2[key]) {
             return 1;
         } else if (v1[key] < v2[key]) {
-            return 2;
+            return -1;
         }
     }
 
