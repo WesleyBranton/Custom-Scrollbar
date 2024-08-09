@@ -136,6 +136,9 @@
     "buttonSave": {
         "message": "Save"
     },
+    "messageRecommended": {
+        "message": "Recommended"
+    },
     "messageSaved": {
         "message": "All changes have been saved!"
     },

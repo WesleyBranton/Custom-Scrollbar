@@ -470,6 +470,19 @@ button.default.icon > div > img {
     cursor: default !important;
 }
 
+.label-recommended {
+    font-style: italic;
+    opacity: 0.6;
+}
+
+.label-recommended::before {
+    content: "(";
+}
+
+.label-recommended::after {
+    content: ")";
+}
+
 @keyframes bounce {
     0%,
     25%,
