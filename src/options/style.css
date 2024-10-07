@@ -483,6 +483,11 @@ button.default.icon > div > img {
     content: ")";
 }
 
+label.disabled {
+    cursor: not-allowed !important;
+    opacity: 0.4;
+}
+
 @keyframes bounce {
     0%,
     25%,
