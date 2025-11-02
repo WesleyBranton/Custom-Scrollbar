@@ -1,4 +1,7 @@
 {
+    "extensionName": {
+        "message": "Custom Scrollbars"
+    },
     "extensionDescription": {
         "message": "Надайте своєму браузеру особливий вигляд з індивідуальними смугами прокрутки!"
     },

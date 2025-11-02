@@ -1,4 +1,7 @@
 {
+    "extensionName": {
+        "message": "Custom Scrollbars"
+    },
     "extensionDescription": {
         "message": "Dodajte svojemu brskalniku osebni pečat s prilagojenimi drsniki!"
     },
