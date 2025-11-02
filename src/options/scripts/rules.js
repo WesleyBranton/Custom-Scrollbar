@@ -516,11 +516,8 @@ function userInputDomainValidation(input, checkbox, error) {
         return false;
     }
 
-    if (checkbox) {
-        input.value = '*.' + input.value;
-    }
-
-    if (rules[input.value]) {
+    const domain = checkbox ? input.value : '*.' + input.value;
+    if (rules[domain]) {
         error.textContent = browser.i18n.getMessage('errorRuleAlreadyExists');
         return false;
     }
