@@ -1,0 +1,418 @@
+{
+    "extensionDescription": {
+        "message": "Dodajte svojemu brskalniku osebni pečat s prilagojenimi drsniki!"
+    },
+    "optionsTitle": {
+        "message": "Možnosti $EXTENSIONNAME$",
+        "placeholders": {
+            "extensionname": {
+                "content": "$1"
+            }
+        }
+    },
+    "optionsSectionProfile": {
+        "message": "Drsnik"
+    },
+    "optionsSectionPreview": {
+        "message": "Predogled v živo"
+    },
+    "optionsSectionWidth": {
+        "message": "Širina drsnika"
+    },
+    "optionsSectionButtons": {
+        "message": "Gumbi drsnika"
+    },
+    "optionsSectionThumbRadius": {
+        "message": "Zaobljenost drsnika"
+    },
+    "optionsSectionUseColors": {
+        "message": "Uporabi barve po meri"
+    },
+    "optionsSectionThumb": {
+        "message": "Barva ročice drsnika"
+    },
+    "optionsSectionTrack": {
+        "message": "Barva steze drsnika"
+    },
+    "optionsSectionOverride": {
+        "message": "Dovoli spletnim stranem, da preglasijo"
+    },
+    "optionsSectionAutoHide": {
+        "message": "Samodejno skrij drsnik"
+    },
+    "optionsSectionAutoHideShort": {
+        "message": "Samodejno skrij"
+    },
+    "optionsFramesInherit": {
+        "message": "Dovoli vdelanim spletnim stranem, da podedujejo videz drsnika od glavne vsebine?"
+    },
+    "optionsLocalFileProfile": {
+        "message": "Uporabi ta drsnik pri ogledu lokalnih datotek"
+    },
+    "optionsUnsubscribedFromAllUpdateNotifications": {
+        "message": "Naj se pomembne spremembe in nove funkcije po posodobitvi prikažejo v novem zavihku?"
+    },
+    "sizeDefault": {
+        "message": "Privzeto za platformo"
+    },
+    "sizeWide": {
+        "message": "Široko"
+    },
+    "sizeThin": {
+        "message": "Tanko"
+    },
+    "sizeHidden": {
+        "message": "Skrito"
+    },
+    "sizeOther": {
+        "message": "Drugo"
+    },
+    "optionLight": {
+        "message": "Svetla"
+    },
+    "optionDark": {
+        "message": "Temna"
+    },
+    "optionYes": {
+        "message": "Da"
+    },
+    "optionNo": {
+        "message": "Ne"
+    },
+    "optionOk": {
+        "message": "V redu"
+    },
+    "optionCancel": {
+        "message": "Prekliči"
+    },
+    "colorFormatRGB": {
+        "message": "RGB"
+    },
+    "colorFormatHSV": {
+        "message": "HSV"
+    },
+    "colorFormatHEX": {
+        "message": "ŠESTNAJSTIŠKO"
+    },
+    "colorRed": {
+        "message": "Rdeča"
+    },
+    "colorGreen": {
+        "message": "Zelena"
+    },
+    "colorBlue": {
+        "message": "Modra"
+    },
+    "colorHue": {
+        "message": "Odtenek"
+    },
+    "colorSaturation": {
+        "message": "Nasičenost"
+    },
+    "colorValue": {
+        "message": "Vrednost"
+    },
+    "colorAlpha": {
+        "message": "Alfa"
+    },
+    "overrideColor": {
+        "message": "Samo barva"
+    },
+    "overrideWidth": {
+        "message": "Samo širina"
+    },
+    "overrideAll": {
+        "message": "Barva & širina"
+    },
+    "overrideNone": {
+        "message": "Nič"
+    },
+    "buttonEdit": {
+        "message": "Urejanje"
+    },
+    "buttonSave": {
+        "message": "Shrani"
+    },
+    "messageSaved": {
+        "message": "Vse spremembe so bile shranjene!"
+    },
+    "messageUnsaved": {
+        "message": "Imate neshranjene spremembe!"
+    },
+    "promptPrivateBrowsing": {
+        "message": "Drsniki po meri ne bodo vidni v oknih $PRIVATEBROWSING$, razen če tej razširitvi dovolite izvajanje v načinu $PRIVATEBROWSING$.",
+        "placeholders": {
+            "privatebrowsing": {
+                "content": "$1"
+            }
+        }
+    },
+    "linkHelp": {
+        "message": "Pomoč"
+    },
+    "linkContribute": {
+        "message": "Prispevajte"
+    },
+    "linkDonate": {
+        "message": "Donirajte"
+    },
+    "linkTranslate": {
+        "message": "Prevod"
+    },
+    "linkCredits": {
+        "message": "Zasluge"
+    },
+    "linkFeedback": {
+        "message": "Povratne informacije"
+    },
+    "callToActionLearn": {
+        "message": "Več o tem ..."
+    },
+    "privateBrowsingFirefox": {
+        "message": "Zasebno brskanje"
+    },
+    "privateBrowsingChrome": {
+        "message": "Brskanje brez beleženja zgodovine"
+    },
+    "privateBrowsingEdge": {
+        "message": "InPrivate"
+    },
+    "privateBrowsingOpera": {
+        "message": "Brskanje brez beleženja zgodovine"
+    },
+    "dialogChangesWillBeLost": {
+        "message": "Vaše neshranjene spremembe bodo izgubljene. Ste prepričani, da želite nadaljevati?"
+    },
+    "dialogCannotBeUndone": {
+        "message": "Tega dejanja ni mogoče razveljaviti. Ali ste prepričani, da želite nadaljevati?"
+    },
+    "dialogCannotDeleteDefault": {
+        "message": "Privzetega drsnika ni mogoče izbrisati. Pred brisanjem nastavite nov privzeti drsnik."
+    },
+    "dialogSaveRulesTitle": {
+        "message": "Shrani pravilo spletne strani"
+    },
+    "dialogDeleteRulesTitle": {
+        "message": "Izbriši pravilo spletne strani"
+    },
+    "dialogChangesDetectedTitle": {
+        "message": "Zaznane so bile spremembe"
+    },
+    "dialogRestoreFromFileTitle": {
+        "message": "Obnovi iz varnostne kopije"
+    },
+    "dialogRemoveProfileTitle": {
+        "message": "Odstrani drsnik"
+    },
+    "dialogSaveProfileTitle": {
+        "message": "Shrani drsnik"
+    },
+    "dialogChangesWillBeLostTitle": {
+        "message": "Neshranjene spremembe"
+    },
+    "dialogPermissionRequiredTitle": {
+        "message": "Potrebno je dovoljenje"
+    },
+    "dialogRenameProfileTitle": {
+        "message": "Preimenuj drsnik"
+    },
+    "dialogChangeProfileTitle": {
+        "message": "Spremeni drsnik"
+    },
+    "dialogAddRuleTitle": {
+        "message": "Dodaj pravilo spletne strani"
+    },
+    "profileActionNew": {
+        "message": "Novo"
+    },
+    "profileActionDuplicate": {
+        "message": "Podvoji"
+    },
+    "profileActionRename": {
+        "message": "Preimenuj"
+    },
+    "profileActionRemove": {
+        "message": "Odstrani"
+    },
+    "profileActionChangeDefault": {
+        "message": "Nastavi kot privzeto"
+    },
+    "defaultProfileName": {
+        "message": "Nov drsnik"
+    },
+    "migratedProfileName": {
+        "message": "Splošno"
+    },
+    "scrollbars": {
+        "message": "Drsniki"
+    },
+    "options": {
+        "message": "Možnosti"
+    },
+    "backupAndRestore": {
+        "message": "Varnostno kopiranje / Obnovitev"
+    },
+    "backupSection": {
+        "message": "Prenesi varnostno kopijo"
+    },
+    "restoreSection": {
+        "message": "Obnovi iz varnostne kopije"
+    },
+    "buttonSelectFile": {
+        "message": "Izberite datoteko ..."
+    },
+    "buttonRestore": {
+        "message": "Obnovi"
+    },
+    "noFileSelected": {
+        "message": "Nobena datoteka ni izbrana"
+    },
+    "dialogInvalidBackup": {
+        "message": "Neveljavna datoteka varnostne kopije"
+    },
+    "dialogPermissionRequired": {
+        "message": "Manjka zahtevano dovoljenje. Poskusite znova."
+    },
+    "dialogDataOverwrite": {
+        "message": "Obnovitev te varnostne kopije bo nadomestila vaše obstoječe nastavitve. Tega ni mogoče razveljaviti. Ali ste prepričani, da želite nadaljevati?"
+    },
+    "dialogBackupRestored": {
+        "message": "Varnostna kopija je bila uspešno obnovljena!"
+    },
+    "dialogChangesDetected": {
+        "message": "Vaše nastavitve so se spremenile. Ali želite osvežiti to stran, da se naložijo posodobljene nastavitve?"
+    },
+    "dialogChangesDetectedWarning": {
+        "message": "Neshranjene spremembe bodo izgubljene."
+    },
+    "dialogOverwriteUnloadedChanges": {
+        "message": "Vaše nastavitve so se spremenile po nalaganju te strani. Shranjevanje sprememb lahko prepiše prejšnje spremembe. Ali ste prepričani, da želite nadaljevati?"
+    },
+    "changeProfileFor": {
+        "message": "Urejanje drsnika za: $WEBSITE$",
+        "placeholders": {
+            "website": {
+                "content": "$1"
+            }
+        }
+    },
+    "profileUsingDefault": {
+        "message": "Uporabi privzet ($PROFILENAME$)",
+        "placeholders": {
+            "profilename": {
+                "content": "$1"
+            }
+        }
+    },
+    "profileUsingNone": {
+        "message": "Ne prilagajaj drsnika"
+    },
+    "profileActionUseOnWebsite": {
+        "message": "Uporabi na tej spletni strani"
+    },
+    "profileActionUseOnLocalFiles": {
+        "message": "Uporabi za lokalne datoteke"
+    },
+    "errorInvalidDomain": {
+        "message": "Vneseno neveljavno ime domene"
+    },
+    "errorRuleAlreadyExists": {
+        "message": "Pravilo za to domeno že obstaja"
+    },
+    "domain": {
+        "message": "Domena"
+    },
+    "subdomainsOnly": {
+        "message": "Samo poddomene"
+    },
+    "noRulesSet": {
+        "message": "Ni pravil za spletno mesto"
+    },
+    "noRulesFound": {
+        "message": "V iskanju ni bilo najdenih pravil spletnega mesta"
+    },
+    "websiteRules": {
+        "message": "Pravila spletnega mesta"
+    },
+    "add": {
+        "message": "Dodaj"
+    },
+    "ruleActionChangeProfile": {
+        "message": "Spremeni drsnik ..."
+    },
+    "profileMoveExistingRules": {
+        "message": "Obstajajo pravila spletnega mesta, ki so uporabljala ta drsnik. Kateri drsnik naj namesto tega uporabljajo ta pravila spletnega mesta?"
+    },
+    "ruleNoProfileSet": {
+        "message": "MANJKA DRSNIK"
+    },
+    "ruleInherit": {
+        "message": "Podedovano od $DOMAIN$",
+        "placeholders": {
+            "domain": {
+                "content": "$1"
+            }
+        }
+    },
+    "ruleSort": {
+        "message": "Razvrsti po"
+    },
+    "sortDomain": {
+        "message": "Domena"
+    },
+    "search": {
+        "message": "Iskanje"
+    },
+    "selectAll": {
+        "message": "Izberi vse"
+    },
+    "deselectAll": {
+        "message": "Odznači vse"
+    },
+    "deleteSelected": {
+        "message": "Izbriši izbrano"
+    },
+    "changeSelected": {
+        "message": "Spremeni drsnik izbranega"
+    },
+    "selectedRules": {
+        "message": "Vsa izbrana pravila"
+    },
+    "advancedHeader": {
+        "message": "Napredne nastavitve"
+    },
+    "featureRequiredAdditionalPermission": {
+        "message": "Ta funkcija zahteva dodatno dovoljenje, preden jo je mogoče uporabiti."
+    },
+    "popupRequiresAdditionalPermission": {
+        "message": "Za ogled informacij o nastavitvah, ki se uporabljajo na spletnem mestu, dodatek potrebuje dovoljenje za dostop do zavihkov brskalnika."
+    },
+    "grantPermissionButton": {
+        "message": "Odobri dovoljenje"
+    },
+    "whatsNew": {
+        "message": "Kaj je novega"
+    },
+    "messageNoScrollbarSelectedHeader": {
+        "message": "Noben drsnik ni izbran"
+    },
+    "messageNoScrollbarSelectedMessage1": {
+        "message": "Izberite drsnik iz spustnega menija zgoraj ali pritisnite gumb '$NEWBUTTONLABEL$', da dodate nov drsnik.",
+        "placeholders": {
+            "newbuttonlabel": {
+                "content": "$1"
+            }
+        }
+    },
+    "messageNoScrollbarSelectedMessage2": {
+        "message": "Če ne želite, da $EXTENSIONNAME$ privzeto prilagodi vaše drsnike, pritisnite gumb '$SETASDEFAULTBUTTONLABEL$'.",
+        "placeholders": {
+            "extensionname": {
+                "content": "$1"
+            },
+            "setasdefaultbuttonlabel": {
+                "content": "$2"
+            }
+        }
+    }
+}

@@ -3,10 +3,10 @@
         "message": "Custom Scrollbars"
     },
     "extensionDescription": {
-        "message": "Anna selaimellesi henkilökohtainen kosketus räätälöityihin vierityspalkkeihin!"
+        "message": "Tee selaimestasi omanlaisesi yksilöimällä vierityspalkkien ulkoasua!"
     },
     "optionsTitle": {
-        "message": "$EXTENSIONNAME$ Asetukset",
+        "message": "$EXTENSIONNAME$in asetukset",
         "placeholders": {
             "extensionname": {
                 "content": "$1"
@@ -14,13 +14,13 @@
         }
     },
     "optionsSectionProfile": {
-        "message": "Scrollbar"
+        "message": "Vierityspalkki"
     },
     "optionsSectionPreview": {
-        "message": "Live esikatselu"
+        "message": "Esikatselu"
     },
     "optionsSectionWidth": {
-        "message": "Scrollbar width"
+        "message": "Vierityspalkin leveys"
     },
     "optionsSectionButtons": {
         "message": "Vierityspalkin painikkeet"
@@ -32,13 +32,13 @@
         "message": "Käytä omia värejä"
     },
     "optionsSectionThumb": {
-        "message": "Vierityspalkin peukalon väri"
+        "message": "Vierityspalkin sisäosan väri"
     },
     "optionsSectionTrack": {
-        "message": "Vierityspalkin radan väri"
+        "message": "Vierityspalkin taustaväri"
     },
     "optionsSectionOverride": {
-        "message": "Salli sivustojen ohittaa"
+        "message": "Anna verkkosivustojen muuttaa näitä määrityksiä"
     },
     "optionsSectionAutoHide": {
         "message": "Piilota vierityspalkki automaattisesti"
@@ -53,13 +53,13 @@
         "message": "Käytä tätä vierityspalkkia paikallisia tiedostoja katseltaessa"
     },
     "optionsUnsubscribedFromAllUpdateNotifications": {
-        "message": "Näytä tärkeät muutokset ja uudet ominaisuudet uudessa välilehdessä päivityksen jälkeen?"
+        "message": "Näytetäänkö tärkeät muutokset ja uudet ominaisuudet uudessa välilehdessä päivityksen jälkeen?"
     },
     "sizeDefault": {
-        "message": "Alustan Oletus"
+        "message": "Alustan oletus"
     },
     "sizeWide": {
-        "message": "Laaja"
+        "message": "Leveä"
     },
     "sizeThin": {
         "message": "Ohut"
@@ -125,7 +125,7 @@
         "message": "Vain leveys"
     },
     "overrideAll": {
-        "message": "Värin leveys"
+        "message": "Väri ja leveys"
     },
     "overrideNone": {
         "message": "Ei mikään"
@@ -143,7 +143,7 @@
         "message": "Sinulla on tallentamattomia muutoksia!"
     },
     "promptPrivateBrowsing": {
-        "message": "Mukautetut vierityspalkit eivät näy $PRIVATEBROWSING$ ikkunassa, ellet anna tätä laajennusta käyttöoikeutta $PRIVATEBROWSING$ -tilassa.",
+        "message": "Mukautetut vierityspalkit eivät näy $PRIVATEBROWSING$-ikkunassa, ellet anna tälle laajennukselle lupaa toimia $PRIVATEBROWSING$-tilassa.",
         "placeholders": {
             "privatebrowsing": {
                 "content": "$1"

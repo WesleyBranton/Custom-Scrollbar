@@ -1,0 +1,418 @@
+{
+    "extensionDescription": {
+        "message": "Надайте своєму браузеру особливий вигляд з індивідуальними смугами прокрутки!"
+    },
+    "optionsTitle": {
+        "message": "Параметри $EXTENSIONNAME$",
+        "placeholders": {
+            "extensionname": {
+                "content": "$1"
+            }
+        }
+    },
+    "optionsSectionProfile": {
+        "message": "Смуга прокрутки"
+    },
+    "optionsSectionPreview": {
+        "message": "Попередній перегляд"
+    },
+    "optionsSectionWidth": {
+        "message": "Ширина смуги"
+    },
+    "optionsSectionButtons": {
+        "message": "Кнопки смуги"
+    },
+    "optionsSectionThumbRadius": {
+        "message": "Заокруглення смуги прокрутки"
+    },
+    "optionsSectionUseColors": {
+        "message": "Власний колір"
+    },
+    "optionsSectionThumb": {
+        "message": "Колір смуги прокрутки"
+    },
+    "optionsSectionTrack": {
+        "message": "Колір фону смуги"
+    },
+    "optionsSectionOverride": {
+        "message": "Дозволити сайтам визначати"
+    },
+    "optionsSectionAutoHide": {
+        "message": "Сховати прокрутку автоматично"
+    },
+    "optionsSectionAutoHideShort": {
+        "message": "Сховати автоматично"
+    },
+    "optionsFramesInherit": {
+        "message": "Дозволити вебсайтам успадкувати основний вигляд смуги прокрутки?"
+    },
+    "optionsLocalFileProfile": {
+        "message": "Використати цю прокрутку у перегляді локальних файлів"
+    },
+    "optionsUnsubscribedFromAllUpdateNotifications": {
+        "message": "Показати важливі зміни та нові функції після оновлення?"
+    },
+    "sizeDefault": {
+        "message": "За замовчуванням"
+    },
+    "sizeWide": {
+        "message": "Широка"
+    },
+    "sizeThin": {
+        "message": "Тонка"
+    },
+    "sizeHidden": {
+        "message": "Прихована"
+    },
+    "sizeOther": {
+        "message": "Інше"
+    },
+    "optionLight": {
+        "message": "Світла"
+    },
+    "optionDark": {
+        "message": "Темна"
+    },
+    "optionYes": {
+        "message": "Так"
+    },
+    "optionNo": {
+        "message": "Ні"
+    },
+    "optionOk": {
+        "message": "Ок"
+    },
+    "optionCancel": {
+        "message": "Скасувати"
+    },
+    "colorFormatRGB": {
+        "message": "RGB"
+    },
+    "colorFormatHSV": {
+        "message": "HSV"
+    },
+    "colorFormatHEX": {
+        "message": "HEX"
+    },
+    "colorRed": {
+        "message": "Червоний"
+    },
+    "colorGreen": {
+        "message": "Зелений"
+    },
+    "colorBlue": {
+        "message": "Синій"
+    },
+    "colorHue": {
+        "message": "Тон"
+    },
+    "colorSaturation": {
+        "message": "Насиченість"
+    },
+    "colorValue": {
+        "message": "Значення"
+    },
+    "colorAlpha": {
+        "message": "Альфа"
+    },
+    "overrideColor": {
+        "message": "Лише колір"
+    },
+    "overrideWidth": {
+        "message": "Лише ширина"
+    },
+    "overrideAll": {
+        "message": "Колір та ширина"
+    },
+    "overrideNone": {
+        "message": "Нічого"
+    },
+    "buttonEdit": {
+        "message": "Змінити"
+    },
+    "buttonSave": {
+        "message": "Зберегти"
+    },
+    "messageSaved": {
+        "message": "Всі зміни збережені"
+    },
+    "messageUnsaved": {
+        "message": "Є незбережені зміни!"
+    },
+    "promptPrivateBrowsing": {
+        "message": "Користувацькі смуги прокрутки не будуть видимі в $PRIVATEBROWSING$ вікнах, якщо не надати дозвіл на запуск в $PRIVATEBROWSING$ режимі.",
+        "placeholders": {
+            "privatebrowsing": {
+                "content": "$1"
+            }
+        }
+    },
+    "linkHelp": {
+        "message": "Довідка"
+    },
+    "linkContribute": {
+        "message": "Підтримати"
+    },
+    "linkDonate": {
+        "message": "Допомогти"
+    },
+    "linkTranslate": {
+        "message": "Переклад"
+    },
+    "linkCredits": {
+        "message": "Автори"
+    },
+    "linkFeedback": {
+        "message": "Зворотний зв'язок"
+    },
+    "callToActionLearn": {
+        "message": "Докладніше..."
+    },
+    "privateBrowsingFirefox": {
+        "message": "Приватний перегляд"
+    },
+    "privateBrowsingChrome": {
+        "message": "Інкогніто"
+    },
+    "privateBrowsingEdge": {
+        "message": "Приватний"
+    },
+    "privateBrowsingOpera": {
+        "message": "Інкогніто"
+    },
+    "dialogChangesWillBeLost": {
+        "message": "Незбережені зміни будуть втрачені. Ви впевнені, що хочете закрити?"
+    },
+    "dialogCannotBeUndone": {
+        "message": "Цю дію неможливо скасувати. Ви впевнені, що хочете продовжити?"
+    },
+    "dialogCannotDeleteDefault": {
+        "message": "Не вдається видалити панель прокрутки. Будь ласка, встановіть нову панель за замовченням перед видаленням."
+    },
+    "dialogSaveRulesTitle": {
+        "message": "Зберегти правило сайту"
+    },
+    "dialogDeleteRulesTitle": {
+        "message": "Видалити правило сайту"
+    },
+    "dialogChangesDetectedTitle": {
+        "message": "Виявлено зміни"
+    },
+    "dialogRestoreFromFileTitle": {
+        "message": "Відновити з резервної копії"
+    },
+    "dialogRemoveProfileTitle": {
+        "message": "Видалити прокрутку"
+    },
+    "dialogSaveProfileTitle": {
+        "message": "Зберегти прокрутку"
+    },
+    "dialogChangesWillBeLostTitle": {
+        "message": "Незбережені зміни"
+    },
+    "dialogPermissionRequiredTitle": {
+        "message": "Потрібен дозвіл"
+    },
+    "dialogRenameProfileTitle": {
+        "message": "Перейменувати прокрутку"
+    },
+    "dialogChangeProfileTitle": {
+        "message": "Змінити прокрутку"
+    },
+    "dialogAddRuleTitle": {
+        "message": "Додати правило сайту"
+    },
+    "profileActionNew": {
+        "message": "Новий"
+    },
+    "profileActionDuplicate": {
+        "message": "Дублювати"
+    },
+    "profileActionRename": {
+        "message": "Перейменувати"
+    },
+    "profileActionRemove": {
+        "message": "Видалити"
+    },
+    "profileActionChangeDefault": {
+        "message": "Встановити за замовченням"
+    },
+    "defaultProfileName": {
+        "message": "Нова прокрутка"
+    },
+    "migratedProfileName": {
+        "message": "Загальні"
+    },
+    "scrollbars": {
+        "message": "Смуги прокрутки"
+    },
+    "options": {
+        "message": "Налаштування"
+    },
+    "backupAndRestore": {
+        "message": "Резервування та відновлення"
+    },
+    "backupSection": {
+        "message": "Завантажити копію"
+    },
+    "restoreSection": {
+        "message": "Відновлення з копії"
+    },
+    "buttonSelectFile": {
+        "message": "Обрати файл..."
+    },
+    "buttonRestore": {
+        "message": "Відновити"
+    },
+    "noFileSelected": {
+        "message": "Не обрано файлів"
+    },
+    "dialogInvalidBackup": {
+        "message": "Недійсний файл копії"
+    },
+    "dialogPermissionRequired": {
+        "message": "Потрібний дозвіл відсутній. Спробуйте ще раз."
+    },
+    "dialogDataOverwrite": {
+        "message": "Відновлення цієї резервної копії замінить поточні налаштування. Це не можна скасувати. Ви впевнені, що бажаєте продовжити?"
+    },
+    "dialogBackupRestored": {
+        "message": "Резервну копію успішно відновлено!"
+    },
+    "dialogChangesDetected": {
+        "message": "Ваші налаштування змінилися. Бажаєте оновити цю сторінку, щоб завантажити останні налаштування?"
+    },
+    "dialogChangesDetectedWarning": {
+        "message": "Незбережені зміни будуть втрачені."
+    },
+    "dialogOverwriteUnloadedChanges": {
+        "message": "Ваші налаштування змінені після завантаження цієї сторінки. Збереження змін може перезаписати попередні зміни. Ви впевнені, що бажаєте продовжити?"
+    },
+    "changeProfileFor": {
+        "message": "Редагувати прокрутку для: $WEBSITE$",
+        "placeholders": {
+            "website": {
+                "content": "$1"
+            }
+        }
+    },
+    "profileUsingDefault": {
+        "message": "За замовченням ($PROFILENAME$)",
+        "placeholders": {
+            "profilename": {
+                "content": "$1"
+            }
+        }
+    },
+    "profileUsingNone": {
+        "message": "Не налаштовувати прокрутку"
+    },
+    "profileActionUseOnWebsite": {
+        "message": "Використати на цьому сайті"
+    },
+    "profileActionUseOnLocalFiles": {
+        "message": "Використати для локальних файлів"
+    },
+    "errorInvalidDomain": {
+        "message": "Введено невірне ім'я домену"
+    },
+    "errorRuleAlreadyExists": {
+        "message": "Правило для цього домену вже існує"
+    },
+    "domain": {
+        "message": "Домен"
+    },
+    "subdomainsOnly": {
+        "message": "Лише піддомени"
+    },
+    "noRulesSet": {
+        "message": "Немає правил вебсайту"
+    },
+    "noRulesFound": {
+        "message": "У пошуку не знайдено правил вебсайту"
+    },
+    "websiteRules": {
+        "message": "Правила сайту"
+    },
+    "add": {
+        "message": "Додати"
+    },
+    "ruleActionChangeProfile": {
+        "message": "Змінити смугу прокрутки..."
+    },
+    "profileMoveExistingRules": {
+        "message": "Існують правила сайтів, які використовують цю прокрутку.Яку смугу прокрутки слід використати замість цих правил?"
+    },
+    "ruleNoProfileSet": {
+        "message": "НЕМАЄ СМУГИ ПРОКРУТКИ"
+    },
+    "ruleInherit": {
+        "message": "Успадковано від $DOMAIN$",
+        "placeholders": {
+            "domain": {
+                "content": "$1"
+            }
+        }
+    },
+    "ruleSort": {
+        "message": "Сортувати за"
+    },
+    "sortDomain": {
+        "message": "Домен"
+    },
+    "search": {
+        "message": "Пошук"
+    },
+    "selectAll": {
+        "message": "Обрати все"
+    },
+    "deselectAll": {
+        "message": "Скасувати вибір"
+    },
+    "deleteSelected": {
+        "message": "Видалити обране"
+    },
+    "changeSelected": {
+        "message": "Змінити прокрутку обраних"
+    },
+    "selectedRules": {
+        "message": "Обрані всі правила"
+    },
+    "advancedHeader": {
+        "message": "Додаткові налаштування"
+    },
+    "featureRequiredAdditionalPermission": {
+        "message": "Ця функція вимагає додаткового дозволу перед використанням."
+    },
+    "popupRequiresAdditionalPermission": {
+        "message": "Щоб переглянути інформацію налаштувань, що використовуються на сайті, додаток потребує дозволу на доступ до вкладок вашого браузера."
+    },
+    "grantPermissionButton": {
+        "message": "Надати дозвіл"
+    },
+    "whatsNew": {
+        "message": "Що нового"
+    },
+    "messageNoScrollbarSelectedHeader": {
+        "message": "Не обрано смугу прокрутки"
+    },
+    "messageNoScrollbarSelectedMessage1": {
+        "message": "Будь ласка, оберіть панель прокрутки зі списку нижче або натисніть кнопку  '$NEWBUTTONLABEL$', щоб додати нову.",
+        "placeholders": {
+            "newbuttonlabel": {
+                "content": "$1"
+            }
+        }
+    },
+    "messageNoScrollbarSelectedMessage2": {
+        "message": "Якщо ви не бажаєте, щоб $EXTENSIONNAME$ налаштовував смуги прокрутки за замовчуванням, натисніть кнопку '$SETASDEFAULTBUTTONLABEL$.",
+        "placeholders": {
+            "extensionname": {
+                "content": "$1"
+            },
+            "setasdefaultbuttonlabel": {
+                "content": "$2"
+            }
+        }
+    }
+}
