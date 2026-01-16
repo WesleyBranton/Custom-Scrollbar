@@ -513,18 +513,27 @@ function convertCssInjectionIntoChrome(tabId, cssInjection) {
     return result;
 }
 
-// Run Chromium-specific tasks
 if (typeof browser != 'object') {
     browser = chrome;
-    browser.tabs.insertCSS = (tabId, cssInjection) => {
-        cssInjection = convertCssInjectionIntoChrome(tabId, cssInjection);
-        browser.scripting.insertCSS(cssInjection);
-    };
-    browser.tabs.removeCSS = (tabId, cssInjection) => {
-        cssInjection = convertCssInjectionIntoChrome(tabId, cssInjection);
-        browser.scripting.removeCSS(cssInjection);
-    };
-    importScripts("crossbrowser.js", "defaults.js", "generateCSS.js");
+}
+
+switch (browser.runtime.getManifest().manifest_version) {
+    case 2:
+        break;
+    case 3:
+        browser.tabs.insertCSS = (tabId, cssInjection) => {
+            cssInjection = convertCssInjectionIntoChrome(tabId, cssInjection);
+            browser.scripting.insertCSS(cssInjection);
+        };
+        browser.tabs.removeCSS = (tabId, cssInjection) => {
+            cssInjection = convertCssInjectionIntoChrome(tabId, cssInjection);
+            browser.scripting.removeCSS(cssInjection);
+        };
+        importScripts("crossbrowser.js", "defaults.js", "generateCSS.js");
+        break;
+    default:
+        console.error("Unsupported manifest version: %d", browser.runtime.getManifest().manifest_version);
+        break;
 }
 
 browser.runtime.onInstalled.addListener(handleInstalled);

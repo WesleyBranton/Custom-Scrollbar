@@ -280,7 +280,6 @@ function getBestBrightnessFactor(thumb, track) {
     const otherHoverContrast = getColorContrast(otherHover, track);
 
     if (suggestedHoverContrast >= 4 || suggestedHoverContrast > otherHoverContrast) {
-        console.log('Hover ok:', suggestedHoverContrast, otherHoverContrast);
         return suggestedFactor;
     }
 
